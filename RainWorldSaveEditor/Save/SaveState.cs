@@ -56,6 +56,33 @@ public class SaveState
     /// </summary>
     public List<int> CreaturesWaitingToRespawn { get; } = [];
 
+    /// <summary>
+    /// REGIONSTATE
+    /// </summary>
+    public List<RegionState> RegionStates { get; } = [];
+
+    /////
+
+    /// <summary>
+    /// FRIENDS
+    /// </summary>
+    public List<string> Objects { get; } = [];
+
+    /// <summary>
+    /// FRIENDS
+    /// </summary>
+    public List<string> Friends { get; } = [];
+
+    /// <summary>
+    /// OEENCOUNTERS
+    /// </summary>
+    public List<string> OuterExpanseEncounters { get; } = [];
+
+    /// <summary>
+    /// SAV STATE NUMBER
+    /// </summary>
+    public string SaveStateNumber { get; set; } = "???";
+
     public void Read(string data)
     {
         foreach ((var key, var value) in SaveUtils.GetFields(data, "<svB>", "<svA>"))
@@ -100,6 +127,17 @@ public class SaveState
                 CreaturesWaitingToRespawn.AddRange(value.Split('.').Where(x => x != "").Select(x => int.Parse(x, NumberStyles.Any, CultureInfo.InvariantCulture)));
                 break;
             case "REGIONSTATE":
+                var regions = value.Split("<rgB>");
+
+                // TODO This may have invalid / modded / unrecognized regions
+                foreach (var region in regions)
+                {
+                    var state = new RegionState();
+                    state.Read(region);
+                    RegionStates.Add(state);
+                }
+
+                break;
             case "COMMUNITIES":
             case "MISCWORLDSAVEDATA":
             case "DEATHPERSISTENTSAVEDATA":
@@ -123,14 +161,27 @@ public class SaveState
             case "KARMADREAM":
             case "FORCEPUPS":
             case "OBJECTTRACKERS":
+                // TODO Implement remaining strings
+                UnrecognizedFields[key] = value;
+                break;
             case "OBJECTS":
+                Objects.Clear();
+                Objects.AddRange(value.Split("<svC>").Where(x => x != ""));
+                break;
             case "FRIENDS":
+                Friends.Clear();
+                Friends.AddRange(value.Split("<svC>").Where(x => x != ""));
+                break;
             case "OEENCOUNTERS":
+                // TODO Needs ModManager.MMF = true
+                OuterExpanseEncounters.Clear();
+                OuterExpanseEncounters.AddRange(value.Split("<svC>").Where(x => x != ""));
+                break;
             case "SAV STATE NUMBER":
-                // Unused
+                SaveStateNumber = value;
                 break;
             default:
-                // TODO Implement remaining strings
+                // Fallback for unrecognized / invalid / modded fields
                 UnrecognizedFields[key] = value;
                 break;
         }

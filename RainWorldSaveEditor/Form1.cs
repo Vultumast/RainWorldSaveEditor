@@ -13,7 +13,8 @@ public partial class Form1 : Form
 
         if (table["save"] is string saveData)
         {
-            RainWorldSave save = RainWorldSave.Read(saveData);
+            RainWorldSave save = new();
+            save.Read(saveData);
         }
         else
         {
@@ -22,7 +23,8 @@ public partial class Form1 : Form
 
         if (table["save__Backup"] is string saveBackupData)
         {
-            RainWorldSave save = RainWorldSave.Read(saveBackupData);
+            RainWorldSave saveBackup = new();
+            saveBackup.Read(saveBackupData);
         }
         else
         {
