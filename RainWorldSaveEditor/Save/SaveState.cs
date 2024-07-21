@@ -44,7 +44,7 @@ public class SaveState
     /// <summary>
     /// GUIDEOVERSEERDEAD (valueless)
     /// </summary>
-    public bool IsGuideOvereerDead { get; set; } = false;
+    public bool IsGuideOverseerDead { get; set; } = false;
 
     /// <summary>
     /// RESPAWNS
@@ -61,7 +61,88 @@ public class SaveState
     /// </summary>
     public List<RegionState> RegionStates { get; } = [];
 
-    /////
+    /// <summary>
+    /// UNRECOGNIZEDSWALLOWED
+    /// </summary>
+    public List<string> UnrecognizedSwallowedItems { get; } = [];
+
+    /// <summary>
+    /// UNRECOGNIZEDPLAYERGRASPS
+    /// </summary>
+    public List<string> UnrecognizedPlayerGrasps { get; } = [];
+
+    /// <summary>
+    /// VERSION
+    /// </summary>
+    public int GameVersion { get; set; } = 0;
+
+    /// <summary>
+    /// INITVERSION
+    /// </summary>
+    public int InitialGameVersion { get; set; } = 0;
+
+    /// <summary>
+    /// WORLDVERSION
+    /// </summary>
+    public int WorldVersion { get; set; } = 0;
+
+    /// <summary>
+    /// SEED
+    /// </summary>
+    public int Seed { get; set; } = 0;
+
+    /// <summary>
+    /// TOTFOOD
+    /// Refers to number of full pips.
+    /// </summary>
+    public int TotalFoodEaten { get; set; } = 0;
+
+    /// <summary>
+    /// TOTTIME
+    /// Stored as seconds.
+    /// </summary>
+    public int TotalTimeInSeconds { get; set; } = 0;
+
+    /// <summary>
+    /// CURRVERCYCLES
+    /// </summary>
+    public int CyclesInCurrentWorldVersion { get; set; } = 0;
+
+    /// <summary>
+    /// REDEXTRACYCLES
+    /// Indicates whenever the player received extra cycles from visiting Five Pebbles.
+    /// </summary>
+    public bool HunterExtraCycles { get; set; } = false;
+
+    /// <summary>
+    /// JUSTBEATGAME
+    /// </summary>
+    public bool GameRecentlyBeaten { get; set; } = false;
+
+    /// <summary>
+    /// HASROBO
+    /// </summary>
+    public bool HasCitizenDrone { get; set; } = false;
+
+    /// <summary>
+    /// CLOAK
+    /// </summary>
+    public bool IsWearingCloak { get; set; } = false;
+
+    /// <summary>
+    /// KARMADREAM
+    /// </summary>
+    public bool KarmaDream { get; set; } = false;
+
+    /// <summary>
+    /// FORCEPUPS
+    /// 0 = Gourmand not beaten / no effect
+    /// 1 = Max allowed number of pups guaranteed to spawn next cycle
+    /// 2 = Chance based pup spawns
+    /// </summary>
+    public int ForcePupsNextCycle { get; set; } = 0;
+
+    // ObjectTrackers
 
     /// <summary>
     /// FRIENDS
@@ -93,6 +174,7 @@ public class SaveState
 
     private void ParseField(string key, string value)
     {
+        // TODO Error handling for Parse functions
         switch (key)
         {
             case "DENPOS":
@@ -114,22 +196,20 @@ public class SaveState
                 HasNeuronGlow = true;
                 break;
             case "GUIDEOVERSEERDEAD":
-                IsGuideOvereerDead = true;
+                IsGuideOverseerDead = true;
                 break;
             case "RESPAWNS":
-                // TODO Error handling
                 CreaturesToRespawn.Clear();
                 CreaturesToRespawn.AddRange(value.Split('.').Where(x => x != "").Select(x => int.Parse(x, NumberStyles.Any, CultureInfo.InvariantCulture)));
                 break;
             case "WAITRESPAWNS":
-                // TODO Error handling
                 CreaturesWaitingToRespawn.Clear();
                 CreaturesWaitingToRespawn.AddRange(value.Split('.').Where(x => x != "").Select(x => int.Parse(x, NumberStyles.Any, CultureInfo.InvariantCulture)));
                 break;
             case "REGIONSTATE":
                 var regions = value.Split("<rgB>");
 
-                // TODO This may have invalid / modded / unrecognized regions
+                // This may have invalid / modded / unrecognized regions
                 foreach (var region in regions)
                 {
                     var state = new RegionState();
@@ -139,27 +219,81 @@ public class SaveState
 
                 break;
             case "COMMUNITIES":
+                // TODO Implement remaining strings
+                UnrecognizedFields[key] = value;
+                break;
             case "MISCWORLDSAVEDATA":
+                // TODO Implement remaining strings
+                UnrecognizedFields[key] = value;
+                break;
             case "DEATHPERSISTENTSAVEDATA":
+                // TODO Implement remaining strings
+                UnrecognizedFields[key] = value;
+                break;
             case "SWALLOWEDITEMS":
+                // TODO Implement remaining strings
+                UnrecognizedFields[key] = value;
+                break;
             case "UNRECOGNIZEDSWALLOWED":
+                UnrecognizedSwallowedItems.Clear();
+                UnrecognizedSwallowedItems.AddRange(value.Split("<svB>", StringSplitOptions.RemoveEmptyEntries));
+                break;
             case "PLAYERGRASPS":
+                // TODO Implement remaining strings
+                UnrecognizedFields[key] = value;
+                break;
             case "UNRECOGNIZEDPLAYERGRASPS":
+                UnrecognizedPlayerGrasps.Clear();
+                UnrecognizedPlayerGrasps.AddRange(value.Split("<svB>", StringSplitOptions.RemoveEmptyEntries));
+                break;
             case "VERSION":
+                GameVersion = int.Parse(value, NumberStyles.Any, CultureInfo.InvariantCulture);
+                break;
             case "INITVERSION":
+                InitialGameVersion = int.Parse(value, NumberStyles.Any, CultureInfo.InvariantCulture);
+                break;
             case "WORLDVERSION":
+                WorldVersion = int.Parse(value, NumberStyles.Any, CultureInfo.InvariantCulture);
+                break;
             case "SEED":
+                Seed = int.Parse(value, NumberStyles.Any, CultureInfo.InvariantCulture);
+                break;
             case "DREAMSSTATE":
+                // TODO Implement remaining strings
+                UnrecognizedFields[key] = value;
+                break;
             case "TOTFOOD":
+                TotalFoodEaten = int.Parse(value, NumberStyles.Any, CultureInfo.InvariantCulture);
+                break;
             case "TOTTIME":
+                TotalTimeInSeconds = int.Parse(value, NumberStyles.Any, CultureInfo.InvariantCulture);
+                break;
             case "CURRVERCYCLES":
+                CyclesInCurrentWorldVersion = int.Parse(value, NumberStyles.Any, CultureInfo.InvariantCulture);
+                break;
             case "KILLS":
+                // TODO Implement remaining strings
+                UnrecognizedFields[key] = value;
+                break;
             case "REDEXTRACYCLES":
+                HunterExtraCycles = true;
+                break;
             case "JUSTBEATGAME":
+                GameRecentlyBeaten = true;
+                break;
             case "HASROBO":
+                HasCitizenDrone = true;
+                break;
             case "CLOAK":
+                IsWearingCloak = true;
+                break;
             case "KARMADREAM":
+                KarmaDream = true;
+                break;
             case "FORCEPUPS":
+                // TODO Handle parse error
+                ForcePupsNextCycle = int.Parse(value, NumberStyles.Any, CultureInfo.InvariantCulture);
+                break;
             case "OBJECTTRACKERS":
                 // TODO Implement remaining strings
                 UnrecognizedFields[key] = value;
@@ -173,7 +307,6 @@ public class SaveState
                 Friends.AddRange(value.Split("<svC>").Where(x => x != ""));
                 break;
             case "OEENCOUNTERS":
-                // TODO Needs ModManager.MMF = true
                 OuterExpanseEncounters.Clear();
                 OuterExpanseEncounters.AddRange(value.Split("<svC>").Where(x => x != ""));
                 break;

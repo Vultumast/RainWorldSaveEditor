@@ -12,24 +12,40 @@ public partial class MainForm : Form
 
         var table = HashtableSerializer.Read(File.OpenRead("TestFiles/sav.xml"));
         HashtableSerializer.Write(File.OpenWrite("TestFiles/savsaved.xml"), table);
-        /*
+
         if (table["save"] is string saveData)
         {
-            RainWorldSave save = RainWorldSave.Read(saveData);
+            try
+            {
+                RainWorldSave save = new();
+                save.Read(saveData);
+            }
+            catch (Exception e)
+            {
+                Logger.Log($"Crashed while reading save data: {e}");
+            }
         }
         else
         {
-            Console.WriteLine("Save data not found.");
+            Logger.Log("Save data not found.");
         }
 
         if (table["save__Backup"] is string saveBackupData)
         {
-            RainWorldSave save = RainWorldSave.Read(saveBackupData);
+            try
+            {
+                RainWorldSave saveBackup = new();
+                saveBackup.Read(saveBackupData);
+            }
+            catch (Exception e)
+            {
+                Logger.Log($"Crashed while reading save data: {e}");
+            }
         }
         else
         {
-            Console.WriteLine("Save data not found.");
-        }*/
+            Logger.Log("Save data not found.");
+        }
     }
 
 
