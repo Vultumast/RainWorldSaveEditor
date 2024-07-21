@@ -48,14 +48,15 @@ partial class MainForm
         toolStripSeparator2 = new ToolStripSeparator();
         saveToolStripMenuItem1 = new ToolStripMenuItem();
         saveAsToolStripMenuItem1 = new ToolStripMenuItem();
-        tabControl1 = new TabControl();
+        aboutToolStripMenuItem = new ToolStripMenuItem();
+        mainTabControl = new TabControl();
         slugcatIconImageList = new ImageList(components);
         menuStrip1.SuspendLayout();
         SuspendLayout();
         // 
         // menuStrip1
         // 
-        menuStrip1.Items.AddRange(new ToolStripItem[] { fileToolStripMenuItem, saveSlotToolStripMenuItem });
+        menuStrip1.Items.AddRange(new ToolStripItem[] { fileToolStripMenuItem, saveSlotToolStripMenuItem, aboutToolStripMenuItem });
         menuStrip1.Location = new Point(0, 0);
         menuStrip1.Name = "menuStrip1";
         menuStrip1.Size = new Size(800, 24);
@@ -135,6 +136,7 @@ partial class MainForm
         openFile1ToolStripMenuItem.Name = "openFile1ToolStripMenuItem";
         openFile1ToolStripMenuItem.Size = new Size(133, 22);
         openFile1ToolStripMenuItem.Text = "File 1";
+        openFile1ToolStripMenuItem.ToolTipText = "Switch to Save File 1";
         openFile1ToolStripMenuItem.Click += openFile1ToolStripMenuItem_Click;
         // 
         // openFile2ToolStripMenuItem
@@ -142,6 +144,7 @@ partial class MainForm
         openFile2ToolStripMenuItem.Name = "openFile2ToolStripMenuItem";
         openFile2ToolStripMenuItem.Size = new Size(133, 22);
         openFile2ToolStripMenuItem.Text = "File 2";
+        openFile2ToolStripMenuItem.ToolTipText = "Switch to Save File 2";
         openFile2ToolStripMenuItem.Click += openFile2ToolStripMenuItem_Click;
         // 
         // openFile3ToolStripMenuItem
@@ -149,6 +152,7 @@ partial class MainForm
         openFile3ToolStripMenuItem.Name = "openFile3ToolStripMenuItem";
         openFile3ToolStripMenuItem.Size = new Size(133, 22);
         openFile3ToolStripMenuItem.Text = "File 3";
+        openFile3ToolStripMenuItem.ToolTipText = "Switch to Save File 3";
         openFile3ToolStripMenuItem.Click += openFile3ToolStripMenuItem_Click;
         // 
         // toolStripSeparator3
@@ -161,6 +165,7 @@ partial class MainForm
         openFileToolStripMenuItem.Name = "openFileToolStripMenuItem";
         openFileToolStripMenuItem.Size = new Size(133, 22);
         openFileToolStripMenuItem.Text = "Open File...";
+        openFileToolStripMenuItem.ToolTipText = "Open an external Save File";
         // 
         // toolStripSeparator2
         // 
@@ -179,14 +184,20 @@ partial class MainForm
         saveAsToolStripMenuItem1.Size = new Size(123, 22);
         saveAsToolStripMenuItem1.Text = "Save As...";
         // 
-        // tabControl1
+        // aboutToolStripMenuItem
         // 
-        tabControl1.Dock = DockStyle.Fill;
-        tabControl1.Location = new Point(0, 24);
-        tabControl1.Name = "tabControl1";
-        tabControl1.SelectedIndex = 0;
-        tabControl1.Size = new Size(800, 426);
-        tabControl1.TabIndex = 1;
+        aboutToolStripMenuItem.Name = "aboutToolStripMenuItem";
+        aboutToolStripMenuItem.Size = new Size(52, 20);
+        aboutToolStripMenuItem.Text = "About";
+        // 
+        // mainTabControl
+        // 
+        mainTabControl.Dock = DockStyle.Fill;
+        mainTabControl.Location = new Point(0, 24);
+        mainTabControl.Name = "mainTabControl";
+        mainTabControl.SelectedIndex = 0;
+        mainTabControl.Size = new Size(800, 426);
+        mainTabControl.TabIndex = 1;
         // 
         // slugcatIconImageList
         // 
@@ -199,11 +210,11 @@ partial class MainForm
         AutoScaleDimensions = new SizeF(7F, 15F);
         AutoScaleMode = AutoScaleMode.Font;
         ClientSize = new Size(800, 450);
-        Controls.Add(tabControl1);
+        Controls.Add(mainTabControl);
         Controls.Add(menuStrip1);
         MainMenuStrip = menuStrip1;
         Name = "MainForm";
-        Text = "Form1";
+        Text = "Rainworld Save Editor";
         Load += MainForm_Load;
         menuStrip1.ResumeLayout(false);
         menuStrip1.PerformLayout();
@@ -232,6 +243,7 @@ partial class MainForm
     private ToolStripSeparator toolStripSeparator2;
     private ToolStripMenuItem saveToolStripMenuItem1;
     private ToolStripMenuItem saveAsToolStripMenuItem1;
-    private TabControl tabControl1;
+    private TabControl mainTabControl;
     private ImageList slugcatIconImageList;
+    private ToolStripMenuItem aboutToolStripMenuItem;
 }
