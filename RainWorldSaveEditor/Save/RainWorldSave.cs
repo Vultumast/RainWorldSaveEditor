@@ -1,53 +1,46 @@
 ﻿using System.Security.Cryptography;
 using System.Text;
+using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace RainWorldSaveEditor.Save;
 
 public class RainWorldSave
 {
-    public class SaveState
+    public List<SaveState> SaveStates { get; } = [];
+
+    public void Read(string saveString)
     {
-
-    }
-
-    public static RainWorldSave Read(string saveString)
-    {
-        var save = new RainWorldSave();
-
         var hash = saveString[..32];
         var data = saveString[32..];
         var computedHash = ComputeChecksum(data);
 
         // Computed hash doesn't seem to match at the moment for some reason
         if (hash != computedHash)
-            Console.WriteLine("Hash check failed! Save may be modified / damaged / corrupted.");
+            Logger.Log("Hash check failed! Save may be modified / damaged / corrupted.");
         else
-            Console.WriteLine("Hash OK.");
+            Logger.Log("Hash OK.");
 
-        while (data.Length > 0)
+        foreach ((var key, var value) in SaveUtils.GetFields(data, "<progDivB>", "<progDivA>"))
         {
-            const string SaveStateStart = "SAVE STATE<progDivB>";
-            const string SaveStateEnd = "<progDivA>";
-
-            if (data.StartsWith(SaveStateStart))
-            {
-                var end = data.IndexOf(SaveStateEnd);
-
-                if (end == -1)
-                    throw new InvalidOperationException("Invalid SAVE STATE field.");
-
-                var state = ReadSaveState(saveString[SaveStateStart.Length..end]);
-                data = data[(end + SaveStateEnd.Length)..];
-            }
-            else throw new InvalidOperationException("Unknown field encountered.");
+            ParseSaveEntry(key, value);
         }
-
-        throw new NotImplementedException();
     }
 
-    private static SaveState ReadSaveState(string data)
+    private void ParseSaveEntry(string entryId, string value)
     {
-        throw new NotImplementedException();
+        switch (entryId)
+        {
+            case "SAVE STATE":
+                var saveState = new SaveState();
+                saveState.Read(value);
+                SaveStates.Add(saveState);
+                break;
+            default:
+                Logger.Log($"Failed to parse save entry {entryId}");
+                break;
+        }
+
+        return;
     }
 
     private static string ComputeChecksum(string data)
@@ -60,7 +53,7 @@ public class RainWorldSave
         for (int i = 0; i < hash.Length; i++)
             text.Append(Convert.ToString(hash[i], 16).PadLeft(2, '0'));
 
-        return text.ToString();
+        return text.ToString().PadLeft(32, '0');
     }
 
     // Taken directly from Rain World's stuff

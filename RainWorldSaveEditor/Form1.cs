@@ -17,7 +17,7 @@ public partial class Form1 : Form
         }
         else
         {
-            Console.WriteLine("Save data not found.");
+            Logger.Log("Save data not found.");
         }
 
         if (table["save__Backup"] is string saveBackupData)
@@ -26,7 +26,7 @@ public partial class Form1 : Form
         }
         else
         {
-            Console.WriteLine("Save data not found.");
+            Logger.Log("Save data not found.");
         }
     }
 }
