@@ -16,16 +16,18 @@ public static class SaveUtils
         {
             string[] fields = entry.Split(valueDelimiter, 2);
 
-            if (fields.Length != 2)
+            if (fields.Length == 2)
             {
-                if (fields.Length == 1)
-                    Logger.Log($"Failed to read entry {fields[0]}.");
-                else
-                    Logger.Log($"Failed to read an entry.");
-                continue;
+                yield return (fields[0], fields[1]);
             }
-
-            yield return (fields[0], fields[1]);
+            else if (fields.Length == 1)
+            {
+                yield return (fields[0], "");
+            }
+            else
+            {
+                Logger.Log($"Failed to read an entry.");
+            }
         }
     }
 }
