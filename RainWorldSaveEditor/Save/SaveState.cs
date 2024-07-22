@@ -62,6 +62,11 @@ public class SaveState
     public List<RegionState> RegionStates { get; } = [];
 
     /// <summary>
+    /// DEATHPERSISTENTSAVEDATA
+    /// </summary>
+    public DeathPersistentSaveData DeathPersistentSaveData { get; } = new();
+
+    /// <summary>
     /// UNRECOGNIZEDSWALLOWED
     /// </summary>
     public List<string> UnrecognizedSwallowedItems { get; } = [];
@@ -92,6 +97,12 @@ public class SaveState
     public int Seed { get; set; } = 0;
 
     /// <summary>
+    /// DREAMSSTATE
+    /// May be missing for some scugs
+    /// </summary>
+    public DreamsState? DreamsState { get; set; }
+
+    /// <summary>
     /// TOTFOOD
     /// Refers to number of full pips.
     /// </summary>
@@ -109,28 +120,33 @@ public class SaveState
     public int CyclesInCurrentWorldVersion { get; set; } = 0;
 
     /// <summary>
-    /// REDEXTRACYCLES
+    /// KILLS
+    /// </summary>
+    public List<(string Thing, string Count)> Kills { get; } = [];
+
+    /// <summary>
+    /// REDEXTRACYCLES (valueless)
     /// Indicates whenever the player received extra cycles from visiting Five Pebbles.
     /// </summary>
     public bool HunterExtraCycles { get; set; } = false;
 
     /// <summary>
-    /// JUSTBEATGAME
+    /// JUSTBEATGAME (valueless)
     /// </summary>
     public bool GameRecentlyBeaten { get; set; } = false;
 
     /// <summary>
-    /// HASROBO
+    /// HASROBO (valueless)
     /// </summary>
     public bool HasCitizenDrone { get; set; } = false;
 
     /// <summary>
-    /// CLOAK
+    /// CLOAK (valueless)
     /// </summary>
     public bool IsWearingCloak { get; set; } = false;
 
     /// <summary>
-    /// KARMADREAM
+    /// KARMADREAM (valueless)
     /// </summary>
     public bool KarmaDream { get; set; } = false;
 
@@ -227,8 +243,7 @@ public class SaveState
                 UnrecognizedFields[key] = value;
                 break;
             case "DEATHPERSISTENTSAVEDATA":
-                // TODO Implement remaining strings
-                UnrecognizedFields[key] = value;
+                DeathPersistentSaveData.Read(value);
                 break;
             case "SWALLOWEDITEMS":
                 // TODO Implement remaining strings
@@ -259,8 +274,8 @@ public class SaveState
                 Seed = int.Parse(value, NumberStyles.Any, CultureInfo.InvariantCulture);
                 break;
             case "DREAMSSTATE":
-                // TODO Implement remaining strings
-                UnrecognizedFields[key] = value;
+                DreamsState = new DreamsState();
+                DreamsState.Read(value);
                 break;
             case "TOTFOOD":
                 TotalFoodEaten = int.Parse(value, NumberStyles.Any, CultureInfo.InvariantCulture);
@@ -272,8 +287,15 @@ public class SaveState
                 CyclesInCurrentWorldVersion = int.Parse(value, NumberStyles.Any, CultureInfo.InvariantCulture);
                 break;
             case "KILLS":
-                // TODO Implement remaining strings
-                UnrecognizedFields[key] = value;
+                Kills.Clear();
+                var pairs = value.Split("<svC>", StringSplitOptions.RemoveEmptyEntries);
+
+                foreach (var pair in pairs)
+                {
+                    var fields = pair.Split("<svD>", 2);
+                    Kills.Add((fields[0], fields[1]));
+                }
+
                 break;
             case "REDEXTRACYCLES":
                 HunterExtraCycles = true;
@@ -291,7 +313,6 @@ public class SaveState
                 KarmaDream = true;
                 break;
             case "FORCEPUPS":
-                // TODO Handle parse error
                 ForcePupsNextCycle = int.Parse(value, NumberStyles.Any, CultureInfo.InvariantCulture);
                 break;
             case "OBJECTTRACKERS":
@@ -303,6 +324,7 @@ public class SaveState
                 Objects.AddRange(value.Split("<svC>").Where(x => x != ""));
                 break;
             case "FRIENDS":
+                // TODO Parse friend data
                 Friends.Clear();
                 Friends.AddRange(value.Split("<svC>").Where(x => x != ""));
                 break;
