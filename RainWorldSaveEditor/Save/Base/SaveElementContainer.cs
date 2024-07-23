@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Reflection;
 using System.Runtime.InteropServices.ObjectiveC;
 using System.Text;
@@ -30,6 +31,58 @@ namespace RainWorldSaveEditor.Save.Base
         public Dictionary<string, string> UnrecognizedFields { get; protected set; } = [];
 
 
+        /// <summary>
+        /// Sets the value for a scalar property. I.E. A property that is not a collection
+        /// </summary>
+        /// <param name="container">The SaveElementContainer who is calling</param>
+        /// <param name="propertyInfo">The information of the property</param>
+        /// <param name="elementInfo">The SaveFileElement information for the property</param>
+        /// <param name="value">The value to set the property too</param>
+        /// <returns>True on success, false otherwise</returns>
+        private static bool SetScalarProperty(SaveElementContainer container, PropertyInfo propertyInfo, SaveFileElement elementInfo, string value)
+        {
+            MethodInfo parseMethodInfo = null!;
+            // Vultu: Get method ``Parse(string s, IFormatProvider? provider)``
+            foreach (var method in propertyInfo.PropertyType.GetMethods())
+            {
+                var parameters = method.GetParameters();
+                if (method.Name == "Parse" && parameters.Count() == 2 && parameters[0].ParameterType == typeof(string) && parameters[1].ParameterType == typeof(IFormatProvider))
+                {
+                    parseMethodInfo = method;
+                    break;
+                }
+            }
+
+
+            // Vultu: IDK why `method` is null for string?? It derives from `IParsable`
+            if (parseMethodInfo is not null || propertyInfo.PropertyType == typeof(string))
+            {
+                if (!elementInfo.ValueOptional && value == string.Empty)
+                {
+                    Console.WriteLine($"ERROR: \"{elementInfo.Name}\" is NOT marked as ValueOptional, but no value was provided! Tell Mario or Vultu!");
+                    return false;
+                }
+
+                if (value != string.Empty)
+                {
+                    if (propertyInfo.PropertyType == typeof(string))
+                        propertyInfo.GetSetMethod()!.Invoke(container, [value]);
+                    else
+                    {
+                        var propertyBinding = propertyInfo.GetValue(container);
+                        var data = parseMethodInfo!.Invoke(propertyBinding, [value, null]);
+
+                        propertyInfo.GetSetMethod()!.Invoke(container, [data]);
+                    }
+                }
+                else
+                {
+                    Console.WriteLine($"DEBUG: UNABLE TO SET: \"{propertyInfo.Name}\"! Tell Mario or Vultu!");
+                    return false;
+                }
+            }
+            return true;
+        }
 
         public static void ParseField(SaveElementContainer container, string key, string value)
         {
@@ -58,46 +111,8 @@ namespace RainWorldSaveEditor.Save.Base
                 }
                 else if (parsableInterface is not null)
                 {
-                    MethodInfo parseMethodInfo = null!;
-                    // Vultu: Get method ``Parse(string s, IFormatProvider? provider)``
-                    foreach (var method in propertyInfo.PropertyType.GetMethods())
-                    {
-                        var parameters = method.GetParameters();
-                        if (method.Name == "Parse" && parameters.Count() == 2 && parameters[0].ParameterType == typeof(string) && parameters[1].ParameterType == typeof(IFormatProvider))
-                        {
-                            parseMethodInfo = method;
-                            break;
-                        }
-                    }
-
-
-                    // Vultu: IDK why `method` is null for string?? It derives from `IParsable`
-                    if (parseMethodInfo is not null || propertyInfo.PropertyType == typeof(string))
-                    {
-                        if (!elementInfo.ValueOptional && value == string.Empty)
-                        {
-                            Console.WriteLine($"ERROR: \"{elementInfo.Name}\" is NOT marked as ValueOptional, but no value was provided! Tell Mario or Vultu!");
-                            goto AddToUnrecognizedFields;
-                        }
-
-                        if (value != string.Empty)
-                        {
-                            if (propertyInfo.PropertyType == typeof(string))
-                                propertyInfo.GetSetMethod()!.Invoke(container, [value]);
-                            else
-                            {
-                                var propertyBinding = propertyInfo.GetValue(container);
-                                var data = parseMethodInfo!.Invoke(propertyBinding, [value, null]);
-
-                                propertyInfo.GetSetMethod()!.Invoke(container, [ data ]);
-                            }
-                        }
-                        else
-                        {
-                            Console.WriteLine($"DEBUG: UNABLE TO SET: \"{propertyInfo.Name}\"! Tell Mario or Vultu!");
-                            goto AddToUnrecognizedFields;
-                        }
-                    }
+                    if (!SetScalarProperty(container, propertyInfo, elementInfo, value))
+                        goto AddToUnrecognizedFields;
                 }
                 else
                 {

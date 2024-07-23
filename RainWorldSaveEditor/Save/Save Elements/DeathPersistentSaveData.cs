@@ -236,9 +236,8 @@ public class DeathPersistentSaveData : SaveElementContainer, IParsable<DeathPers
         DeathPersistentSaveData data = new DeathPersistentSaveData();
 
         foreach ((var key, var value) in SaveUtils.GetFields(s, "<dpB>", "<dpA>"))
-        {
-            SaveElementContainer.ParseField(data, key, value);
-        }
+            ParseField(data, key, value);
+        
 
         return data;
     }
