@@ -1,6 +1,7 @@
 ﻿using System;
 using System.CodeDom;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Globalization;
 using System.Linq;
 using System.Reflection;
@@ -248,19 +249,52 @@ public class SaveState
             var elementInfo = SaveFileElements[key];
             var propertyInfo = PropertyInfos[key];
 
-            var bytetype = typeof(byte);
-            
-            if (propertyInfo.PropertyType.GetInterfaces().Contains(typeof(IParsable<>)))
+            if (propertyInfo.PropertyType.GetInterfaces().Any(x => x.IsGenericType && x.GetGenericTypeDefinition() == typeof(IList<>)))
             {
-                Console.WriteLine("FOUND PARSEABLE");
+                Console.WriteLine($"FOUND LIST \"{value}\"");
+            }
+            if (propertyInfo.PropertyType.GetInterfaces().Any(x => x.IsGenericType && x.GetGenericTypeDefinition() == typeof(IParsable<>)))
+            {
+                var method = propertyInfo.PropertyType.GetMethods().Where(x => x.Name == "Parse").FirstOrDefault();
+
+                // Vultu: IDK why `method` is null for string?? It derives from `IParsable`
+                if (method is not null || propertyInfo.PropertyType == typeof(string))
+                {
+                    if (!elementInfo.ValueOptional && value == string.Empty)
+                    {
+                        Console.WriteLine($"ERROR: \"{elementInfo.Name}\" is NOT marked as ValueOptional, but no value was provided! Tell Mario or Vultu!");
+                        goto AddToUnrecognizedFields;
+                    }
+
+                    if (value != string.Empty)
+                    {
+                        if (propertyInfo.PropertyType == typeof(string))
+                            propertyInfo.GetSetMethod()!.Invoke(this, [value]);
+                        else
+                            propertyInfo.GetSetMethod()!.Invoke(this, [method!.Invoke(this, [value])]);
+                    }
+                    else
+                    {
+                        Console.WriteLine($"DEBUG: UNABLE TO SET: \"{propertyInfo.Name}\"! Tell Mario or Vultu!");
+                        goto AddToUnrecognizedFields;
+                    }
+                }
+            }
+            else
+            {
+                Console.WriteLine($"DEBUG: \"{propertyInfo.PropertyType}\" does not derive from IParsable! Tell Mario or Vultu!");
+                goto AddToUnrecognizedFields;
             }
 
+            return;
+        }
 
-        }
-        else
-        {
+    AddToUnrecognizedFields:
+        if (!UnrecognizedFields.ContainsKey(key))
             UnrecognizedFields.Add(key, value);
-        }
+        else
+            Console.WriteLine($"Unable to set \"{key}\" because it was already present!");
+        
 
         return;
 
