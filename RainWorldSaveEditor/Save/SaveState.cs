@@ -1,4 +1,5 @@
-﻿using System;
+﻿using RainWorldSaveEditor.Save.Base;
+using System;
 using System.CodeDom;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -11,28 +12,13 @@ using System.Threading.Tasks;
 
 namespace RainWorldSaveEditor.Save;
 
-public class SaveState
+public class SaveState : SaveElementContainer
 {
 
-    public SaveState()
+    public SaveState() : base()
     {
-        if (PropertyInfos.Count == 0 || SaveFileElements.Count == 0)
-        {
-            var properties = this.GetType().GetProperties().Where(property => Attribute.IsDefined(property, typeof(SaveFileElement)));
-            foreach (var prop in properties)
-            {
-                SaveFileElement data = (SaveFileElement)prop.GetCustomAttribute(typeof(SaveFileElement))!;
 
-                PropertyInfos.Add(data.Name, prop);
-                SaveFileElements.Add(data.Name, data);
-            }
-        }
     }
-
-    public static Dictionary<string, SaveFileElement> SaveFileElements { get; private set; } = new();
-    public static Dictionary<string, PropertyInfo> PropertyInfos { get; private set; } = new();
-
-    public Dictionary<string, string> UnrecognizedFields { get; } = [];
 
     /// <summary>
     /// DENPOS
@@ -98,7 +84,7 @@ public class SaveState
     /// DEATHPERSISTENTSAVEDATA
     /// </summary>
     [SaveFileElement("DEATHPERSISTENTSAVEDATA")]
-    public DeathPersistentSaveData DeathPersistentSaveData { get; } = new();
+    public DeathPersistentSaveData DeathPersistentSaveData { get; set; } = new();
 
     /// <summary>
     /// UNRECOGNIZEDSWALLOWED
@@ -240,76 +226,13 @@ public class SaveState
     {
         foreach ((var key, var value) in SaveUtils.GetFields(data, "<svB>", "<svA>"))
         {
-            ParseField(key, value);
+            ParseField(this, key, value);
         }
     }
 
+    /*
     private void ParseField(string key, string value)
     {
-        if (SaveFileElements.ContainsKey(key))
-        {
-            var elementInfo = SaveFileElements[key];
-            var propertyInfo = PropertyInfos[key];
-
-            var listInterface = propertyInfo.PropertyType.GetInterfaces().Where(x => x.IsGenericType && x.GetGenericTypeDefinition() == typeof(IList<>)).FirstOrDefault();
-
-            if (listInterface is not null)
-            {
-                Type var = listInterface.GetGenericArguments()[0];
-                var method = var.GetMethods().Where(x => x.Name == "Parse").FirstOrDefault();
-
-                if (method is not null)
-                {
-
-                }
-                else
-                    Console.WriteLine("Found List with unparsable type!");
-            }
-            else if (propertyInfo.PropertyType.GetInterfaces().Any(x => x.IsGenericType && x.GetGenericTypeDefinition() == typeof(IParsable<>)))
-            {
-                var method = propertyInfo.PropertyType.GetMethods().Where(x => x.Name == "Parse" || x.Name == "TryParse").FirstOrDefault();
-
-                // Vultu: IDK why `method` is null for string?? It derives from `IParsable`
-                if (method is not null || propertyInfo.PropertyType == typeof(string))
-                {
-                    if (!elementInfo.ValueOptional && value == string.Empty)
-                    {
-                        Console.WriteLine($"ERROR: \"{elementInfo.Name}\" is NOT marked as ValueOptional, but no value was provided! Tell Mario or Vultu!");
-                        goto AddToUnrecognizedFields;
-                    }
-
-                    if (value != string.Empty)
-                    {
-                        if (propertyInfo.PropertyType == typeof(string))
-                            propertyInfo.GetSetMethod()!.Invoke(this, [value]);
-                        else
-                            propertyInfo.GetSetMethod()!.Invoke(this, [method!.Invoke(this, [value])]);
-                    }
-                    else
-                    {
-                        Console.WriteLine($"DEBUG: UNABLE TO SET: \"{propertyInfo.Name}\"! Tell Mario or Vultu!");
-                        goto AddToUnrecognizedFields;
-                    }
-                }
-            }
-            else
-            {
-                Console.WriteLine($"DEBUG: \"{propertyInfo.PropertyType}\" does not derive from IParsable! Tell Mario or Vultu!");
-                goto AddToUnrecognizedFields;
-            }
-
-            return;
-        }
-
-    AddToUnrecognizedFields:
-        if (!UnrecognizedFields.ContainsKey(key))
-            UnrecognizedFields.Add(key, value);
-        else
-            Console.WriteLine($"Unable to set \"{key}\" because it was already present!");
-        
-
-        return;
-
         // TODO Error handling for Parse functions
         switch (key)
         {
@@ -461,6 +384,7 @@ public class SaveState
                 break;
         }
     }
+    */
 
     public string Write()
     {
