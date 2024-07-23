@@ -1,7 +1,9 @@
 ﻿using System;
+using System.CodeDom;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -9,145 +11,191 @@ namespace RainWorldSaveEditor.Save;
 
 public class SaveState
 {
+
+    public SaveState()
+    {
+        if (PropertyInfos.Count == 0 || SaveFileElements.Count == 0)
+        {
+            var properties = this.GetType().GetProperties().Where(property => Attribute.IsDefined(property, typeof(SaveFileElement)));
+            foreach (var prop in properties)
+            {
+                SaveFileElement data = (SaveFileElement)prop.GetCustomAttribute(typeof(SaveFileElement))!;
+
+                PropertyInfos.Add(data.Name, prop);
+                SaveFileElements.Add(data.Name, data);
+            }
+        }
+    }
+
+    public static Dictionary<string, SaveFileElement> SaveFileElements { get; private set; } = new();
+    public static Dictionary<string, PropertyInfo> PropertyInfos { get; private set; } = new();
+
     public Dictionary<string, string> UnrecognizedFields { get; } = [];
 
     /// <summary>
     /// DENPOS
     /// </summary>
+    [SaveFileElement("DENPOS")]
     public string DenPosition { get; set; } = "???";
 
     /// <summary>
     /// LASTVDENPOS
     /// </summary>
+    [SaveFileElement("LASTVDENPOS")]
     public string LastVanillaDen { get; set; } = "???";
 
     /// <summary>
     /// CYCLENUM
     /// </summary>
+    [SaveFileElement("CYCLENUM")]
     public int CycleNumber { get; set; } = 0;
 
     /// <summary>
     /// FOOD
     /// </summary>
+    [SaveFileElement("FOOD")]
     public int FoodCount { get; set; } = 0;
 
     /// <summary>
     /// NEXTID
     /// </summary>
+    [SaveFileElement("NEXTID")]
     public int NextIssuedId { get; set; } = 0;
 
     /// <summary>
     /// HASGLOW (valueless)
     /// </summary>
+    [SaveFileElement("HASGLOW", true)]
     public bool HasNeuronGlow { get; set; } = false;
 
     /// <summary>
     /// GUIDEOVERSEERDEAD (valueless)
     /// </summary>
+    [SaveFileElement("GUIDEOVERSEERDEAD", true)]
     public bool IsGuideOverseerDead { get; set; } = false;
 
     /// <summary>
     /// RESPAWNS
     /// </summary>
+    [SaveFileElement("RESPAWNS")]
     public List<int> CreaturesToRespawn { get; } = [];
 
     /// <summary>
     /// WAITRESPAWNS
     /// </summary>
+    [SaveFileElement("WAITRESPAWNS")]
     public List<int> CreaturesWaitingToRespawn { get; } = [];
 
     /// <summary>
     /// REGIONSTATE
     /// </summary>
+    [SaveFileElement("REGIONSTATE")]
     public List<RegionState> RegionStates { get; } = [];
 
     /// <summary>
     /// DEATHPERSISTENTSAVEDATA
     /// </summary>
+    [SaveFileElement("DEATHPERSISTENTSAVEDATA")]
     public DeathPersistentSaveData DeathPersistentSaveData { get; } = new();
 
     /// <summary>
     /// UNRECOGNIZEDSWALLOWED
     /// </summary>
+    [SaveFileElement("UNRECOGNIZEDSWALLOWED")]
     public List<string> UnrecognizedSwallowedItems { get; } = [];
 
     /// <summary>
     /// UNRECOGNIZEDPLAYERGRASPS
     /// </summary>
+    [SaveFileElement("UNRECOGNIZEDPLAYERGRASPS")]
     public List<string> UnrecognizedPlayerGrasps { get; } = [];
 
     /// <summary>
     /// VERSION
     /// </summary>
+    [SaveFileElement("VERSION")]
     public int GameVersion { get; set; } = 0;
 
     /// <summary>
     /// INITVERSION
     /// </summary>
+    [SaveFileElement("INITVERSION")]
     public int InitialGameVersion { get; set; } = 0;
 
     /// <summary>
     /// WORLDVERSION
     /// </summary>
+    [SaveFileElement("WORLDVERSION")]
     public int WorldVersion { get; set; } = 0;
 
     /// <summary>
     /// SEED
     /// </summary>
+    [SaveFileElement("SEED")]
     public int Seed { get; set; } = 0;
 
     /// <summary>
     /// DREAMSSTATE
     /// May be missing for some scugs
     /// </summary>
+    [SaveFileElement("DREAMSSTATE")]
     public DreamsState? DreamsState { get; set; }
 
     /// <summary>
     /// TOTFOOD
     /// Refers to number of full pips.
     /// </summary>
+    [SaveFileElement("TOTFOOD")]
     public int TotalFoodEaten { get; set; } = 0;
 
     /// <summary>
     /// TOTTIME
     /// Stored as seconds.
     /// </summary>
+    [SaveFileElement("TOTTIME")]
     public int TotalTimeInSeconds { get; set; } = 0;
 
     /// <summary>
     /// CURRVERCYCLES
     /// </summary>
+    [SaveFileElement("CURRVERCYCLES")]
     public int CyclesInCurrentWorldVersion { get; set; } = 0;
 
     /// <summary>
     /// KILLS
     /// </summary>
+    [SaveFileElement("KILLS")]
     public List<(string Thing, string Count)> Kills { get; } = [];
 
     /// <summary>
     /// REDEXTRACYCLES (valueless)
     /// Indicates whenever the player received extra cycles from visiting Five Pebbles.
     /// </summary>
+    [SaveFileElement("REDEXTRACYCLES", true)]
     public bool HunterExtraCycles { get; set; } = false;
 
     /// <summary>
     /// JUSTBEATGAME (valueless)
     /// </summary>
+    [SaveFileElement("JUSTBEATGAME", true)]
     public bool GameRecentlyBeaten { get; set; } = false;
 
     /// <summary>
     /// HASROBO (valueless)
     /// </summary>
+    [SaveFileElement("HASROBO", true)]
     public bool HasCitizenDrone { get; set; } = false;
 
     /// <summary>
     /// CLOAK (valueless)
     /// </summary>
+    [SaveFileElement("CLOAK", true)]
     public bool IsWearingCloak { get; set; } = false;
 
     /// <summary>
     /// KARMADREAM (valueless)
     /// </summary>
+    [SaveFileElement("KARMADREAM", true)]
     public bool KarmaDream { get; set; } = false;
 
     /// <summary>
@@ -156,6 +204,7 @@ public class SaveState
     /// 1 = Max allowed number of pups guaranteed to spawn next cycle
     /// 2 = Chance based pup spawns
     /// </summary>
+    [SaveFileElement("FORCEPUPS")]
     public int ForcePupsNextCycle { get; set; } = 0;
 
     // ObjectTrackers
@@ -163,21 +212,25 @@ public class SaveState
     /// <summary>
     /// FRIENDS
     /// </summary>
+    [SaveFileElement("OBJECTS")]
     public List<string> Objects { get; } = [];
 
     /// <summary>
     /// FRIENDS
     /// </summary>
+    [SaveFileElement("FRIENDS")]
     public List<string> Friends { get; } = [];
 
     /// <summary>
     /// OEENCOUNTERS
     /// </summary>
+    [SaveFileElement("OEENCOUNTERS")]
     public List<string> OuterExpanseEncounters { get; } = [];
 
     /// <summary>
     /// SAV STATE NUMBER
     /// </summary>
+    [SaveFileElement("SAV STATE NUMBER")]
     public string SaveStateNumber { get; set; } = "???";
 
     public void Read(string data)
@@ -190,6 +243,27 @@ public class SaveState
 
     private void ParseField(string key, string value)
     {
+        if (SaveFileElements.ContainsKey(key))
+        {
+            var elementInfo = SaveFileElements[key];
+            var propertyInfo = PropertyInfos[key];
+
+            var bytetype = typeof(byte);
+            
+            if (propertyInfo.PropertyType.GetInterfaces().Contains(typeof(IParsable<>)))
+            {
+                Console.WriteLine("FOUND PARSEABLE");
+            }
+
+
+        }
+        else
+        {
+            UnrecognizedFields.Add(key, value);
+        }
+
+        return;
+
         // TODO Error handling for Parse functions
         switch (key)
         {

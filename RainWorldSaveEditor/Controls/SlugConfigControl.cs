@@ -15,12 +15,14 @@ namespace RainWorldSaveEditor.Controls
         public SlugConfigControl()
         {
             InitializeComponent();
+
+            cycleNumberNumericUpDown.Minimum = uint.MinValue;
+            cycleNumberNumericUpDown.Maximum = uint.MaxValue;
         }
 
         private void SlugConfigControl_Load(object sender, EventArgs e)
         {
-            cycleNumberNumericUpDown.Minimum = uint.MinValue;
-            cycleNumberNumericUpDown.Maximum = uint.MaxValue;
+
         }
 
         public uint CycleNumber
