@@ -5,6 +5,7 @@ using System.Diagnostics;
 using System.Globalization;
 using System.Linq;
 using System.Reflection;
+using System.Runtime.Intrinsics.X86;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -234,6 +235,7 @@ public class SaveState
     [SaveFileElement("SAV STATE NUMBER")]
     public string SaveStateNumber { get; set; } = "???";
 
+
     public void Read(string data)
     {
         foreach ((var key, var value) in SaveUtils.GetFields(data, "<svB>", "<svA>"))
@@ -249,13 +251,23 @@ public class SaveState
             var elementInfo = SaveFileElements[key];
             var propertyInfo = PropertyInfos[key];
 
-            if (propertyInfo.PropertyType.GetInterfaces().Any(x => x.IsGenericType && x.GetGenericTypeDefinition() == typeof(IList<>)))
+            var listInterface = propertyInfo.PropertyType.GetInterfaces().Where(x => x.IsGenericType && x.GetGenericTypeDefinition() == typeof(IList<>)).FirstOrDefault();
+
+            if (listInterface is not null)
             {
-                Console.WriteLine($"FOUND LIST \"{value}\"");
+                Type var = listInterface.GetGenericArguments()[0];
+                var method = var.GetMethods().Where(x => x.Name == "Parse").FirstOrDefault();
+
+                if (method is not null)
+                {
+
+                }
+                else
+                    Console.WriteLine("Found List with unparsable type!");
             }
-            if (propertyInfo.PropertyType.GetInterfaces().Any(x => x.IsGenericType && x.GetGenericTypeDefinition() == typeof(IParsable<>)))
+            else if (propertyInfo.PropertyType.GetInterfaces().Any(x => x.IsGenericType && x.GetGenericTypeDefinition() == typeof(IParsable<>)))
             {
-                var method = propertyInfo.PropertyType.GetMethods().Where(x => x.Name == "Parse").FirstOrDefault();
+                var method = propertyInfo.PropertyType.GetMethods().Where(x => x.Name == "Parse" || x.Name == "TryParse").FirstOrDefault();
 
                 // Vultu: IDK why `method` is null for string?? It derives from `IParsable`
                 if (method is not null || propertyInfo.PropertyType == typeof(string))

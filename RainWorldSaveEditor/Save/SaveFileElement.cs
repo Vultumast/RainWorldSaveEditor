@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -16,6 +17,7 @@ namespace RainWorldSaveEditor.Save
         /// <summary>
         /// Can the property be valueless?
         /// </summary>
-        public bool ValueOptional { get; set; } = valueOptional;
+        public bool ValueOptional { get; } = valueOptional;
+
     }
 }
