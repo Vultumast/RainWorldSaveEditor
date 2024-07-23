@@ -1,5 +1,4 @@
-﻿using RainWorldSaveEditor.Save.Base;
-using System.Diagnostics.CodeAnalysis;
+﻿using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
 using static System.Runtime.InteropServices.JavaScript.JSType;
 

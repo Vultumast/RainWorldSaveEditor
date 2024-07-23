@@ -1,5 +1,4 @@
-﻿using RainWorldSaveEditor.Save.Base;
-using System;
+﻿using System;
 using System.CodeDom;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -66,25 +65,25 @@ public class SaveState : SaveElementContainer
     /// RESPAWNS
     /// </summary>
     [SaveFileElement("RESPAWNS")]
-    public List<int> CreaturesToRespawn { get; } = [];
+    public IntList CreaturesToRespawn { get; private set; } = [];
 
     /// <summary>
     /// WAITRESPAWNS
     /// </summary>
     [SaveFileElement("WAITRESPAWNS")]
-    public List<int> CreaturesWaitingToRespawn { get; } = [];
+    public IntList CreaturesWaitingToRespawn { get; private set; } = [];
 
     /// <summary>
     /// REGIONSTATE
     /// </summary>
     [SaveFileElement("REGIONSTATE")]
-    public List<RegionState> RegionStates { get; } = [];
+    public RegionStateList RegionStates { get; private set; } = [];
 
     /// <summary>
     /// DEATHPERSISTENTSAVEDATA
     /// </summary>
     [SaveFileElement("DEATHPERSISTENTSAVEDATA")]
-    public DeathPersistentSaveData DeathPersistentSaveData { get; set; } = new();
+    public DeathPersistentSaveData DeathPersistentSaveData { get; private set; } = new();
 
     /// <summary>
     /// UNRECOGNIZEDSWALLOWED
@@ -201,19 +200,19 @@ public class SaveState : SaveElementContainer
     /// FRIENDS
     /// </summary>
     [SaveFileElement("OBJECTS")]
-    public List<string> Objects { get; } = [];
+    public List<string> Objects { get; private set; } = [];
 
     /// <summary>
     /// FRIENDS
     /// </summary>
     [SaveFileElement("FRIENDS")]
-    public List<string> Friends { get; } = [];
+    public List<string> Friends { get; private set; } = [];
 
     /// <summary>
     /// OEENCOUNTERS
     /// </summary>
     [SaveFileElement("OEENCOUNTERS")]
-    public List<string> OuterExpanseEncounters { get; } = [];
+    public List<string> OuterExpanseEncounters { get; private set; } = [];
 
     /// <summary>
     /// SAV STATE NUMBER
@@ -226,6 +225,10 @@ public class SaveState : SaveElementContainer
     {
         foreach ((var key, var value) in SaveUtils.GetFields(data, "<svB>", "<svA>"))
         {
+            if (key == "RESPAWNS")
+            {
+                Console.WriteLine("wawa");
+            }
             ParseField(this, key, value);
         }
     }
