@@ -1,4 +1,5 @@
 using RainWorldSaveEditor.Save;
+using System.Text.Json;
 
 namespace RainWorldSaveEditor;
 
@@ -14,32 +15,25 @@ public partial class MainForm : Form
 
 
     // TEMP
-    public struct SlugcatInfo(string name, string saveID, bool requiresDLC, bool modded)
+    public struct SlugcatInfo(string name, string saveID, bool requiresDLC, bool modded, byte pipCount, byte pipBarIndex)
     {
         public string Name { get; set; } = name;
         public string SaveID { get; set; } = saveID;
         public bool RequiresDLC { get; set; } = requiresDLC;
         public bool Modded { get; set; } = modded;
+        public byte PipCount { get; set; } = pipCount;
+        public byte PipBarIndex { get; set; } = pipBarIndex;
     }
 
-    public SlugcatInfo[] Slugcats =
-    {
-        new SlugcatInfo("Monk", "Yellow", false, false),
-        new SlugcatInfo("Survivor", "White", false, false),
-        new SlugcatInfo("Hunter", "Red", false, false),
-
-        new SlugcatInfo("Gourmand", "Gourmand", true, false),
-        new SlugcatInfo("Artificer", "Artificer", true, false),
-        new SlugcatInfo("Rivulet", "Rivulet", true, false),
-        new SlugcatInfo("Spearmaster", "Spearmaster", true, false),
-        new SlugcatInfo("Saint", "Saint", true, false),
-        new SlugcatInfo("Inv", "Inv", true, false),
-        // new SlugcatInfo("Watcher", true, false),
-    };
+    public List<SlugcatInfo> Slugcats = new();
     // TEND OF TEMP
     private void MainForm_Load(object sender, EventArgs e)
     {
-        for (var i = 0; i < Slugcats.Length; i++)
+        var slugcatFiles = Directory.GetFiles("Resources\\Slugcat Info", "*.json", SearchOption.AllDirectories);
+        foreach (var slugcatFile in slugcatFiles)
+            Slugcats.Add(JsonSerializer.Deserialize<SlugcatInfo>(File.ReadAllText(slugcatFile)));
+
+        for (var i = 0; i < Slugcats.Count; i++)
             slugcatIconImageList.Images.Add(Slugcats[i].Name, Image.FromFile(Path.Combine("Resources\\Slugcat Icons\\", $"{Slugcats[i].Name}.png")));
         
 
@@ -51,7 +45,7 @@ public partial class MainForm : Form
         SetDefaultState();
 
         mainTabControl.ImageList = slugcatIconImageList;
-        for (var i = 0; i < Slugcats.Length; i++)
+        for (var i = 0; i < Slugcats.Count; i++)
             SetupSlugcatPage(Slugcats[i]);
     }
 
@@ -77,6 +71,8 @@ public partial class MainForm : Form
 
         control.Dock = DockStyle.Fill;
 
+        control.foodPipControl.PipCount = slugcatInfo.PipCount;
+        control.foodPipControl.PipBarIndex = slugcatInfo.PipBarIndex;
     }
 
     void ReadSaveData(string filepath)

@@ -225,7 +225,7 @@ public class SaveState : SaveElementContainer
     {
         foreach ((var key, var value) in SaveUtils.GetFields(data, "<svB>", "<svA>"))
         {
-            if (key == "RESPAWNS")
+            if (key == "UNRECOGNIZEDPLAYERGRASPS")
             {
                 Console.WriteLine("wawa");
             }

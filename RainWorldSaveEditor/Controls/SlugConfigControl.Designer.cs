@@ -31,7 +31,12 @@
             foodPipControl = new FoodPipControl();
             cycleNumberNumericUpDown = new NumericUpDown();
             label1 = new Label();
+            tabControl1 = new TabControl();
+            tabPage1 = new TabPage();
+            tabPage2 = new TabPage();
+            tabPage3 = new TabPage();
             ((System.ComponentModel.ISupportInitialize)cycleNumberNumericUpDown).BeginInit();
+            tabControl1.SuspendLayout();
             SuspendLayout();
             // 
             // foodPipControl
@@ -60,17 +65,61 @@
             label1.TabIndex = 2;
             label1.Text = "Cycle Number:";
             // 
+            // tabControl1
+            // 
+            tabControl1.Controls.Add(tabPage1);
+            tabControl1.Controls.Add(tabPage2);
+            tabControl1.Controls.Add(tabPage3);
+            tabControl1.Location = new Point(69, 127);
+            tabControl1.Name = "tabControl1";
+            tabControl1.SelectedIndex = 0;
+            tabControl1.Size = new Size(371, 222);
+            tabControl1.TabIndex = 3;
+            // 
+            // tabPage1
+            // 
+            tabPage1.Location = new Point(4, 24);
+            tabPage1.Name = "tabPage1";
+            tabPage1.Padding = new Padding(3);
+            tabPage1.Size = new Size(363, 194);
+            tabPage1.TabIndex = 0;
+            tabPage1.Text = "Slugcat Info";
+            tabPage1.UseVisualStyleBackColor = true;
+            // 
+            // tabPage2
+            // 
+            tabPage2.Location = new Point(4, 24);
+            tabPage2.Name = "tabPage2";
+            tabPage2.Padding = new Padding(3);
+            tabPage2.Size = new Size(192, 72);
+            tabPage2.TabIndex = 1;
+            tabPage2.Text = "World Info";
+            tabPage2.UseVisualStyleBackColor = true;
+            // 
+            // tabPage3
+            // 
+            tabPage3.Location = new Point(4, 24);
+            tabPage3.Name = "tabPage3";
+            tabPage3.Padding = new Padding(3);
+            tabPage3.Size = new Size(363, 194);
+            tabPage3.TabIndex = 2;
+            tabPage3.Text = "Persistent Info";
+            tabPage3.ToolTipText = "Data that persists across death";
+            tabPage3.UseVisualStyleBackColor = true;
+            // 
             // SlugConfigControl
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
+            Controls.Add(tabControl1);
             Controls.Add(label1);
             Controls.Add(cycleNumberNumericUpDown);
             Controls.Add(foodPipControl);
             Name = "SlugConfigControl";
-            Size = new Size(415, 336);
+            Size = new Size(549, 440);
             Load += SlugConfigControl_Load;
             ((System.ComponentModel.ISupportInitialize)cycleNumberNumericUpDown).EndInit();
+            tabControl1.ResumeLayout(false);
             ResumeLayout(false);
             PerformLayout();
         }
@@ -79,5 +128,9 @@
         private NumericUpDown cycleNumberNumericUpDown;
         private Label label1;
         public FoodPipControl foodPipControl;
+        private TabControl tabControl1;
+        private TabPage tabPage1;
+        private TabPage tabPage2;
+        private TabPage tabPage3;
     }
 }
