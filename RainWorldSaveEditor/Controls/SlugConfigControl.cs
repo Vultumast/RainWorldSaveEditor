@@ -8,27 +8,33 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace RainWorldSaveEditor.Controls
+namespace RainWorldSaveEditor.Controls;
+
+public partial class SlugConfigControl : UserControl
 {
-    public partial class SlugConfigControl : UserControl
+    public SlugConfigControl()
     {
-        public SlugConfigControl()
-        {
-            InitializeComponent();
+        InitializeComponent();
 
-            cycleNumberNumericUpDown.Minimum = uint.MinValue;
-            cycleNumberNumericUpDown.Maximum = uint.MaxValue;
-        }
-
-        private void SlugConfigControl_Load(object sender, EventArgs e)
-        {
-
-        }
-
-        public uint CycleNumber
-        {
-            get => (uint)cycleNumberNumericUpDown.Value;
-            set => cycleNumberNumericUpDown.Value = value;
-        }
+        cycleNumberNumericUpDown.Minimum = uint.MinValue;
+        cycleNumberNumericUpDown.Maximum = uint.MaxValue;
     }
+
+    private void SlugConfigControl_Load(object sender, EventArgs e)
+    {
+
+    }
+
+    public uint CycleNumber
+    {
+        get => (uint)cycleNumberNumericUpDown.Value;
+        set => cycleNumberNumericUpDown.Value = value;
+    }
+
+    public string CurrentDenPosition
+    {
+        get => currentDenTextBox.Text;
+        set => currentDenTextBox.Text = value;
+    }
+
 }

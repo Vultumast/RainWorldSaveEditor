@@ -2,6 +2,12 @@
 
 Assets marked with the license "Rain World" are the intellectual property of their respective owners.
 
+# RainWorldSaveEditor/Resources
+
+| Name | Description | License | Source |
+| ---- | ----------- | ------- | ------ |
+| missing.png | Missing Asset Icon | Vultumast (MIT) | N/A |
+
 # RainWorldSaveEditor/Resources/Slugcat Icons
 
 | Name | Description | License | Source |
@@ -16,12 +22,14 @@ Assets marked with the license "Rain World" are the intellectual property of the
 | spearmaster.png | Spearmaster Icon | Rain World | [Rain World Miraheze Wiki](https://rainworld.miraheze.org/wiki/File:Spearmaster_icon_(custom).png) |
 | survivor.png | Survivor Icon | Rain World | [Rain World Miraheze Wiki](https://rainworld.miraheze.org/wiki/File:Survivor_icon_(custom).png) |
 | watcher.png | Watcher Icon | Rain World | [Rain World Miraheze Wiki](https://rainworld.miraheze.org/wiki/File:Watcher_icon_(custom).png) |
+| missing_slugcat.png | Missing Slugcat Icon | Vultumast (MIT) | N/A |
 
 # RainWorldSaveEditor/Resources/Karma
 | Name | Description | License | Source |
 | ---- | ----------- | ------- | ------ |
 | karma_empty.png | Karma 0 Icon | Rain World | [Rain World Miraheze Wiki](https://rainworld.miraheze.org/wiki/Category:Karma_icons#/media/File:Karma_0_icon.png) |
 | karma_empty_reinforced.png | Karma 0 (Reinforced) Icon | Rain World | [Rain World Miraheze Wiki](https://rainworld.miraheze.org/wiki/Category:Karma_icons#/media/File:Karma_0_icon_(reinforced).png) |
+| karma00.png | Karma 0 Icon | Rain World | [Rain World Miraheze Wiki](https://rainworld.miraheze.org/wiki/Category:Karma_icons#/media/File:Karma_1_icon_(no_circle).png) |
 | karma10.png | Karma 1 Icon | Rain World | [Rain World Miraheze Wiki](https://rainworld.miraheze.org/wiki/Category:Karma_icons#/media/File:Karma_1_icon_(no_circle).png) |
 | karma20.png | Karma 2 Icon | Rain World | [Rain World Miraheze Wiki](https://rainworld.miraheze.org/wiki/Category:Karma_icons#/media/File:Karma_2_icon_(no_circle).png) |
 | karma30.png | Karma 3 Icon | Rain World | [Rain World Miraheze Wiki](https://rainworld.miraheze.org/wiki/Category:Karma_icons#/media/File:Karma_3_icon_(no_circle).png) |

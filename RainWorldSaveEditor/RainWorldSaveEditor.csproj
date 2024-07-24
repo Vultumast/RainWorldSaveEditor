@@ -9,6 +9,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Folder Include="Resources\Worldstate Info\" />
     <Folder Include="TestFiles\" />
   </ItemGroup>
 

@@ -71,8 +71,8 @@ public partial class MainForm : Form
 
         control.Dock = DockStyle.Fill;
 
-        control.foodPipControl.PipCount = slugcatInfo.PipCount;
-        control.foodPipControl.PipBarIndex = slugcatInfo.PipBarIndex;
+        control.FoodPipControl.PipCount = slugcatInfo.PipCount;
+        control.FoodPipControl.PipBarIndex = slugcatInfo.PipBarIndex;
     }
 
     void ReadSaveData(string filepath)
@@ -105,16 +105,21 @@ public partial class MainForm : Form
                 }
             }
 
+            Controls.SlugConfigControl control = (Controls.SlugConfigControl)(mainTabControl.TabPages[$"{slugcat.SaveID}_TabPage"]!.Controls[0]);
+
             if (id is null)
             {
                 Logger.Log($"Save does not have information for slugcat: \"{slugcat.Name}\" ID: \"{slugcat.SaveID}\"");
+                control.Enabled = false;
                 continue;
             }
 
-            Controls.SlugConfigControl control = (Controls.SlugConfigControl)(mainTabControl.TabPages[$"{slugcat.SaveID}_TabPage"]!.Controls[0]);
-
-            control.foodPipControl.FilledPips = (byte)id.FoodCount;
+            // Setup Slugcat Info
+            control.FoodPipControl.FilledPips = (byte)id.FoodCount;
             control.CycleNumber = (uint)id.CycleNumber;
+            control.CurrentDenPosition = id.DenPosition;
+            control.KarmaSelectorControl.KarmaLevel = id.DeathPersistentSaveData.Karma;
+            control.KarmaSelectorControl.KarmaMax = id.DeathPersistentSaveData.KarmaCap;
 
         }
     }
