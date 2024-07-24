@@ -23,6 +23,7 @@ public class RainWorldSave
         foreach ((var key, var value) in SaveUtils.GetFields(data, "<progDivB>", "<progDivA>"))
         {
             ParseSaveEntry(key, value);
+            Logger.Log("===Read a save entry===");
         }
     }
 

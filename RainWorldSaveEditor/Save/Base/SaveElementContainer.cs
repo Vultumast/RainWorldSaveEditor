@@ -8,6 +8,7 @@ using System.Runtime.InteropServices.ObjectiveC;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace RainWorldSaveEditor.Save;
 
@@ -55,7 +56,12 @@ public abstract class SaveElementContainer
             if (value != string.Empty)
             {
                 if (propertyInfo.PropertyType == typeof(string))
+                {
                     propertyInfo.GetSetMethod()!.Invoke(container, [value]);
+
+                    // TODO Remove this later
+                    Logger.Log($"{propertyInfo.DeclaringType?.Name}: {propertyInfo.Name} => {value} ({value?.GetType().Name})");
+                }
                 else
                 {
                     var propertyBinding = propertyInfo.GetValue(container);
@@ -76,6 +82,9 @@ public abstract class SaveElementContainer
                         return false;
                     }
                     setMethod.Invoke(container, [data]);
+
+                    // TODO Remove this later
+                    Logger.Log($"{propertyInfo.DeclaringType?.Name}: {propertyInfo.Name} => {data} ({data?.GetType().Name})");
                 }
             }
             else
@@ -84,6 +93,7 @@ public abstract class SaveElementContainer
                 return false;
             }
         }
+
         return true;
     }
 
@@ -131,5 +141,9 @@ public abstract class SaveElementContainer
             container.UnrecognizedFields.Add(key, value);
         else
             Console.WriteLine($"Unable to set \"{key}\" because it was already present!");
+
+        // TODO Remove this later
+        Logger.Log($"UNKWN: {key} => {value}");
+
     }
 }
