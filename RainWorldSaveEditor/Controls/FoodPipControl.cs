@@ -87,7 +87,12 @@ namespace RainWorldSaveEditor.Controls
                     currX += (pipBarBitmap.Width + 1);
 
                 if (i <= (FilledPips - 1))
-                    e.Graphics.DrawImage(fullPipBitmap, currX, (Height / 2) - (emptyPipBitmap.Height / 2));
+                {
+                    if (_mouseHoverIndex != -1 && i >= _mouseHoverIndex)
+                        e.Graphics.DrawImage(fullPipGrayBitmap, currX, (Height / 2) - (emptyPipBitmap.Height / 2));
+                    else
+                        e.Graphics.DrawImage(fullPipBitmap, currX, (Height / 2) - (emptyPipBitmap.Height / 2));
+                }
                 else
                 {
                     if (i <= _mouseHoverIndex)
