@@ -30,6 +30,13 @@ public class DeathPersistentSaveData : SaveElementContainer, IParsable<DeathPers
     public bool HasReinforcedKarma { get; set; } = false;
 
     /// <summary>
+    /// FLOWERPOS
+    /// Position of Karma Flower created upon player death
+    /// </summary>
+    [SaveFileElement("FLOWERPOS")]
+    public WorldCoordinate? KarmaFlowerPosition { get; set; }
+
+    /// <summary>
     /// HASTHEMARK (valueless)
     /// </summary>
     [SaveFileElement("HASTHEMARK", true)]
@@ -115,6 +122,9 @@ public class DeathPersistentSaveData : SaveElementContainer, IParsable<DeathPers
     [SaveFileElement("LOOKSTOTHEDOOM")]
     public bool IsMoonAscendedBySaint { get; set; } = false;
 
+    [SaveFileElement("SLSiren")]
+    public bool SLSiren_Unused { get; set; } = false;
+
     /// <summary>
     /// TIPS
     /// </summary>
@@ -127,6 +137,28 @@ public class DeathPersistentSaveData : SaveElementContainer, IParsable<DeathPers
     [SaveFileElement("TIPSEED")]
     public int TipSeed { get; set; } = 0;
 
+    public string Write()
+    {
+        throw new NotImplementedException();
+    }
+
+    public static DeathPersistentSaveData Parse(string s, IFormatProvider? provider)
+    {
+        DeathPersistentSaveData data = new DeathPersistentSaveData();
+
+        foreach ((var key, var value) in SaveUtils.GetFields(s, "<dpB>", "<dpA>"))
+            ParseField(data, key, value);
+
+
+        return data;
+    }
+
+    public static bool TryParse([NotNullWhen(true)] string? s, IFormatProvider? provider, [MaybeNullWhen(false)] out DeathPersistentSaveData result)
+    {
+        // Vultu: probably make this better
+        result = Parse(s, provider);
+        return true;
+    }
 
     /*
     private void ParseField(string key, string value)
@@ -143,7 +175,18 @@ public class DeathPersistentSaveData : SaveElementContainer, IParsable<DeathPers
             case "REINFORCEDKARMA":
                 HasReinforcedKarma = value == "1";
                 break;
-            case "FLOWERPOS": //TODO
+            case "FLOWERPOS":
+                {
+                    // TODO handle less / more than 4 values
+                    string[] values = value.Split('.');
+                    KarmaFlowerPosition = new()
+                    {
+                        RoomName = values[0],
+                        X = int.Parse(values[1], NumberStyles.Any, CultureInfo.InvariantCulture),
+                        Y = int.Parse(values[2], NumberStyles.Any, CultureInfo.InvariantCulture),
+                        AbstractNode = int.Parse(values[3], NumberStyles.Any, CultureInfo.InvariantCulture)
+                    };
+                }
                 break;
             case "GHOSTS": //TODO
                 break;
@@ -224,27 +267,4 @@ public class DeathPersistentSaveData : SaveElementContainer, IParsable<DeathPers
         }
     }
     */
-
-    public string Write()
-    {
-        throw new NotImplementedException();
-    }
-
-    public static DeathPersistentSaveData Parse(string s, IFormatProvider? provider)
-    {
-        DeathPersistentSaveData data = new DeathPersistentSaveData();
-
-        foreach ((var key, var value) in SaveUtils.GetFields(s, "<dpB>", "<dpA>"))
-            ParseField(data, key, value);
-        
-
-        return data;
-    }
-
-    public static bool TryParse([NotNullWhen(true)] string? s, IFormatProvider? provider, [MaybeNullWhen(false)] out DeathPersistentSaveData result)
-    {
-        // Vultu: probably make this better
-        result = Parse(s, provider);
-        return true;
-    }
 }

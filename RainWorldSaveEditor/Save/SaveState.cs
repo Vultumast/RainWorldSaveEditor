@@ -13,7 +13,6 @@ namespace RainWorldSaveEditor.Save;
 
 public class SaveState : SaveElementContainer
 {
-
     public SaveState() : base()
     {
 
@@ -50,9 +49,9 @@ public class SaveState : SaveElementContainer
     public int NextIssuedId { get; set; } = 0;
 
     /// <summary>
-    /// HASGLOW (valueless)
+    /// HASTHEGLOW (valueless)
     /// </summary>
-    [SaveFileElement("HASGLOW", true)]
+    [SaveFileElement("HASTHEGLOW", true)]
     public bool HasNeuronGlow { get; set; } = false;
 
     /// <summary>
@@ -78,6 +77,9 @@ public class SaveState : SaveElementContainer
     /// </summary>
     [SaveFileElement("REGIONSTATE")]
     public RegionStateList RegionStates { get; private set; } = [];
+
+    [SaveFileElement("COMMUNITIES")]
+    public CreatureCommunities Communities { get; set; } = new();
 
     /// <summary>
     /// DEATHPERSISTENTSAVEDATA
