@@ -16,6 +16,10 @@ Assets marked with the license "Rain World" are the intellectual property of the
 | spearmaster.png | Spearmaster Icon | Rain World | [Rain World Miraheze Wiki](https://rainworld.miraheze.org/wiki/File:Spearmaster_icon_(custom).png) |
 | survivor.png | Survivor Icon | Rain World | [Rain World Miraheze Wiki](https://rainworld.miraheze.org/wiki/File:Survivor_icon_(custom).png) |
 | watcher.png | Watcher Icon | Rain World | [Rain World Miraheze Wiki](https://rainworld.miraheze.org/wiki/File:Watcher_icon_(custom).png) |
+
+# RainWorldSaveEditor/Resources/Karma
+| Name | Description | License | Source |
+| ---- | ----------- | ------- | ------ |
 | karma_empty.png | Karma 0 Icon | Rain World | [Rain World Miraheze Wiki](https://rainworld.miraheze.org/wiki/Category:Karma_icons#/media/File:Karma_0_icon.png) |
 | karma_empty_reinforced.png | Karma 0 (Reinforced) Icon | Rain World | [Rain World Miraheze Wiki](https://rainworld.miraheze.org/wiki/Category:Karma_icons#/media/File:Karma_0_icon_(reinforced).png) |
 | karma10.png | Karma 1 Icon | Rain World | [Rain World Miraheze Wiki](https://rainworld.miraheze.org/wiki/Category:Karma_icons#/media/File:Karma_1_icon_(no_circle).png) |
