@@ -23,11 +23,16 @@ public class DeathPersistentSaveData : SaveElementContainer, IParsable<DeathPers
     [SaveFileElement("KARMACAP")]
     public int KarmaCap { get; set; } = 0;
 
+    private bool _hasReinforcedKarma = false;
     /// <summary>
     /// Whenever the karma is currently reinforced by a Karma Flower.
     /// </summary>
     [SaveFileElement("REINFORCEDKARMA")]
-    public bool HasReinforcedKarma { get; set; } = false;
+    public int HasReinforcedKarma
+    {
+        get => _hasReinforcedKarma ? 1 : 0;
+        set => _hasReinforcedKarma = value != 0;
+    }
 
     /// <summary>
     /// Position of Karma Flower created upon player death.
@@ -78,7 +83,7 @@ public class DeathPersistentSaveData : SaveElementContainer, IParsable<DeathPers
     /// This value gets set automatically on death, but only makes sense for Hunter's campaign. <para/>
     /// If Hunter is not out of cycles, it gets cleared on load. Otherwise, it prevents loading the save file.
     /// </summary>
-    [SaveFileElement("REDSDEATH")]
+    [SaveFileElement("REDSDEATH", true)]
     public bool IsHunterDead { get; set; } = false;
 
     /// <summary>
@@ -91,7 +96,7 @@ public class DeathPersistentSaveData : SaveElementContainer, IParsable<DeathPers
     /// Whenever Pebbles has increased Hunter's karma cap by one step. <para/>
     /// This is used to prevent Pebbles from increasing karma cap again if the player fails the previous cycle.
     /// </summary>
-    [SaveFileElement("PHIRKC")]
+    [SaveFileElement("PHIRKC", true)]
     public bool HasPebblesIncreasedHuntersKarma { get; set; } = false;
 
     /// <summary>
@@ -129,7 +134,7 @@ public class DeathPersistentSaveData : SaveElementContainer, IParsable<DeathPers
     /// <summary>
     /// Unused. Also unknown what the intended usage was going to be, if any.
     /// </summary>
-    [SaveFileElement("SLSiren")]
+    [SaveFileElement("SLSiren", true)]
     public bool SLSiren { get; set; } = false;
 
     /// <summary>
