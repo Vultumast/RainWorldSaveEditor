@@ -6,11 +6,42 @@
     <Nullable>enable</Nullable>
     <UseWindowsForms>true</UseWindowsForms>
     <ImplicitUsings>enable</ImplicitUsings>
+    <Company>$(Authors)</Company>
+    <Authors>$(AssemblyName)</Authors>
+    <PackageLicenseFile>LICENSE.txt</PackageLicenseFile>
+    <Copyright>Marioalexsan, Vultumast</Copyright>
+    <Description></Description>
+    <Title>Rainworld Save Editor</Title>
+    <Version>$(VersionPrefix)</Version>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
+    <NeutralLanguage>en</NeutralLanguage>
+    <AssemblyVersion>1.0.0.0</AssemblyVersion>
+    <FileVersion>1.0.0.0</FileVersion>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <Deterministic>False</Deterministic>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+    <Deterministic>False</Deterministic>
   </PropertyGroup>
 
   <ItemGroup>
+    <Folder Include="Resources\Misc Icons\" />
     <Folder Include="Resources\Worldstate Info\" />
     <Folder Include="TestFiles\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="..\LICENSE.txt">
+      <Pack>True</Pack>
+      <PackagePath>\</PackagePath>
+    </None>
+    <None Include="..\README.md">
+      <Pack>True</Pack>
+      <PackagePath>\</PackagePath>
+    </None>
   </ItemGroup>
 
   <ItemGroup>
@@ -86,13 +117,13 @@
     <None Update="Resources\Slugcat Info\Survivor.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Update="Resources\UI\Food_line.png">
+    <None Update="Resources\UI\Food UI\Food_line.png">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </None>
-    <None Update="Resources\UI\Food_pip_empty.png">
+    <None Update="Resources\UI\Food UI\Food_pip_empty.png">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </None>
-    <None Update="Resources\UI\Food_pip_full.png">
+    <None Update="Resources\UI\Food UI\Food_pip_full.png">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </None>
     <None Update="TestFiles\sav.xml">

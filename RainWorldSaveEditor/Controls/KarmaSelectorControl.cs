@@ -60,7 +60,7 @@ public partial class KarmaSelectorControl : UserControl
 
         Bitmap? img = Properties.Resources.missing;
 
-        switch (KarmaLevel)
+        switch (KarmaLevel + 1)
         {
             case 0:
                 img = Properties.Resources.karma00;
@@ -164,18 +164,22 @@ public partial class KarmaSelectorControl : UserControl
     [Category("Appearance")]
     public int KarmaLevel
     {
-        get => (int)karmaNumericUpDown.Value;
-        set => karmaNumericUpDown.Value = value;
+        get => (int)(karmaNumericUpDown.Value - 1);
+        set
+        {
+
+            karmaNumericUpDown.Value = (value + 1);
+        }
     }
 
     [Category("Appearance")]
     public int KarmaMax
     {
-        get => (int)karmaNumericUpDown.Maximum;
+        get => (int)(karmaMaxNumericUpDown.Value - 1);
         set
         {
-            karmaNumericUpDown.Maximum = value;
-            karmaMaxNumericUpDown.Value = value;
+            karmaNumericUpDown.Maximum = (value + 1);
+            karmaMaxNumericUpDown.Value = (value + 1);
         }
     }
 

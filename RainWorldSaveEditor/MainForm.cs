@@ -114,12 +114,7 @@ public partial class MainForm : Form
                 continue;
             }
 
-            // Setup Slugcat Info
-            control.FoodPipControl.FilledPips = (byte)id.FoodCount;
-            control.CycleNumber = (uint)id.CycleNumber;
-            control.CurrentDenPosition = id.DenPosition;
-            control.KarmaSelectorControl.KarmaLevel = id.DeathPersistentSaveData.Karma;
-            control.KarmaSelectorControl.KarmaMax = id.DeathPersistentSaveData.KarmaCap;
+            control.SetupFromState(id);
 
         }
     }
