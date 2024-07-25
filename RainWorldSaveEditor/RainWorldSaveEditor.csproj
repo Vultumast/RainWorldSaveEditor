@@ -28,7 +28,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Resources\Misc Icons\" />
     <Folder Include="Resources\Worldstate Info\" />
     <Folder Include="TestFiles\" />
   </ItemGroup>
