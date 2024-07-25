@@ -29,6 +29,7 @@ Assets marked with the license "Rain World" are the intellectual property of the
 | ---- | ----------- | ------- | ------ |
 | hunterdead.png | Hunter Long Legs Icon | Rain World (Custom for Miraheze?) | [Rain World Miraheze Wiki](https://static.miraheze.org/rainworldwiki/7/77/Hunter_dead_icon_%28custom%29.png) |
 | shelter_icon.png | Shelter Icon | Rain World | [Rain World Miraheze Wiki](https://rainworld.miraheze.org/wiki/Rain#/media/File:Shelter_icon.png) |
+| slugcatdead.png | Dead Survivor Icon | Rain World | [Rain World Miraheze Wiki](https://rainworld.miraheze.org/wiki/Category:Slugcat_icons#/media/File:Survivor_dead_icon.png) |
 
 # RainWorldSaveEditor/Resources/UI/Food UI
 | Name | Description | License | Source |

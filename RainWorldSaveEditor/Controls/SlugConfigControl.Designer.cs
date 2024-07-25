@@ -48,6 +48,9 @@
             worldInfoOutskirtstabPage = new TabPage();
             tabPage1 = new TabPage();
             persistentInfoTabPage = new TabPage();
+            markOfCommunicationCheckBox = new CheckBox();
+            pictureBox4 = new PictureBox();
+            pictureBox3 = new PictureBox();
             pictureBox2 = new PictureBox();
             hunterPermaDeathCheckBox = new CheckBox();
             ascendedCheckBox = new CheckBox();
@@ -67,9 +70,6 @@
             totalDeathsLabel = new Label();
             karmaFlowerGroupBox = new GroupBox();
             karmaFlowerWorldPositionEditControl = new WorldPositionEditControl();
-            pictureBox3 = new PictureBox();
-            pictureBox4 = new PictureBox();
-            markOfCommunicationCheckBox = new CheckBox();
             ((System.ComponentModel.ISupportInitialize)cycleNumberNumericUpDown).BeginInit();
             tabControl1.SuspendLayout();
             slugcatInfoTabPage.SuspendLayout();
@@ -79,6 +79,8 @@
             worldInfoTabPage.SuspendLayout();
             worldInfoTabControl.SuspendLayout();
             persistentInfoTabPage.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)pictureBox4).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox3).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
             totalsGroupBox.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)totalFriendsSavedNumericUpDown).BeginInit();
@@ -87,8 +89,6 @@
             ((System.ComponentModel.ISupportInitialize)totalFoodNumericUpDown).BeginInit();
             ((System.ComponentModel.ISupportInitialize)totalDeathsNumericUpDown).BeginInit();
             karmaFlowerGroupBox.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)pictureBox3).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)pictureBox4).BeginInit();
             SuspendLayout();
             // 
             // FoodPipControl
@@ -307,6 +307,34 @@
             persistentInfoTabPage.Text = "Persistent Info";
             persistentInfoTabPage.ToolTipText = "Data that persists across death";
             // 
+            // markOfCommunicationCheckBox
+            // 
+            markOfCommunicationCheckBox.AutoSize = true;
+            markOfCommunicationCheckBox.Location = new Point(349, 125);
+            markOfCommunicationCheckBox.Name = "markOfCommunicationCheckBox";
+            markOfCommunicationCheckBox.Size = new Size(180, 19);
+            markOfCommunicationCheckBox.TabIndex = 10;
+            markOfCommunicationCheckBox.Text = "Has Mark of Communication";
+            markOfCommunicationCheckBox.UseVisualStyleBackColor = true;
+            // 
+            // pictureBox4
+            // 
+            pictureBox4.Image = Properties.Resources.slugcatdead;
+            pictureBox4.Location = new Point(246, 76);
+            pictureBox4.Name = "pictureBox4";
+            pictureBox4.Size = new Size(23, 24);
+            pictureBox4.TabIndex = 9;
+            pictureBox4.TabStop = false;
+            // 
+            // pictureBox3
+            // 
+            pictureBox3.Image = Properties.Resources.lookstothemoondeadicon;
+            pictureBox3.Location = new Point(246, 16);
+            pictureBox3.Name = "pictureBox3";
+            pictureBox3.Size = new Size(23, 24);
+            pictureBox3.TabIndex = 8;
+            pictureBox3.TabStop = false;
+            // 
             // pictureBox2
             // 
             pictureBox2.Image = Properties.Resources.fivepebblesdeadicon;
@@ -321,9 +349,9 @@
             hunterPermaDeathCheckBox.AutoSize = true;
             hunterPermaDeathCheckBox.Location = new Point(275, 76);
             hunterPermaDeathCheckBox.Name = "hunterPermaDeathCheckBox";
-            hunterPermaDeathCheckBox.Size = new Size(130, 19);
+            hunterPermaDeathCheckBox.Size = new Size(105, 19);
             hunterPermaDeathCheckBox.TabIndex = 6;
-            hunterPermaDeathCheckBox.Text = "Hunter Permadeath";
+            hunterPermaDeathCheckBox.Text = "Currently Dead";
             hunterPermaDeathCheckBox.UseVisualStyleBackColor = true;
             // 
             // ascendedCheckBox
@@ -496,34 +524,6 @@
             karmaFlowerWorldPositionEditControl.X = 0;
             karmaFlowerWorldPositionEditControl.Y = 0;
             // 
-            // pictureBox3
-            // 
-            pictureBox3.Image = Properties.Resources.lookstothemoondeadicon;
-            pictureBox3.Location = new Point(246, 16);
-            pictureBox3.Name = "pictureBox3";
-            pictureBox3.Size = new Size(23, 24);
-            pictureBox3.TabIndex = 8;
-            pictureBox3.TabStop = false;
-            // 
-            // pictureBox4
-            // 
-            pictureBox4.Image = Properties.Resources.hunterdead;
-            pictureBox4.Location = new Point(246, 76);
-            pictureBox4.Name = "pictureBox4";
-            pictureBox4.Size = new Size(23, 24);
-            pictureBox4.TabIndex = 9;
-            pictureBox4.TabStop = false;
-            // 
-            // markOfCommunicationCheckBox
-            // 
-            markOfCommunicationCheckBox.AutoSize = true;
-            markOfCommunicationCheckBox.Location = new Point(349, 125);
-            markOfCommunicationCheckBox.Name = "markOfCommunicationCheckBox";
-            markOfCommunicationCheckBox.Size = new Size(180, 19);
-            markOfCommunicationCheckBox.TabIndex = 10;
-            markOfCommunicationCheckBox.Text = "Has Mark of Communication";
-            markOfCommunicationCheckBox.UseVisualStyleBackColor = true;
-            // 
             // SlugConfigControl
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -544,6 +544,8 @@
             worldInfoTabControl.ResumeLayout(false);
             persistentInfoTabPage.ResumeLayout(false);
             persistentInfoTabPage.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)pictureBox4).EndInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox3).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).EndInit();
             totalsGroupBox.ResumeLayout(false);
             totalsGroupBox.PerformLayout();
@@ -553,8 +555,6 @@
             ((System.ComponentModel.ISupportInitialize)totalFoodNumericUpDown).EndInit();
             ((System.ComponentModel.ISupportInitialize)totalDeathsNumericUpDown).EndInit();
             karmaFlowerGroupBox.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)pictureBox3).EndInit();
-            ((System.ComponentModel.ISupportInitialize)pictureBox4).EndInit();
             ResumeLayout(false);
         }
 

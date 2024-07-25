@@ -1,3 +1,4 @@
+using RainWorldSaveEditor.Forms;
 using RainWorldSaveEditor.Save;
 using System.Text.Json;
 
@@ -10,7 +11,7 @@ public partial class MainForm : Form
     {
 
         InitializeComponent();
-		
+
     }
 
 
@@ -35,7 +36,7 @@ public partial class MainForm : Form
 
         for (var i = 0; i < Slugcats.Count; i++)
             slugcatIconImageList.Images.Add(Slugcats[i].Name, Image.FromFile(Path.Combine("Resources\\Slugcat Icons\\", $"{Slugcats[i].Name}.png")));
-        
+
 
         if (!Directory.Exists(settings.RainWorldDirectory))
         {
@@ -77,7 +78,10 @@ public partial class MainForm : Form
 
     void ReadSaveData(string filepath)
     {
-        var table = HashtableSerializer.Read(File.OpenRead(filepath));
+        var fs = File.OpenRead(filepath);
+        var table = HashtableSerializer.Read(fs);
+        fs.Close();
+
         // HashtableSerializer.Write(File.OpenWrite("TestFiles/savsaved.xml"), table);
         RainWorldSave save = new();
 
@@ -161,4 +165,9 @@ public partial class MainForm : Form
     #endregion
 
 
+    private void aboutToolStripMenuItem_Click(object sender, EventArgs e)
+    {
+        using AboutForm form = new AboutForm();
+        form.ShowDialog();
+    }
 }
