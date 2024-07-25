@@ -44,6 +44,24 @@ public abstract class SaveElementContainer
     {
         var parseMethodInfo = propertyInfo.GetParseMethod();
 
+        if (elementInfo.Name == "ASCENDED" || propertyInfo.Name == "ASCENDED")
+        {
+            Console.WriteLine("AWAw");
+        }
+
+        if (propertyInfo.PropertyType == typeof(bool) && elementInfo.ValueOptional)
+        {
+            var setMethod = propertyInfo.GetSetMethod(true);
+            if (setMethod is null)
+            {
+                Console.WriteLine($"Set Method was null for \"{propertyInfo.Name}\" with container: \"{container.GetType()}\"");
+                return false;
+            }
+            setMethod.Invoke(container, [ true ]);
+        }
+
+
+
         // Vultu: IDK why `method` is null for string?? It derives from `IParsable`
         if (parseMethodInfo is not null || propertyInfo.PropertyType == typeof(string))
         {

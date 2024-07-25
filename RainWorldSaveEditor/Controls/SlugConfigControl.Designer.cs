@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            components = new System.ComponentModel.Container();
             FoodPipControl = new FoodPipControl();
             cycleNumberNumericUpDown = new NumericUpDown();
             label1 = new Label();
@@ -70,6 +71,7 @@
             totalDeathsLabel = new Label();
             karmaFlowerGroupBox = new GroupBox();
             karmaFlowerWorldPositionEditControl = new WorldPositionEditControl();
+            commonToolTip = new ToolTip(components);
             ((System.ComponentModel.ISupportInitialize)cycleNumberNumericUpDown).BeginInit();
             tabControl1.SuspendLayout();
             slugcatInfoTabPage.SuspendLayout();
@@ -352,6 +354,7 @@
             hunterPermaDeathCheckBox.Size = new Size(105, 19);
             hunterPermaDeathCheckBox.TabIndex = 6;
             hunterPermaDeathCheckBox.Text = "Currently Dead";
+            commonToolTip.SetToolTip(hunterPermaDeathCheckBox, "Did you quit on the death screen? (Controls Hunter Permadeath)");
             hunterPermaDeathCheckBox.UseVisualStyleBackColor = true;
             // 
             // ascendedCheckBox
@@ -362,6 +365,7 @@
             ascendedCheckBox.Size = new Size(78, 19);
             ascendedCheckBox.TabIndex = 5;
             ascendedCheckBox.Text = "Ascended";
+            commonToolTip.SetToolTip(ascendedCheckBox, "Has this slugcat ascended?");
             ascendedCheckBox.UseVisualStyleBackColor = true;
             // 
             // label2
@@ -381,6 +385,7 @@
             ascendedFivePebblesCheckBox.Size = new Size(146, 19);
             ascendedFivePebblesCheckBox.TabIndex = 3;
             ascendedFivePebblesCheckBox.Text = "Ascended Five Pebbles";
+            commonToolTip.SetToolTip(ascendedFivePebblesCheckBox, "Was Five Pebbles ascended by Saint?");
             ascendedFivePebblesCheckBox.UseVisualStyleBackColor = true;
             // 
             // ascendedLooksToTheMoonCheckBox
@@ -391,6 +396,7 @@
             ascendedLooksToTheMoonCheckBox.Size = new Size(184, 19);
             ascendedLooksToTheMoonCheckBox.TabIndex = 2;
             ascendedLooksToTheMoonCheckBox.Text = "Ascended Looks To The Moon";
+            commonToolTip.SetToolTip(ascendedLooksToTheMoonCheckBox, "Was Looks To The Moon ascended by Saint?");
             ascendedLooksToTheMoonCheckBox.UseVisualStyleBackColor = true;
             // 
             // totalsGroupBox
@@ -601,5 +607,6 @@
         private PictureBox pictureBox3;
         private PictureBox pictureBox4;
         private CheckBox markOfCommunicationCheckBox;
+        private ToolTip commonToolTip;
     }
 }

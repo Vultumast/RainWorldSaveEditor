@@ -30,6 +30,7 @@ public class Community : IParsable<Community>
 }
 
 // TODO do modded creature communities exist?
+// Vultu: 🤓 Ackshully the DLC is technically a mod
 public class CreatureCommunities : SaveElementContainer, IParsable<CreatureCommunities>
 {
     [SaveFileElement("SCAVSHY")]

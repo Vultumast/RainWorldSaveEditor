@@ -83,7 +83,7 @@ public class DeathPersistentSaveData : SaveElementContainer, IParsable<DeathPers
     /// <summary>
     /// ASCENDED
     /// </summary>
-    [SaveFileElement("ASCENDED")]
+    [SaveFileElement("ASCENDED", true)]
     public bool HasAscended { get; set; } = false;
 
     /// <summary>
@@ -113,13 +113,13 @@ public class DeathPersistentSaveData : SaveElementContainer, IParsable<DeathPers
     /// <summary>
     /// ZEROPEBBLES
     /// </summary>
-    [SaveFileElement("ZEROPEBBLES")]
+    [SaveFileElement("ZEROPEBBLES", true)]
     public bool IsPebblesAscendedBySaint { get; set; } = false;
 
     /// <summary>
     /// LOOKSTOTHEDOOM
     /// </summary>
-    [SaveFileElement("LOOKSTOTHEDOOM")]
+    [SaveFileElement("LOOKSTOTHEDOOM", true)]
     public bool IsMoonAscendedBySaint { get; set; } = false;
 
     [SaveFileElement("SLSiren")]
