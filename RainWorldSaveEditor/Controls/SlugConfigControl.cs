@@ -37,7 +37,7 @@ public partial class SlugConfigControl : UserControl
         FoodPipControl.FilledPips = (byte)state.FoodCount;
         cycleNumberNumericUpDown.Value = (uint)state.CycleNumber;
         currentDenTextBox.Text = state.DenPosition;
-        KarmaSelectorControl.KarmaLevel = state.DeathPersistentSaveData.Karma;
+        KarmaSelectorControl.KarmaLevel = Math.Min(state.DeathPersistentSaveData.Karma, state.DeathPersistentSaveData.KarmaCap);
         KarmaSelectorControl.KarmaMax = state.DeathPersistentSaveData.KarmaCap;
         KarmaSelectorControl.Reinforced = state.DeathPersistentSaveData.HasReinforcedKarma;
 

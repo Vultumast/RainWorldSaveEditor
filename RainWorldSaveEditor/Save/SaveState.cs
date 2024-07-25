@@ -19,134 +19,129 @@ public class SaveState : SaveElementContainer
     }
 
     /// <summary>
-    /// DENPOS
+    /// Location of the current shelter.
     /// </summary>
     [SaveFileElement("DENPOS")]
     public string DenPosition { get; set; } = "???";
 
     /// <summary>
-    /// LASTVDENPOS
+    /// Location of the last shelter visited that is available in the base (vanilla) game.
     /// </summary>
     [SaveFileElement("LASTVDENPOS")]
     public string LastVanillaDen { get; set; } = "???";
 
     /// <summary>
-    /// CYCLENUM
+    /// Number of cycles passed.
     /// </summary>
     [SaveFileElement("CYCLENUM")]
     public int CycleNumber { get; set; } = 0;
 
     /// <summary>
-    /// FOOD
+    /// Current number of filled food pips.
     /// </summary>
     [SaveFileElement("FOOD")]
     public int FoodCount { get; set; } = 0;
 
     /// <summary>
-    /// NEXTID
+    /// Used when spawning entities. <para/> 
+    /// This value is incremented then the resulting ID is assigned to each new spawned entity.
     /// </summary>
     [SaveFileElement("NEXTID")]
     public int NextIssuedId { get; set; } = 0;
 
     /// <summary>
-    /// HASTHEGLOW (valueless)
+    /// True if the player is affected by the neuron glow effect, false otherwise.
     /// </summary>
     [SaveFileElement("HASTHEGLOW", true)]
     public bool HasNeuronGlow { get; set; } = false;
 
     /// <summary>
-    /// GUIDEOVERSEERDEAD (valueless)
+    /// Unused. <para/>
+    /// If true, the guiding overseer will not spawn for the player.
     /// </summary>
     [SaveFileElement("GUIDEOVERSEERDEAD", true)]
     public bool IsGuideOverseerDead { get; set; } = false;
 
     /// <summary>
-    /// RESPAWNS
+    /// IDs of creatures that will respawn during the next cycle.
     /// </summary>
     [SaveFileElement("RESPAWNS")]
     public IntList CreaturesToRespawn { get; private set; } = [];
 
     /// <summary>
-    /// WAITRESPAWNS
+    /// IDs of creatures that are waiting to respawn. <para/>
+    /// Each cycle, there is a 33% chance that they'll be added to the respawn list (50% with Hunter, Artificer and Spearmaster, 100% in Rubicon).
     /// </summary>
     [SaveFileElement("WAITRESPAWNS")]
     public IntList CreaturesWaitingToRespawn { get; private set; } = [];
 
-    /// <summary>
-    /// REGIONSTATE
-    /// </summary>
+    // TODO Document this
     [SaveFileElement("REGIONSTATE")]
     public RegionStateList RegionStates { get; private set; } = [];
 
+    /// <summary>
+    /// Community-related data, mostly composed of player reputation for each community in each region.
+    /// </summary>
     [SaveFileElement("COMMUNITIES")]
     public CreatureCommunities Communities { get; set; } = new();
 
     /// <summary>
-    /// DEATHPERSISTENTSAVEDATA
+    /// Contains data that persists across player deaths.
     /// </summary>
     [SaveFileElement("DEATHPERSISTENTSAVEDATA")]
     public DeathPersistentSaveData DeathPersistentSaveData { get; private set; } = new();
 
     /// <summary>
-    /// UNRECOGNIZEDSWALLOWED
+    /// Contains serialized strings of swallowed items and creatures that were not recognized by the game. <para/>
+    /// The game tries to parse them again on each save load.
     /// </summary>
     [SaveFileElement("UNRECOGNIZEDSWALLOWED")]
     public List<string> UnrecognizedSwallowedItems { get; } = [];
 
     /// <summary>
-    /// UNRECOGNIZEDPLAYERGRASPS
+    /// Contains serialized strings of grabbed items and creatures that were not recognized by the game. <para/>
+    /// The game tries to parse them again on each save load.
     /// </summary>
     [SaveFileElement("UNRECOGNIZEDPLAYERGRASPS")]
     public List<string> UnrecognizedPlayerGrasps { get; } = [];
 
     /// <summary>
-    /// VERSION
+    /// The version of Rain World for this save.
     /// </summary>
     [SaveFileElement("VERSION")]
     public int GameVersion { get; set; } = 0;
 
     /// <summary>
-    /// INITVERSION
+    /// The initial version of Rain World for this save. <para/>
+    /// PS: might be the same as VERSION.
     /// </summary>
     [SaveFileElement("INITVERSION")]
     public int InitialGameVersion { get; set; } = 0;
 
-    /// <summary>
-    /// WORLDVERSION
-    /// </summary>
     [SaveFileElement("WORLDVERSION")]
     public int WorldVersion { get; set; } = 0;
 
-    /// <summary>
-    /// SEED
-    /// </summary>
     [SaveFileElement("SEED")]
     public int Seed { get; set; } = 0;
 
     /// <summary>
-    /// DREAMSSTATE
     /// May be missing for some scugs
     /// </summary>
     [SaveFileElement("DREAMSSTATE")]
     public DreamsState? DreamsState { get; set; }
 
     /// <summary>
-    /// TOTFOOD
     /// Refers to number of full pips.
     /// </summary>
     [SaveFileElement("TOTFOOD")]
     public int TotalFoodEaten { get; set; } = 0;
 
     /// <summary>
-    /// TOTTIME
     /// Stored as seconds.
     /// </summary>
     [SaveFileElement("TOTTIME")]
     public int TotalTimeInSeconds { get; set; } = 0;
 
-    /// <summary>
-    /// CURRVERCYCLES
-    /// </summary>
     [SaveFileElement("CURRVERCYCLES")]
     public int CyclesInCurrentWorldVersion { get; set; } = 0;
 
