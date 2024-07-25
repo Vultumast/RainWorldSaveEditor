@@ -33,6 +33,28 @@ public static class Logger
     private static extern bool FreeConsole();
 
     private const int ATTACH_PARENT_PROCESS = -1;
+    [DllImport("kernel32.dll")]
+    static extern IntPtr GetConsoleWindow();
+
+    [DllImport("user32.dll")]
+    static extern bool ShowWindow(IntPtr hWnd, int nCmdShow);
+    const int SW_HIDE = 0;
+    const int SW_SHOW = 5;
+
+    private static bool _consoleShown = false;
+    public static bool ConsoleShown
+    {
+        get => _consoleShown;
+        set
+        {
+            if (!_consoleAllocated)
+                AllocateCMD();
+
+            _consoleShown = value;
+
+            ShowWindow(GetConsoleWindow(), value ? SW_SHOW : SW_HIDE);
+        }
+    }
 
     private static bool _consoleAllocated = false;
     /// <summary>
@@ -44,7 +66,7 @@ public static class Logger
         if (!AttachConsole(ATTACH_PARENT_PROCESS))
             AllocConsole();
 
-        
+        _consoleShown = true;
         _consoleAllocated = true;
         return true;
     }
@@ -55,6 +77,7 @@ public static class Logger
     /// <returns></returns>
     public static bool FreeCMD()
     {
+        _consoleShown = false;
         _consoleAllocated = false;
         return FreeConsole();
     }

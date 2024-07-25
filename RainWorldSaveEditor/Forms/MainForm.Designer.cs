@@ -51,12 +51,13 @@ partial class MainForm
         aboutToolStripMenuItem = new ToolStripMenuItem();
         mainTabControl = new TabControl();
         slugcatIconImageList = new ImageList(components);
+        toggleConsoleToolStripMenuItem = new ToolStripMenuItem();
         menuStrip1.SuspendLayout();
         SuspendLayout();
         // 
         // menuStrip1
         // 
-        menuStrip1.Items.AddRange(new ToolStripItem[] { fileToolStripMenuItem, saveSlotToolStripMenuItem, aboutToolStripMenuItem });
+        menuStrip1.Items.AddRange(new ToolStripItem[] { fileToolStripMenuItem, saveSlotToolStripMenuItem, aboutToolStripMenuItem, toggleConsoleToolStripMenuItem });
         menuStrip1.Location = new Point(0, 0);
         menuStrip1.Name = "menuStrip1";
         menuStrip1.Size = new Size(800, 24);
@@ -206,6 +207,16 @@ partial class MainForm
         slugcatIconImageList.ImageSize = new Size(16, 16);
         slugcatIconImageList.TransparentColor = Color.Transparent;
         // 
+        // toggleConsoleToolStripMenuItem
+        // 
+        toggleConsoleToolStripMenuItem.Alignment = ToolStripItemAlignment.Right;
+        toggleConsoleToolStripMenuItem.DisplayStyle = ToolStripItemDisplayStyle.Image;
+        toggleConsoleToolStripMenuItem.Image = Properties.Resources.console;
+        toggleConsoleToolStripMenuItem.Name = "toggleConsoleToolStripMenuItem";
+        toggleConsoleToolStripMenuItem.Size = new Size(28, 20);
+        toggleConsoleToolStripMenuItem.Text = "Toggle Console";
+        toggleConsoleToolStripMenuItem.Click += toggleConsoleToolStripMenuItem_Click;
+        // 
         // MainForm
         // 
         AutoScaleDimensions = new SizeF(7F, 15F);
@@ -247,4 +258,5 @@ partial class MainForm
     private TabControl mainTabControl;
     private ImageList slugcatIconImageList;
     private ToolStripMenuItem aboutToolStripMenuItem;
+    private ToolStripMenuItem toggleConsoleToolStripMenuItem;
 }

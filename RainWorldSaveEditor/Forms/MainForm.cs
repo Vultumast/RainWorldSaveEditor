@@ -172,4 +172,9 @@ public partial class MainForm : Form
         using AboutForm form = new AboutForm();
         form.ShowDialog();
     }
+
+    private void toggleConsoleToolStripMenuItem_Click(object sender, EventArgs e)
+    {
+        Logger.ConsoleShown = !Logger.ConsoleShown;
+    }
 }
