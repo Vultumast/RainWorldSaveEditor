@@ -118,72 +118,86 @@ public class SaveState : SaveElementContainer
     [SaveFileElement("INITVERSION")]
     public int InitialGameVersion { get; set; } = 0;
 
+    /// <summary>
+    /// The current world version for this save. <para/>
+    /// Rain World will try updating old saves to the newest world version on load.
+    /// </summary>
     [SaveFileElement("WORLDVERSION")]
     public int WorldVersion { get; set; } = 0;
 
+    /// <summary>
+    /// Random seed generated on save creation. <para/>
+    /// This is mainly used to determine which pearl text will be used by Moon.
+    /// </summary>
     [SaveFileElement("SEED")]
     public int Seed { get; set; } = 0;
 
     /// <summary>
-    /// May be missing for some scugs
+    /// Contains data related to shelter dreams. <para/>
+    /// This is missing entirely for slugcats that don't have dreams.
     /// </summary>
     [SaveFileElement("DREAMSSTATE")]
-    public DreamsState? DreamsState { get; set; }
+    public DreamsState? DreamsState { get; set; } = null;
 
     /// <summary>
-    /// Refers to number of full pips.
+    /// Stores the total number of food pips consumed during this playthough.
     /// </summary>
     [SaveFileElement("TOTFOOD")]
     public int TotalFoodEaten { get; set; } = 0;
 
     /// <summary>
-    /// Stored as seconds.
+    /// Stores the total time elapsed in seconds during this playthrough.
     /// </summary>
     [SaveFileElement("TOTTIME")]
     public int TotalTimeInSeconds { get; set; } = 0;
 
+    /// <summary>
+    /// Stores the number of cycles played on the same world version. <para/>
+    /// This is reset whenever the save world version is updated.
+    /// </summary>
     [SaveFileElement("CURRVERCYCLES")]
     public int CyclesInCurrentWorldVersion { get; set; } = 0;
 
     /// <summary>
-    /// KILLS
+    /// Tracks the total number of kills for each creature.
     /// </summary>
     [SaveFileElement("KILLS")]
     public List<(string Thing, string Count)> Kills { get; } = [];
 
     /// <summary>
-    /// REDEXTRACYCLES (valueless)
     /// Indicates whenever the player received extra cycles from visiting Five Pebbles.
     /// </summary>
     [SaveFileElement("REDEXTRACYCLES", true)]
     public bool HunterExtraCycles { get; set; } = false;
 
     /// <summary>
-    /// JUSTBEATGAME (valueless)
+    /// Tracks whenever the player just beat the game. <para/>
+    /// This is used to restore the player's food pips in a similar way to Fast Travels when continuing right after a win.
     /// </summary>
     [SaveFileElement("JUSTBEATGAME", true)]
     public bool GameRecentlyBeaten { get; set; } = false;
 
     /// <summary>
-    /// HASROBO (valueless)
+    /// Tracks whenever the player has a Citizen Drone following it. <para/>
+    /// This is used for the Artificer campaign.
     /// </summary>
     [SaveFileElement("HASROBO", true)]
     public bool HasCitizenDrone { get; set; } = false;
 
     /// <summary>
-    /// CLOAK (valueless)
+    /// Tracks whenever the player is wearing Moon's cloak.
     /// </summary>
     [SaveFileElement("CLOAK", true)]
     public bool IsWearingCloak { get; set; } = false;
 
     /// <summary>
-    /// KARMADREAM (valueless)
+    /// Tracks whenever Saint has reached max Karma cap and has seen the related karma dream.
     /// </summary>
     [SaveFileElement("KARMADREAM", true)]
     public bool KarmaDream { get; set; } = false;
 
     /// <summary>
-    /// FORCEPUPS
+    /// Tracks whenever pups will be forced to spawn for the next cycle.
     /// 0 = Gourmand not beaten / no effect
     /// 1 = Max allowed number of pups guaranteed to spawn next cycle
     /// 2 = Chance based pup spawns
@@ -194,29 +208,28 @@ public class SaveState : SaveElementContainer
     // ObjectTrackers
 
     /// <summary>
-    /// FRIENDS
+    /// Saved objects and critters in the world.
     /// </summary>
     [SaveFileElement("OBJECTS")]
     public List<string> Objects { get; private set; } = [];
 
     /// <summary>
-    /// FRIENDS
+    /// Saved friendly creatures.
     /// </summary>
     [SaveFileElement("FRIENDS")]
     public List<string> Friends { get; private set; } = [];
 
     /// <summary>
-    /// OEENCOUNTERS
+    /// Tracks the list of slugcat encounters for Gourmand in the Outer Expanse.
     /// </summary>
     [SaveFileElement("OEENCOUNTERS")]
     public List<string> OuterExpanseEncounters { get; private set; } = [];
 
     /// <summary>
-    /// SAV STATE NUMBER
+    /// The internal name of the slugcat campaign.
     /// </summary>
     [SaveFileElement("SAV STATE NUMBER")]
     public string SaveStateNumber { get; set; } = "???";
-
 
     public void Read(string data)
     {

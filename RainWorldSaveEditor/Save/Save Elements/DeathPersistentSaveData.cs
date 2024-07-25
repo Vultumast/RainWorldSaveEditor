@@ -12,127 +12,134 @@ public class DeathPersistentSaveData : SaveElementContainer, IParsable<DeathPers
     }
 
     /// <summary>
-    /// KARMA
+    /// The current karma level.
     /// </summary>
     [SaveFileElement("KARMA")]
     public int Karma { get; set; } = 0;
 
     /// <summary>
-    /// KARMACAP
+    /// The max karma level.
     /// </summary>
     [SaveFileElement("KARMACAP")]
     public int KarmaCap { get; set; } = 0;
 
     /// <summary>
-    /// REINFORCEDKARMA
+    /// Whenever the karma is currently reinforced by a Karma Flower.
     /// </summary>
     [SaveFileElement("REINFORCEDKARMA")]
     public bool HasReinforcedKarma { get; set; } = false;
 
     /// <summary>
-    /// FLOWERPOS
-    /// Position of Karma Flower created upon player death
+    /// Position of Karma Flower created upon player death.
     /// </summary>
     [SaveFileElement("FLOWERPOS")]
     public WorldCoordinate? KarmaFlowerPosition { get; set; }
 
     /// <summary>
-    /// HASTHEMARK (valueless)
+    /// Whenever the slugcat currently has the mark of communication.
     /// </summary>
     [SaveFileElement("HASTHEMARK", true)]
     public bool HasMarkOfCommunication { get; set; } = false;
 
     /// <summary>
-    /// FOODREPBONUS
+    /// Gets incremented on each death at minimum karma, gets reset on a survived cycle. <para/>
+    /// Survivor has a 50% chance to increase this on death that is not at minimum karma, and Monk has a 100% chance. <para/>
+    /// This causes food-related consumables and bats to replenish at a faster rate.
     /// </summary>
     [SaveFileElement("FOODREPBONUS")]
     public int FoodReplenishBonus { get; set; } = 0;
 
     /// <summary>
-    /// DDWORLDVERSION
+    /// Death persistent data specific world version. <para/>
+    /// Similar to save state world version, Rain World will try updating old saves to the newest world version on load.
     /// </summary>
     [SaveFileElement("DDWORLDVERSION")]
     public int WorldVersion { get; set; } = 0;
 
     /// <summary>
-    /// DEATHS
+    /// Tracks the total number of player deaths in this playthrough.
     /// </summary>
     [SaveFileElement("DEATHS")]
     public int Deaths { get; set; } = 0;
 
     /// <summary>
-    /// SURVIVES
+    /// Tracks the total number of cycles survived in this playthrough.
     /// </summary>
     [SaveFileElement("SURVIVES")]
     public int Survives { get; set; } = 0;
 
     /// <summary>
-    /// QUITS
+    /// Tracks the total number of cycles abandoned in this playthrough.
     /// </summary>
     [SaveFileElement("QUITS")]
     public int Quits { get; set; } = 0;
 
     /// <summary>
-    /// REDSDEATH
-    /// This value gets set automatically on death, but only makes sense for Hunter's campaign.
+    /// This value gets set automatically on death, but only makes sense for Hunter's campaign. <para/>
     /// If Hunter is not out of cycles, it gets cleared on load. Otherwise, it prevents loading the save file.
     /// </summary>
     [SaveFileElement("REDSDEATH")]
     public bool IsHunterDead { get; set; } = false;
 
     /// <summary>
-    /// ASCENDED
+    /// Whenever the player has ascended in this playthrough.
     /// </summary>
     [SaveFileElement("ASCENDED", true)]
     public bool HasAscended { get; set; } = false;
 
     /// <summary>
-    /// PHIRKC
+    /// Whenever Pebbles has increased Hunter's karma cap by one step. <para/>
+    /// This is used to prevent Pebbles from increasing karma cap again if the player fails the previous cycle.
     /// </summary>
     [SaveFileElement("PHIRKC")]
     public bool HasPebblesIncreasedHuntersKarma { get; set; } = false;
 
     /// <summary>
-    /// FRIENDSAVEBONUS
+    /// Number of friends sheltered during this playthrough <para/>
+    /// Used for end game score calculation.
     /// </summary>
     [SaveFileElement("FRIENDSAVEBONUS")]
     public int FriendsSaved { get; set; } = 0;
 
     /// <summary>
-    /// DEATHTIME
+    /// Tracks the total amount of time spent in a dead state.
     /// </summary>
     [SaveFileElement("DEATHTIME")]
     public int DeathTimeInSeconds { get; set; } = 0;
 
     /// <summary>
-    /// ALTENDING
+    /// Tracks whenever the alternate ending for slugcats has been achieved. <para/>
+    /// Relevant for Survivor, Monk, Rivulet, Artificer, Spearmaster and Gourmand.
     /// </summary>
     [SaveFileElement("ALTENDING")]
     public bool AltEndingAchieved { get; set; } = false;
 
     /// <summary>
-    /// ZEROPEBBLES
+    /// Tracks whenever Five Pebbles has lost his marbles at the hands of Saint.
     /// </summary>
     [SaveFileElement("ZEROPEBBLES", true)]
     public bool IsPebblesAscendedBySaint { get; set; } = false;
 
     /// <summary>
-    /// LOOKSTOTHEDOOM
+    /// Tracks whenever Looks to the Moon has been launched to the moon by Saint.
     /// </summary>
     [SaveFileElement("LOOKSTOTHEDOOM", true)]
     public bool IsMoonAscendedBySaint { get; set; } = false;
 
+    /// <summary>
+    /// Unused. Also unknown what the intended usage was going to be, if any.
+    /// </summary>
     [SaveFileElement("SLSiren")]
-    public bool SLSiren_Unused { get; set; } = false;
+    public bool SLSiren { get; set; } = false;
 
     /// <summary>
-    /// TIPS
+    /// Counter used for displaying tips in-game.
     /// </summary>
     [SaveFileElement("TIPS")]
     public int TipCounter { get; set; } = 0;
 
     /// <summary>
-    /// TIPSEED
+    /// Random seed set on game start used for displaying tips in-game.
     /// </summary>
     [SaveFileElement("TIPSEED")]
     public int TipSeed { get; set; } = 0;
