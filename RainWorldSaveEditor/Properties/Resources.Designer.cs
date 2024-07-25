@@ -143,6 +143,16 @@ namespace RainWorldSaveEditor.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap hunterhappy {
+            get {
+                object obj = ResourceManager.GetObject("hunterhappy", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap karma_empty {
             get {
                 object obj = ResourceManager.GetObject("karma_empty", resourceCulture);
@@ -426,6 +436,16 @@ namespace RainWorldSaveEditor.Properties {
         internal static System.Drawing.Bitmap slugcatdead {
             get {
                 object obj = ResourceManager.GetObject("slugcatdead", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Yellow_Overseer_icon {
+            get {
+                object obj = ResourceManager.GetObject("Yellow_Overseer_icon", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

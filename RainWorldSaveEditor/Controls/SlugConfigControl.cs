@@ -39,13 +39,19 @@ public partial class SlugConfigControl : UserControl
         currentDenTextBox.Text = state.DenPosition;
         KarmaSelectorControl.KarmaLevel = Math.Min(state.DeathPersistentSaveData.Karma, state.DeathPersistentSaveData.KarmaCap);
         KarmaSelectorControl.KarmaMax = state.DeathPersistentSaveData.KarmaCap;
-        KarmaSelectorControl.Reinforced = state.DeathPersistentSaveData.HasReinforcedKarma;
+        KarmaSelectorControl.Reinforced = state.DeathPersistentSaveData.HasReinforcedKarma == 1;
 
         lastVanillaDenTextBox.Text = state.LastVanillaDen;
 
+        // Common for all Slugcats
         markOfCommunicationCheckBox.Checked = state.DeathPersistentSaveData.HasMarkOfCommunication;
-        neuronGlowCheckBox.Checked = state.HasNeuronGlow;
+        justBeatGameCheckBox.Checked = state.GameRecentlyBeaten;
+        guideOverseerDeadCheckBox.Checked = state.IsGuideOverseerDead;
 
+        // Slugcat Specific
+        neuronGlowCheckBox.Checked = state.HasNeuronGlow;
+        citizenIDDroneCheckBox.Checked = state.HasCitizenDrone;
+        moonsCloakCheckBox.Checked = state.IsWearingCloak;
 
     }
 

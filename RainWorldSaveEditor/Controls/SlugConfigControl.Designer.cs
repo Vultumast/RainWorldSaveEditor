@@ -34,6 +34,11 @@
             label1 = new Label();
             tabControl1 = new TabControl();
             slugcatInfoTabPage = new TabPage();
+            guideOverseerDeadCheckBox = new CheckBox();
+            extraHunterCyclesCheckBox = new CheckBox();
+            moonsCloakCheckBox = new CheckBox();
+            justBeatGameCheckBox = new CheckBox();
+            citizenIDDroneCheckBox = new CheckBox();
             pictureBox1 = new PictureBox();
             neuronGlowCheckBox = new CheckBox();
             denInfoGroupBox = new GroupBox();
@@ -72,6 +77,9 @@
             karmaFlowerGroupBox = new GroupBox();
             karmaFlowerWorldPositionEditControl = new WorldPositionEditControl();
             commonToolTip = new ToolTip(components);
+            pictureBox5 = new PictureBox();
+            pictureBox6 = new PictureBox();
+            label3 = new Label();
             ((System.ComponentModel.ISupportInitialize)cycleNumberNumericUpDown).BeginInit();
             tabControl1.SuspendLayout();
             slugcatInfoTabPage.SuspendLayout();
@@ -91,6 +99,8 @@
             ((System.ComponentModel.ISupportInitialize)totalFoodNumericUpDown).BeginInit();
             ((System.ComponentModel.ISupportInitialize)totalDeathsNumericUpDown).BeginInit();
             karmaFlowerGroupBox.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)pictureBox5).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox6).BeginInit();
             SuspendLayout();
             // 
             // FoodPipControl
@@ -135,6 +145,14 @@
             // slugcatInfoTabPage
             // 
             slugcatInfoTabPage.BackColor = SystemColors.Control;
+            slugcatInfoTabPage.Controls.Add(label3);
+            slugcatInfoTabPage.Controls.Add(pictureBox6);
+            slugcatInfoTabPage.Controls.Add(pictureBox5);
+            slugcatInfoTabPage.Controls.Add(guideOverseerDeadCheckBox);
+            slugcatInfoTabPage.Controls.Add(extraHunterCyclesCheckBox);
+            slugcatInfoTabPage.Controls.Add(moonsCloakCheckBox);
+            slugcatInfoTabPage.Controls.Add(justBeatGameCheckBox);
+            slugcatInfoTabPage.Controls.Add(citizenIDDroneCheckBox);
             slugcatInfoTabPage.Controls.Add(pictureBox1);
             slugcatInfoTabPage.Controls.Add(neuronGlowCheckBox);
             slugcatInfoTabPage.Controls.Add(denInfoGroupBox);
@@ -149,6 +167,61 @@
             slugcatInfoTabPage.TabIndex = 0;
             slugcatInfoTabPage.Text = "Slugcat Info";
             // 
+            // guideOverseerDeadCheckBox
+            // 
+            guideOverseerDeadCheckBox.AutoSize = true;
+            guideOverseerDeadCheckBox.Location = new Point(253, 102);
+            guideOverseerDeadCheckBox.Name = "guideOverseerDeadCheckBox";
+            guideOverseerDeadCheckBox.Size = new Size(136, 19);
+            guideOverseerDeadCheckBox.TabIndex = 15;
+            guideOverseerDeadCheckBox.Text = "Guide Overseer Dead";
+            commonToolTip.SetToolTip(guideOverseerDeadCheckBox, "Did you kill the Guide Overseer?");
+            guideOverseerDeadCheckBox.UseVisualStyleBackColor = true;
+            // 
+            // extraHunterCyclesCheckBox
+            // 
+            extraHunterCyclesCheckBox.AutoSize = true;
+            extraHunterCyclesCheckBox.Location = new Point(253, 247);
+            extraHunterCyclesCheckBox.Name = "extraHunterCyclesCheckBox";
+            extraHunterCyclesCheckBox.Size = new Size(162, 19);
+            extraHunterCyclesCheckBox.TabIndex = 14;
+            extraHunterCyclesCheckBox.Text = "Extra Hunter Cycles Given";
+            commonToolTip.SetToolTip(extraHunterCyclesCheckBox, "Did Five Pebbles give Hunter Extra Cycles?");
+            extraHunterCyclesCheckBox.UseVisualStyleBackColor = true;
+            // 
+            // moonsCloakCheckBox
+            // 
+            moonsCloakCheckBox.AutoSize = true;
+            moonsCloakCheckBox.Location = new Point(253, 274);
+            moonsCloakCheckBox.Name = "moonsCloakCheckBox";
+            moonsCloakCheckBox.Size = new Size(99, 19);
+            moonsCloakCheckBox.TabIndex = 13;
+            moonsCloakCheckBox.Text = "Moon's Cloak";
+            commonToolTip.SetToolTip(moonsCloakCheckBox, "Are you wearing Moon's Cloak?");
+            moonsCloakCheckBox.UseVisualStyleBackColor = true;
+            // 
+            // justBeatGameCheckBox
+            // 
+            justBeatGameCheckBox.AutoSize = true;
+            justBeatGameCheckBox.Location = new Point(253, 77);
+            justBeatGameCheckBox.Name = "justBeatGameCheckBox";
+            justBeatGameCheckBox.Size = new Size(106, 19);
+            justBeatGameCheckBox.TabIndex = 12;
+            justBeatGameCheckBox.Text = "Just Beat Game";
+            commonToolTip.SetToolTip(justBeatGameCheckBox, "Was the last exit the result of you beating the game?");
+            justBeatGameCheckBox.UseVisualStyleBackColor = true;
+            // 
+            // citizenIDDroneCheckBox
+            // 
+            citizenIDDroneCheckBox.AutoSize = true;
+            citizenIDDroneCheckBox.Location = new Point(253, 222);
+            citizenIDDroneCheckBox.Name = "citizenIDDroneCheckBox";
+            citizenIDDroneCheckBox.Size = new Size(111, 19);
+            citizenIDDroneCheckBox.TabIndex = 11;
+            citizenIDDroneCheckBox.Text = "Citizen ID Drone";
+            commonToolTip.SetToolTip(citizenIDDroneCheckBox, "Do you have Artificer's citizen ID drone?");
+            citizenIDDroneCheckBox.UseVisualStyleBackColor = true;
+            // 
             // pictureBox1
             // 
             pictureBox1.Image = Properties.Resources.Neuron_Fly;
@@ -161,11 +234,12 @@
             // neuronGlowCheckBox
             // 
             neuronGlowCheckBox.AutoSize = true;
-            neuronGlowCheckBox.Location = new Point(241, 53);
+            neuronGlowCheckBox.Location = new Point(253, 53);
             neuronGlowCheckBox.Name = "neuronGlowCheckBox";
-            neuronGlowCheckBox.Size = new Size(119, 19);
+            neuronGlowCheckBox.Size = new Size(96, 19);
             neuronGlowCheckBox.TabIndex = 9;
-            neuronGlowCheckBox.Text = "Has Neuron Glow";
+            neuronGlowCheckBox.Text = "Neuron Glow";
+            commonToolTip.SetToolTip(neuronGlowCheckBox, "Have you eaten a Neuron Fly?");
             neuronGlowCheckBox.UseVisualStyleBackColor = true;
             // 
             // denInfoGroupBox
@@ -530,6 +604,35 @@
             karmaFlowerWorldPositionEditControl.X = 0;
             karmaFlowerWorldPositionEditControl.Y = 0;
             // 
+            // pictureBox5
+            // 
+            pictureBox5.BackgroundImage = Properties.Resources.hunterhappy;
+            pictureBox5.BackgroundImageLayout = ImageLayout.Center;
+            pictureBox5.Location = new Point(224, 245);
+            pictureBox5.Name = "pictureBox5";
+            pictureBox5.Size = new Size(23, 23);
+            pictureBox5.TabIndex = 16;
+            pictureBox5.TabStop = false;
+            // 
+            // pictureBox6
+            // 
+            pictureBox6.BackgroundImageLayout = ImageLayout.Center;
+            pictureBox6.Image = Properties.Resources.Yellow_Overseer_icon;
+            pictureBox6.Location = new Point(224, 102);
+            pictureBox6.Name = "pictureBox6";
+            pictureBox6.Size = new Size(23, 23);
+            pictureBox6.TabIndex = 17;
+            pictureBox6.TabStop = false;
+            // 
+            // label3
+            // 
+            label3.AutoSize = true;
+            label3.Location = new Point(234, 204);
+            label3.Name = "label3";
+            label3.Size = new Size(234, 15);
+            label3.TabIndex = 18;
+            label3.Text = "slug cat specific (make this groupbox alter)";
+            // 
             // SlugConfigControl
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -561,6 +664,8 @@
             ((System.ComponentModel.ISupportInitialize)totalFoodNumericUpDown).EndInit();
             ((System.ComponentModel.ISupportInitialize)totalDeathsNumericUpDown).EndInit();
             karmaFlowerGroupBox.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)pictureBox5).EndInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox6).EndInit();
             ResumeLayout(false);
         }
 
@@ -608,5 +713,13 @@
         private PictureBox pictureBox4;
         private CheckBox markOfCommunicationCheckBox;
         private ToolTip commonToolTip;
+        private CheckBox moonsCloakCheckBox;
+        private CheckBox justBeatGameCheckBox;
+        private CheckBox citizenIDDroneCheckBox;
+        private CheckBox extraHunterCyclesCheckBox;
+        private CheckBox guideOverseerDeadCheckBox;
+        private PictureBox pictureBox5;
+        private Label label3;
+        private PictureBox pictureBox6;
     }
 }

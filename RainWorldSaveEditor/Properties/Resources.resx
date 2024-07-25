@@ -142,6 +142,9 @@
   <data name="hunterdead" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\UI\hunterdead.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="hunterhappy" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\UI\hunterhappy.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="karma00" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\UI\Karma\karma00.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
@@ -228,5 +231,8 @@
   </data>
   <data name="slugcatdead" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\UI\slugcatdead.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Yellow_Overseer_icon" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\UI\Overseer\Yellow_Overseer_icon.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>
