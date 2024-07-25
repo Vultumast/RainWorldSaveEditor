@@ -14,3 +14,4 @@ Assets that are used alongside the editor have copyright information and origin 
 
 - [Vultumast](https://github.com/Vultumast)
 - [Marioalexsan](https://github.com/Marioalexsan)
+- [Saneko (Icon)](https://x.com/SanekoGato)

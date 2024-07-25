@@ -7,6 +7,8 @@ Assets marked with the license "Rain World" are the intellectual property of the
 | Name | Description | License | Source |
 | ---- | ----------- | ------- | ------ |
 | missing.png | Missing Asset Icon | Vultumast (MIT) | N/A |
+| editoricon.ico | Editor Icon | Saneko | N/A |
+| editoricon.png | Editor Icon | Saneko | N/A |
 
 # RainWorldSaveEditor/Resources/Slugcat Icons
 

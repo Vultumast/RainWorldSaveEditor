@@ -29,6 +29,7 @@ partial class MainForm
     private void InitializeComponent()
     {
         components = new System.ComponentModel.Container();
+        System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
         menuStrip1 = new MenuStrip();
         fileToolStripMenuItem = new ToolStripMenuItem();
         openToolStripMenuItem = new ToolStripMenuItem();
@@ -49,9 +50,9 @@ partial class MainForm
         saveToolStripMenuItem1 = new ToolStripMenuItem();
         saveAsToolStripMenuItem1 = new ToolStripMenuItem();
         aboutToolStripMenuItem = new ToolStripMenuItem();
+        toggleConsoleToolStripMenuItem = new ToolStripMenuItem();
         mainTabControl = new TabControl();
         slugcatIconImageList = new ImageList(components);
-        toggleConsoleToolStripMenuItem = new ToolStripMenuItem();
         menuStrip1.SuspendLayout();
         SuspendLayout();
         // 
@@ -192,6 +193,16 @@ partial class MainForm
         aboutToolStripMenuItem.Text = "About";
         aboutToolStripMenuItem.Click += aboutToolStripMenuItem_Click;
         // 
+        // toggleConsoleToolStripMenuItem
+        // 
+        toggleConsoleToolStripMenuItem.Alignment = ToolStripItemAlignment.Right;
+        toggleConsoleToolStripMenuItem.DisplayStyle = ToolStripItemDisplayStyle.Image;
+        toggleConsoleToolStripMenuItem.Image = Properties.Resources.console;
+        toggleConsoleToolStripMenuItem.Name = "toggleConsoleToolStripMenuItem";
+        toggleConsoleToolStripMenuItem.Size = new Size(28, 20);
+        toggleConsoleToolStripMenuItem.Text = "Toggle Console";
+        toggleConsoleToolStripMenuItem.Click += toggleConsoleToolStripMenuItem_Click;
+        // 
         // mainTabControl
         // 
         mainTabControl.Dock = DockStyle.Fill;
@@ -207,16 +218,6 @@ partial class MainForm
         slugcatIconImageList.ImageSize = new Size(16, 16);
         slugcatIconImageList.TransparentColor = Color.Transparent;
         // 
-        // toggleConsoleToolStripMenuItem
-        // 
-        toggleConsoleToolStripMenuItem.Alignment = ToolStripItemAlignment.Right;
-        toggleConsoleToolStripMenuItem.DisplayStyle = ToolStripItemDisplayStyle.Image;
-        toggleConsoleToolStripMenuItem.Image = Properties.Resources.console;
-        toggleConsoleToolStripMenuItem.Name = "toggleConsoleToolStripMenuItem";
-        toggleConsoleToolStripMenuItem.Size = new Size(28, 20);
-        toggleConsoleToolStripMenuItem.Text = "Toggle Console";
-        toggleConsoleToolStripMenuItem.Click += toggleConsoleToolStripMenuItem_Click;
-        // 
         // MainForm
         // 
         AutoScaleDimensions = new SizeF(7F, 15F);
@@ -224,6 +225,7 @@ partial class MainForm
         ClientSize = new Size(800, 450);
         Controls.Add(mainTabControl);
         Controls.Add(menuStrip1);
+        Icon = (Icon)resources.GetObject("$this.Icon");
         MainMenuStrip = menuStrip1;
         Name = "MainForm";
         Text = "Rainworld Save Editor";
