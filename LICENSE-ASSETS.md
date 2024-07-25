@@ -24,7 +24,30 @@ Assets marked with the license "Rain World" are the intellectual property of the
 | watcher.png | Watcher Icon | Rain World | [Rain World Miraheze Wiki](https://rainworld.miraheze.org/wiki/File:Watcher_icon_(custom).png) |
 | missing_slugcat.png | Missing Slugcat Icon | Vultumast (MIT) | N/A |
 
-# RainWorldSaveEditor/Resources/Karma
+# RainWorldSaveEditor/Resources/UI
+| Name | Description | License | Source |
+| ---- | ----------- | ------- | ------ |
+| hunterdead.png | Hunter Long Legs Icon | Rain World (Custom for Miraheze?) | [Rain World Miraheze Wiki](https://static.miraheze.org/rainworldwiki/7/77/Hunter_dead_icon_%28custom%29.png) |
+| shelter_icon.png | Shelter Icon | Rain World | [Rain World Miraheze Wiki](https://rainworld.miraheze.org/wiki/Rain#/media/File:Shelter_icon.png) |
+
+# RainWorldSaveEditor/Resources/UI/Food UI
+| Name | Description | License | Source |
+| ---- | ----------- | ------- | ------ |
+| Food_line.png | Food Line UI Element | Rain World | [Rain World Miraheze Wiki](https://rainworld.miraheze.org/wiki/File:Food_line.png) |
+| Food_pip_empty.png | Empty Food Pip UI Element | Rain World | [Rain World Miraheze Wiki](https://rainworld.miraheze.org/wiki/File:Food_pip_empty.png) |
+| Food_pip_full.png | Full Food Pip UI Element | Rain World | [Rain World Miraheze Wiki](https://rainworld.miraheze.org/wiki/File:Food_pip_full.png) |
+| Food_pip_full_gray.png | Gray Full Food Pip UI Element | Rain World | [Rain World Miraheze Wiki](https://rainworld.miraheze.org/wiki/File:Food_pip_maybe_full.png) |
+
+# RainWorldSaveEditor/Resources/UI/Iterator Icons
+| Name | Description | License | Source |
+| ---- | ----------- | ------- | ------ |
+| fivepebblesdeadicon.png | Ascended Five Pebbles Icon | Rain World (Edited by Vultumast) | [Rain World Miraheze Wiki](https://static.miraheze.org/rainworldwiki/5/54/Five_Pebbles_icon.png) |
+| fivepebblesicon.png | Five Pebbles Icon | Rain World | [Rain World Miraheze Wiki](https://static.miraheze.org/rainworldwiki/5/54/Five_Pebbles_icon.png) |
+| lookstothemoondeadicon.png | Ascended Looks To The Moon Icon | Rain World (Edited by Vultumast) | [Rain World Miraheze Wiki](https://static.miraheze.org/rainworldwiki/8/80/Looks_to_the_Moon_icon.png) |
+| lookstothemoonicon.png | Looks To The Moon Icon | Rain World | [Rain World Miraheze Wiki](https://static.miraheze.org/rainworldwiki/8/80/Looks_to_the_Moon_icon.png) |
+| Neuron_Fly.png | Five Pebbles Neuron Fly Icon | Rain World | [Rain World Miraheze Wiki](https://static.miraheze.org/rainworldwiki/2/2a/Neuron_Fly_icon.png) |
+
+# RainWorldSaveEditor/Resources/UI/Karma
 | Name | Description | License | Source |
 | ---- | ----------- | ------- | ------ |
 | karma_empty.png | Karma 0 Icon | Rain World | [Rain World Miraheze Wiki](https://rainworld.miraheze.org/wiki/Category:Karma_icons#/media/File:Karma_0_icon.png) |
