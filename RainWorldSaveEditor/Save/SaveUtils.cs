@@ -44,7 +44,7 @@ public static class SaveUtils
             }
             else
             {
-                Logger.Log($"Failed to read an entry.");
+                Logger.Error($"Failed to read an entry.");
             }
         }
     }

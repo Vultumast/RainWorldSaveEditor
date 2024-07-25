@@ -16,14 +16,14 @@ public class RainWorldSave
 
         // Computed hash doesn't seem to match at the moment for some reason
         if (hash != computedHash)
-            Logger.Log("Hash check failed! Save may be modified / damaged / corrupted.");
+            Logger.Warn("Hash check failed! Save may be modified / damaged / corrupted.");
         else
-            Logger.Log("Hash OK.");
+            Logger.Info("Hash OK.");
 
         foreach ((var key, var value) in SaveUtils.GetFields(data, "<progDivB>", "<progDivA>"))
         {
             ParseSaveEntry(key, value);
-            Logger.Log("===Read a save entry===");
+            Logger.Error("===Read a save entry===");
         }
     }
 
@@ -37,7 +37,7 @@ public class RainWorldSave
                 SaveStates.Add(saveState);
                 break;
             default:
-                Logger.Log($"Failed to parse save entry {entryId}");
+                Logger.Error($"Failed to parse save entry {entryId}");
                 break;
         }
 

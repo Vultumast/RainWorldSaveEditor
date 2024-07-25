@@ -60,7 +60,7 @@ public abstract class SaveElementContainer
                     propertyInfo.GetSetMethod()!.Invoke(container, [value]);
 
                     // TODO Remove this later
-                    Logger.Log($"{propertyInfo.DeclaringType?.Name}: {propertyInfo.Name} => {value} ({value?.GetType().Name})");
+                    Logger.Debug($"{propertyInfo.DeclaringType?.Name}: {propertyInfo.Name} => {value} ({value?.GetType().Name})");
                 }
                 else
                 {
@@ -84,7 +84,7 @@ public abstract class SaveElementContainer
                     setMethod.Invoke(container, [data]);
 
                     // TODO Remove this later
-                    Logger.Log($"{propertyInfo.DeclaringType?.Name}: {propertyInfo.Name} => {data} ({data?.GetType().Name})");
+                    Logger.Debug($"{propertyInfo.DeclaringType?.Name}: {propertyInfo.Name} => {data} ({data?.GetType().Name})");
                 }
             }
             else
@@ -143,7 +143,7 @@ public abstract class SaveElementContainer
             Console.WriteLine($"Unable to set \"{key}\" because it was already present!");
 
         // TODO Remove this later
-        Logger.Log($"UNKWN: {key} => {value}");
+        Logger.Debug($"UNKWN: {key} => {value}");
 
     }
 }

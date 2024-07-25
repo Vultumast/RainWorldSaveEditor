@@ -40,7 +40,7 @@ public class DreamsState
             if (elements.Length != 2)
             {
                 // TODO Better handling
-                Logger.Log("A dreamstate array has less than 2 elements.");
+                Logger.Debug("A dreamstate array has less than 2 elements.");
                 continue;
             }
 

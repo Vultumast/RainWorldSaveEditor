@@ -30,6 +30,8 @@ public partial class MainForm : Form
     // TEND OF TEMP
     private void MainForm_Load(object sender, EventArgs e)
     {
+
+
         var slugcatFiles = Directory.GetFiles("Resources\\Slugcat Info", "*.json", SearchOption.AllDirectories);
         foreach (var slugcatFile in slugcatFiles)
             Slugcats.Add(JsonSerializer.Deserialize<SlugcatInfo>(File.ReadAllText(slugcatFile)));
@@ -92,7 +94,7 @@ public partial class MainForm : Form
         }
         else
         {
-            Logger.Log("Save data not found.");
+            Logger.Warn("Save data not found.");
             return;
         }
 
@@ -113,7 +115,7 @@ public partial class MainForm : Form
 
             if (id is null)
             {
-                Logger.Log($"Save does not have information for slugcat: \"{slugcat.Name}\" ID: \"{slugcat.SaveID}\"");
+                Logger.Info($"Save does not have information for slugcat: \"{slugcat.Name}\" ID: \"{slugcat.SaveID}\"");
                 control.Enabled = false;
                 continue;
             }
