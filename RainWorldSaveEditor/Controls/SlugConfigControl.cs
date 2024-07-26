@@ -36,6 +36,7 @@ public partial class SlugConfigControl : UserControl
         SaveState = state;
         SetupSlugCatInfoTabPageFromState(state);
         SetupPersistentDataInfoTabPageFromState(state);
+        SetupAdvancedInfoTabPage(state);
     }
 
     private void SetupSlugCatInfoTabPageFromState(SaveState state)
@@ -95,6 +96,15 @@ public partial class SlugConfigControl : UserControl
 
         rngSeedNumericUpDown.Value = state.Seed;
         rngNextIssueIDNumericUpDown.Value = state.NextIssuedId;
+
+    }
+
+    private void SetupAdvancedInfoTabPage(SaveState state)
+    {
+        gameVerisonNumericUpDown.Value = state.GameVersion;
+        initialGameVersionNumericUpDown.Value = state.InitialGameVersion;
+
+        worldVersionNumericUpDown.Value = state.WorldVersion;
 
     }
 
@@ -275,31 +285,6 @@ public partial class SlugConfigControl : UserControl
     {
 
     }
-    #endregion
-
-
-
-
-    #region Persistent Info
-
-    private void ascendedLooksToTheMoonCheckBox_CheckedChanged(object sender, EventArgs e) => SaveState.DeathPersistentSaveData.IsMoonAscendedBySaint = ((CheckBox)sender).Checked;
-
-    private void ascendedFivePebblesCheckBox_CheckedChanged(object sender, EventArgs e) => SaveState.DeathPersistentSaveData.IsPebblesAscendedBySaint = ((CheckBox)sender).Checked;
-
-    private void hunterPermaDeathCheckBox_CheckedChanged(object sender, EventArgs e) => SaveState.DeathPersistentSaveData.IsHunterDead = ((CheckBox)sender).Checked;
-
-    private void ascendedCheckBox_CheckedChanged(object sender, EventArgs e) => SaveState.DeathPersistentSaveData.HasAscended = ((CheckBox)sender).Checked;
-
-    #region Totals
-    private void totalDeathsNumericUpDown_ValueChanged(object sender, EventArgs e) => SaveState.DeathPersistentSaveData.Deaths = (int)((NumericUpDown)(sender)).Value;
-    private void totalSurvivesNumericUpDown_ValueChanged(object sender, EventArgs e) => SaveState.DeathPersistentSaveData.Survives = (int)((NumericUpDown)(sender)).Value;
-    private void totalQuitsNumericUpDown_ValueChanged(object sender, EventArgs e) => SaveState.DeathPersistentSaveData.Quits = (int)((NumericUpDown)(sender)).Value;
-    private void totalFoodNumericUpDown_ValueChanged(object sender, EventArgs e) => SaveState.TotalFoodEaten = (int)((NumericUpDown)(sender)).Value;
-    private void totalFriendsSavedNumericUpDown_ValueChanged(object sender, EventArgs e) => SaveState.DeathPersistentSaveData.FriendsSaved = (int)((NumericUpDown)(sender)).Value;
-    #endregion
-    #endregion
-
-
     private void communityListBox_DrawItem(object sender, DrawItemEventArgs e)
     {
         // Vultu: This might cuase GC pressure later
@@ -359,6 +344,25 @@ public partial class SlugConfigControl : UserControl
         }
 
     }
+    #endregion
 
+    #region Persistent Info
 
+    private void ascendedLooksToTheMoonCheckBox_CheckedChanged(object sender, EventArgs e) => SaveState.DeathPersistentSaveData.IsMoonAscendedBySaint = ((CheckBox)sender).Checked;
+
+    private void ascendedFivePebblesCheckBox_CheckedChanged(object sender, EventArgs e) => SaveState.DeathPersistentSaveData.IsPebblesAscendedBySaint = ((CheckBox)sender).Checked;
+
+    private void hunterPermaDeathCheckBox_CheckedChanged(object sender, EventArgs e) => SaveState.DeathPersistentSaveData.IsHunterDead = ((CheckBox)sender).Checked;
+
+    private void ascendedCheckBox_CheckedChanged(object sender, EventArgs e) => SaveState.DeathPersistentSaveData.HasAscended = ((CheckBox)sender).Checked;
+
+    #region Totals
+    private void totalDeathsNumericUpDown_ValueChanged(object sender, EventArgs e) => SaveState.DeathPersistentSaveData.Deaths = (int)((NumericUpDown)(sender)).Value;
+    private void totalSurvivesNumericUpDown_ValueChanged(object sender, EventArgs e) => SaveState.DeathPersistentSaveData.Survives = (int)((NumericUpDown)(sender)).Value;
+    private void totalQuitsNumericUpDown_ValueChanged(object sender, EventArgs e) => SaveState.DeathPersistentSaveData.Quits = (int)((NumericUpDown)(sender)).Value;
+    private void totalFoodNumericUpDown_ValueChanged(object sender, EventArgs e) => SaveState.TotalFoodEaten = (int)((NumericUpDown)(sender)).Value;
+    private void totalFriendsSavedNumericUpDown_ValueChanged(object sender, EventArgs e) => SaveState.DeathPersistentSaveData.FriendsSaved = (int)((NumericUpDown)(sender)).Value;
+
+#endregion
+#endregion
 }

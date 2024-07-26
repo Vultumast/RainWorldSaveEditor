@@ -88,7 +88,13 @@
             karmaFlowerGroupBox = new GroupBox();
             karmaFlowerWorldPositionEditControl = new WorldPositionEditControl();
             advancedTabPage = new TabPage();
+            gameVersionShelterLabel = new Label();
+            initalGameVersionLabel = new Label();
+            initialGameVersionNumericUpDown = new NumericUpDown();
+            gameVerisonNumericUpDown = new NumericUpDown();
             commonToolTip = new ToolTip(components);
+            worldVersionNumericUpDown = new NumericUpDown();
+            worldVersionLabel = new Label();
             ((System.ComponentModel.ISupportInitialize)cycleNumberNumericUpDown).BeginInit();
             tabControl.SuspendLayout();
             slugcatInfoTabPage.SuspendLayout();
@@ -117,6 +123,10 @@
             ((System.ComponentModel.ISupportInitialize)totalFoodNumericUpDown).BeginInit();
             ((System.ComponentModel.ISupportInitialize)totalDeathsNumericUpDown).BeginInit();
             karmaFlowerGroupBox.SuspendLayout();
+            advancedTabPage.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)initialGameVersionNumericUpDown).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)gameVerisonNumericUpDown).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)worldVersionNumericUpDown).BeginInit();
             SuspendLayout();
             // 
             // FoodPipControl
@@ -783,6 +793,12 @@
             // advancedTabPage
             // 
             advancedTabPage.BackColor = SystemColors.Control;
+            advancedTabPage.Controls.Add(worldVersionLabel);
+            advancedTabPage.Controls.Add(worldVersionNumericUpDown);
+            advancedTabPage.Controls.Add(gameVersionShelterLabel);
+            advancedTabPage.Controls.Add(initalGameVersionLabel);
+            advancedTabPage.Controls.Add(initialGameVersionNumericUpDown);
+            advancedTabPage.Controls.Add(gameVerisonNumericUpDown);
             advancedTabPage.Location = new Point(4, 24);
             advancedTabPage.Name = "advancedTabPage";
             advancedTabPage.Padding = new Padding(3);
@@ -790,6 +806,63 @@
             advancedTabPage.TabIndex = 4;
             advancedTabPage.Text = "Advanced";
             advancedTabPage.ToolTipText = "Advanced settings for the save file. **DO NOT EDIT UNLESS YOU KNOW WHAT YOU'RE DOING ***";
+            // 
+            // gameVersionShelterLabel
+            // 
+            gameVersionShelterLabel.AutoSize = true;
+            gameVersionShelterLabel.Location = new Point(68, 57);
+            gameVersionShelterLabel.Name = "gameVersionShelterLabel";
+            gameVersionShelterLabel.Size = new Size(82, 15);
+            gameVersionShelterLabel.TabIndex = 5;
+            gameVersionShelterLabel.Text = "Game Version:";
+            // 
+            // initalGameVersionLabel
+            // 
+            initalGameVersionLabel.AutoSize = true;
+            initalGameVersionLabel.Location = new Point(68, 86);
+            initalGameVersionLabel.Name = "initalGameVersionLabel";
+            initalGameVersionLabel.Size = new Size(114, 15);
+            initalGameVersionLabel.TabIndex = 4;
+            initalGameVersionLabel.Text = "Initial Game Version:";
+            // 
+            // initialGameVersionNumericUpDown
+            // 
+            initialGameVersionNumericUpDown.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+            initialGameVersionNumericUpDown.Location = new Point(188, 84);
+            initialGameVersionNumericUpDown.Maximum = new decimal(new int[] { 7, 5, 0, 0 });
+            initialGameVersionNumericUpDown.Minimum = new decimal(new int[] { int.MinValue, 0, 0, int.MinValue });
+            initialGameVersionNumericUpDown.Name = "initialGameVersionNumericUpDown";
+            initialGameVersionNumericUpDown.Size = new Size(155, 23);
+            initialGameVersionNumericUpDown.TabIndex = 3;
+            // 
+            // gameVerisonNumericUpDown
+            // 
+            gameVerisonNumericUpDown.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+            gameVerisonNumericUpDown.Location = new Point(188, 55);
+            gameVerisonNumericUpDown.Maximum = new decimal(new int[] { 7, 5, 0, 0 });
+            gameVerisonNumericUpDown.Minimum = new decimal(new int[] { int.MinValue, 0, 0, int.MinValue });
+            gameVerisonNumericUpDown.Name = "gameVerisonNumericUpDown";
+            gameVerisonNumericUpDown.Size = new Size(155, 23);
+            gameVerisonNumericUpDown.TabIndex = 2;
+            // 
+            // worldVersionNumericUpDown
+            // 
+            worldVersionNumericUpDown.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+            worldVersionNumericUpDown.Location = new Point(188, 113);
+            worldVersionNumericUpDown.Maximum = new decimal(new int[] { 7, 5, 0, 0 });
+            worldVersionNumericUpDown.Minimum = new decimal(new int[] { int.MinValue, 0, 0, int.MinValue });
+            worldVersionNumericUpDown.Name = "worldVersionNumericUpDown";
+            worldVersionNumericUpDown.Size = new Size(155, 23);
+            worldVersionNumericUpDown.TabIndex = 6;
+            // 
+            // worldVersionLabel
+            // 
+            worldVersionLabel.AutoSize = true;
+            worldVersionLabel.Location = new Point(68, 115);
+            worldVersionLabel.Name = "worldVersionLabel";
+            worldVersionLabel.Size = new Size(83, 15);
+            worldVersionLabel.TabIndex = 7;
+            worldVersionLabel.Text = "World Version:";
             // 
             // SlugConfigControl
             // 
@@ -833,6 +906,11 @@
             ((System.ComponentModel.ISupportInitialize)totalFoodNumericUpDown).EndInit();
             ((System.ComponentModel.ISupportInitialize)totalDeathsNumericUpDown).EndInit();
             karmaFlowerGroupBox.ResumeLayout(false);
+            advancedTabPage.ResumeLayout(false);
+            advancedTabPage.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)initialGameVersionNumericUpDown).EndInit();
+            ((System.ComponentModel.ISupportInitialize)gameVerisonNumericUpDown).EndInit();
+            ((System.ComponentModel.ISupportInitialize)worldVersionNumericUpDown).EndInit();
             ResumeLayout(false);
         }
 
@@ -897,5 +975,11 @@
         private Label rngSeedLabel;
         private NumericUpDown rngSeedNumericUpDown;
         private TabPage advancedTabPage;
+        private Label gameVersionShelterLabel;
+        private Label initalGameVersionLabel;
+        private NumericUpDown initialGameVersionNumericUpDown;
+        private NumericUpDown gameVerisonNumericUpDown;
+        private Label worldVersionLabel;
+        private NumericUpDown worldVersionNumericUpDown;
     }
 }
