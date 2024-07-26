@@ -111,13 +111,15 @@ public partial class KarmaSelectorControl : UserControl
 
         Bitmap GetKarma6Icon()
         {
-            if (KarmaMax <= 7)
+            var max = KarmaMax + 1;
+
+            if (max <= 7)
                 return Properties.Resources.karma61;
-            else if (KarmaMax == 8)
+            else if (max == 8)
                 return Properties.Resources.karma62;
-            else if (KarmaMax == 9)
+            else if (max == 9)
                 return Properties.Resources.karma63;
-            else if (KarmaMax == 10)
+            else if (max == 10)
                 return Properties.Resources.karma64;
             else
                 return Properties.Resources.missing;
@@ -125,13 +127,15 @@ public partial class KarmaSelectorControl : UserControl
 
         Bitmap GetKarma7Icon()
         {
-            if (KarmaMax <= 7)
+            var max = KarmaMax + 1;
+
+            if (max <= 7)
                 return Properties.Resources.karma71;
-            else if (KarmaMax == 8)
+            else if (max == 8)
                 return Properties.Resources.karma72;
-            else if (KarmaMax == 9)
+            else if (max == 9)
                 return Properties.Resources.karma73;
-            else if (KarmaMax == 10)
+            else if (max == 10)
                 return Properties.Resources.karma74;
             else
                 return Properties.Resources.missing;
@@ -139,11 +143,13 @@ public partial class KarmaSelectorControl : UserControl
 
         Bitmap GetKarma8Icon()
         {
-            if (KarmaMax <= 8)
+            var max = KarmaMax + 1;
+
+            if (max <= 8)
                 return Properties.Resources.karma82;
-            else if (KarmaMax == 9)
+            else if (max == 9)
                 return Properties.Resources.karma83;
-            else if (KarmaMax == 10)
+            else if (max == 10)
                 return Properties.Resources.karma84;
             else
                 return Properties.Resources.missing;
@@ -151,9 +157,11 @@ public partial class KarmaSelectorControl : UserControl
 
         Bitmap GetKarma9Icon()
         {
-            if (KarmaMax <= 9)
+            var max = KarmaMax + 1;
+
+            if (max <= 9)
                 return Properties.Resources.karma93;
-            else if (KarmaMax == 10)
+            else if (max == 10)
                 return Properties.Resources.karma94;
             else
                 return Properties.Resources.missing;

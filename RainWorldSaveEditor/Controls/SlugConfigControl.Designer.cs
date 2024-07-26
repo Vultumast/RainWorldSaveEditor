@@ -87,6 +87,7 @@
             totalDeathsLabel = new Label();
             karmaFlowerGroupBox = new GroupBox();
             karmaFlowerWorldPositionEditControl = new WorldPositionEditControl();
+            advancedTabPage = new TabPage();
             commonToolTip = new ToolTip(components);
             ((System.ComponentModel.ISupportInitialize)cycleNumberNumericUpDown).BeginInit();
             tabControl.SuspendLayout();
@@ -153,10 +154,12 @@
             tabControl.Controls.Add(communitiesTabPage);
             tabControl.Controls.Add(worldInfoTabPage);
             tabControl.Controls.Add(persistentInfoTabPage);
+            tabControl.Controls.Add(advancedTabPage);
             tabControl.Dock = DockStyle.Fill;
             tabControl.Location = new Point(0, 0);
             tabControl.Name = "tabControl";
             tabControl.SelectedIndex = 0;
+            tabControl.ShowToolTips = true;
             tabControl.Size = new Size(549, 440);
             tabControl.TabIndex = 3;
             // 
@@ -777,6 +780,17 @@
             karmaFlowerWorldPositionEditControl.X = 0;
             karmaFlowerWorldPositionEditControl.Y = 0;
             // 
+            // advancedTabPage
+            // 
+            advancedTabPage.BackColor = SystemColors.Control;
+            advancedTabPage.Location = new Point(4, 24);
+            advancedTabPage.Name = "advancedTabPage";
+            advancedTabPage.Padding = new Padding(3);
+            advancedTabPage.Size = new Size(541, 412);
+            advancedTabPage.TabIndex = 4;
+            advancedTabPage.Text = "Advanced";
+            advancedTabPage.ToolTipText = "Advanced settings for the save file. **DO NOT EDIT UNLESS YOU KNOW WHAT YOU'RE DOING ***";
+            // 
             // SlugConfigControl
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -882,5 +896,6 @@
         private NumericUpDown rngNextIssueIDNumericUpDown;
         private Label rngSeedLabel;
         private NumericUpDown rngSeedNumericUpDown;
+        private TabPage advancedTabPage;
     }
 }
