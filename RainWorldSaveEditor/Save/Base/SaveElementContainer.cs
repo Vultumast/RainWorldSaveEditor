@@ -46,12 +46,17 @@ public abstract class SaveElementContainer
     {
         var parseMethodInfo = propertyInfo.PropertyType.GetParseMethod();
 
+        if (elementInfo.Name == "ASCENDED" || propertyInfo.Name == "ASCENDED")
+        {
+            Console.WriteLine("AWAw");
+        }
+
         if (propertyInfo.PropertyType == typeof(bool) && elementInfo.ValueOptional)
         {
             var setMethod = propertyInfo.GetSetMethod(true);
             if (setMethod is null)
             {
-                Console.WriteLine($"Set Method was null for \"{propertyInfo.Name}\" with container: \"{container.GetType()}\"");
+                Logger.Warn($"Set Method was null for \"{propertyInfo.Name}\" with container: \"{container.GetType()}\"");
                 return false;
             }
             setMethod.Invoke(container, [ true ]);
@@ -165,7 +170,7 @@ public abstract class SaveElementContainer
             Logger.Warn($"Unable to set \"{key}\" because it was already present!");
 
         // TODO Remove this later
-        Logger.Debug($"UNKWN: {key} => {value}");
+        Logger.Debug($"Unknown field: {key} => {value}");
     }
 
     public static void ParseField(SaveElementContainer container, string key, string value)

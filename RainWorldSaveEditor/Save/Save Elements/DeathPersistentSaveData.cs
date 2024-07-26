@@ -39,7 +39,9 @@ public class DeathPersistentSaveData : SaveElementContainer, IParsable<DeathPers
     public WorldCoordinate KarmaFlowerPosition { get; set; }
 
     // TODO: GHOSTS
-    // TODO: SONGSPLAYRECORDS
+    [SaveFileElement("SONGSPLAYRECORDS", ListDelimiter = "<dpC>")]
+    public List<SongPlayRecord> SongPlayRecords { get; private set; } = [];
+
     // TODO: SESSIONRECORDS
     // TODO: WINSTATE
     // TODO: CONSUMEDFLOWERS

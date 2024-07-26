@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace RainWorldSaveEditor.Save;
 
-[DebuggerDisplay("[{SaveStateNumber} | Rain World v{GameVersion} | World v{WorldVersion}]")]
+[DebuggerDisplay("{SaveStateNumber} | Game version {GameVersion} | World version {WorldVersion}")]
 public class SaveState : SaveElementContainer
 {
     public SaveState() : base()
