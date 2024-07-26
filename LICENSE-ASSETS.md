@@ -10,8 +10,17 @@ Assets marked with the license "Rain World" are the intellectual property of the
 | editoricon.ico | Editor Icon | Saneko | N/A |
 | editoricon.png | Editor Icon | Saneko | N/A |
 
-# RainWorldSaveEditor/Resources/Slugcat Icons
+# RainWorldSaveEditor/Resources/Creature Community
+| Name | Description | License | Source |
+| ---- | ----------- | ------- | ------ |
+| garbageworm_community_icon.png | Garbage Worm Community Icon | Rain World (Edited by Vultumast) | [Rain World Miraheze Wiki](https://rainworld.miraheze.org/wiki/Garbage_Worm#/media/File:Garbage_Worm_icon.png) |
+| jetfish_community_icon.png     | Jetfish Community Icon      | Rain World (Edited by Vultumast) | [Rain World Miraheze Wiki](https://rainworld.miraheze.org/wiki/Jetfish#/media/File:Jetfish_icon.png)           |
+| lizard_community_icon.png      | Lizard Community Icon       | Rain World (Edited by Vultumast) | [Rain World Miraheze Wiki](https://static.miraheze.org/rainworldwiki/1/18/Green_Lizard_icon.png)               |
+| raindeer_community_icon.png    | Raindeer Community Icon     | Rain World (Edited by Vultumast) | [Rain World Miraheze Wiki](https://static.miraheze.org/rainworldwiki/8/84/Rain_Deer_icon.png)                  |
+| scavenger_community_icon.png   | Scavenger Community Icon    | Rain World (Edited by Vultumast) | [Rain World Miraheze Wiki](https://static.miraheze.org/rainworldwiki/8/8d/Scavenger_icon.png)                  |
+| squidcada_community_icon.png   | Squidcada Community Icon    | Rain World (Edited by Vultumast) | [Rain World Miraheze Wiki](https://rainworld.miraheze.org/wiki/Squidcada#/media/File:Black_Squidcada_icon.png) |
 
+# RainWorldSaveEditor/Resources/Slugcat Icons
 | Name | Description | License | Source |
 | ---- | ----------- | ------- | ------ |
 | artificer.png | Artificer Icon | Rain World | [Rain World Miraheze Wiki](https://rainworld.miraheze.org/wiki/File:Artificer_icon_(custom).png) |
@@ -46,11 +55,12 @@ Assets marked with the license "Rain World" are the intellectual property of the
 # RainWorldSaveEditor/Resources/UI/Iterator Icons
 | Name | Description | License | Source |
 | ---- | ----------- | ------- | ------ |
-| fivepebblesdeadicon.png | Ascended Five Pebbles Icon | Rain World (Edited by Vultumast) | [Rain World Miraheze Wiki](https://static.miraheze.org/rainworldwiki/5/54/Five_Pebbles_icon.png) |
-| fivepebblesicon.png | Five Pebbles Icon | Rain World | [Rain World Miraheze Wiki](https://static.miraheze.org/rainworldwiki/5/54/Five_Pebbles_icon.png) |
+| fivepebblesdeadicon.png    | Ascended Five Pebbles Icon      | Rain World (Edited by Vultumast) | [Rain World Miraheze Wiki](https://static.miraheze.org/rainworldwiki/5/54/Five_Pebbles_icon.png)      |
+| fivepebblesicon.png        | Five Pebbles Icon               | Rain World                       | [Rain World Miraheze Wiki](https://static.miraheze.org/rainworldwiki/5/54/Five_Pebbles_icon.png)      |
 | lookstothemoondeadicon.png | Ascended Looks To The Moon Icon | Rain World (Edited by Vultumast) | [Rain World Miraheze Wiki](https://static.miraheze.org/rainworldwiki/8/80/Looks_to_the_Moon_icon.png) |
-| lookstothemoonicon.png | Looks To The Moon Icon | Rain World | [Rain World Miraheze Wiki](https://static.miraheze.org/rainworldwiki/8/80/Looks_to_the_Moon_icon.png) |
-| Neuron_Fly.png | Five Pebbles Neuron Fly Icon | Rain World | [Rain World Miraheze Wiki](https://static.miraheze.org/rainworldwiki/2/2a/Neuron_Fly_icon.png) |
+| lookstothemoonicon.png     | Looks To The Moon Icon          | Rain World                       | [Rain World Miraheze Wiki](https://static.miraheze.org/rainworldwiki/8/80/Looks_to_the_Moon_icon.png) |
+| lttm_cloak_icon.png        | Looks To The Moon's Cloak       | Rain World                       | [Rain World Miraheze Wiki](https://rainworld.miraheze.org/wiki/Cloak#/media/File:Cloak_icon.png)      |
+| Neuron_Fly.png             | Five Pebbles Neuron Fly Icon    | Rain World                       | [Rain World Miraheze Wiki](https://static.miraheze.org/rainworldwiki/2/2a/Neuron_Fly_icon.png)        |
 
 # RainWorldSaveEditor/Resources/UI/Karma
 | Name | Description | License | Source |

@@ -42,8 +42,8 @@ public partial class SlugConfigControl : UserControl
         FoodPipControl.FilledPips = (byte)state.FoodCount;
         cycleNumberNumericUpDown.Value = (uint)state.CycleNumber;
         currentDenTextBox.Text = state.DenPosition;
-        KarmaSelectorControl.KarmaLevel = Math.Min(state.DeathPersistentSaveData.Karma, state.DeathPersistentSaveData.KarmaCap);
         KarmaSelectorControl.KarmaMax = state.DeathPersistentSaveData.KarmaCap;
+        KarmaSelectorControl.KarmaLevel = Math.Min(state.DeathPersistentSaveData.Karma, state.DeathPersistentSaveData.KarmaCap);
         KarmaSelectorControl.Reinforced = state.DeathPersistentSaveData.HasReinforcedKarma == 1;
 
         lastVanillaDenTextBox.Text = state.LastVanillaDen;
@@ -130,6 +130,9 @@ public partial class SlugConfigControl : UserControl
     {
         switch (communityListBox.SelectedItem)
         {
+            case "All":
+                FillCommunityRegionRepListView(SaveState.Communities.All);
+                break;
             case "Scavengers":
                 FillCommunityRegionRepListView(SaveState.Communities.Scavengers);
                 break;

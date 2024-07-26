@@ -62,6 +62,9 @@ public partial class KarmaSelectorControl : UserControl
 
         switch (KarmaLevel + 1)
         {
+            case -1:
+                img = null;
+                break;
             case 0:
                 img = Properties.Resources.karma00;
                 break;
@@ -97,7 +100,8 @@ public partial class KarmaSelectorControl : UserControl
                 break;
         }
 
-        e.Graphics.DrawImage(img, drawPos);
+        if (img is not null)
+            e.Graphics.DrawImage(img, drawPos);
 
         img?.Dispose();
 

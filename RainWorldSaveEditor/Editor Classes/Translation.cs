@@ -45,13 +45,24 @@ namespace RainWorldSaveEditor.Editor_Classes
             // Vultu: This is where I would put The Watcher region names.... if i had any... /ref
         };
 
+        public static Dictionary<string, string> ModRegionNames = new()
+        {
+            // Hunter Expansion
+            { "NSH", "No Significant Harassment" }
+        };
 
         public static string GetRegionName(string internalname)
         {
+            if (internalname == "EVERY" || internalname == "ALL")
+                return internalname;
+
             if (RegionNames.ContainsKey(internalname))
                 return RegionNames[internalname];
 
-            return internalname;
+            if (ModRegionNames.ContainsKey(internalname))
+                return ModRegionNames[internalname];
+
+            return $"Unknown Region: \"{internalname}\"";
         }
     }
 }
