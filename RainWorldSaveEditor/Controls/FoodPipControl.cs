@@ -12,6 +12,7 @@ using System.Windows.Forms;
 
 namespace RainWorldSaveEditor.Controls;
 
+[DefaultEvent("PipCountChanged")]
 public partial class FoodPipControl : UserControl
 {
     public FoodPipControl()
@@ -23,6 +24,7 @@ public partial class FoodPipControl : UserControl
     private byte _pipBar = 4;
     private byte _filledPips = 0;
 
+    public event EventHandler? PipCountChanged;
     public byte PipCount
     {
         get => _pipCount;
@@ -171,9 +173,15 @@ public partial class FoodPipControl : UserControl
         UpdateMouseInfo();
 
         if (e.Button == MouseButtons.Left)
+        {
             FilledPips = (byte)(_mouseHoverIndex + 1);
+            PipCountChanged?.Invoke(this, EventArgs.Empty);
+        }
         else if (e.Button == MouseButtons.Right)
+        {
             FilledPips = 0;
+            PipCountChanged?.Invoke(this, EventArgs.Empty);
+        }
         
     }
 }

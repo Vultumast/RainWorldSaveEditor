@@ -30,6 +30,7 @@ public partial class SlugConfigControl : UserControl
         LoadCommunitiesTabPage();
     }
 
+    #region Setup
     public void SetupFromState(SaveState state)
     {
         SaveState = state;
@@ -92,8 +93,41 @@ public partial class SlugConfigControl : UserControl
         ascendedCheckBox.Checked = state.DeathPersistentSaveData.HasAscended;
         hunterPermaDeathCheckBox.Checked = state.DeathPersistentSaveData.IsHunterDead;
 
+        rngSeedNumericUpDown.Value = state.Seed;
+        rngNextIssueIDNumericUpDown.Value = state.NextIssuedId;
 
     }
+
+    #endregion
+
+    #region Slugcat Info
+    private void FoodPipControl_PipCountChanged(object sender, EventArgs e) => SaveState.FoodCount = FoodPipControl.FilledPips;
+
+
+    private void cycleNumberNumericUpDown_ValueChanged(object sender, EventArgs e) => SaveState.CycleNumber = (int)cycleNumberNumericUpDown.Value;
+    private void neuronGlowCheckBox_CheckedChanged(object sender, EventArgs e) => SaveState.HasNeuronGlow = neuronGlowCheckBox.Checked;
+    private void justBeatGameCheckBox_CheckedChanged(object sender, EventArgs e) => SaveState.GameRecentlyBeaten = justBeatGameCheckBox.Checked;
+    private void markOfCommunicationCheckBox_CheckedChanged(object sender, EventArgs e) => SaveState.DeathPersistentSaveData.HasMarkOfCommunication = markOfCommunicationCheckBox.Checked;
+
+
+    #region Slugcat Specific
+    private void citizenIDDroneCheckBox_CheckedChanged(object sender, EventArgs e) => SaveState.HasCitizenDrone = citizenIDDroneCheckBox.Checked;
+    private void extraHunterCyclesCheckBox_CheckedChanged(object sender, EventArgs e) => SaveState.HunterExtraCycles = extraHunterCyclesCheckBox.Checked;
+    private void moonsCloakCheckBox_CheckedChanged(object sender, EventArgs e) => SaveState.IsWearingCloak = moonsCloakCheckBox.Checked;
+    #endregion
+
+    #region Den Info
+    private void currentDenTextBox_TextChanged(object sender, EventArgs e) => SaveState.DenPosition = currentDenTextBox.Text;
+    private void lastVanillaDenTextBox_TextChanged(object sender, EventArgs e) => SaveState.LastVanillaDen = currentDenTextBox.Text;
+    #endregion
+
+    #region Karma 
+    private void KarmaSelectorControl_KarmaLevelChanged(object sender, EventArgs e) => SaveState.DeathPersistentSaveData.Karma = KarmaSelectorControl.KarmaLevel;
+    private void KarmaSelectorControl_KarmaMaxChanged(object sender, EventArgs e) => SaveState.DeathPersistentSaveData.KarmaCap = KarmaSelectorControl.KarmaMax;
+    private void KarmaSelectorControl_ReinforcedChanged(object sender, EventArgs e) => SaveState.DeathPersistentSaveData.HasReinforcedKarma = KarmaSelectorControl.Reinforced ? 1 : 0;
+    #endregion
+
+    #endregion
 
     #region Communities Tab
     DataTable _communitiesDataTable = new DataTable();
@@ -155,8 +189,6 @@ public partial class SlugConfigControl : UserControl
                 break;
         }
     }
-
-    #endregion
 
     string _communityCellPreValue = string.Empty;
 
@@ -243,4 +275,29 @@ public partial class SlugConfigControl : UserControl
     {
 
     }
+    #endregion
+
+
+
+
+    #region Persistent Info
+
+    private void ascendedLooksToTheMoonCheckBox_CheckedChanged(object sender, EventArgs e) => SaveState.DeathPersistentSaveData.IsMoonAscendedBySaint = ((CheckBox)sender).Checked;
+
+    private void ascendedFivePebblesCheckBox_CheckedChanged(object sender, EventArgs e) => SaveState.DeathPersistentSaveData.IsPebblesAscendedBySaint = ((CheckBox)sender).Checked;
+
+    private void hunterPermaDeathCheckBox_CheckedChanged(object sender, EventArgs e) => SaveState.DeathPersistentSaveData.IsHunterDead = ((CheckBox)sender).Checked;
+
+    private void ascendedCheckBox_CheckedChanged(object sender, EventArgs e) => SaveState.DeathPersistentSaveData.HasAscended = ((CheckBox)sender).Checked;
+
+    #region Totals
+    private void totalDeathsNumericUpDown_ValueChanged(object sender, EventArgs e) => SaveState.DeathPersistentSaveData.Deaths = (int)((NumericUpDown)(sender)).Value;
+    private void totalSurvivesNumericUpDown_ValueChanged(object sender, EventArgs e) => SaveState.DeathPersistentSaveData.Survives = (int)((NumericUpDown)(sender)).Value;
+    private void totalQuitsNumericUpDown_ValueChanged(object sender, EventArgs e) => SaveState.DeathPersistentSaveData.Quits = (int)((NumericUpDown)(sender)).Value;
+    private void totalFoodNumericUpDown_ValueChanged(object sender, EventArgs e) => SaveState.TotalFoodEaten = (int)((NumericUpDown)(sender)).Value;
+    private void totalFriendsSavedNumericUpDown_ValueChanged(object sender, EventArgs e) => SaveState.DeathPersistentSaveData.FriendsSaved = (int)((NumericUpDown)(sender)).Value;
+    #endregion
+    #endregion
+
+
 }

@@ -62,6 +62,11 @@
             worldInfoOutskirtstabPage = new TabPage();
             tabPage1 = new TabPage();
             persistentInfoTabPage = new TabPage();
+            rngGroupBox = new GroupBox();
+            rngNextIssueIDlabel = new Label();
+            rngNextIssueIDNumericUpDown = new NumericUpDown();
+            rngSeedLabel = new Label();
+            rngSeedNumericUpDown = new NumericUpDown();
             pictureBox4 = new PictureBox();
             pictureBox3 = new PictureBox();
             pictureBox2 = new PictureBox();
@@ -98,6 +103,9 @@
             worldInfoTabPage.SuspendLayout();
             worldInfoTabControl.SuspendLayout();
             persistentInfoTabPage.SuspendLayout();
+            rngGroupBox.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)rngNextIssueIDNumericUpDown).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)rngSeedNumericUpDown).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox4).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox3).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
@@ -120,6 +128,7 @@
             FoodPipControl.PipCount = 7;
             FoodPipControl.Size = new Size(535, 42);
             FoodPipControl.TabIndex = 0;
+            FoodPipControl.PipCountChanged += FoodPipControl_PipCountChanged;
             // 
             // cycleNumberNumericUpDown
             // 
@@ -127,6 +136,7 @@
             cycleNumberNumericUpDown.Name = "cycleNumberNumericUpDown";
             cycleNumberNumericUpDown.Size = new Size(120, 23);
             cycleNumberNumericUpDown.TabIndex = 1;
+            cycleNumberNumericUpDown.ValueChanged += cycleNumberNumericUpDown_ValueChanged;
             // 
             // label1
             // 
@@ -176,13 +186,14 @@
             // markOfCommunicationCheckBox
             // 
             markOfCommunicationCheckBox.AutoSize = true;
-            markOfCommunicationCheckBox.Location = new Point(253, 102);
+            markOfCommunicationCheckBox.Location = new Point(253, 131);
             markOfCommunicationCheckBox.Name = "markOfCommunicationCheckBox";
             markOfCommunicationCheckBox.Size = new Size(154, 19);
             markOfCommunicationCheckBox.TabIndex = 19;
             markOfCommunicationCheckBox.Text = "Mark of Communcation";
             commonToolTip.SetToolTip(markOfCommunicationCheckBox, "Do you have the Mark of Communication?");
             markOfCommunicationCheckBox.UseVisualStyleBackColor = true;
+            markOfCommunicationCheckBox.CheckedChanged += markOfCommunicationCheckBox_CheckedChanged;
             // 
             // groupBox1
             // 
@@ -218,6 +229,7 @@
             citizenIDDroneCheckBox.Text = "Citizen ID Drone";
             commonToolTip.SetToolTip(citizenIDDroneCheckBox, "Do you have Artificer's citizen ID drone?");
             citizenIDDroneCheckBox.UseVisualStyleBackColor = true;
+            citizenIDDroneCheckBox.CheckedChanged += citizenIDDroneCheckBox_CheckedChanged;
             // 
             // moonsCloakCheckBox
             // 
@@ -229,6 +241,7 @@
             moonsCloakCheckBox.Text = "Moon's Cloak";
             commonToolTip.SetToolTip(moonsCloakCheckBox, "Are you wearing Moon's Cloak?");
             moonsCloakCheckBox.UseVisualStyleBackColor = true;
+            moonsCloakCheckBox.CheckedChanged += moonsCloakCheckBox_CheckedChanged;
             // 
             // pictureBox5
             // 
@@ -250,6 +263,7 @@
             extraHunterCyclesCheckBox.Text = "Extra Hunter Cycles Given";
             commonToolTip.SetToolTip(extraHunterCyclesCheckBox, "Did Five Pebbles give Hunter Extra Cycles?");
             extraHunterCyclesCheckBox.UseVisualStyleBackColor = true;
+            extraHunterCyclesCheckBox.CheckedChanged += extraHunterCyclesCheckBox_CheckedChanged;
             // 
             // pictureBox6
             // 
@@ -275,18 +289,19 @@
             // justBeatGameCheckBox
             // 
             justBeatGameCheckBox.AutoSize = true;
-            justBeatGameCheckBox.Location = new Point(253, 77);
+            justBeatGameCheckBox.Location = new Point(253, 106);
             justBeatGameCheckBox.Name = "justBeatGameCheckBox";
             justBeatGameCheckBox.Size = new Size(106, 19);
             justBeatGameCheckBox.TabIndex = 12;
             justBeatGameCheckBox.Text = "Just Beat Game";
             commonToolTip.SetToolTip(justBeatGameCheckBox, "Was the last exit the result of you beating the game?");
             justBeatGameCheckBox.UseVisualStyleBackColor = true;
+            justBeatGameCheckBox.CheckedChanged += justBeatGameCheckBox_CheckedChanged;
             // 
             // pictureBox1
             // 
             pictureBox1.Image = Properties.Resources.Neuron_Fly;
-            pictureBox1.Location = new Point(224, 51);
+            pictureBox1.Location = new Point(224, 80);
             pictureBox1.Name = "pictureBox1";
             pictureBox1.Size = new Size(11, 26);
             pictureBox1.TabIndex = 10;
@@ -295,13 +310,14 @@
             // neuronGlowCheckBox
             // 
             neuronGlowCheckBox.AutoSize = true;
-            neuronGlowCheckBox.Location = new Point(253, 53);
+            neuronGlowCheckBox.Location = new Point(253, 82);
             neuronGlowCheckBox.Name = "neuronGlowCheckBox";
             neuronGlowCheckBox.Size = new Size(96, 19);
             neuronGlowCheckBox.TabIndex = 9;
             neuronGlowCheckBox.Text = "Neuron Glow";
             commonToolTip.SetToolTip(neuronGlowCheckBox, "Have you eaten a Neuron Fly?");
             neuronGlowCheckBox.UseVisualStyleBackColor = true;
+            neuronGlowCheckBox.CheckedChanged += neuronGlowCheckBox_CheckedChanged;
             // 
             // denInfoGroupBox
             // 
@@ -322,6 +338,8 @@
             lastVanillaDenTextBox.Name = "lastVanillaDenTextBox";
             lastVanillaDenTextBox.Size = new Size(95, 23);
             lastVanillaDenTextBox.TabIndex = 8;
+            commonToolTip.SetToolTip(lastVanillaDenTextBox, "The Den the game will default too when your current den is invalid");
+            lastVanillaDenTextBox.TextChanged += lastVanillaDenTextBox_TextChanged;
             // 
             // lastVanillaDenLabel
             // 
@@ -338,6 +356,7 @@
             currentDenTextBox.Name = "currentDenTextBox";
             currentDenTextBox.Size = new Size(95, 23);
             currentDenTextBox.TabIndex = 5;
+            currentDenTextBox.TextChanged += currentDenTextBox_TextChanged;
             // 
             // currentDenLabel
             // 
@@ -368,6 +387,9 @@
             KarmaSelectorControl.Reinforced = false;
             KarmaSelectorControl.Size = new Size(193, 96);
             KarmaSelectorControl.TabIndex = 3;
+            KarmaSelectorControl.ReinforcedChanged += KarmaSelectorControl_ReinforcedChanged;
+            KarmaSelectorControl.KarmaLevelChanged += KarmaSelectorControl_KarmaLevelChanged;
+            KarmaSelectorControl.KarmaMaxChanged += KarmaSelectorControl_KarmaMaxChanged;
             // 
             // communitiesTabPage
             // 
@@ -468,6 +490,7 @@
             // persistentInfoTabPage
             // 
             persistentInfoTabPage.BackColor = SystemColors.Control;
+            persistentInfoTabPage.Controls.Add(rngGroupBox);
             persistentInfoTabPage.Controls.Add(pictureBox4);
             persistentInfoTabPage.Controls.Add(pictureBox3);
             persistentInfoTabPage.Controls.Add(pictureBox2);
@@ -485,10 +508,61 @@
             persistentInfoTabPage.Text = "Persistent Info";
             persistentInfoTabPage.ToolTipText = "Data that persists across death";
             // 
+            // rngGroupBox
+            // 
+            rngGroupBox.Controls.Add(rngNextIssueIDlabel);
+            rngGroupBox.Controls.Add(rngNextIssueIDNumericUpDown);
+            rngGroupBox.Controls.Add(rngSeedLabel);
+            rngGroupBox.Controls.Add(rngSeedNumericUpDown);
+            rngGroupBox.Location = new Point(246, 6);
+            rngGroupBox.Name = "rngGroupBox";
+            rngGroupBox.Size = new Size(289, 113);
+            rngGroupBox.TabIndex = 11;
+            rngGroupBox.TabStop = false;
+            rngGroupBox.Text = "RNG";
+            // 
+            // rngNextIssueIDlabel
+            // 
+            rngNextIssueIDlabel.AutoSize = true;
+            rngNextIssueIDlabel.Location = new Point(6, 53);
+            rngNextIssueIDlabel.Name = "rngNextIssueIDlabel";
+            rngNextIssueIDlabel.Size = new Size(78, 15);
+            rngNextIssueIDlabel.TabIndex = 13;
+            rngNextIssueIDlabel.Text = "Next Issue ID:";
+            // 
+            // rngNextIssueIDNumericUpDown
+            // 
+            rngNextIssueIDNumericUpDown.Location = new Point(90, 51);
+            rngNextIssueIDNumericUpDown.Maximum = new decimal(new int[] { 7, 5, 0, 0 });
+            rngNextIssueIDNumericUpDown.Minimum = new decimal(new int[] { int.MinValue, 0, 0, int.MinValue });
+            rngNextIssueIDNumericUpDown.Name = "rngNextIssueIDNumericUpDown";
+            rngNextIssueIDNumericUpDown.Size = new Size(193, 23);
+            rngNextIssueIDNumericUpDown.TabIndex = 12;
+            commonToolTip.SetToolTip(rngNextIssueIDNumericUpDown, "The next ID to use when spawning the next entity, this is incremented by 1 each time an entity spawns.");
+            // 
+            // rngSeedLabel
+            // 
+            rngSeedLabel.AutoSize = true;
+            rngSeedLabel.Location = new Point(6, 24);
+            rngSeedLabel.Name = "rngSeedLabel";
+            rngSeedLabel.Size = new Size(35, 15);
+            rngSeedLabel.TabIndex = 12;
+            rngSeedLabel.Text = "Seed:";
+            // 
+            // rngSeedNumericUpDown
+            // 
+            rngSeedNumericUpDown.Location = new Point(90, 22);
+            rngSeedNumericUpDown.Maximum = new decimal(new int[] { 7, 5, 0, 0 });
+            rngSeedNumericUpDown.Minimum = new decimal(new int[] { int.MinValue, 0, 0, int.MinValue });
+            rngSeedNumericUpDown.Name = "rngSeedNumericUpDown";
+            rngSeedNumericUpDown.Size = new Size(193, 23);
+            rngSeedNumericUpDown.TabIndex = 10;
+            commonToolTip.SetToolTip(rngSeedNumericUpDown, "The RNG Seed assigned to your save file when you created it");
+            // 
             // pictureBox4
             // 
             pictureBox4.Image = Properties.Resources.slugcatdead;
-            pictureBox4.Location = new Point(246, 76);
+            pictureBox4.Location = new Point(306, 296);
             pictureBox4.Name = "pictureBox4";
             pictureBox4.Size = new Size(23, 24);
             pictureBox4.TabIndex = 9;
@@ -497,7 +571,7 @@
             // pictureBox3
             // 
             pictureBox3.Image = Properties.Resources.lookstothemoondeadicon;
-            pictureBox3.Location = new Point(246, 16);
+            pictureBox3.Location = new Point(306, 236);
             pictureBox3.Name = "pictureBox3";
             pictureBox3.Size = new Size(23, 24);
             pictureBox3.TabIndex = 8;
@@ -506,7 +580,7 @@
             // pictureBox2
             // 
             pictureBox2.Image = Properties.Resources.fivepebblesdeadicon;
-            pictureBox2.Location = new Point(246, 46);
+            pictureBox2.Location = new Point(306, 266);
             pictureBox2.Name = "pictureBox2";
             pictureBox2.Size = new Size(23, 24);
             pictureBox2.TabIndex = 7;
@@ -515,46 +589,50 @@
             // hunterPermaDeathCheckBox
             // 
             hunterPermaDeathCheckBox.AutoSize = true;
-            hunterPermaDeathCheckBox.Location = new Point(275, 76);
+            hunterPermaDeathCheckBox.Location = new Point(335, 296);
             hunterPermaDeathCheckBox.Name = "hunterPermaDeathCheckBox";
             hunterPermaDeathCheckBox.Size = new Size(105, 19);
             hunterPermaDeathCheckBox.TabIndex = 6;
             hunterPermaDeathCheckBox.Text = "Currently Dead";
             commonToolTip.SetToolTip(hunterPermaDeathCheckBox, "Did you quit on the death screen? (Controls Hunter Permadeath)");
             hunterPermaDeathCheckBox.UseVisualStyleBackColor = true;
+            hunterPermaDeathCheckBox.CheckedChanged += hunterPermaDeathCheckBox_CheckedChanged;
             // 
             // ascendedCheckBox
             // 
             ascendedCheckBox.AutoSize = true;
-            ascendedCheckBox.Location = new Point(275, 101);
+            ascendedCheckBox.Location = new Point(335, 321);
             ascendedCheckBox.Name = "ascendedCheckBox";
             ascendedCheckBox.Size = new Size(78, 19);
             ascendedCheckBox.TabIndex = 5;
             ascendedCheckBox.Text = "Ascended";
             commonToolTip.SetToolTip(ascendedCheckBox, "Has this slugcat ascended?");
             ascendedCheckBox.UseVisualStyleBackColor = true;
+            ascendedCheckBox.CheckedChanged += ascendedCheckBox_CheckedChanged;
             // 
             // ascendedFivePebblesCheckBox
             // 
             ascendedFivePebblesCheckBox.AutoSize = true;
-            ascendedFivePebblesCheckBox.Location = new Point(275, 46);
+            ascendedFivePebblesCheckBox.Location = new Point(335, 266);
             ascendedFivePebblesCheckBox.Name = "ascendedFivePebblesCheckBox";
             ascendedFivePebblesCheckBox.Size = new Size(146, 19);
             ascendedFivePebblesCheckBox.TabIndex = 3;
             ascendedFivePebblesCheckBox.Text = "Ascended Five Pebbles";
             commonToolTip.SetToolTip(ascendedFivePebblesCheckBox, "Was Five Pebbles ascended by Saint?");
             ascendedFivePebblesCheckBox.UseVisualStyleBackColor = true;
+            ascendedFivePebblesCheckBox.CheckedChanged += ascendedFivePebblesCheckBox_CheckedChanged;
             // 
             // ascendedLooksToTheMoonCheckBox
             // 
             ascendedLooksToTheMoonCheckBox.AutoSize = true;
-            ascendedLooksToTheMoonCheckBox.Location = new Point(275, 16);
+            ascendedLooksToTheMoonCheckBox.Location = new Point(335, 236);
             ascendedLooksToTheMoonCheckBox.Name = "ascendedLooksToTheMoonCheckBox";
             ascendedLooksToTheMoonCheckBox.Size = new Size(184, 19);
             ascendedLooksToTheMoonCheckBox.TabIndex = 2;
             ascendedLooksToTheMoonCheckBox.Text = "Ascended Looks To The Moon";
             commonToolTip.SetToolTip(ascendedLooksToTheMoonCheckBox, "Was Looks To The Moon ascended by Saint?");
             ascendedLooksToTheMoonCheckBox.UseVisualStyleBackColor = true;
+            ascendedLooksToTheMoonCheckBox.CheckedChanged += ascendedLooksToTheMoonCheckBox_CheckedChanged;
             // 
             // totalsGroupBox
             // 
@@ -570,7 +648,7 @@
             totalsGroupBox.Controls.Add(totalDeathsLabel);
             totalsGroupBox.Location = new Point(12, 125);
             totalsGroupBox.Name = "totalsGroupBox";
-            totalsGroupBox.Size = new Size(330, 219);
+            totalsGroupBox.Size = new Size(257, 219);
             totalsGroupBox.TabIndex = 1;
             totalsGroupBox.TabStop = false;
             totalsGroupBox.Text = "Totals";
@@ -586,12 +664,14 @@
             // 
             // totalFriendsSavedNumericUpDown
             // 
+            totalFriendsSavedNumericUpDown.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
             totalFriendsSavedNumericUpDown.Location = new Point(96, 138);
             totalFriendsSavedNumericUpDown.Maximum = new decimal(new int[] { 7, 5, 0, 0 });
             totalFriendsSavedNumericUpDown.Minimum = new decimal(new int[] { int.MinValue, 0, 0, int.MinValue });
             totalFriendsSavedNumericUpDown.Name = "totalFriendsSavedNumericUpDown";
-            totalFriendsSavedNumericUpDown.Size = new Size(228, 23);
+            totalFriendsSavedNumericUpDown.Size = new Size(155, 23);
             totalFriendsSavedNumericUpDown.TabIndex = 3;
+            totalFriendsSavedNumericUpDown.ValueChanged += totalFriendsSavedNumericUpDown_ValueChanged;
             // 
             // totalQuitsLabel
             // 
@@ -604,12 +684,14 @@
             // 
             // totalQuitsNumericUpDown
             // 
+            totalQuitsNumericUpDown.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
             totalQuitsNumericUpDown.Location = new Point(96, 80);
             totalQuitsNumericUpDown.Maximum = new decimal(new int[] { 7, 5, 0, 0 });
             totalQuitsNumericUpDown.Minimum = new decimal(new int[] { int.MinValue, 0, 0, int.MinValue });
             totalQuitsNumericUpDown.Name = "totalQuitsNumericUpDown";
-            totalQuitsNumericUpDown.Size = new Size(228, 23);
+            totalQuitsNumericUpDown.Size = new Size(155, 23);
             totalQuitsNumericUpDown.TabIndex = 4;
+            totalQuitsNumericUpDown.ValueChanged += totalQuitsNumericUpDown_ValueChanged;
             // 
             // totalSurvivesLabel
             // 
@@ -622,21 +704,25 @@
             // 
             // totalSurvivesNumericUpDown
             // 
+            totalSurvivesNumericUpDown.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
             totalSurvivesNumericUpDown.Location = new Point(96, 51);
             totalSurvivesNumericUpDown.Maximum = new decimal(new int[] { 7, 5, 0, 0 });
             totalSurvivesNumericUpDown.Minimum = new decimal(new int[] { int.MinValue, 0, 0, int.MinValue });
             totalSurvivesNumericUpDown.Name = "totalSurvivesNumericUpDown";
-            totalSurvivesNumericUpDown.Size = new Size(228, 23);
+            totalSurvivesNumericUpDown.Size = new Size(155, 23);
             totalSurvivesNumericUpDown.TabIndex = 3;
+            totalSurvivesNumericUpDown.ValueChanged += totalSurvivesNumericUpDown_ValueChanged;
             // 
             // totalFoodNumericUpDown
             // 
+            totalFoodNumericUpDown.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
             totalFoodNumericUpDown.Location = new Point(96, 109);
             totalFoodNumericUpDown.Maximum = new decimal(new int[] { 7, 5, 0, 0 });
             totalFoodNumericUpDown.Minimum = new decimal(new int[] { int.MinValue, 0, 0, int.MinValue });
             totalFoodNumericUpDown.Name = "totalFoodNumericUpDown";
-            totalFoodNumericUpDown.Size = new Size(228, 23);
+            totalFoodNumericUpDown.Size = new Size(155, 23);
             totalFoodNumericUpDown.TabIndex = 2;
+            totalFoodNumericUpDown.ValueChanged += totalFoodNumericUpDown_ValueChanged;
             // 
             // totalFoodLabel
             // 
@@ -649,12 +735,14 @@
             // 
             // totalDeathsNumericUpDown
             // 
+            totalDeathsNumericUpDown.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
             totalDeathsNumericUpDown.Location = new Point(96, 22);
             totalDeathsNumericUpDown.Maximum = new decimal(new int[] { 7, 5, 0, 0 });
             totalDeathsNumericUpDown.Minimum = new decimal(new int[] { int.MinValue, 0, 0, int.MinValue });
             totalDeathsNumericUpDown.Name = "totalDeathsNumericUpDown";
-            totalDeathsNumericUpDown.Size = new Size(228, 23);
+            totalDeathsNumericUpDown.Size = new Size(155, 23);
             totalDeathsNumericUpDown.TabIndex = 1;
+            totalDeathsNumericUpDown.ValueChanged += totalDeathsNumericUpDown_ValueChanged;
             // 
             // totalDeathsLabel
             // 
@@ -714,6 +802,10 @@
             worldInfoTabControl.ResumeLayout(false);
             persistentInfoTabPage.ResumeLayout(false);
             persistentInfoTabPage.PerformLayout();
+            rngGroupBox.ResumeLayout(false);
+            rngGroupBox.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)rngNextIssueIDNumericUpDown).EndInit();
+            ((System.ComponentModel.ISupportInitialize)rngSeedNumericUpDown).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox4).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox3).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).EndInit();
@@ -783,5 +875,10 @@
         private ListBox communityListBox;
         private DataGridView communityRegionRepDataGridView;
         private PictureBox pictureBox7;
+        private GroupBox rngGroupBox;
+        private Label rngNextIssueIDlabel;
+        private NumericUpDown rngNextIssueIDNumericUpDown;
+        private Label rngSeedLabel;
+        private NumericUpDown rngSeedNumericUpDown;
     }
 }

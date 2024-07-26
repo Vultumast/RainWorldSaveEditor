@@ -21,7 +21,8 @@ public partial class KarmaSelectorControl : UserControl
     public event EventHandler? ReinforcedChanged;
     [Category("Action")]
     public event EventHandler? KarmaLevelChanged;
-
+    [Category("Action")]
+    public event EventHandler? KarmaMaxChanged;
     private void KarmaSelectorControl_Load(object sender, EventArgs e)
     {
 
@@ -43,6 +44,7 @@ public partial class KarmaSelectorControl : UserControl
     private void karmaMaxNumericUpDown_ValueChanged(object sender, EventArgs e)
     {
         karmaNumericUpDown.Maximum = karmaMaxNumericUpDown.Value;
+        KarmaMaxChanged?.Invoke(this, EventArgs.Empty);
         Invalidate();
     }
 
