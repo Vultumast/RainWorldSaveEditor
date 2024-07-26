@@ -65,6 +65,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Update="Resources\modded_region_names.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Update="Resources\Slugcat Icons\artificer.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>

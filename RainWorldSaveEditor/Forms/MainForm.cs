@@ -1,3 +1,4 @@
+using RainWorldSaveEditor.Editor_Classes;
 using RainWorldSaveEditor.Forms;
 using RainWorldSaveEditor.Save;
 using System.Text.Json;
@@ -30,7 +31,6 @@ public partial class MainForm : Form
     // TEND OF TEMP
     private void MainForm_Load(object sender, EventArgs e)
     {
-
 
         var slugcatFiles = Directory.GetFiles("Resources\\Slugcat Info", "*.json", SearchOption.AllDirectories);
         foreach (var slugcatFile in slugcatFiles)

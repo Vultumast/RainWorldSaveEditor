@@ -128,6 +128,8 @@ public partial class SlugConfigControl : UserControl
 
     private void communityListBox_SelectedIndexChanged(object sender, EventArgs e)
     {
+        communityRegionRepDataGridView.Enabled = communityListBox.SelectedIndex != -1;
+
         switch (communityListBox.SelectedItem)
         {
             case "All":

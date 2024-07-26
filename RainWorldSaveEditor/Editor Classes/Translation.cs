@@ -2,12 +2,15 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.Json.Nodes;
 using System.Threading.Tasks;
 
 namespace RainWorldSaveEditor.Editor_Classes
 {
     public static class Translation
     {
+        public const string SavePath = "Resources\\modded_region_names.json";
+
         public static Dictionary<string, string> RegionNames = new()
         {
             // Base game
@@ -63,6 +66,27 @@ namespace RainWorldSaveEditor.Editor_Classes
                 return ModRegionNames[internalname];
 
             return $"Unknown Region: \"{internalname}\"";
+        }
+
+        public static void Read()
+        {
+            if (!File.Exists(SavePath))
+            {
+                Logger.Info($"Unable to find \"{SavePath}\" so a new one is being made.");
+                Write();
+                return;
+            }
+            ModRegionNames = System.Text.Json.JsonSerializer.Deserialize<Dictionary<string, string>>(File.ReadAllText(SavePath))!;
+
+            if (ModRegionNames is null)
+            {
+                Logger.Warn($"ModRegionNames was null, this may be from an error in deserializing \"{SavePath}\"");
+                ModRegionNames = new();
+            }
+        }
+        public static void Write()
+        {
+            File.WriteAllText(SavePath, System.Text.Json.JsonSerializer.Serialize(ModRegionNames, new System.Text.Json.JsonSerializerOptions() { WriteIndented = true }));
         }
     }
 }

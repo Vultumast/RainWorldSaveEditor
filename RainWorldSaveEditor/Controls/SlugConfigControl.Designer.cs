@@ -36,6 +36,7 @@
             slugcatInfoTabPage = new TabPage();
             markOfCommunicationCheckBox = new CheckBox();
             groupBox1 = new GroupBox();
+            pictureBox7 = new PictureBox();
             citizenIDDroneCheckBox = new CheckBox();
             moonsCloakCheckBox = new CheckBox();
             pictureBox5 = new PictureBox();
@@ -86,6 +87,7 @@
             tabControl.SuspendLayout();
             slugcatInfoTabPage.SuspendLayout();
             groupBox1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)pictureBox7).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox5).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox6).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
@@ -184,16 +186,27 @@
             // 
             // groupBox1
             // 
+            groupBox1.Controls.Add(pictureBox7);
             groupBox1.Controls.Add(citizenIDDroneCheckBox);
             groupBox1.Controls.Add(moonsCloakCheckBox);
             groupBox1.Controls.Add(pictureBox5);
             groupBox1.Controls.Add(extraHunterCyclesCheckBox);
-            groupBox1.Location = new Point(253, 179);
+            groupBox1.Location = new Point(224, 227);
             groupBox1.Name = "groupBox1";
             groupBox1.Size = new Size(200, 100);
             groupBox1.TabIndex = 18;
             groupBox1.TabStop = false;
             groupBox1.Text = "Slugcat Specific";
+            // 
+            // pictureBox7
+            // 
+            pictureBox7.BackgroundImage = Properties.Resources.lttm_cloak_icon;
+            pictureBox7.BackgroundImageLayout = ImageLayout.Center;
+            pictureBox7.Location = new Point(6, 69);
+            pictureBox7.Name = "pictureBox7";
+            pictureBox7.Size = new Size(23, 25);
+            pictureBox7.TabIndex = 20;
+            pictureBox7.TabStop = false;
             // 
             // citizenIDDroneCheckBox
             // 
@@ -242,7 +255,7 @@
             // 
             pictureBox6.BackgroundImageLayout = ImageLayout.Center;
             pictureBox6.Image = Properties.Resources.Yellow_Overseer_icon;
-            pictureBox6.Location = new Point(250, 327);
+            pictureBox6.Location = new Point(315, 356);
             pictureBox6.Name = "pictureBox6";
             pictureBox6.Size = new Size(23, 23);
             pictureBox6.TabIndex = 17;
@@ -251,7 +264,7 @@
             // guideOverseerDeadCheckBox
             // 
             guideOverseerDeadCheckBox.AutoSize = true;
-            guideOverseerDeadCheckBox.Location = new Point(279, 327);
+            guideOverseerDeadCheckBox.Location = new Point(344, 356);
             guideOverseerDeadCheckBox.Name = "guideOverseerDeadCheckBox";
             guideOverseerDeadCheckBox.Size = new Size(136, 19);
             guideOverseerDeadCheckBox.TabIndex = 15;
@@ -373,6 +386,7 @@
             // 
             communityRegionRepDataGridView.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             communityRegionRepDataGridView.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            communityRegionRepDataGridView.Enabled = false;
             communityRegionRepDataGridView.Location = new Point(206, 6);
             communityRegionRepDataGridView.MultiSelect = false;
             communityRegionRepDataGridView.Name = "communityRegionRepDataGridView";
@@ -687,6 +701,7 @@
             slugcatInfoTabPage.PerformLayout();
             groupBox1.ResumeLayout(false);
             groupBox1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)pictureBox7).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox5).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox6).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
@@ -767,5 +782,6 @@
         private TabPage communitiesTabPage;
         private ListBox communityListBox;
         private DataGridView communityRegionRepDataGridView;
+        private PictureBox pictureBox7;
     }
 }
