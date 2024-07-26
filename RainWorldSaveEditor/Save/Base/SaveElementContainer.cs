@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Globalization;
 using System.Linq;
 using System.Linq.Expressions;
@@ -8,6 +9,7 @@ using System.Runtime.InteropServices.ObjectiveC;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Xml.Linq;
 using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace RainWorldSaveEditor.Save;
@@ -42,7 +44,7 @@ public abstract class SaveElementContainer
     /// <returns>True on success, false otherwise</returns>
     private static bool SetScalarProperty(SaveElementContainer container, PropertyInfo propertyInfo, SaveFileElement elementInfo, string value)
     {
-        var parseMethodInfo = propertyInfo.GetParseMethod();
+        var parseMethodInfo = propertyInfo.PropertyType.GetParseMethod();
 
         if (elementInfo.Name == "ASCENDED" || propertyInfo.Name == "ASCENDED")
         {
@@ -115,6 +117,64 @@ public abstract class SaveElementContainer
         return true;
     }
 
+    private static bool SetListProperty(SaveElementContainer container, PropertyInfo propertyInfo, SaveFileElement elementInfo, string value, Type collectionInterface)
+    {
+        Type elementType = collectionInterface.GetGenericArguments()[0];
+
+        var parseMethod = elementType.GetParseMethod();
+        var addMethod = collectionInterface.GetMethod("Add");
+        var clearMethod = collectionInterface.GetMethod("Clear");
+
+        if (addMethod == null || clearMethod == null)
+        {
+            Logger.Warn("Couldn't find add / clear methods for collection type.");
+            return false;
+        }
+
+        if (elementType == typeof(string))
+        {
+            var propertyBinding = propertyInfo.GetValue(container);
+
+            clearMethod.Invoke(propertyBinding, null);
+
+            foreach (var element in value.Split(elementInfo.ListDelimiter))
+            {
+                addMethod.Invoke(propertyBinding, [element]);
+            }
+
+            return true;
+        }
+        else if (parseMethod is not null)
+        {
+            var propertyBinding = propertyInfo.GetValue(container);
+
+            clearMethod.Invoke(propertyBinding, null);
+
+            foreach (var element in value.Split(elementInfo.ListDelimiter))
+            {
+                addMethod.Invoke(propertyBinding, [parseMethod.Invoke(null, [element, null])]);
+            }
+
+            return true;
+        }
+        else
+        {
+            Console.WriteLine("Found List with unparsable type!");
+            return false;
+        }
+    }
+
+    private static void HandleUnrecognizedField(SaveElementContainer container, PropertyInfo propertyInfo, string key, string value)
+    {
+        Console.WriteLine($"DEBUG: {key} => {value}, \"{propertyInfo.PropertyType}\" does not derive from IParsable! Tell Mario or Vultu!");
+
+        if (!container.UnrecognizedFields.TryAdd(key, value))
+            Console.WriteLine($"Unable to set \"{key}\" because it was already present!");
+
+        // TODO Remove this later
+        Logger.Debug($"UNKWN: {key} => {value}");
+    }
+
     public static void ParseField(SaveElementContainer container, string key, string value)
     {
         if (container.SaveFileElements.ContainsKey(key))
@@ -122,46 +182,24 @@ public abstract class SaveElementContainer
             var elementInfo = container.SaveFileElements[key];
             var propertyInfo = container.PropertyInfos[key];
 
-            var listInterface = propertyInfo.PropertyType.GetInterfaces().Where(x => x.IsGenericType && x.GetGenericTypeDefinition() == typeof(IList<>)).FirstOrDefault();
+            var collectionInterface = propertyInfo.PropertyType.GetInterfaces().Where(x => x.IsGenericType && x.GetGenericTypeDefinition() == typeof(ICollection<>)).FirstOrDefault();
             var parsableInterface = propertyInfo.PropertyType.GetInterfaces().Where(x => x.IsGenericType && x.GetGenericTypeDefinition() == typeof(IParsable<>)).FirstOrDefault();
 
             if (parsableInterface is not null)
             {
-                if (!SetScalarProperty(container, propertyInfo, elementInfo, value))
-                    goto AddToUnrecognizedFields;
+                if (SetScalarProperty(container, propertyInfo, elementInfo, value))
+                    return;
             }
-            else if (listInterface is not null)
+            else if (collectionInterface is not null)
             {
-                Type var = listInterface.GetGenericArguments()[0];
-                var method = var.GetMethods().Where(x => x.Name == "Parse" || x.Name == "TryParse").FirstOrDefault();
+                if (elementInfo.ListDelimiter is null)
+                    Logger.Info($"DEBUG: {key} => {value}, \"{propertyInfo.PropertyType}\" is a collection that doesn't have a delimiter! Tell Mario or Vultu!");
 
-                if (method is not null)
-                {
-
-                }
-                else
-                {
-                    Console.WriteLine("Found List with unparsable type!");
-                    goto AddToUnrecognizedFields;
-                }
-            }
-            else
-            {
-                Console.WriteLine($"DEBUG: \"{propertyInfo.PropertyType}\" does not derive from IParsable! Tell Mario or Vultu!");
-                goto AddToUnrecognizedFields;
+                else if (SetListProperty(container, propertyInfo, elementInfo, value, collectionInterface))
+                    return;
             }
 
-            return;
+            HandleUnrecognizedField(container, propertyInfo, key, value);
         }
-
-    AddToUnrecognizedFields:
-        if (!container.UnrecognizedFields.ContainsKey(key))
-            container.UnrecognizedFields.Add(key, value);
-        else
-            Console.WriteLine($"Unable to set \"{key}\" because it was already present!");
-
-        // TODO Remove this later
-        Logger.Debug($"UNKWN: {key} => {value}");
-
     }
 }

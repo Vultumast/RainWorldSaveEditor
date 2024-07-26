@@ -9,11 +9,11 @@ namespace RainWorldSaveEditor.Save;
 
 public static class SaveUtils
 {
-    public static MethodInfo? GetParseMethod(this PropertyInfo propertyInfo)
+    public static MethodInfo? GetParseMethod(this Type type)
     {
         MethodInfo parseMethodInfo = null!;
         // Vultu: Get method ``Parse(string s, IFormatProvider? provider)``
-        foreach (var method in propertyInfo.PropertyType.GetMethods())
+        foreach (var method in type.GetMethods())
         {
             var parameters = method.GetParameters();
             if (method.Name == "Parse" && parameters.Count() == 2 && parameters[0].ParameterType == typeof(string) && parameters[1].ParameterType == typeof(IFormatProvider))

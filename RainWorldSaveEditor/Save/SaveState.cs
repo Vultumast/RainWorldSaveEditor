@@ -11,6 +11,7 @@ using System.Threading.Tasks;
 
 namespace RainWorldSaveEditor.Save;
 
+[DebuggerDisplay("[{SaveStateNumber} | Rain World v{GameVersion} | World v{WorldVersion}]")]
 public class SaveState : SaveElementContainer
 {
     public SaveState() : base()
@@ -65,15 +66,15 @@ public class SaveState : SaveElementContainer
     /// <summary>
     /// IDs of creatures that will respawn during the next cycle.
     /// </summary>
-    [SaveFileElement("RESPAWNS")]
-    public IntList CreaturesToRespawn { get; private set; } = [];
+    [SaveFileElement("RESPAWNS", ListDelimiter = ".")]
+    public List<int> CreaturesToRespawn { get; private set; } = [];
 
     /// <summary>
     /// IDs of creatures that are waiting to respawn. <para/>
     /// Each cycle, there is a 33% chance that they'll be added to the respawn list (50% with Hunter, Artificer and Spearmaster, 100% in Rubicon).
     /// </summary>
-    [SaveFileElement("WAITRESPAWNS")]
-    public IntList CreaturesWaitingToRespawn { get; private set; } = [];
+    [SaveFileElement("WAITRESPAWNS", ListDelimiter = ".")]
+    public List<int> CreaturesWaitingToRespawn { get; private set; } = [];
 
     // TODO Document this
     [SaveFileElement("REGIONSTATE")]

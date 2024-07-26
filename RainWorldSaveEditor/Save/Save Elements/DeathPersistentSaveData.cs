@@ -1,6 +1,4 @@
 ﻿using System.Diagnostics.CodeAnalysis;
-using System.Globalization;
-using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace RainWorldSaveEditor.Save;
 
@@ -23,7 +21,6 @@ public class DeathPersistentSaveData : SaveElementContainer, IParsable<DeathPers
     [SaveFileElement("KARMACAP")]
     public int KarmaCap { get; set; } = 0;
 
-    private bool _hasReinforcedKarma = false;
     /// <summary>
     /// Whenever the karma is currently reinforced by a Karma Flower.
     /// </summary>
@@ -33,6 +30,7 @@ public class DeathPersistentSaveData : SaveElementContainer, IParsable<DeathPers
         get => _hasReinforcedKarma ? 1 : 0;
         set => _hasReinforcedKarma = value != 0;
     }
+    private bool _hasReinforcedKarma = false;
 
     /// <summary>
     /// Position of Karma Flower created upon player death.
@@ -40,11 +38,20 @@ public class DeathPersistentSaveData : SaveElementContainer, IParsable<DeathPers
     [SaveFileElement("FLOWERPOS")]
     public WorldCoordinate? KarmaFlowerPosition { get; set; }
 
+    // TODO: GHOSTS
+    // TODO: SONGSPLAYRECORDS
+    // TODO: SESSIONRECORDS
+    // TODO: WINSTATE
+    // TODO: CONSUMEDFLOWERS
+
     /// <summary>
     /// Whenever the slugcat currently has the mark of communication.
     /// </summary>
     [SaveFileElement("HASTHEMARK", true)]
     public bool HasMarkOfCommunication { get; set; } = false;
+
+    // TODO: TUTMESSAGES
+    // TODO: METERSSHOWN
 
     /// <summary>
     /// Gets incremented on each death at minimum karma, gets reset on a survived cycle. <para/>
@@ -79,6 +86,8 @@ public class DeathPersistentSaveData : SaveElementContainer, IParsable<DeathPers
     [SaveFileElement("QUITS")]
     public int Quits { get; set; } = 0;
 
+    // TODO: DEATHPOSS
+
     /// <summary>
     /// This value gets set automatically on death, but only makes sense for Hunter's campaign. <para/>
     /// If Hunter is not out of cycles, it gets cleared on load. Otherwise, it prevents loading the save file.
@@ -98,6 +107,13 @@ public class DeathPersistentSaveData : SaveElementContainer, IParsable<DeathPers
     /// </summary>
     [SaveFileElement("PHIRKC", true)]
     public bool HasPebblesIncreasedHuntersKarma { get; set; } = false;
+
+    /// <summary>
+    /// List of gates that have been unlocked in this playthrough. <para/>
+    /// Gates can be unlocked by default by Monk, and by any other slugcat if the Remix option is enabled.
+    /// </summary>
+    [SaveFileElement("UNLOCKEDGATES", ListDelimiter = "<dpC>")]
+    public List<string> UnlockedGates { get; private set; } = [];
 
     /// <summary>
     /// Number of friends sheltered during this playthrough <para/>
@@ -137,6 +153,9 @@ public class DeathPersistentSaveData : SaveElementContainer, IParsable<DeathPers
     [SaveFileElement("SLSiren", true)]
     public bool SLSiren { get; set; } = false;
 
+    // TODO: CHATLOGS
+    // TODO: PREPEBCHATLOGS
+
     /// <summary>
     /// Counter used for displaying tips in-game.
     /// </summary>
@@ -160,7 +179,6 @@ public class DeathPersistentSaveData : SaveElementContainer, IParsable<DeathPers
 
         foreach ((var key, var value) in SaveUtils.GetFields(s, "<dpB>", "<dpA>"))
             ParseField(data, key, value);
-
 
         return data;
     }

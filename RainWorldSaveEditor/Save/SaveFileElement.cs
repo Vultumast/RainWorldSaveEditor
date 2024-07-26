@@ -14,10 +14,16 @@ namespace RainWorldSaveEditor.Save
         /// The name of the property in the save file
         /// </summary>
         public string Name { get; } = name;
+
         /// <summary>
         /// Can the property be valueless?
         /// </summary>
         public bool ValueOptional { get; } = valueOptional;
+
+        /// <summary>
+        /// For lists, defines the delimiter to use for elements.
+        /// </summary>
+        public string? ListDelimiter { get; init; } = null;
 
     }
 }
