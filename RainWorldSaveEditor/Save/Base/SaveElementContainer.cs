@@ -200,5 +200,7 @@ public abstract class SaveElementContainer
 
             HandleUnrecognizedField(container, propertyInfo, key, value);
         }
+        else
+            Logger.Warn($"Unknown Key: \"{key}\" => {value}");
     }
 }

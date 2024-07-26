@@ -37,6 +37,11 @@ public partial class SlugConfigControl : UserControl
         SetupSlugCatInfoTabPageFromState(state);
         SetupPersistentDataInfoTabPageFromState(state);
         SetupAdvancedInfoTabPage(state);
+
+        if (state.SwallowedItems.Count > 0)
+        {
+            Console.WriteLine("awaw");
+        }
     }
 
     private void SetupSlugCatInfoTabPageFromState(SaveState state)
@@ -60,6 +65,7 @@ public partial class SlugConfigControl : UserControl
         citizenIDDroneCheckBox.Checked = state.HasCitizenDrone;
         moonsCloakCheckBox.Checked = state.IsWearingCloak;
 
+       
     }
 
     private void SetupPersistentDataInfoTabPageFromState(SaveState state)

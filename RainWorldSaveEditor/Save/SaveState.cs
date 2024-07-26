@@ -100,6 +100,12 @@ public class SaveState : SaveElementContainer
     public List<string> UnrecognizedSwallowedItems { get; } = [];
 
     /// <summary>
+    /// Contains serialized strings of swallowed items
+    /// </summary>
+    [SaveFileElement("SWALLOWEDITEMS", ListDelimiter = "<svB>")]
+    public List<string> SwallowedItems { get; private set; } = [];
+
+    /// <summary>
     /// Contains serialized strings of grabbed items and creatures that were not recognized by the game. <para/>
     /// The game tries to parse them again on each save load.
     /// </summary>

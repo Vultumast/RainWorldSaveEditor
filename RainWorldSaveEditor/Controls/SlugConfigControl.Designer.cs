@@ -88,13 +88,13 @@
             karmaFlowerGroupBox = new GroupBox();
             karmaFlowerWorldPositionEditControl = new WorldPositionEditControl();
             advancedTabPage = new TabPage();
+            worldVersionLabel = new Label();
+            worldVersionNumericUpDown = new NumericUpDown();
             gameVersionShelterLabel = new Label();
             initalGameVersionLabel = new Label();
             initialGameVersionNumericUpDown = new NumericUpDown();
             gameVerisonNumericUpDown = new NumericUpDown();
             commonToolTip = new ToolTip(components);
-            worldVersionNumericUpDown = new NumericUpDown();
-            worldVersionLabel = new Label();
             ((System.ComponentModel.ISupportInitialize)cycleNumberNumericUpDown).BeginInit();
             tabControl.SuspendLayout();
             slugcatInfoTabPage.SuspendLayout();
@@ -124,9 +124,9 @@
             ((System.ComponentModel.ISupportInitialize)totalDeathsNumericUpDown).BeginInit();
             karmaFlowerGroupBox.SuspendLayout();
             advancedTabPage.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)worldVersionNumericUpDown).BeginInit();
             ((System.ComponentModel.ISupportInitialize)initialGameVersionNumericUpDown).BeginInit();
             ((System.ComponentModel.ISupportInitialize)gameVerisonNumericUpDown).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)worldVersionNumericUpDown).BeginInit();
             SuspendLayout();
             // 
             // FoodPipControl
@@ -199,7 +199,7 @@
             // markOfCommunicationCheckBox
             // 
             markOfCommunicationCheckBox.AutoSize = true;
-            markOfCommunicationCheckBox.Location = new Point(253, 131);
+            markOfCommunicationCheckBox.Location = new Point(292, 197);
             markOfCommunicationCheckBox.Name = "markOfCommunicationCheckBox";
             markOfCommunicationCheckBox.Size = new Size(154, 19);
             markOfCommunicationCheckBox.TabIndex = 19;
@@ -302,7 +302,7 @@
             // justBeatGameCheckBox
             // 
             justBeatGameCheckBox.AutoSize = true;
-            justBeatGameCheckBox.Location = new Point(253, 106);
+            justBeatGameCheckBox.Location = new Point(292, 172);
             justBeatGameCheckBox.Name = "justBeatGameCheckBox";
             justBeatGameCheckBox.Size = new Size(106, 19);
             justBeatGameCheckBox.TabIndex = 12;
@@ -314,7 +314,7 @@
             // pictureBox1
             // 
             pictureBox1.Image = Properties.Resources.Neuron_Fly;
-            pictureBox1.Location = new Point(224, 80);
+            pictureBox1.Location = new Point(263, 146);
             pictureBox1.Name = "pictureBox1";
             pictureBox1.Size = new Size(11, 26);
             pictureBox1.TabIndex = 10;
@@ -323,7 +323,7 @@
             // neuronGlowCheckBox
             // 
             neuronGlowCheckBox.AutoSize = true;
-            neuronGlowCheckBox.Location = new Point(253, 82);
+            neuronGlowCheckBox.Location = new Point(292, 148);
             neuronGlowCheckBox.Name = "neuronGlowCheckBox";
             neuronGlowCheckBox.Size = new Size(96, 19);
             neuronGlowCheckBox.TabIndex = 9;
@@ -807,6 +807,25 @@
             advancedTabPage.Text = "Advanced";
             advancedTabPage.ToolTipText = "Advanced settings for the save file. **DO NOT EDIT UNLESS YOU KNOW WHAT YOU'RE DOING ***";
             // 
+            // worldVersionLabel
+            // 
+            worldVersionLabel.AutoSize = true;
+            worldVersionLabel.Location = new Point(68, 115);
+            worldVersionLabel.Name = "worldVersionLabel";
+            worldVersionLabel.Size = new Size(83, 15);
+            worldVersionLabel.TabIndex = 7;
+            worldVersionLabel.Text = "World Version:";
+            // 
+            // worldVersionNumericUpDown
+            // 
+            worldVersionNumericUpDown.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+            worldVersionNumericUpDown.Location = new Point(188, 113);
+            worldVersionNumericUpDown.Maximum = new decimal(new int[] { 7, 5, 0, 0 });
+            worldVersionNumericUpDown.Minimum = new decimal(new int[] { int.MinValue, 0, 0, int.MinValue });
+            worldVersionNumericUpDown.Name = "worldVersionNumericUpDown";
+            worldVersionNumericUpDown.Size = new Size(155, 23);
+            worldVersionNumericUpDown.TabIndex = 6;
+            // 
             // gameVersionShelterLabel
             // 
             gameVersionShelterLabel.AutoSize = true;
@@ -844,25 +863,6 @@
             gameVerisonNumericUpDown.Name = "gameVerisonNumericUpDown";
             gameVerisonNumericUpDown.Size = new Size(155, 23);
             gameVerisonNumericUpDown.TabIndex = 2;
-            // 
-            // worldVersionNumericUpDown
-            // 
-            worldVersionNumericUpDown.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
-            worldVersionNumericUpDown.Location = new Point(188, 113);
-            worldVersionNumericUpDown.Maximum = new decimal(new int[] { 7, 5, 0, 0 });
-            worldVersionNumericUpDown.Minimum = new decimal(new int[] { int.MinValue, 0, 0, int.MinValue });
-            worldVersionNumericUpDown.Name = "worldVersionNumericUpDown";
-            worldVersionNumericUpDown.Size = new Size(155, 23);
-            worldVersionNumericUpDown.TabIndex = 6;
-            // 
-            // worldVersionLabel
-            // 
-            worldVersionLabel.AutoSize = true;
-            worldVersionLabel.Location = new Point(68, 115);
-            worldVersionLabel.Name = "worldVersionLabel";
-            worldVersionLabel.Size = new Size(83, 15);
-            worldVersionLabel.TabIndex = 7;
-            worldVersionLabel.Text = "World Version:";
             // 
             // SlugConfigControl
             // 
@@ -908,9 +908,9 @@
             karmaFlowerGroupBox.ResumeLayout(false);
             advancedTabPage.ResumeLayout(false);
             advancedTabPage.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)worldVersionNumericUpDown).EndInit();
             ((System.ComponentModel.ISupportInitialize)initialGameVersionNumericUpDown).EndInit();
             ((System.ComponentModel.ISupportInitialize)gameVerisonNumericUpDown).EndInit();
-            ((System.ComponentModel.ISupportInitialize)worldVersionNumericUpDown).EndInit();
             ResumeLayout(false);
         }
 
