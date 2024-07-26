@@ -53,18 +53,18 @@
             editorNameLabel.Font = new Font("Segoe UI", 11.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
             editorNameLabel.Location = new Point(146, 12);
             editorNameLabel.Name = "editorNameLabel";
-            editorNameLabel.Size = new Size(162, 20);
+            editorNameLabel.Size = new Size(169, 20);
             editorNameLabel.TabIndex = 1;
-            editorNameLabel.Text = "Rainworld Save Editor";
+            editorNameLabel.Text = "Rain World Save Editor";
             // 
             // disclaimerLabel
             // 
             disclaimerLabel.AutoSize = true;
             disclaimerLabel.Location = new Point(12, 143);
             disclaimerLabel.Name = "disclaimerLabel";
-            disclaimerLabel.Size = new Size(379, 30);
+            disclaimerLabel.Size = new Size(384, 30);
             disclaimerLabel.TabIndex = 2;
-            disclaimerLabel.Text = "No contributors of \"Rainworld Save Editor\" are affliated with Videocult.\r\nPlease consult the included LICENSE.txt for licensing information.";
+            disclaimerLabel.Text = "No contributors of \"Rain World Save Editor\" are affliated with Videocult.\r\nPlease consult the included LICENSE.txt for licensing information.";
             // 
             // leadDevsLabel
             // 

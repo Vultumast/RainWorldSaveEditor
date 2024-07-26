@@ -34,6 +34,7 @@ partial class MainForm
         fileToolStripMenuItem = new ToolStripMenuItem();
         openToolStripMenuItem = new ToolStripMenuItem();
         openRainWorldSaveDirectoryToolStripMenuItem = new ToolStripMenuItem();
+        rainworldExecutableDirectoryToolStripMenuItem = new ToolStripMenuItem();
         saveToolStripMenuItem = new ToolStripMenuItem();
         saveAsToolStripMenuItem = new ToolStripMenuItem();
         toolStripSeparator1 = new ToolStripSeparator();
@@ -53,7 +54,6 @@ partial class MainForm
         toggleConsoleToolStripMenuItem = new ToolStripMenuItem();
         mainTabControl = new TabControl();
         slugcatIconImageList = new ImageList(components);
-        rainworldExecutableDirectoryToolStripMenuItem = new ToolStripMenuItem();
         menuStrip1.SuspendLayout();
         SuspendLayout();
         // 
@@ -86,6 +86,13 @@ partial class MainForm
         openRainWorldSaveDirectoryToolStripMenuItem.Size = new Size(238, 22);
         openRainWorldSaveDirectoryToolStripMenuItem.Text = "Rain World Save Directory";
         openRainWorldSaveDirectoryToolStripMenuItem.Click += openRainWorldSaveDirectoryToolStripMenuItem_Click;
+        // 
+        // rainworldExecutableDirectoryToolStripMenuItem
+        // 
+        rainworldExecutableDirectoryToolStripMenuItem.Name = "rainworldExecutableDirectoryToolStripMenuItem";
+        rainworldExecutableDirectoryToolStripMenuItem.Size = new Size(238, 22);
+        rainworldExecutableDirectoryToolStripMenuItem.Text = "Rainworld Executable Directory";
+        rainworldExecutableDirectoryToolStripMenuItem.Click += rainworldExecutableDirectoryToolStripMenuItem_Click;
         // 
         // saveToolStripMenuItem
         // 
@@ -219,13 +226,6 @@ partial class MainForm
         slugcatIconImageList.ImageSize = new Size(16, 16);
         slugcatIconImageList.TransparentColor = Color.Transparent;
         // 
-        // rainworldExecutableDirectoryToolStripMenuItem
-        // 
-        rainworldExecutableDirectoryToolStripMenuItem.Name = "rainworldExecutableDirectoryToolStripMenuItem";
-        rainworldExecutableDirectoryToolStripMenuItem.Size = new Size(238, 22);
-        rainworldExecutableDirectoryToolStripMenuItem.Text = "Rainworld Executable Directory";
-        rainworldExecutableDirectoryToolStripMenuItem.Click += rainworldExecutableDirectoryToolStripMenuItem_Click;
-        // 
         // MainForm
         // 
         AutoScaleDimensions = new SizeF(7F, 15F);
@@ -236,7 +236,7 @@ partial class MainForm
         Icon = (Icon)resources.GetObject("$this.Icon");
         MainMenuStrip = menuStrip1;
         Name = "MainForm";
-        Text = "Rainworld Save Editor";
+        Text = "Rain World Save Editor";
         Load += MainForm_Load;
         menuStrip1.ResumeLayout(false);
         menuStrip1.PerformLayout();
