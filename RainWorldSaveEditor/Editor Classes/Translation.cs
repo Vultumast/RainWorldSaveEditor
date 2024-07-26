@@ -48,10 +48,94 @@ namespace RainWorldSaveEditor.Editor_Classes
             // Vultu: This is where I would put The Watcher region names.... if i had any... /ref
         };
 
+        // List taken from https://rainworldmods.miraheze.org/wiki/Regions
         public static Dictionary<string, string> ModRegionNames = new()
         {
-            // Hunter Expansion
-            { "NSH", "No Significant Harassment" }
+            { "ZZ", "Aerial Arrays" },
+            { "KF", "Archaic Facility" },
+            { "AB", "Arid Barrens" },
+            { "OA", "Aqueducts" },
+            { "BV", "Background Valley" },
+            { "BL", "Badlands" },
+            { "BI", "Bioengineering Center" },
+            { "UU", "Citadel" },
+            { "HF", "Community Gallery Region" },
+            { "RF", "Coral Caves" },
+            { "PQ", "Corroded Passage" },
+            { "AK", "Curious Ascent" },
+            { "DKM", "Dark Meadows" },
+            { "KR", "Deep Pipeline" },
+            { "DW", "Desert Wastelands" },
+            { "NS", "Forbidden Tropics" },
+            { "GS", "Gilded Sanctuary/Hanging Gardens" },
+            { "WY", "Grand Reservoir" },
+            { "MT", "The Grinder" },
+            { "HH", "Hallowed Grotto" },
+            { "HC", "Howling Rift" },
+            { "XD", "Lost Cranny" },
+            { "LW", "Lush Mire" },
+            { "ML", "Marshland Wastes" },
+            { "TM", "The Mast" },
+            { "NM", "Midnight Meadows" },
+            { "HW", "Moonlit Acres" },
+            { "NF", "Neuron Forest" },
+            { "VQ", "Outer Outskirts" },
+            { "TO", "The Outline" },
+            { "W2", "Overgrown Facility" },
+            { "BY", "Purification Conduits" },
+            { "RA", "The Radiosphere" },
+            { "YL", "Rainforest" },
+            { "SC", "Sacred Garden" },
+            { "QQ", "Scraggy Town" },
+            { "RW", "Side House" },
+            { "UF", "Sizzling Sewers" },
+            { "KY", "Sky Tower" },
+            { "SP", "Slag Pits/Sunlit Power Plant" },
+            { "SK", "Stormy Coast/Slug King" },
+            { "TZ", "Testing Simulation" },
+            { "QW", "Timeless Conservatory" },
+            { "TT", "The Tower" },
+            { "UC", "Underground City" },
+            { "US", "Undersea" },
+            { "RV", "Urban Reservoir" },
+            { "CR", "Ventiliation Ducts" },
+            { "WM", "Washroom" },
+
+            // Old New Horizons Regions
+            { "FN", "Farlands" },
+            { "CA", "Railway" },
+            { "CF", "Contral Factory" },
+            { "VI", "Suburbs" },
+            { "MA", "Swamplands" },
+            { "OS", "Oil Station" },
+            { "ME", "Subway Lines" },
+            { "AY", "Abyss" },
+            { "SW", "Swamplands (Purple)" },
+            { "DI", "Industrial District" },
+
+
+            // Sunlit Trail Regions
+            { "SD", "Scorched District" },
+            { "PA", "Pilgrims' Ascent" },
+            { "FR", "Far Shore" },
+            { "MF", "Moss Fields" },
+            { "CW", "Chasing Wind" },
+            { "TK", "Smokestack Treetop" },
+            { "AQ", "Aquifer Tunnels" },
+            { "WD", "Nascent Woods" },
+
+            // Reclaming Entropy Regions
+            { "SO", "Sunlit Alleyways" },
+            { "WT", "Withstanding Factory" },
+            { "PY", "Pipegrave" },
+
+            // Hunter Expansion Regions
+            { "NSH", "No Significant Harassment" },
+
+            // Wirecat Regions
+            { "WTA", "The Ascent" },
+            { "WBRB", "Boundless Resonant Basis" }
+
         };
 
         public static string GetRegionName(string internalname)
@@ -80,6 +164,7 @@ namespace RainWorldSaveEditor.Editor_Classes
             try
             {
                 ModRegionNames = System.Text.Json.JsonSerializer.Deserialize<Dictionary<string, string>>(File.ReadAllText(SavePath))!;
+                Logger.Info($"Found {ModRegionNames.Count} Modded Region Names");
             }
             catch (Exception ex)
             {
