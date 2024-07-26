@@ -128,6 +128,11 @@ public static class Logger
     public static void Debug(string message) => WriteLine(LogReportType.Debug, message);
     public static void Trace(string message) => WriteLine(LogReportType.Trace, message);
 
+    public static void ReadAttempt(string filepath) => Info($"Attempting to read file: \"{filepath}\"");
+    public static void WriteAttempt(string filepath) => Info($"Attempting to write file: \"{filepath}\"");
+    public static void Success() => Info($"Success!");
+    public static void Exception(Exception ex) => Error($"An exception has occured! Details are as follows:\n{ex.Message}");
+
     public static void WriteLine(LogReportType reportType, string message)
     {
         string header = reportType switch

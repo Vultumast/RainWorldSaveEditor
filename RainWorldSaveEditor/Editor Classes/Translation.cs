@@ -70,23 +70,44 @@ namespace RainWorldSaveEditor.Editor_Classes
 
         public static void Read()
         {
+            Logger.ReadAttempt(SavePath);
             if (!File.Exists(SavePath))
             {
                 Logger.Info($"Unable to find \"{SavePath}\" so a new one is being made.");
                 Write();
                 return;
             }
-            ModRegionNames = System.Text.Json.JsonSerializer.Deserialize<Dictionary<string, string>>(File.ReadAllText(SavePath))!;
+            try
+            {
+                ModRegionNames = System.Text.Json.JsonSerializer.Deserialize<Dictionary<string, string>>(File.ReadAllText(SavePath))!;
+            }
+            catch (Exception ex)
+            {
+                Logger.Exception(ex);
+                return;
+            }
+
 
             if (ModRegionNames is null)
             {
                 Logger.Warn($"ModRegionNames was null, this may be from an error in deserializing \"{SavePath}\"");
                 ModRegionNames = new();
             }
+            Logger.Success();
         }
         public static void Write()
         {
-            File.WriteAllText(SavePath, System.Text.Json.JsonSerializer.Serialize(ModRegionNames, new System.Text.Json.JsonSerializerOptions() { WriteIndented = true }));
+            Logger.WriteAttempt(SavePath);
+            try
+            {
+                File.WriteAllText(SavePath, System.Text.Json.JsonSerializer.Serialize(ModRegionNames, new System.Text.Json.JsonSerializerOptions() { WriteIndented = true }));
+            }
+            catch (Exception ex)
+            {
+                Logger.Exception(ex);
+                return;
+            }
+            Logger.Success();
         }
     }
 }
