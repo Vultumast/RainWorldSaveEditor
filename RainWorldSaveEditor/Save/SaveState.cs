@@ -96,7 +96,7 @@ public class SaveState : SaveElementContainer
     /// Contains serialized strings of swallowed items and creatures that were not recognized by the game. <para/>
     /// The game tries to parse them again on each save load.
     /// </summary>
-    [SaveFileElement("UNRECOGNIZEDSWALLOWED")]
+    [SaveFileElement("UNRECOGNIZEDSWALLOWED", ListDelimiter = "<svB>")]
     public List<string> UnrecognizedSwallowedItems { get; } = [];
 
     /// <summary>
@@ -168,7 +168,7 @@ public class SaveState : SaveElementContainer
     /// <summary>
     /// Tracks the total number of kills for each creature.
     /// </summary>
-    [SaveFileElement("KILLS")]
+    [SaveFileElement("KILLS", ListDelimiter="<svC>")]
     public List<(string Thing, string Count)> Kills { get; } = [];
 
     /// <summary>

@@ -154,7 +154,7 @@ public abstract class SaveElementContainer
         }
         else
         {
-            Logger.Error("Found List with unparsable type!");
+            Logger.Error($"Found Element List: \"{elementInfo.Name}\" with unparsable type: \"{propertyInfo.PropertyType}\"!");
             return false;
         }
     }
