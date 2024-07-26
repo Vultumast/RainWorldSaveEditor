@@ -12,9 +12,19 @@ namespace RainWorldSaveEditor;
 
 public enum LogReportType
 {
+    /// <summary>
+    /// Use for log printing
+    /// </summary>
     Info,
+    /// <summary>
+    /// Use for operations that may result in incorrect behavior
+    /// </summary>
     Warn,
+    /// <summary>
+    /// Use for operations that will result in incorrect behavior
+    /// </summary>
     Error,
+
     Debug,
     Trace
 }

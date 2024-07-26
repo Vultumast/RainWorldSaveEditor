@@ -153,6 +153,16 @@ namespace RainWorldSaveEditor.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap garbageworm_community_icon {
+            get {
+                object obj = ResourceManager.GetObject("garbageworm_community_icon", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap hunterdead {
             get {
                 object obj = ResourceManager.GetObject("hunterdead", resourceCulture);
@@ -166,6 +176,16 @@ namespace RainWorldSaveEditor.Properties {
         internal static System.Drawing.Bitmap hunterhappy {
             get {
                 object obj = ResourceManager.GetObject("hunterhappy", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap jetfish_community_icon {
+            get {
+                object obj = ResourceManager.GetObject("jetfish_community_icon", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -393,6 +413,16 @@ namespace RainWorldSaveEditor.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap lizard_community_icon {
+            get {
+                object obj = ResourceManager.GetObject("lizard_community_icon", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap lookstothemoondeadicon {
             get {
                 object obj = ResourceManager.GetObject("lookstothemoondeadicon", resourceCulture);
@@ -453,6 +483,26 @@ namespace RainWorldSaveEditor.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap raindeer_community_icon {
+            get {
+                object obj = ResourceManager.GetObject("raindeer_community_icon", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap scavenger_community_icon {
+            get {
+                object obj = ResourceManager.GetObject("scavenger_community_icon", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap shelter_icon {
             get {
                 object obj = ResourceManager.GetObject("shelter_icon", resourceCulture);
@@ -466,6 +516,16 @@ namespace RainWorldSaveEditor.Properties {
         internal static System.Drawing.Bitmap slugcatdead {
             get {
                 object obj = ResourceManager.GetObject("slugcatdead", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap squidcada_community_icon {
+            get {
+                object obj = ResourceManager.GetObject("squidcada_community_icon", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

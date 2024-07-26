@@ -300,4 +300,65 @@ public partial class SlugConfigControl : UserControl
     #endregion
 
 
+    private void communityListBox_DrawItem(object sender, DrawItemEventArgs e)
+    {
+        // Vultu: This might cuase GC pressure later
+        if (e.State.HasFlag(DrawItemState.Selected))
+        {
+            e.Graphics.FillRectangle(SystemBrushes.Highlight, e.Bounds);
+
+            var item = communityListBox.Items[e.Index].ToString();
+            var strHeight = e.Graphics.MeasureString(item, Font).Height;
+
+            e.Graphics.DrawString(item, Font, Brushes.White, e.Bounds.X + communityListBox.ItemHeight, (e.Bounds.Y + e.Bounds.Height / 2.0f) - (strHeight / 2.0f));
+        }
+        else
+        {
+            using SolidBrush bgBrush = new SolidBrush(communityListBox.BackColor);
+
+            e.Graphics.FillRectangle(bgBrush, e.Bounds);
+
+            var item = communityListBox.Items[e.Index].ToString();
+            var strHeight = e.Graphics.MeasureString(item, Font).Height;
+
+            e.Graphics.DrawString(item, Font, Brushes.Black, e.Bounds.X + communityListBox.ItemHeight, (e.Bounds.Y + e.Bounds.Height / 2.0f) - (strHeight / 2.0f));
+        }
+
+
+        // TEMP
+        Bitmap img = e.Index switch
+        {
+            1 => Properties.Resources.scavenger_community_icon,
+            2 => Properties.Resources.lizard_community_icon,
+            3 => Properties.Resources.squidcada_community_icon,
+            4 => Properties.Resources.garbageworm_community_icon,
+            5 => Properties.Resources.raindeer_community_icon,
+            6 => Properties.Resources.jetfish_community_icon,
+            _ => null!
+        };
+        // END OF TEMP
+
+        if (img is not null)
+        {
+            float imgHeight = communityListBox.ItemHeight;
+            float imgWidth = communityListBox.ItemHeight;
+
+            var aspectRatio = (float)img.Width / (float)img.Height;
+
+            // Logger.Trace($"Aspect Ratio[{e.Index}] {aspectRatio}");
+
+            if (img.Width > img.Height)
+                imgHeight = communityListBox.ItemHeight * aspectRatio;
+            else if (img.Height < img.Width)
+                imgWidth = communityListBox.ItemHeight * aspectRatio;
+
+            var imagePosCenter = new PointF(e.Bounds.X + (communityListBox.ItemHeight / 2.0f), e.Bounds.Y + (communityListBox.ItemHeight / 2.0f));
+            var imageSizeCenter = new PointF(imgHeight / 2.0f, imgWidth / 2.0f);
+
+            e.Graphics.DrawImage(img, imageSizeCenter.X - imageSizeCenter.X, imagePosCenter.Y - imageSizeCenter.Y, imgHeight, imgWidth);
+        }
+
+    }
+
+
 }

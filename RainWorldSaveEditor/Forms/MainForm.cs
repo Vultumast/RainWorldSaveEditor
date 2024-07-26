@@ -1,6 +1,7 @@
 using RainWorldSaveEditor.Editor_Classes;
 using RainWorldSaveEditor.Forms;
 using RainWorldSaveEditor.Save;
+using System.Diagnostics;
 using System.Text.Json;
 
 namespace RainWorldSaveEditor;
@@ -130,6 +131,13 @@ public partial class MainForm : Form
 
     private void openRainWorldSaveDirectoryToolStripMenuItem_Click(object sender, EventArgs e)
     {
+        if (Directory.Exists(settings.RainWorldDirectory))
+            Process.Start("explorer.exe", settings.RainWorldDirectory);
+        else
+            Logger.Error($"Unable to open directory: \"{settings.RainWorldDirectory}\"");
+    }
+    private void rainworldExecutableDirectoryToolStripMenuItem_Click(object sender, EventArgs e)
+    {
 
     }
 
@@ -177,4 +185,5 @@ public partial class MainForm : Form
     {
         Logger.ConsoleShown = !Logger.ConsoleShown;
     }
+
 }

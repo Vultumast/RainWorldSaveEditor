@@ -53,6 +53,7 @@ partial class MainForm
         toggleConsoleToolStripMenuItem = new ToolStripMenuItem();
         mainTabControl = new TabControl();
         slugcatIconImageList = new ImageList(components);
+        rainworldExecutableDirectoryToolStripMenuItem = new ToolStripMenuItem();
         menuStrip1.SuspendLayout();
         SuspendLayout();
         // 
@@ -74,7 +75,7 @@ partial class MainForm
         // 
         // openToolStripMenuItem
         // 
-        openToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { openRainWorldSaveDirectoryToolStripMenuItem });
+        openToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { openRainWorldSaveDirectoryToolStripMenuItem, rainworldExecutableDirectoryToolStripMenuItem });
         openToolStripMenuItem.Name = "openToolStripMenuItem";
         openToolStripMenuItem.Size = new Size(202, 22);
         openToolStripMenuItem.Text = "Open";
@@ -82,7 +83,7 @@ partial class MainForm
         // openRainWorldSaveDirectoryToolStripMenuItem
         // 
         openRainWorldSaveDirectoryToolStripMenuItem.Name = "openRainWorldSaveDirectoryToolStripMenuItem";
-        openRainWorldSaveDirectoryToolStripMenuItem.Size = new Size(210, 22);
+        openRainWorldSaveDirectoryToolStripMenuItem.Size = new Size(238, 22);
         openRainWorldSaveDirectoryToolStripMenuItem.Text = "Rain World Save Directory";
         openRainWorldSaveDirectoryToolStripMenuItem.Click += openRainWorldSaveDirectoryToolStripMenuItem_Click;
         // 
@@ -218,6 +219,13 @@ partial class MainForm
         slugcatIconImageList.ImageSize = new Size(16, 16);
         slugcatIconImageList.TransparentColor = Color.Transparent;
         // 
+        // rainworldExecutableDirectoryToolStripMenuItem
+        // 
+        rainworldExecutableDirectoryToolStripMenuItem.Name = "rainworldExecutableDirectoryToolStripMenuItem";
+        rainworldExecutableDirectoryToolStripMenuItem.Size = new Size(238, 22);
+        rainworldExecutableDirectoryToolStripMenuItem.Text = "Rainworld Executable Directory";
+        rainworldExecutableDirectoryToolStripMenuItem.Click += rainworldExecutableDirectoryToolStripMenuItem_Click;
+        // 
         // MainForm
         // 
         AutoScaleDimensions = new SizeF(7F, 15F);
@@ -261,4 +269,5 @@ partial class MainForm
     private ImageList slugcatIconImageList;
     private ToolStripMenuItem aboutToolStripMenuItem;
     private ToolStripMenuItem toggleConsoleToolStripMenuItem;
+    private ToolStripMenuItem rainworldExecutableDirectoryToolStripMenuItem;
 }
