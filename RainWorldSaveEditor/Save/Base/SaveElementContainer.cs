@@ -46,11 +46,6 @@ public abstract class SaveElementContainer
     {
         var parseMethodInfo = propertyInfo.PropertyType.GetParseMethod();
 
-        if (elementInfo.Name == "ASCENDED" || propertyInfo.Name == "ASCENDED")
-        {
-            Console.WriteLine("AWAw");
-        }
-
         if (propertyInfo.PropertyType == typeof(bool) && elementInfo.ValueOptional)
         {
             var setMethod = propertyInfo.GetSetMethod(true);
@@ -69,7 +64,7 @@ public abstract class SaveElementContainer
         {
             if (!elementInfo.ValueOptional && value == string.Empty)
             {
-                Console.WriteLine($"ERROR: \"{elementInfo.Name}\" is NOT marked as ValueOptional, but no value was provided! Tell Mario or Vultu!");
+                Logger.Error($"\"{elementInfo.Name}\" is NOT marked as ValueOptional, but no value was provided! Tell Mario or Vultu!");
                 return false;
             }
 
@@ -80,36 +75,36 @@ public abstract class SaveElementContainer
                     propertyInfo.GetSetMethod()!.Invoke(container, [value]);
 
                     // TODO Remove this later
-                    Logger.Debug($"{propertyInfo.DeclaringType?.Name}: {propertyInfo.Name} => {value} ({value?.GetType().Name})");
+                    // Logger.Debug($"{propertyInfo.DeclaringType?.Name}: {propertyInfo.Name} => {value} ({value?.GetType().Name})");
                 }
                 else
                 {
                     var propertyBinding = propertyInfo.GetValue(container);
 
 
-                    if (propertyBinding is null)
+                    /* if (propertyBinding is null)
                     {
-                        Console.WriteLine($"Unable to get property binding for \"{propertyInfo.Name}\" with container: \"{container.GetType()}\"");
+                        Logger.Error($"Unable to get property binding for \"{propertyInfo.Name}\" with container: \"{container.GetType()}\"");
                         return false;
-                    }
+                    } */
 
                     var data = parseMethodInfo!.Invoke(propertyBinding, [value, null]);
 
                     var setMethod = propertyInfo.GetSetMethod(true);
                     if (setMethod is null)
                     {
-                        Console.WriteLine($"Set Method was null for \"{propertyInfo.Name}\" with container: \"{container.GetType()}\"");
+                        Logger.Error($"Set Method was null for \"{propertyInfo.Name}\" with container: \"{container.GetType()}\"");
                         return false;
                     }
                     setMethod.Invoke(container, [data]);
 
                     // TODO Remove this later
-                    Logger.Debug($"{propertyInfo.DeclaringType?.Name}: {propertyInfo.Name} => {data} ({data?.GetType().Name})");
+                    // Logger.Debug($"{propertyInfo.DeclaringType?.Name}: {propertyInfo.Name} => {data} ({data?.GetType().Name})");
                 }
             }
             else
             {
-                Console.WriteLine($"DEBUG: UNABLE TO SET: \"{propertyInfo.Name}\"! Tell Mario or Vultu!");
+                Logger.Error($"UNABLE TO SET: \"{propertyInfo.Name}\"! Tell Mario or Vultu!");
                 return false;
             }
         }
@@ -159,17 +154,15 @@ public abstract class SaveElementContainer
         }
         else
         {
-            Console.WriteLine("Found List with unparsable type!");
+            Logger.Error("Found List with unparsable type!");
             return false;
         }
     }
 
     private static void HandleUnrecognizedField(SaveElementContainer container, PropertyInfo propertyInfo, string key, string value)
     {
-        Console.WriteLine($"DEBUG: {key} => {value}, \"{propertyInfo.PropertyType}\" does not derive from IParsable! Tell Mario or Vultu!");
-
         if (!container.UnrecognizedFields.TryAdd(key, value))
-            Console.WriteLine($"Unable to set \"{key}\" because it was already present!");
+            Logger.Warn($"Unable to set \"{key}\" because it was already present!");
 
         // TODO Remove this later
         Logger.Debug($"UNKWN: {key} => {value}");
@@ -182,6 +175,10 @@ public abstract class SaveElementContainer
             var elementInfo = container.SaveFileElements[key];
             var propertyInfo = container.PropertyInfos[key];
 
+            if (propertyInfo.Name == "KarmaFlowerPosition")
+            {
+                Console.WriteLine("awawa");
+            }
             var collectionInterface = propertyInfo.PropertyType.GetInterfaces().Where(x => x.IsGenericType && x.GetGenericTypeDefinition() == typeof(ICollection<>)).FirstOrDefault();
             var parsableInterface = propertyInfo.PropertyType.GetInterfaces().Where(x => x.IsGenericType && x.GetGenericTypeDefinition() == typeof(IParsable<>)).FirstOrDefault();
 
@@ -193,11 +190,13 @@ public abstract class SaveElementContainer
             else if (collectionInterface is not null)
             {
                 if (elementInfo.ListDelimiter is null)
-                    Logger.Info($"DEBUG: {key} => {value}, \"{propertyInfo.PropertyType}\" is a collection that doesn't have a delimiter! Tell Mario or Vultu!");
+                    Logger.Debug($"{key} => {value}, \"{propertyInfo.PropertyType}\" is a collection that doesn't have a delimiter! Tell Mario or Vultu!");
 
                 else if (SetListProperty(container, propertyInfo, elementInfo, value, collectionInterface))
                     return;
             }
+            else
+                Logger.Debug($"{key} => {value}, \"{propertyInfo.PropertyType}\" does not derive from IParsable! Tell Mario or Vultu!");
 
             HandleUnrecognizedField(container, propertyInfo, key, value);
         }

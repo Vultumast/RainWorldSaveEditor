@@ -23,7 +23,7 @@ public class RainWorldSave
         foreach ((var key, var value) in SaveUtils.GetFields(data, "<progDivB>", "<progDivA>"))
         {
             ParseSaveEntry(key, value);
-            Logger.Error("===Read a save entry===");
+            // Logger.Error("===Read a save entry===");
         }
     }
 
@@ -37,7 +37,7 @@ public class RainWorldSave
                 SaveStates.Add(saveState);
                 break;
             default:
-                Logger.Error($"Failed to parse save entry {entryId}");
+                Logger.Warn($"Unknown Save Entry: \"{entryId}\"");
                 break;
         }
 

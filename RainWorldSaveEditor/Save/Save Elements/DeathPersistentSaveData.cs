@@ -36,7 +36,7 @@ public class DeathPersistentSaveData : SaveElementContainer, IParsable<DeathPers
     /// Position of Karma Flower created upon player death.
     /// </summary>
     [SaveFileElement("FLOWERPOS")]
-    public WorldCoordinate? KarmaFlowerPosition { get; set; }
+    public WorldCoordinate KarmaFlowerPosition { get; set; }
 
     // TODO: GHOSTS
     // TODO: SONGSPLAYRECORDS
