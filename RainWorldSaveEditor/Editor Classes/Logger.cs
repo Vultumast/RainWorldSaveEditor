@@ -140,7 +140,7 @@ public static class Logger
             _ => "[????]"
         };
 
-        _logWriter.WriteLineAsync(header + message);
+        _logWriter.WriteLine(header + message);
 
 
         Console.ForegroundColor = reportType switch

@@ -32,13 +32,17 @@
             FoodPipControl = new FoodPipControl();
             cycleNumberNumericUpDown = new NumericUpDown();
             label1 = new Label();
-            tabControl1 = new TabControl();
+            tabControl = new TabControl();
             slugcatInfoTabPage = new TabPage();
-            guideOverseerDeadCheckBox = new CheckBox();
-            extraHunterCyclesCheckBox = new CheckBox();
-            moonsCloakCheckBox = new CheckBox();
-            justBeatGameCheckBox = new CheckBox();
+            markOfCommunicationCheckBox = new CheckBox();
+            groupBox1 = new GroupBox();
             citizenIDDroneCheckBox = new CheckBox();
+            moonsCloakCheckBox = new CheckBox();
+            pictureBox5 = new PictureBox();
+            extraHunterCyclesCheckBox = new CheckBox();
+            pictureBox6 = new PictureBox();
+            guideOverseerDeadCheckBox = new CheckBox();
+            justBeatGameCheckBox = new CheckBox();
             pictureBox1 = new PictureBox();
             neuronGlowCheckBox = new CheckBox();
             denInfoGroupBox = new GroupBox();
@@ -48,19 +52,20 @@
             currentDenLabel = new Label();
             slugcatInfoKarmaGroupBox = new GroupBox();
             KarmaSelectorControl = new KarmaSelectorControl();
+            communitiesTabPage = new TabPage();
+            communityRegionRepDataGridView = new DataGridView();
+            communityListBox = new ListBox();
             worldInfoTabPage = new TabPage();
             worldInfoTabControl = new TabControl();
             commonWorldInfoTabPage = new TabPage();
             worldInfoOutskirtstabPage = new TabPage();
             tabPage1 = new TabPage();
             persistentInfoTabPage = new TabPage();
-            markOfCommunicationCheckBox = new CheckBox();
             pictureBox4 = new PictureBox();
             pictureBox3 = new PictureBox();
             pictureBox2 = new PictureBox();
             hunterPermaDeathCheckBox = new CheckBox();
             ascendedCheckBox = new CheckBox();
-            label2 = new Label();
             ascendedFivePebblesCheckBox = new CheckBox();
             ascendedLooksToTheMoonCheckBox = new CheckBox();
             totalsGroupBox = new GroupBox();
@@ -77,15 +82,17 @@
             karmaFlowerGroupBox = new GroupBox();
             karmaFlowerWorldPositionEditControl = new WorldPositionEditControl();
             commonToolTip = new ToolTip(components);
-            pictureBox5 = new PictureBox();
-            pictureBox6 = new PictureBox();
-            label3 = new Label();
             ((System.ComponentModel.ISupportInitialize)cycleNumberNumericUpDown).BeginInit();
-            tabControl1.SuspendLayout();
+            tabControl.SuspendLayout();
             slugcatInfoTabPage.SuspendLayout();
+            groupBox1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)pictureBox5).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox6).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             denInfoGroupBox.SuspendLayout();
             slugcatInfoKarmaGroupBox.SuspendLayout();
+            communitiesTabPage.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)communityRegionRepDataGridView).BeginInit();
             worldInfoTabPage.SuspendLayout();
             worldInfoTabControl.SuspendLayout();
             persistentInfoTabPage.SuspendLayout();
@@ -99,8 +106,6 @@
             ((System.ComponentModel.ISupportInitialize)totalFoodNumericUpDown).BeginInit();
             ((System.ComponentModel.ISupportInitialize)totalDeathsNumericUpDown).BeginInit();
             karmaFlowerGroupBox.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)pictureBox5).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)pictureBox6).BeginInit();
             SuspendLayout();
             // 
             // FoodPipControl
@@ -130,29 +135,27 @@
             label1.TabIndex = 2;
             label1.Text = "Cycle Number:";
             // 
-            // tabControl1
+            // tabControl
             // 
-            tabControl1.Controls.Add(slugcatInfoTabPage);
-            tabControl1.Controls.Add(worldInfoTabPage);
-            tabControl1.Controls.Add(persistentInfoTabPage);
-            tabControl1.Dock = DockStyle.Fill;
-            tabControl1.Location = new Point(0, 0);
-            tabControl1.Name = "tabControl1";
-            tabControl1.SelectedIndex = 0;
-            tabControl1.Size = new Size(549, 440);
-            tabControl1.TabIndex = 3;
+            tabControl.Controls.Add(slugcatInfoTabPage);
+            tabControl.Controls.Add(communitiesTabPage);
+            tabControl.Controls.Add(worldInfoTabPage);
+            tabControl.Controls.Add(persistentInfoTabPage);
+            tabControl.Dock = DockStyle.Fill;
+            tabControl.Location = new Point(0, 0);
+            tabControl.Name = "tabControl";
+            tabControl.SelectedIndex = 0;
+            tabControl.Size = new Size(549, 440);
+            tabControl.TabIndex = 3;
             // 
             // slugcatInfoTabPage
             // 
             slugcatInfoTabPage.BackColor = SystemColors.Control;
-            slugcatInfoTabPage.Controls.Add(label3);
+            slugcatInfoTabPage.Controls.Add(markOfCommunicationCheckBox);
+            slugcatInfoTabPage.Controls.Add(groupBox1);
             slugcatInfoTabPage.Controls.Add(pictureBox6);
-            slugcatInfoTabPage.Controls.Add(pictureBox5);
             slugcatInfoTabPage.Controls.Add(guideOverseerDeadCheckBox);
-            slugcatInfoTabPage.Controls.Add(extraHunterCyclesCheckBox);
-            slugcatInfoTabPage.Controls.Add(moonsCloakCheckBox);
             slugcatInfoTabPage.Controls.Add(justBeatGameCheckBox);
-            slugcatInfoTabPage.Controls.Add(citizenIDDroneCheckBox);
             slugcatInfoTabPage.Controls.Add(pictureBox1);
             slugcatInfoTabPage.Controls.Add(neuronGlowCheckBox);
             slugcatInfoTabPage.Controls.Add(denInfoGroupBox);
@@ -166,22 +169,68 @@
             slugcatInfoTabPage.Size = new Size(541, 412);
             slugcatInfoTabPage.TabIndex = 0;
             slugcatInfoTabPage.Text = "Slugcat Info";
+            slugcatInfoTabPage.ToolTipText = "Data relating to your slugcat";
             // 
-            // guideOverseerDeadCheckBox
+            // markOfCommunicationCheckBox
             // 
-            guideOverseerDeadCheckBox.AutoSize = true;
-            guideOverseerDeadCheckBox.Location = new Point(253, 102);
-            guideOverseerDeadCheckBox.Name = "guideOverseerDeadCheckBox";
-            guideOverseerDeadCheckBox.Size = new Size(136, 19);
-            guideOverseerDeadCheckBox.TabIndex = 15;
-            guideOverseerDeadCheckBox.Text = "Guide Overseer Dead";
-            commonToolTip.SetToolTip(guideOverseerDeadCheckBox, "Did you kill the Guide Overseer?");
-            guideOverseerDeadCheckBox.UseVisualStyleBackColor = true;
+            markOfCommunicationCheckBox.AutoSize = true;
+            markOfCommunicationCheckBox.Location = new Point(253, 102);
+            markOfCommunicationCheckBox.Name = "markOfCommunicationCheckBox";
+            markOfCommunicationCheckBox.Size = new Size(154, 19);
+            markOfCommunicationCheckBox.TabIndex = 19;
+            markOfCommunicationCheckBox.Text = "Mark of Communcation";
+            commonToolTip.SetToolTip(markOfCommunicationCheckBox, "Do you have the Mark of Communication?");
+            markOfCommunicationCheckBox.UseVisualStyleBackColor = true;
+            // 
+            // groupBox1
+            // 
+            groupBox1.Controls.Add(citizenIDDroneCheckBox);
+            groupBox1.Controls.Add(moonsCloakCheckBox);
+            groupBox1.Controls.Add(pictureBox5);
+            groupBox1.Controls.Add(extraHunterCyclesCheckBox);
+            groupBox1.Location = new Point(253, 179);
+            groupBox1.Name = "groupBox1";
+            groupBox1.Size = new Size(200, 100);
+            groupBox1.TabIndex = 18;
+            groupBox1.TabStop = false;
+            groupBox1.Text = "Slugcat Specific";
+            // 
+            // citizenIDDroneCheckBox
+            // 
+            citizenIDDroneCheckBox.AutoSize = true;
+            citizenIDDroneCheckBox.Location = new Point(35, 22);
+            citizenIDDroneCheckBox.Name = "citizenIDDroneCheckBox";
+            citizenIDDroneCheckBox.Size = new Size(111, 19);
+            citizenIDDroneCheckBox.TabIndex = 11;
+            citizenIDDroneCheckBox.Text = "Citizen ID Drone";
+            commonToolTip.SetToolTip(citizenIDDroneCheckBox, "Do you have Artificer's citizen ID drone?");
+            citizenIDDroneCheckBox.UseVisualStyleBackColor = true;
+            // 
+            // moonsCloakCheckBox
+            // 
+            moonsCloakCheckBox.AutoSize = true;
+            moonsCloakCheckBox.Location = new Point(35, 72);
+            moonsCloakCheckBox.Name = "moonsCloakCheckBox";
+            moonsCloakCheckBox.Size = new Size(99, 19);
+            moonsCloakCheckBox.TabIndex = 13;
+            moonsCloakCheckBox.Text = "Moon's Cloak";
+            commonToolTip.SetToolTip(moonsCloakCheckBox, "Are you wearing Moon's Cloak?");
+            moonsCloakCheckBox.UseVisualStyleBackColor = true;
+            // 
+            // pictureBox5
+            // 
+            pictureBox5.BackgroundImage = Properties.Resources.hunterhappy;
+            pictureBox5.BackgroundImageLayout = ImageLayout.Center;
+            pictureBox5.Location = new Point(6, 45);
+            pictureBox5.Name = "pictureBox5";
+            pictureBox5.Size = new Size(23, 23);
+            pictureBox5.TabIndex = 16;
+            pictureBox5.TabStop = false;
             // 
             // extraHunterCyclesCheckBox
             // 
             extraHunterCyclesCheckBox.AutoSize = true;
-            extraHunterCyclesCheckBox.Location = new Point(253, 247);
+            extraHunterCyclesCheckBox.Location = new Point(35, 47);
             extraHunterCyclesCheckBox.Name = "extraHunterCyclesCheckBox";
             extraHunterCyclesCheckBox.Size = new Size(162, 19);
             extraHunterCyclesCheckBox.TabIndex = 14;
@@ -189,16 +238,26 @@
             commonToolTip.SetToolTip(extraHunterCyclesCheckBox, "Did Five Pebbles give Hunter Extra Cycles?");
             extraHunterCyclesCheckBox.UseVisualStyleBackColor = true;
             // 
-            // moonsCloakCheckBox
+            // pictureBox6
             // 
-            moonsCloakCheckBox.AutoSize = true;
-            moonsCloakCheckBox.Location = new Point(253, 274);
-            moonsCloakCheckBox.Name = "moonsCloakCheckBox";
-            moonsCloakCheckBox.Size = new Size(99, 19);
-            moonsCloakCheckBox.TabIndex = 13;
-            moonsCloakCheckBox.Text = "Moon's Cloak";
-            commonToolTip.SetToolTip(moonsCloakCheckBox, "Are you wearing Moon's Cloak?");
-            moonsCloakCheckBox.UseVisualStyleBackColor = true;
+            pictureBox6.BackgroundImageLayout = ImageLayout.Center;
+            pictureBox6.Image = Properties.Resources.Yellow_Overseer_icon;
+            pictureBox6.Location = new Point(250, 327);
+            pictureBox6.Name = "pictureBox6";
+            pictureBox6.Size = new Size(23, 23);
+            pictureBox6.TabIndex = 17;
+            pictureBox6.TabStop = false;
+            // 
+            // guideOverseerDeadCheckBox
+            // 
+            guideOverseerDeadCheckBox.AutoSize = true;
+            guideOverseerDeadCheckBox.Location = new Point(279, 327);
+            guideOverseerDeadCheckBox.Name = "guideOverseerDeadCheckBox";
+            guideOverseerDeadCheckBox.Size = new Size(136, 19);
+            guideOverseerDeadCheckBox.TabIndex = 15;
+            guideOverseerDeadCheckBox.Text = "Guide Overseer Dead";
+            commonToolTip.SetToolTip(guideOverseerDeadCheckBox, "Did you kill the Guide Overseer?");
+            guideOverseerDeadCheckBox.UseVisualStyleBackColor = true;
             // 
             // justBeatGameCheckBox
             // 
@@ -210,17 +269,6 @@
             justBeatGameCheckBox.Text = "Just Beat Game";
             commonToolTip.SetToolTip(justBeatGameCheckBox, "Was the last exit the result of you beating the game?");
             justBeatGameCheckBox.UseVisualStyleBackColor = true;
-            // 
-            // citizenIDDroneCheckBox
-            // 
-            citizenIDDroneCheckBox.AutoSize = true;
-            citizenIDDroneCheckBox.Location = new Point(253, 222);
-            citizenIDDroneCheckBox.Name = "citizenIDDroneCheckBox";
-            citizenIDDroneCheckBox.Size = new Size(111, 19);
-            citizenIDDroneCheckBox.TabIndex = 11;
-            citizenIDDroneCheckBox.Text = "Citizen ID Drone";
-            commonToolTip.SetToolTip(citizenIDDroneCheckBox, "Do you have Artificer's citizen ID drone?");
-            citizenIDDroneCheckBox.UseVisualStyleBackColor = true;
             // 
             // pictureBox1
             // 
@@ -273,9 +321,9 @@
             // 
             // currentDenTextBox
             // 
-            currentDenTextBox.Location = new Point(86, 16);
+            currentDenTextBox.Location = new Point(104, 16);
             currentDenTextBox.Name = "currentDenTextBox";
-            currentDenTextBox.Size = new Size(113, 23);
+            currentDenTextBox.Size = new Size(95, 23);
             currentDenTextBox.TabIndex = 5;
             // 
             // currentDenLabel
@@ -307,6 +355,48 @@
             KarmaSelectorControl.Reinforced = false;
             KarmaSelectorControl.Size = new Size(193, 96);
             KarmaSelectorControl.TabIndex = 3;
+            // 
+            // communitiesTabPage
+            // 
+            communitiesTabPage.Controls.Add(communityRegionRepDataGridView);
+            communitiesTabPage.Controls.Add(communityListBox);
+            communitiesTabPage.Location = new Point(4, 24);
+            communitiesTabPage.Name = "communitiesTabPage";
+            communitiesTabPage.Padding = new Padding(3);
+            communitiesTabPage.Size = new Size(541, 412);
+            communitiesTabPage.TabIndex = 3;
+            communitiesTabPage.Text = "Communities";
+            communitiesTabPage.ToolTipText = "Data relating to creature communities";
+            communitiesTabPage.UseVisualStyleBackColor = true;
+            // 
+            // communityRegionRepDataGridView
+            // 
+            communityRegionRepDataGridView.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            communityRegionRepDataGridView.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            communityRegionRepDataGridView.Location = new Point(206, 6);
+            communityRegionRepDataGridView.MultiSelect = false;
+            communityRegionRepDataGridView.Name = "communityRegionRepDataGridView";
+            communityRegionRepDataGridView.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            communityRegionRepDataGridView.Size = new Size(329, 400);
+            communityRegionRepDataGridView.TabIndex = 3;
+            communityRegionRepDataGridView.CellBeginEdit += communityRegionRepDataGridView_CellBeginEdit;
+            communityRegionRepDataGridView.CellEndEdit += communityRegionRepDataGridView_CellEndEdit;
+            communityRegionRepDataGridView.UserAddedRow += communityRegionRepDataGridView_UserAddedRow;
+            communityRegionRepDataGridView.UserDeletedRow += communityRegionRepDataGridView_UserDeletedRow;
+            communityRegionRepDataGridView.UserDeletingRow += communityRegionRepDataGridView_UserDeletingRow;
+            // 
+            // communityListBox
+            // 
+            communityListBox.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left;
+            communityListBox.FormattingEnabled = true;
+            communityListBox.IntegralHeight = false;
+            communityListBox.ItemHeight = 15;
+            communityListBox.Items.AddRange(new object[] { "Scavengers", "Lizards", "Cicadas", "Garbage Worms", "Deer", "Jet Fish" });
+            communityListBox.Location = new Point(6, 6);
+            communityListBox.Name = "communityListBox";
+            communityListBox.Size = new Size(194, 400);
+            communityListBox.TabIndex = 0;
+            communityListBox.SelectedIndexChanged += communityListBox_SelectedIndexChanged;
             // 
             // worldInfoTabPage
             // 
@@ -364,13 +454,11 @@
             // persistentInfoTabPage
             // 
             persistentInfoTabPage.BackColor = SystemColors.Control;
-            persistentInfoTabPage.Controls.Add(markOfCommunicationCheckBox);
             persistentInfoTabPage.Controls.Add(pictureBox4);
             persistentInfoTabPage.Controls.Add(pictureBox3);
             persistentInfoTabPage.Controls.Add(pictureBox2);
             persistentInfoTabPage.Controls.Add(hunterPermaDeathCheckBox);
             persistentInfoTabPage.Controls.Add(ascendedCheckBox);
-            persistentInfoTabPage.Controls.Add(label2);
             persistentInfoTabPage.Controls.Add(ascendedFivePebblesCheckBox);
             persistentInfoTabPage.Controls.Add(ascendedLooksToTheMoonCheckBox);
             persistentInfoTabPage.Controls.Add(totalsGroupBox);
@@ -382,16 +470,6 @@
             persistentInfoTabPage.TabIndex = 2;
             persistentInfoTabPage.Text = "Persistent Info";
             persistentInfoTabPage.ToolTipText = "Data that persists across death";
-            // 
-            // markOfCommunicationCheckBox
-            // 
-            markOfCommunicationCheckBox.AutoSize = true;
-            markOfCommunicationCheckBox.Location = new Point(349, 125);
-            markOfCommunicationCheckBox.Name = "markOfCommunicationCheckBox";
-            markOfCommunicationCheckBox.Size = new Size(180, 19);
-            markOfCommunicationCheckBox.TabIndex = 10;
-            markOfCommunicationCheckBox.Text = "Has Mark of Communication";
-            markOfCommunicationCheckBox.UseVisualStyleBackColor = true;
             // 
             // pictureBox4
             // 
@@ -441,15 +519,6 @@
             ascendedCheckBox.Text = "Ascended";
             commonToolTip.SetToolTip(ascendedCheckBox, "Has this slugcat ascended?");
             ascendedCheckBox.UseVisualStyleBackColor = true;
-            // 
-            // label2
-            // 
-            label2.AutoSize = true;
-            label2.Location = new Point(348, 178);
-            label2.Name = "label2";
-            label2.Size = new Size(181, 15);
-            label2.TabIndex = 4;
-            label2.Text = "idk how to sort these yet sorry lol";
             // 
             // ascendedFivePebblesCheckBox
             // 
@@ -604,51 +673,28 @@
             karmaFlowerWorldPositionEditControl.X = 0;
             karmaFlowerWorldPositionEditControl.Y = 0;
             // 
-            // pictureBox5
-            // 
-            pictureBox5.BackgroundImage = Properties.Resources.hunterhappy;
-            pictureBox5.BackgroundImageLayout = ImageLayout.Center;
-            pictureBox5.Location = new Point(224, 245);
-            pictureBox5.Name = "pictureBox5";
-            pictureBox5.Size = new Size(23, 23);
-            pictureBox5.TabIndex = 16;
-            pictureBox5.TabStop = false;
-            // 
-            // pictureBox6
-            // 
-            pictureBox6.BackgroundImageLayout = ImageLayout.Center;
-            pictureBox6.Image = Properties.Resources.Yellow_Overseer_icon;
-            pictureBox6.Location = new Point(224, 102);
-            pictureBox6.Name = "pictureBox6";
-            pictureBox6.Size = new Size(23, 23);
-            pictureBox6.TabIndex = 17;
-            pictureBox6.TabStop = false;
-            // 
-            // label3
-            // 
-            label3.AutoSize = true;
-            label3.Location = new Point(234, 204);
-            label3.Name = "label3";
-            label3.Size = new Size(234, 15);
-            label3.TabIndex = 18;
-            label3.Text = "slug cat specific (make this groupbox alter)";
-            // 
             // SlugConfigControl
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            Controls.Add(tabControl1);
+            Controls.Add(tabControl);
             Name = "SlugConfigControl";
             Size = new Size(549, 440);
             Load += SlugConfigControl_Load;
             ((System.ComponentModel.ISupportInitialize)cycleNumberNumericUpDown).EndInit();
-            tabControl1.ResumeLayout(false);
+            tabControl.ResumeLayout(false);
             slugcatInfoTabPage.ResumeLayout(false);
             slugcatInfoTabPage.PerformLayout();
+            groupBox1.ResumeLayout(false);
+            groupBox1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)pictureBox5).EndInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox6).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             denInfoGroupBox.ResumeLayout(false);
             denInfoGroupBox.PerformLayout();
             slugcatInfoKarmaGroupBox.ResumeLayout(false);
+            communitiesTabPage.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)communityRegionRepDataGridView).EndInit();
             worldInfoTabPage.ResumeLayout(false);
             worldInfoTabControl.ResumeLayout(false);
             persistentInfoTabPage.ResumeLayout(false);
@@ -664,8 +710,6 @@
             ((System.ComponentModel.ISupportInitialize)totalFoodNumericUpDown).EndInit();
             ((System.ComponentModel.ISupportInitialize)totalDeathsNumericUpDown).EndInit();
             karmaFlowerGroupBox.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)pictureBox5).EndInit();
-            ((System.ComponentModel.ISupportInitialize)pictureBox6).EndInit();
             ResumeLayout(false);
         }
 
@@ -673,7 +717,7 @@
         private NumericUpDown cycleNumberNumericUpDown;
         private Label label1;
         public FoodPipControl FoodPipControl;
-        private TabControl tabControl1;
+        private TabControl tabControl;
         private TabPage slugcatInfoTabPage;
         private TabPage worldInfoTabPage;
         private TabPage persistentInfoTabPage;
@@ -704,14 +748,12 @@
         private CheckBox ascendedLooksToTheMoonCheckBox;
         private CheckBox hunterPermaDeathCheckBox;
         private CheckBox ascendedCheckBox;
-        private Label label2;
         private CheckBox ascendedFivePebblesCheckBox;
         private CheckBox neuronGlowCheckBox;
         private PictureBox pictureBox1;
         private PictureBox pictureBox2;
         private PictureBox pictureBox3;
         private PictureBox pictureBox4;
-        private CheckBox markOfCommunicationCheckBox;
         private ToolTip commonToolTip;
         private CheckBox moonsCloakCheckBox;
         private CheckBox justBeatGameCheckBox;
@@ -719,7 +761,11 @@
         private CheckBox extraHunterCyclesCheckBox;
         private CheckBox guideOverseerDeadCheckBox;
         private PictureBox pictureBox5;
-        private Label label3;
         private PictureBox pictureBox6;
+        private CheckBox markOfCommunicationCheckBox;
+        private GroupBox groupBox1;
+        private TabPage communitiesTabPage;
+        private ListBox communityListBox;
+        private DataGridView communityRegionRepDataGridView;
     }
 }
