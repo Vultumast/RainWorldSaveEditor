@@ -37,11 +37,6 @@ public partial class SlugConfigControl : UserControl
         SetupSlugCatInfoTabPageFromState(state);
         SetupPersistentDataInfoTabPageFromState(state);
         SetupAdvancedInfoTabPage(state);
-
-        if (state.SwallowedItems.Count > 0)
-        {
-            Console.WriteLine("awaw");
-        }
     }
 
     private void SetupSlugCatInfoTabPageFromState(SaveState state)
@@ -223,6 +218,9 @@ public partial class SlugConfigControl : UserControl
         var userValue = _communitiesDataTable.Rows[e.RowIndex][e.ColumnIndex].ToString();
         var userValueCaps = userValue!.ToUpper();
 
+        if (userValue == _communityCellPreValue)
+            return;
+
         switch (e.ColumnIndex)
         {
             case 0:
@@ -261,7 +259,7 @@ public partial class SlugConfigControl : UserControl
 
     private void communityRegionRepDataGridView_UserAddedRow(object sender, DataGridViewRowEventArgs e)
     {
-        _communitiesDataTable.Rows.Add();
+
 
 
     }

@@ -419,6 +419,7 @@
             // 
             // communityRegionRepDataGridView
             // 
+            communityRegionRepDataGridView.AllowUserToAddRows = false;
             communityRegionRepDataGridView.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             communityRegionRepDataGridView.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             communityRegionRepDataGridView.Enabled = false;
