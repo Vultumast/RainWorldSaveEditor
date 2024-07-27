@@ -10,8 +10,9 @@ namespace RainWorldSaveEditor.Editor_Classes
     public static class Translation
     {
         public const string SavePath = "Resources\\modded_region_names.json";
+        public static System.Text.Json.JsonSerializerOptions JSONSerializerOptions { get; private set; } = new() { WriteIndented = true };
 
-        public static Dictionary<string, string> RegionNames = new()
+        public static Dictionary<string, string> RegionNames { get; private set; } = new()
         {
             // Base game
             { "SU", "Outskirts" },
@@ -49,7 +50,7 @@ namespace RainWorldSaveEditor.Editor_Classes
         };
 
         // List taken from https://rainworldmods.miraheze.org/wiki/Regions
-        public static Dictionary<string, string> ModRegionNames = new()
+        public static Dictionary<string, string> ModRegionNames { get; private set; } = new()
         {
             { "ZZ", "Aerial Arrays" },
             { "KF", "Archaic Facility" },
@@ -143,11 +144,13 @@ namespace RainWorldSaveEditor.Editor_Classes
             if (internalname == "EVERY" || internalname == "ALL")
                 return internalname;
 
-            if (RegionNames.ContainsKey(internalname))
-                return RegionNames[internalname];
+            string value;
 
-            if (ModRegionNames.ContainsKey(internalname))
-                return ModRegionNames[internalname];
+            if (RegionNames.TryGetValue(internalname, out value!))
+                return value;
+
+            if (ModRegionNames.TryGetValue(internalname, out value!))
+                return value;
 
             return $"Unknown Region: \"{internalname}\"";
         }
@@ -176,7 +179,7 @@ namespace RainWorldSaveEditor.Editor_Classes
             if (ModRegionNames is null)
             {
                 Logger.Warn($"ModRegionNames was null, this may be from an error in deserializing \"{SavePath}\"");
-                ModRegionNames = new();
+                ModRegionNames = [];
             }
             Logger.Success();
         }
@@ -185,7 +188,7 @@ namespace RainWorldSaveEditor.Editor_Classes
             Logger.WriteAttempt(SavePath);
             try
             {
-                File.WriteAllText(SavePath, System.Text.Json.JsonSerializer.Serialize(ModRegionNames, new System.Text.Json.JsonSerializerOptions() { WriteIndented = true }));
+                File.WriteAllText(SavePath, System.Text.Json.JsonSerializer.Serialize(ModRegionNames, JSONSerializerOptions));
             }
             catch (Exception ex)
             {

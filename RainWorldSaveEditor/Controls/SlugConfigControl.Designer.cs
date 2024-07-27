@@ -67,7 +67,7 @@
             rngNextIssueIDNumericUpDown = new NumericUpDown();
             rngSeedLabel = new Label();
             rngSeedNumericUpDown = new NumericUpDown();
-            pictureBox4 = new PictureBox();
+            currentlyDeadPictureBox = new PictureBox();
             pictureBox3 = new PictureBox();
             pictureBox2 = new PictureBox();
             hunterPermaDeathCheckBox = new CheckBox();
@@ -95,6 +95,7 @@
             initialGameVersionNumericUpDown = new NumericUpDown();
             gameVerisonNumericUpDown = new NumericUpDown();
             commonToolTip = new ToolTip(components);
+            citizenIDDronePictureBox = new PictureBox();
             ((System.ComponentModel.ISupportInitialize)cycleNumberNumericUpDown).BeginInit();
             tabControl.SuspendLayout();
             slugcatInfoTabPage.SuspendLayout();
@@ -113,7 +114,7 @@
             rngGroupBox.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)rngNextIssueIDNumericUpDown).BeginInit();
             ((System.ComponentModel.ISupportInitialize)rngSeedNumericUpDown).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)pictureBox4).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)currentlyDeadPictureBox).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox3).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
             totalsGroupBox.SuspendLayout();
@@ -127,6 +128,7 @@
             ((System.ComponentModel.ISupportInitialize)worldVersionNumericUpDown).BeginInit();
             ((System.ComponentModel.ISupportInitialize)initialGameVersionNumericUpDown).BeginInit();
             ((System.ComponentModel.ISupportInitialize)gameVerisonNumericUpDown).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)citizenIDDronePictureBox).BeginInit();
             SuspendLayout();
             // 
             // FoodPipControl
@@ -210,6 +212,7 @@
             // 
             // groupBox1
             // 
+            groupBox1.Controls.Add(citizenIDDronePictureBox);
             groupBox1.Controls.Add(pictureBox7);
             groupBox1.Controls.Add(citizenIDDroneCheckBox);
             groupBox1.Controls.Add(moonsCloakCheckBox);
@@ -217,7 +220,7 @@
             groupBox1.Controls.Add(extraHunterCyclesCheckBox);
             groupBox1.Location = new Point(224, 227);
             groupBox1.Name = "groupBox1";
-            groupBox1.Size = new Size(200, 100);
+            groupBox1.Size = new Size(200, 107);
             groupBox1.TabIndex = 18;
             groupBox1.TabStop = false;
             groupBox1.Text = "Slugcat Specific";
@@ -225,10 +228,10 @@
             // pictureBox7
             // 
             pictureBox7.BackgroundImage = Properties.Resources.lttm_cloak_icon;
-            pictureBox7.BackgroundImageLayout = ImageLayout.Center;
-            pictureBox7.Location = new Point(6, 69);
+            pictureBox7.BackgroundImageLayout = ImageLayout.Stretch;
+            pictureBox7.Location = new Point(6, 77);
             pictureBox7.Name = "pictureBox7";
-            pictureBox7.Size = new Size(23, 25);
+            pictureBox7.Size = new Size(23, 23);
             pictureBox7.TabIndex = 20;
             pictureBox7.TabStop = false;
             // 
@@ -247,7 +250,7 @@
             // moonsCloakCheckBox
             // 
             moonsCloakCheckBox.AutoSize = true;
-            moonsCloakCheckBox.Location = new Point(35, 72);
+            moonsCloakCheckBox.Location = new Point(35, 77);
             moonsCloakCheckBox.Name = "moonsCloakCheckBox";
             moonsCloakCheckBox.Size = new Size(99, 19);
             moonsCloakCheckBox.TabIndex = 13;
@@ -258,9 +261,9 @@
             // 
             // pictureBox5
             // 
-            pictureBox5.BackgroundImage = Properties.Resources.hunterhappy;
+            pictureBox5.BackgroundImage = Properties.Resources.hunter_happy;
             pictureBox5.BackgroundImageLayout = ImageLayout.Center;
-            pictureBox5.Location = new Point(6, 45);
+            pictureBox5.Location = new Point(6, 48);
             pictureBox5.Name = "pictureBox5";
             pictureBox5.Size = new Size(23, 23);
             pictureBox5.TabIndex = 16;
@@ -269,7 +272,7 @@
             // extraHunterCyclesCheckBox
             // 
             extraHunterCyclesCheckBox.AutoSize = true;
-            extraHunterCyclesCheckBox.Location = new Point(35, 47);
+            extraHunterCyclesCheckBox.Location = new Point(35, 52);
             extraHunterCyclesCheckBox.Name = "extraHunterCyclesCheckBox";
             extraHunterCyclesCheckBox.Size = new Size(162, 19);
             extraHunterCyclesCheckBox.TabIndex = 14;
@@ -313,10 +316,11 @@
             // 
             // pictureBox1
             // 
-            pictureBox1.Image = Properties.Resources.Neuron_Fly;
-            pictureBox1.Location = new Point(263, 146);
+            pictureBox1.BackgroundImage = Properties.Resources.Neuron_Fly;
+            pictureBox1.BackgroundImageLayout = ImageLayout.Center;
+            pictureBox1.Location = new Point(243, 148);
             pictureBox1.Name = "pictureBox1";
-            pictureBox1.Size = new Size(11, 26);
+            pictureBox1.Size = new Size(23, 23);
             pictureBox1.TabIndex = 10;
             pictureBox1.TabStop = false;
             // 
@@ -507,7 +511,7 @@
             // 
             persistentInfoTabPage.BackColor = SystemColors.Control;
             persistentInfoTabPage.Controls.Add(rngGroupBox);
-            persistentInfoTabPage.Controls.Add(pictureBox4);
+            persistentInfoTabPage.Controls.Add(currentlyDeadPictureBox);
             persistentInfoTabPage.Controls.Add(pictureBox3);
             persistentInfoTabPage.Controls.Add(pictureBox2);
             persistentInfoTabPage.Controls.Add(hunterPermaDeathCheckBox);
@@ -575,30 +579,33 @@
             rngSeedNumericUpDown.TabIndex = 10;
             commonToolTip.SetToolTip(rngSeedNumericUpDown, "The RNG Seed assigned to your save file when you created it");
             // 
-            // pictureBox4
+            // currentlyDeadPictureBox
             // 
-            pictureBox4.Image = Properties.Resources.slugcatdead;
-            pictureBox4.Location = new Point(306, 296);
-            pictureBox4.Name = "pictureBox4";
-            pictureBox4.Size = new Size(23, 24);
-            pictureBox4.TabIndex = 9;
-            pictureBox4.TabStop = false;
+            currentlyDeadPictureBox.BackgroundImage = Properties.Resources.slugcat_dead;
+            currentlyDeadPictureBox.BackgroundImageLayout = ImageLayout.Center;
+            currentlyDeadPictureBox.Location = new Point(306, 296);
+            currentlyDeadPictureBox.Name = "currentlyDeadPictureBox";
+            currentlyDeadPictureBox.Size = new Size(24, 24);
+            currentlyDeadPictureBox.TabIndex = 9;
+            currentlyDeadPictureBox.TabStop = false;
             // 
             // pictureBox3
             // 
-            pictureBox3.Image = Properties.Resources.lookstothemoondeadicon;
+            pictureBox3.BackgroundImage = Properties.Resources.lookstothemoondeadicon;
+            pictureBox3.BackgroundImageLayout = ImageLayout.Center;
             pictureBox3.Location = new Point(306, 236);
             pictureBox3.Name = "pictureBox3";
-            pictureBox3.Size = new Size(23, 24);
+            pictureBox3.Size = new Size(24, 24);
             pictureBox3.TabIndex = 8;
             pictureBox3.TabStop = false;
             // 
             // pictureBox2
             // 
-            pictureBox2.Image = Properties.Resources.fivepebblesdeadicon;
+            pictureBox2.BackgroundImage = Properties.Resources.fivepebblesdeadicon;
+            pictureBox2.BackgroundImageLayout = ImageLayout.Center;
             pictureBox2.Location = new Point(306, 266);
             pictureBox2.Name = "pictureBox2";
-            pictureBox2.Size = new Size(23, 24);
+            pictureBox2.Size = new Size(24, 24);
             pictureBox2.TabIndex = 7;
             pictureBox2.TabStop = false;
             // 
@@ -811,7 +818,7 @@
             // worldVersionLabel
             // 
             worldVersionLabel.AutoSize = true;
-            worldVersionLabel.Location = new Point(68, 115);
+            worldVersionLabel.Location = new Point(6, 66);
             worldVersionLabel.Name = "worldVersionLabel";
             worldVersionLabel.Size = new Size(83, 15);
             worldVersionLabel.TabIndex = 7;
@@ -820,17 +827,18 @@
             // worldVersionNumericUpDown
             // 
             worldVersionNumericUpDown.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
-            worldVersionNumericUpDown.Location = new Point(188, 113);
+            worldVersionNumericUpDown.Location = new Point(126, 64);
             worldVersionNumericUpDown.Maximum = new decimal(new int[] { 7, 5, 0, 0 });
             worldVersionNumericUpDown.Minimum = new decimal(new int[] { int.MinValue, 0, 0, int.MinValue });
             worldVersionNumericUpDown.Name = "worldVersionNumericUpDown";
             worldVersionNumericUpDown.Size = new Size(155, 23);
             worldVersionNumericUpDown.TabIndex = 6;
+            worldVersionNumericUpDown.ValueChanged += worldVersionNumericUpDown_ValueChanged;
             // 
             // gameVersionShelterLabel
             // 
             gameVersionShelterLabel.AutoSize = true;
-            gameVersionShelterLabel.Location = new Point(68, 57);
+            gameVersionShelterLabel.Location = new Point(6, 8);
             gameVersionShelterLabel.Name = "gameVersionShelterLabel";
             gameVersionShelterLabel.Size = new Size(82, 15);
             gameVersionShelterLabel.TabIndex = 5;
@@ -839,7 +847,7 @@
             // initalGameVersionLabel
             // 
             initalGameVersionLabel.AutoSize = true;
-            initalGameVersionLabel.Location = new Point(68, 86);
+            initalGameVersionLabel.Location = new Point(6, 37);
             initalGameVersionLabel.Name = "initalGameVersionLabel";
             initalGameVersionLabel.Size = new Size(114, 15);
             initalGameVersionLabel.TabIndex = 4;
@@ -848,22 +856,34 @@
             // initialGameVersionNumericUpDown
             // 
             initialGameVersionNumericUpDown.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
-            initialGameVersionNumericUpDown.Location = new Point(188, 84);
+            initialGameVersionNumericUpDown.Location = new Point(126, 35);
             initialGameVersionNumericUpDown.Maximum = new decimal(new int[] { 7, 5, 0, 0 });
             initialGameVersionNumericUpDown.Minimum = new decimal(new int[] { int.MinValue, 0, 0, int.MinValue });
             initialGameVersionNumericUpDown.Name = "initialGameVersionNumericUpDown";
             initialGameVersionNumericUpDown.Size = new Size(155, 23);
             initialGameVersionNumericUpDown.TabIndex = 3;
+            initialGameVersionNumericUpDown.ValueChanged += initialGameVersionNumericUpDown_ValueChanged;
             // 
             // gameVerisonNumericUpDown
             // 
             gameVerisonNumericUpDown.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
-            gameVerisonNumericUpDown.Location = new Point(188, 55);
+            gameVerisonNumericUpDown.Location = new Point(126, 6);
             gameVerisonNumericUpDown.Maximum = new decimal(new int[] { 7, 5, 0, 0 });
             gameVerisonNumericUpDown.Minimum = new decimal(new int[] { int.MinValue, 0, 0, int.MinValue });
             gameVerisonNumericUpDown.Name = "gameVerisonNumericUpDown";
             gameVerisonNumericUpDown.Size = new Size(155, 23);
             gameVerisonNumericUpDown.TabIndex = 2;
+            gameVerisonNumericUpDown.ValueChanged += gameVerisonNumericUpDown_ValueChanged;
+            // 
+            // citizenIDDronePictureBox
+            // 
+            citizenIDDronePictureBox.BackgroundImage = Properties.Resources.artificer_drone;
+            citizenIDDronePictureBox.BackgroundImageLayout = ImageLayout.Stretch;
+            citizenIDDronePictureBox.Location = new Point(6, 22);
+            citizenIDDronePictureBox.Name = "citizenIDDronePictureBox";
+            citizenIDDronePictureBox.Size = new Size(23, 23);
+            citizenIDDronePictureBox.TabIndex = 20;
+            citizenIDDronePictureBox.TabStop = false;
             // 
             // SlugConfigControl
             // 
@@ -896,7 +916,7 @@
             rngGroupBox.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)rngNextIssueIDNumericUpDown).EndInit();
             ((System.ComponentModel.ISupportInitialize)rngSeedNumericUpDown).EndInit();
-            ((System.ComponentModel.ISupportInitialize)pictureBox4).EndInit();
+            ((System.ComponentModel.ISupportInitialize)currentlyDeadPictureBox).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox3).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).EndInit();
             totalsGroupBox.ResumeLayout(false);
@@ -912,6 +932,7 @@
             ((System.ComponentModel.ISupportInitialize)worldVersionNumericUpDown).EndInit();
             ((System.ComponentModel.ISupportInitialize)initialGameVersionNumericUpDown).EndInit();
             ((System.ComponentModel.ISupportInitialize)gameVerisonNumericUpDown).EndInit();
+            ((System.ComponentModel.ISupportInitialize)citizenIDDronePictureBox).EndInit();
             ResumeLayout(false);
         }
 
@@ -955,7 +976,7 @@
         private PictureBox pictureBox1;
         private PictureBox pictureBox2;
         private PictureBox pictureBox3;
-        private PictureBox pictureBox4;
+        private PictureBox currentlyDeadPictureBox;
         private ToolTip commonToolTip;
         private CheckBox moonsCloakCheckBox;
         private CheckBox justBeatGameCheckBox;
@@ -982,5 +1003,6 @@
         private NumericUpDown gameVerisonNumericUpDown;
         private Label worldVersionLabel;
         private NumericUpDown worldVersionNumericUpDown;
+        private PictureBox citizenIDDronePictureBox;
     }
 }

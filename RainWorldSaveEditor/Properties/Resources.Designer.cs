@@ -63,6 +63,16 @@ namespace RainWorldSaveEditor.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap artificer_drone {
+            get {
+                object obj = ResourceManager.GetObject("artificer_drone", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap console {
             get {
                 object obj = ResourceManager.GetObject("console", resourceCulture);
@@ -163,9 +173,9 @@ namespace RainWorldSaveEditor.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap hunterdead {
+        internal static System.Drawing.Bitmap hunter_dead {
             get {
-                object obj = ResourceManager.GetObject("hunterdead", resourceCulture);
+                object obj = ResourceManager.GetObject("hunter_dead", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -173,9 +183,9 @@ namespace RainWorldSaveEditor.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap hunterhappy {
+        internal static System.Drawing.Bitmap hunter_happy {
             get {
-                object obj = ResourceManager.GetObject("hunterhappy", resourceCulture);
+                object obj = ResourceManager.GetObject("hunter_happy", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -513,9 +523,9 @@ namespace RainWorldSaveEditor.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap slugcatdead {
+        internal static System.Drawing.Bitmap slugcat_dead {
             get {
-                object obj = ResourceManager.GetObject("slugcatdead", resourceCulture);
+                object obj = ResourceManager.GetObject("slugcat_dead", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

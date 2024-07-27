@@ -118,6 +118,9 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="artificer_drone" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\UI\Slugcat\artificer_drone.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="console" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\UI\console.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
@@ -148,11 +151,11 @@
   <data name="garbageworm_community_icon" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Creature Community\Icons\garbageworm_community_icon.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="hunterdead" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\UI\hunterdead.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="hunter_dead" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\UI\Slugcat\hunter_dead.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="hunterhappy" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\UI\hunterhappy.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="hunter_happy" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\UI\Slugcat\hunter_happy.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="jetfish_community_icon" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Creature Community\Icons\jetfish_community_icon.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -253,8 +256,8 @@
   <data name="shelter_icon" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\UI\shelter_icon.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="slugcatdead" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\UI\slugcatdead.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="slugcat_dead" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\UI\Slugcat\slugcat_dead.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="squidcada_community_icon" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Creature Community\Icons\squidcada_community_icon.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>

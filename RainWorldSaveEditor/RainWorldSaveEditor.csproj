@@ -29,6 +29,12 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Resources\UI\Slugcat - Copy\**" />
+    <EmbeddedResource Remove="Resources\UI\Slugcat - Copy\**" />
+    <None Remove="Resources\UI\Slugcat - Copy\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Content Include="Resources\editoricon.ico" />
   </ItemGroup>
 

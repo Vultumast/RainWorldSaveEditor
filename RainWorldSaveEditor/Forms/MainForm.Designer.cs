@@ -83,15 +83,17 @@ partial class MainForm
         // openRainWorldSaveDirectoryToolStripMenuItem
         // 
         openRainWorldSaveDirectoryToolStripMenuItem.Name = "openRainWorldSaveDirectoryToolStripMenuItem";
-        openRainWorldSaveDirectoryToolStripMenuItem.Size = new Size(238, 22);
+        openRainWorldSaveDirectoryToolStripMenuItem.Size = new Size(243, 22);
         openRainWorldSaveDirectoryToolStripMenuItem.Text = "Rain World Save Directory";
+        openRainWorldSaveDirectoryToolStripMenuItem.ToolTipText = "Open the Rain World Save directory in file explorer";
         openRainWorldSaveDirectoryToolStripMenuItem.Click += openRainWorldSaveDirectoryToolStripMenuItem_Click;
         // 
         // rainworldExecutableDirectoryToolStripMenuItem
         // 
         rainworldExecutableDirectoryToolStripMenuItem.Name = "rainworldExecutableDirectoryToolStripMenuItem";
-        rainworldExecutableDirectoryToolStripMenuItem.Size = new Size(238, 22);
-        rainworldExecutableDirectoryToolStripMenuItem.Text = "Rainworld Executable Directory";
+        rainworldExecutableDirectoryToolStripMenuItem.Size = new Size(243, 22);
+        rainworldExecutableDirectoryToolStripMenuItem.Text = "Rain World Executable Directory";
+        rainworldExecutableDirectoryToolStripMenuItem.ToolTipText = "Open the Rain World Executable directory";
         rainworldExecutableDirectoryToolStripMenuItem.Click += rainworldExecutableDirectoryToolStripMenuItem_Click;
         // 
         // saveToolStripMenuItem
@@ -118,6 +120,7 @@ partial class MainForm
         closeAndLaunchGameToolStripMenuItem.Name = "closeAndLaunchGameToolStripMenuItem";
         closeAndLaunchGameToolStripMenuItem.Size = new Size(202, 22);
         closeAndLaunchGameToolStripMenuItem.Text = "Close and Launch Game";
+        closeAndLaunchGameToolStripMenuItem.ToolTipText = "Close the editor and launch Rain World";
         // 
         // closeToolStripMenuItem
         // 

@@ -32,6 +32,26 @@ public partial class MainForm : Form
     // TEND OF TEMP
     private void MainForm_Load(object sender, EventArgs e)
     {
+        if (!File.Exists(Settings.Filepath))
+        {
+            Logger.Info("Unable to find settings file, creating a new one.");
+            settings.Save();
+        }
+        settings = Settings.Read();
+
+        if (settings.ShowDisclaimer)
+        {
+            if (MessageBox.Show(
+                "Marioalexsan, Vultumast, and all other contributors are NOT RESPONSIBLE for any damage to computer, software, save information, etc. that may arise from usage of this software.\nDo you accept the terms of using this software?",
+                "Disclaimer",
+                MessageBoxButtons.YesNo,
+                MessageBoxIcon.Exclamation
+                ) == DialogResult.No)
+            {
+                Close();
+                return;
+            }
+        }
 
         var slugcatFiles = Directory.GetFiles("Resources\\Slugcat Info", "*.json", SearchOption.AllDirectories);
         foreach (var slugcatFile in slugcatFiles)
@@ -41,9 +61,9 @@ public partial class MainForm : Form
             slugcatIconImageList.Images.Add(Slugcats[i].Name, Image.FromFile(Path.Combine("Resources\\Slugcat Icons\\", $"{Slugcats[i].Name}.png")));
 
 
-        if (!Directory.Exists(settings.RainWorldDirectory))
+        if (!Directory.Exists(settings.RainWorldSaveDirectory))
         {
-            Console.WriteLine($"RAIN WORLD DIRECTORY DOESNT EXIST WHAT \"{settings.RainWorldDirectory}\"");
+            Console.WriteLine($"RAIN WORLD DIRECTORY DOESNT EXIST WHAT \"{settings.RainWorldSaveDirectory}\"");
         }
 
         SetDefaultState();
@@ -55,9 +75,9 @@ public partial class MainForm : Form
 
     void SetDefaultState()
     {
-        openFile1ToolStripMenuItem.Enabled = File.Exists(Path.Combine(settings.RainWorldDirectory, "sav"));
-        openFile2ToolStripMenuItem.Enabled = File.Exists(Path.Combine(settings.RainWorldDirectory, "sav2"));
-        openFile3ToolStripMenuItem.Enabled = File.Exists(Path.Combine(settings.RainWorldDirectory, "sav3"));
+        openFile1ToolStripMenuItem.Enabled = File.Exists(Path.Combine(settings.RainWorldSaveDirectory, "sav"));
+        openFile2ToolStripMenuItem.Enabled = File.Exists(Path.Combine(settings.RainWorldSaveDirectory, "sav2"));
+        openFile3ToolStripMenuItem.Enabled = File.Exists(Path.Combine(settings.RainWorldSaveDirectory, "sav3"));
 
         openFile1ToolStripMenuItem.Checked = false;
         openFile2ToolStripMenuItem.Checked = false;
@@ -131,10 +151,10 @@ public partial class MainForm : Form
 
     private void openRainWorldSaveDirectoryToolStripMenuItem_Click(object sender, EventArgs e)
     {
-        if (Directory.Exists(settings.RainWorldDirectory))
-            Process.Start("explorer.exe", settings.RainWorldDirectory);
+        if (Directory.Exists(settings.RainWorldSaveDirectory))
+            Process.Start("explorer.exe", settings.RainWorldSaveDirectory);
         else
-            Logger.Error($"Unable to open directory: \"{settings.RainWorldDirectory}\"");
+            Logger.Error($"Unable to open directory: \"{settings.RainWorldSaveDirectory}\"");
     }
     private void rainworldExecutableDirectoryToolStripMenuItem_Click(object sender, EventArgs e)
     {
@@ -146,7 +166,7 @@ public partial class MainForm : Form
         openFile1ToolStripMenuItem.Checked = true;
         openFile2ToolStripMenuItem.Checked = false;
         openFile3ToolStripMenuItem.Checked = false;
-        ReadSaveData($"{settings.RainWorldDirectory}\\sav");
+        ReadSaveData($"{settings.RainWorldSaveDirectory}\\sav");
 
     }
 
@@ -155,7 +175,7 @@ public partial class MainForm : Form
         openFile1ToolStripMenuItem.Checked = false;
         openFile2ToolStripMenuItem.Checked = true;
         openFile3ToolStripMenuItem.Checked = false;
-        ReadSaveData($"{settings.RainWorldDirectory}\\sav2");
+        ReadSaveData($"{settings.RainWorldSaveDirectory}\\sav2");
     }
 
     private void openFile3ToolStripMenuItem_Click(object sender, EventArgs e)
@@ -163,7 +183,7 @@ public partial class MainForm : Form
         openFile1ToolStripMenuItem.Checked = false;
         openFile2ToolStripMenuItem.Checked = false;
         openFile3ToolStripMenuItem.Checked = true;
-        ReadSaveData($"{settings.RainWorldDirectory}\\sav3");
+        ReadSaveData($"{settings.RainWorldSaveDirectory}\\sav3");
     }
 
 

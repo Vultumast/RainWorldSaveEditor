@@ -3,9 +3,26 @@ using System.Globalization;
 
 namespace RainWorldSaveEditor.Save;
 
+
+public enum GhostState
+{
+    /// <summary>
+    /// The echo has not been met yet.
+    /// </summary>
+    NotMet,
+    /// <summary>
+    /// The Echo's area has been visited in a previous cycle
+    /// </summary>
+    Visited,
+    /// <summary>
+    /// The Echo has been met and increased your karma
+    /// </summary>
+    Met,
+}
+
 public class Ghosts : IParsable<Ghosts>
 {
-    public Dictionary<string, int> GhostStates { get; } = [];
+    public Dictionary<string, GhostState> GhostStates { get; } = [];
 
     public List<string> UnrecognizedStates { get; } = [];
 
@@ -26,7 +43,7 @@ public class Ghosts : IParsable<Ghosts>
             {
                 try
                 {
-                    ghost.GhostStates[parts[0]] = int.Parse(parts[1], NumberStyles.Any, CultureInfo.InvariantCulture);
+                    ghost.GhostStates[parts[0]] = (GhostState)int.Parse(parts[1], NumberStyles.Any, CultureInfo.InvariantCulture);
                 }
                 catch (ArgumentException)
                 {

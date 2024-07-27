@@ -60,7 +60,7 @@ public partial class SlugConfigControl : UserControl
         citizenIDDroneCheckBox.Checked = state.HasCitizenDrone;
         moonsCloakCheckBox.Checked = state.IsWearingCloak;
 
-       
+
     }
 
     private void SetupPersistentDataInfoTabPageFromState(SaveState state)
@@ -367,6 +367,24 @@ public partial class SlugConfigControl : UserControl
     private void totalFoodNumericUpDown_ValueChanged(object sender, EventArgs e) => SaveState.TotalFoodEaten = (int)((NumericUpDown)(sender)).Value;
     private void totalFriendsSavedNumericUpDown_ValueChanged(object sender, EventArgs e) => SaveState.DeathPersistentSaveData.FriendsSaved = (int)((NumericUpDown)(sender)).Value;
 
-#endregion
-#endregion
+    #endregion
+    #endregion
+
+    #region Advanced
+    private void gameVerisonNumericUpDown_ValueChanged(object sender, EventArgs e)
+    {
+
+    }
+
+    private void initialGameVersionNumericUpDown_ValueChanged(object sender, EventArgs e)
+    {
+
+    }
+
+    private void worldVersionNumericUpDown_ValueChanged(object sender, EventArgs e)
+    {
+
+    }
+    #endregion
+
 }

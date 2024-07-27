@@ -23,6 +23,7 @@ public class DeathPersistentSaveData : SaveElementContainer, IParsable<DeathPers
 
     /// <summary>
     /// Whenever the karma is currently reinforced by a Karma Flower.
+    /// <para>This IS a bool, but is serialized as a 0 for false and a 1 for true</para>
     /// </summary>
     [SaveFileElement("REINFORCEDKARMA")]
     public int HasReinforcedKarma
@@ -230,7 +231,7 @@ public class DeathPersistentSaveData : SaveElementContainer, IParsable<DeathPers
 
     public static DeathPersistentSaveData Parse(string s, IFormatProvider? provider)
     {
-        DeathPersistentSaveData data = new DeathPersistentSaveData();
+        DeathPersistentSaveData data = new();
 
         foreach ((var key, var value) in SaveUtils.GetFields(s, "<dpB>", "<dpA>"))
             ParseField(data, key, value);

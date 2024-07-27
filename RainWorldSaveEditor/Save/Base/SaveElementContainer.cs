@@ -28,10 +28,10 @@ public abstract class SaveElementContainer
         }
     }
 
-    public Dictionary<string, SaveFileElement> SaveFileElements { get; private set; } = new();
-    public Dictionary<string, PropertyInfo> PropertyInfos { get; private set; } = new();
+    public Dictionary<string, SaveFileElement> SaveFileElements { get; private set; } = [ ];
+    public Dictionary<string, PropertyInfo> PropertyInfos { get; private set; } = [ ];
 
-    public Dictionary<string, string> UnrecognizedFields { get; protected set; } = [];
+    public Dictionary<string, string> UnrecognizedFields { get; protected set; } = [ ];
 
 
     /// <summary>
@@ -45,11 +45,6 @@ public abstract class SaveElementContainer
     private static bool SetScalarProperty(SaveElementContainer container, PropertyInfo propertyInfo, SaveFileElement elementInfo, string value)
     {
         var parseMethodInfo = propertyInfo.PropertyType.GetParseMethod();
-
-        if (elementInfo.Name == "ASCENDED" || propertyInfo.Name == "ASCENDED")
-        {
-            Console.WriteLine("AWAw");
-        }
 
         if (propertyInfo.PropertyType == typeof(bool) && elementInfo.ValueOptional)
         {
@@ -164,7 +159,7 @@ public abstract class SaveElementContainer
         }
     }
 
-    private static void HandleUnrecognizedField(SaveElementContainer container, PropertyInfo propertyInfo, string key, string value)
+    private static void HandleUnrecognizedField(SaveElementContainer container, string key, string value)
     {
         if (!container.UnrecognizedFields.TryAdd(key, value))
             Logger.Warn($"Unable to set \"{key}\" because it was already present!");
@@ -175,15 +170,11 @@ public abstract class SaveElementContainer
 
     public static void ParseField(SaveElementContainer container, string key, string value)
     {
-        if (container.SaveFileElements.ContainsKey(key))
+        SaveFileElement elementInfo;
+        if (container.SaveFileElements.TryGetValue(key, out elementInfo!))
         {
-            var elementInfo = container.SaveFileElements[key];
             var propertyInfo = container.PropertyInfos[key];
 
-            if (propertyInfo.Name == "KarmaFlowerPosition")
-            {
-                Console.WriteLine("awawa");
-            }
             var collectionInterface = propertyInfo.PropertyType.GetInterfaces().Where(x => x.IsGenericType && x.GetGenericTypeDefinition() == typeof(ICollection<>)).FirstOrDefault();
             var parsableInterface = propertyInfo.PropertyType.GetInterfaces().Where(x => x.IsGenericType && x.GetGenericTypeDefinition() == typeof(IParsable<>)).FirstOrDefault();
 
@@ -203,7 +194,7 @@ public abstract class SaveElementContainer
             else
                 Logger.Debug($"{key} => {value}, \"{propertyInfo.PropertyType}\" does not derive from IParsable! Tell Mario or Vultu!");
 
-            HandleUnrecognizedField(container, propertyInfo, key, value);
+            HandleUnrecognizedField(container, key, value);
         }
         else
             Logger.Warn($"Unknown Key: \"{key}\" => {value}");

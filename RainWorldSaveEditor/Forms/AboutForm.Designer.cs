@@ -28,12 +28,14 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(AboutForm));
             iconPictureBox = new PictureBox();
             editorNameLabel = new Label();
             disclaimerLabel = new Label();
             leadDevsLabel = new Label();
             githubLinkLabel = new LinkLabel();
             label1 = new Label();
+            licenseTextBox = new TextBox();
             ((System.ComponentModel.ISupportInitialize)iconPictureBox).BeginInit();
             SuspendLayout();
             // 
@@ -95,13 +97,26 @@
             label1.TabIndex = 5;
             label1.Text = "Icon created by Saneko";
             // 
+            // licenseTextBox
+            // 
+            licenseTextBox.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            licenseTextBox.BorderStyle = BorderStyle.FixedSingle;
+            licenseTextBox.Location = new Point(12, 176);
+            licenseTextBox.Multiline = true;
+            licenseTextBox.Name = "licenseTextBox";
+            licenseTextBox.ReadOnly = true;
+            licenseTextBox.ScrollBars = ScrollBars.Vertical;
+            licenseTextBox.Size = new Size(380, 197);
+            licenseTextBox.TabIndex = 6;
+            licenseTextBox.Text = resources.GetString("licenseTextBox.Text");
+            // 
             // AboutForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            AutoSize = true;
             AutoSizeMode = AutoSizeMode.GrowAndShrink;
-            ClientSize = new Size(800, 450);
+            ClientSize = new Size(404, 385);
+            Controls.Add(licenseTextBox);
             Controls.Add(label1);
             Controls.Add(githubLinkLabel);
             Controls.Add(leadDevsLabel);
@@ -129,5 +144,6 @@
         private Label leadDevsLabel;
         private LinkLabel githubLinkLabel;
         private Label label1;
+        private TextBox licenseTextBox;
     }
 }

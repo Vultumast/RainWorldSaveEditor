@@ -12,10 +12,18 @@ namespace RainWorldSaveEditor.Save;
 [DebuggerDisplay("Room = {Room} | PlacedObjectIndex = {PlacedObjectIndex} | WaitCycles = {WaitCycles}")]
 public class ConsumedItem : IParsable<ConsumedItem>
 {
+    /// <summary>
+    /// The room you consumed the object
+    /// </summary>
     public string Room { get; set; } = "";
-
+    /// <summary>
+    /// The internal index of the object you consumed
+    /// </summary>
     public int PlacedObjectIndex { get; set; } = 0;
 
+    /// <summary>
+    /// How many cycles before the item respawns?
+    /// </summary>
     public int WaitCycles { get; set; } = 0;
 
     public static ConsumedItem Parse(string s, IFormatProvider? provider)

@@ -25,7 +25,7 @@ namespace RainWorldSaveEditor.Forms
 
         private void githubLinkLabel_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            Process.Start(new ProcessStartInfo() { UseShellExecute = true, FileName = "https://github.com/Marioalexsan/RainWorldSaveEditor" });
+            Process.Start(new ProcessStartInfo() { UseShellExecute = true, FileName = "https://github.com/Vultumast/RainWorldSaveEditor" });
             githubLinkLabel.LinkVisited = true;
         }
     }

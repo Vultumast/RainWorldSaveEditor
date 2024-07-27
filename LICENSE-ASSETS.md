@@ -38,10 +38,7 @@ Assets marked with the license "Rain World" are the intellectual property of the
 # RainWorldSaveEditor/Resources/UI
 | Name | Description | License | Source |
 | ---- | ----------- | ------- | ------ |
-| hunterdead.png   | Hunter Long Legs Icon | Rain World (Custom for Miraheze?) | [Rain World Miraheze Wiki](https://static.miraheze.org/rainworldwiki/7/77/Hunter_dead_icon_%28custom%29.png)              |
-| hunterhappy.png  | Happy Hunter Icon     | Rain World (Edited by Vultumast)  | [Rain World Miraheze Wiki](https://rainworld.miraheze.org/wiki/File:Hunter_icon_(custom).png)                             |
 | shelter_icon.png | Shelter Icon          | Rain World                        | [Rain World Miraheze Wiki](https://rainworld.miraheze.org/wiki/Rain#/media/File:Shelter_icon.png)                         |
-| slugcatdead.png  | Dead Survivor Icon    | Rain World                        | [Rain World Miraheze Wiki](https://rainworld.miraheze.org/wiki/Category:Slugcat_icons#/media/File:Survivor_dead_icon.png) |
 | console.png      | Console Icon          | Microsoft Visual Studio           | N/A                                                                                                                       |
 
 # RainWorldSaveEditor/Resources/UI/Food UI
@@ -93,3 +90,10 @@ Assets marked with the license "Rain World" are the intellectual property of the
 | ---- | ----------- | ------- | ------ |
 | Yellow_Overseer_icon.png | Yellow Oversser Icon | Rain World | [Rain World Miraheze Wiki](https://rainworld.miraheze.org/wiki/Category:Creature_icons#/media/File:Yellow_Overseer_icon.png) |
 
+# RainWorldSaveEditor/Resources/UI/Overseer Icons
+| Name | Description | License | Source |
+| ---- | ----------- | ------- | ------ |
+| hunter_dead.png    | Hunter Long Legs Icon | Rain World (Custom for Miraheze?) | [Rain World Miraheze Wiki](https://static.miraheze.org/rainworldwiki/7/77/Hunter_dead_icon_%28custom%29.png)              |
+| hunter_happy.png   | Happy Hunter Icon     | Rain World (Edited by Vultumast)  | [Rain World Miraheze Wiki](https://rainworld.miraheze.org/wiki/File:Hunter_icon_(custom).png)                             |
+| slugcat_dead.png   | Dead Survivor Icon    | Rain World                        | [Rain World Miraheze Wiki](https://rainworld.miraheze.org/wiki/Category:Slugcat_icons#/media/File:Survivor_dead_icon.png) |
+| artifcer_drone.png | Sofanthiel Icon       | Saneko                            | N/A                                                                                                                       |
