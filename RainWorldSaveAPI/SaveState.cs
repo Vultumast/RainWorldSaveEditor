@@ -88,7 +88,11 @@ public class SaveState : SaveElementContainer
     [SaveFileElement("COMMUNITIES")]
     public CreatureCommunities Communities { get; set; } = new();
 
-    // TODO MISCWORLDSAVEDATA
+    /// <summary>
+    /// Contains miscellaneous data mostly related to Iterator / Downpour events.
+    /// </summary>
+    [SaveFileElement("MISCWORLDSAVEDATA")]
+    public MiscWorldSaveData MiscWorldSaveData { get; private set; } = new();
 
     /// <summary>
     /// Contains data that persists across player deaths.
@@ -96,6 +100,7 @@ public class SaveState : SaveElementContainer
     [SaveFileElement("DEATHPERSISTENTSAVEDATA")]
     public DeathPersistentSaveData DeathPersistentSaveData { get; private set; } = new();
 
+    // TODO: Implement item deserialization
     /// <summary>
     /// Contains serialized strings of swallowed items
     /// </summary>
@@ -109,13 +114,18 @@ public class SaveState : SaveElementContainer
     [SaveFileElement("UNRECOGNIZEDSWALLOWED", ListDelimiter = "<svB>")]
     public List<string> UnrecognizedSwallowedItems { get; } = [];
 
-    // TODO PLAYERGRASPS
+    // TODO: Implement grab deserialization
+    /// <summary>
+    /// Contains serialized strings of grabbed items and creatures <para/>
+    /// </summary>
+    [SaveFileElement("PLAYERGRASPS", ListDelimiter = "<svB>")]
+    public List<string> PlayerGrasps { get; } = [];
 
     /// <summary>
     /// Contains serialized strings of grabbed items and creatures that were not recognized by the game. <para/>
     /// The game tries to parse them again on each save load.
     /// </summary>
-    [SaveFileElement("UNRECOGNIZEDPLAYERGRASPS")]
+    [SaveFileElement("UNRECOGNIZEDPLAYERGRASPS", ListDelimiter = "<svB>")]
     public List<string> UnrecognizedPlayerGrasps { get; } = [];
 
     /// <summary>
@@ -218,7 +228,13 @@ public class SaveState : SaveElementContainer
     [SaveFileElement("FORCEPUPS")]
     public int ForcePupsNextCycle { get; set; } = 0;
 
-    // TODO OBJECTTRACKERS
+    // TODO Implement detailed object tracker deserialization
+    /// <summary>
+    /// List used for tracking persistent objects, and resspawning them if they are lost. <para/>
+    /// This works only if the Remix option is set.
+    /// </summary>
+    [SaveFileElement("OBJECTTRACKERS", ListDelimiter = "<svC>")]
+    public List<string> ObjectTrackers { get; private set; } = [];
 
     /// <summary>
     /// Saved objects and critters in the world.
