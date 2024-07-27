@@ -2,7 +2,7 @@
 using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
 
-namespace RainWorldSaveEditor.Save;
+namespace RainWorldSaveAPI.SaveElements;
 
 // TODO: Check if this is the only format for world coordinates that is used
 [DebuggerDisplay("Room = {RoomName} | Pos = {X}, {Y} | AbstractNode = {AbstractNode}")]

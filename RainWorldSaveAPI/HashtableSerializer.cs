@@ -2,7 +2,7 @@
 using System.Xml;
 using System.Runtime.Serialization;
 
-namespace RainWorldSaveEditor.Save;
+namespace RainWorldSaveAPI;
 
 public static class HashtableSerializer
 {

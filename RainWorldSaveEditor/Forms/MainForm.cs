@@ -1,8 +1,9 @@
 using RainWorldSaveEditor.Editor_Classes;
 using RainWorldSaveEditor.Forms;
-using RainWorldSaveEditor.Save;
 using System.Diagnostics;
 using System.Text.Json;
+using RainWorldSaveAPI;
+using RainWorldSaveAPI.SaveElements;
 
 namespace RainWorldSaveEditor;
 
@@ -51,6 +52,8 @@ public partial class MainForm : Form
                 Close();
                 return;
             }
+            settings.ShowDisclaimer = false;
+            settings.Save();
         }
 
         var slugcatFiles = Directory.GetFiles("Resources\\Slugcat Info", "*.json", SearchOption.AllDirectories);

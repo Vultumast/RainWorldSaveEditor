@@ -8,11 +8,10 @@ using System.Reflection;
 using System.Runtime.InteropServices.ObjectiveC;
 using System.Text;
 using System.Threading.Tasks;
-using System.Windows.Forms;
 using System.Xml.Linq;
 using static System.Runtime.InteropServices.JavaScript.JSType;
 
-namespace RainWorldSaveEditor.Save;
+namespace RainWorldSaveAPI.Base;
 
 public abstract class SaveElementContainer
 {

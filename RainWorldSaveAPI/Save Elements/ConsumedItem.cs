@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace RainWorldSaveEditor.Save;
+namespace RainWorldSaveAPI.SaveElements;
 
 [DebuggerDisplay("Room = {Room} | PlacedObjectIndex = {PlacedObjectIndex} | WaitCycles = {WaitCycles}")]
 public class ConsumedItem : IParsable<ConsumedItem>

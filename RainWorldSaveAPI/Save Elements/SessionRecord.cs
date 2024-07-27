@@ -1,7 +1,7 @@
 ﻿using System.Diagnostics;
 using System.Diagnostics.CodeAnalysis;
 
-namespace RainWorldSaveEditor.Save;
+namespace RainWorldSaveAPI.SaveElements;
 
 [DebuggerDisplay("Survived = {Survived} | Travelled = {Travelled}")]
 public class SessionRecord : IParsable<SessionRecord>

@@ -1,8 +1,8 @@
 ﻿using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
+using RainWorldSaveAPI.Base;
 
-namespace RainWorldSaveEditor.Save;
-
+namespace RainWorldSaveAPI.SaveElements;
 public class Community : IParsable<Community>
 {
     public Dictionary<string, float> PlayerRegionalReputation { get; } = [];

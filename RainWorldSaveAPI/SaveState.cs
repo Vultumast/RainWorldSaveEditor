@@ -8,8 +8,10 @@ using System.Reflection;
 using System.Runtime.Intrinsics.X86;
 using System.Text;
 using System.Threading.Tasks;
+using RainWorldSaveAPI.Base;
+using RainWorldSaveAPI.SaveElements;
 
-namespace RainWorldSaveEditor.Save;
+namespace RainWorldSaveAPI;
 
 [DebuggerDisplay("{SaveStateNumber} | Game version {GameVersion} | World version {WorldVersion}")]
 public class SaveState : SaveElementContainer

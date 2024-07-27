@@ -2,7 +2,7 @@
 using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
 
-namespace RainWorldSaveEditor.Save;
+namespace RainWorldSaveAPI.SaveElements;
 
 [DebuggerDisplay("{SongName} | Last played in cycle {CycleLastPlayed}")]
 public class SongPlayRecord : IParsable<SongPlayRecord>

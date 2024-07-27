@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace RainWorldSaveEditor.Save;
+namespace RainWorldSaveAPI.SaveElements;
 
 public class IntList : IParsable<IntList>, IList<int>
 {

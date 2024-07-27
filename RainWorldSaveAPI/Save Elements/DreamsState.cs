@@ -1,6 +1,6 @@
 ﻿using System.Globalization;
 
-namespace RainWorldSaveEditor.Save;
+namespace RainWorldSaveAPI.SaveElements;
 
 public class DreamsState
 {

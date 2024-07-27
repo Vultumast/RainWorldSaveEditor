@@ -1,7 +1,7 @@
 ﻿using System.Diagnostics.CodeAnalysis;
+using RainWorldSaveAPI.Base;
 
-namespace RainWorldSaveEditor.Save;
-
+namespace RainWorldSaveAPI.SaveElements;
 public class DeathPersistentSaveData : SaveElementContainer, IParsable<DeathPersistentSaveData>
 {
     public DeathPersistentSaveData() : base()

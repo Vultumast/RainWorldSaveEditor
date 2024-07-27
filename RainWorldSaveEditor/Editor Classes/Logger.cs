@@ -96,7 +96,8 @@ public static class Logger
     private static bool _logFileOpen = false;
     private static string _logName = string.Empty;
     private static FileStream _logStream = null!;
-    private static StreamWriter _logWriter = null!;
+    public static StreamWriter LogStreamWriter { get; private set; } = null!;
+
     public static void OpenLogFile()
     {
         if (_logFileOpen)
@@ -107,7 +108,7 @@ public static class Logger
         _logName = $"logs\\{DateTime.Now.ToString("yyyyMMdd_HHmmss")}.log";
 
         _logStream = File.Create(_logName);
-        _logWriter = new StreamWriter(_logStream);
+        LogStreamWriter = new StreamWriter(_logStream);
 
         _logFileOpen = true;
 
@@ -118,13 +119,13 @@ public static class Logger
         if (!_logFileOpen)
             return;
 
-        _logWriter?.Close();
-        _logWriter?.Dispose();
+        LogStreamWriter?.Close();
+        LogStreamWriter?.Dispose();
 
         _logStream?.Close();
         _logStream?.Dispose();
 
-        _logWriter = null!;
+        LogStreamWriter = null!;
         _logStream = null!;
 
         _logFileOpen = false;
@@ -155,7 +156,7 @@ public static class Logger
             _ => "[????]"
         };
 
-        _logWriter.WriteLine(header + message);
+        LogStreamWriter.WriteLine(header + message);
 
 
         Console.ForegroundColor = reportType switch

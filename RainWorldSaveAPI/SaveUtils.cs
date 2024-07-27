@@ -5,7 +5,7 @@ using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace RainWorldSaveEditor.Save;
+namespace RainWorldSaveAPI;
 
 public static class SaveUtils
 {

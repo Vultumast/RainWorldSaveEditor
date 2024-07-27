@@ -1,5 +1,6 @@
 using RainWorldSaveEditor.Editor_Classes;
 using System.Collections;
+using System.Diagnostics;
 
 namespace RainWorldSaveEditor;
 
@@ -15,10 +16,13 @@ internal static class Program
         Application.SetUnhandledExceptionMode(UnhandledExceptionMode.CatchException);
         AppDomain.CurrentDomain.UnhandledException += CurrentDomain_UnhandledException;
         Application.ApplicationExit += Application_ApplicationExit;
+
 #if DEBUG
         Logger.AllocateCMD();
 #endif
         Logger.OpenLogFile();
+
+        RainWorldSaveAPI.Logger.LogStreamWriter = Logger.LogStreamWriter;
 
         Translation.Read();
 
@@ -27,6 +31,7 @@ internal static class Program
         ApplicationConfiguration.Initialize();
         Application.Run(new MainForm());
     }
+
 
     private static void Application_ApplicationExit(object? sender, EventArgs e)
     {
