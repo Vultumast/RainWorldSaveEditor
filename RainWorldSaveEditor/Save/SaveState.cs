@@ -86,11 +86,19 @@ public class SaveState : SaveElementContainer
     [SaveFileElement("COMMUNITIES")]
     public CreatureCommunities Communities { get; set; } = new();
 
+    // TODO MISCWORLDSAVEDATA
+
     /// <summary>
     /// Contains data that persists across player deaths.
     /// </summary>
     [SaveFileElement("DEATHPERSISTENTSAVEDATA")]
     public DeathPersistentSaveData DeathPersistentSaveData { get; private set; } = new();
+
+    /// <summary>
+    /// Contains serialized strings of swallowed items
+    /// </summary>
+    [SaveFileElement("SWALLOWEDITEMS", ListDelimiter = "<svB>")]
+    public List<string> SwallowedItems { get; private set; } = [];
 
     /// <summary>
     /// Contains serialized strings of swallowed items and creatures that were not recognized by the game. <para/>
@@ -99,11 +107,7 @@ public class SaveState : SaveElementContainer
     [SaveFileElement("UNRECOGNIZEDSWALLOWED", ListDelimiter = "<svB>")]
     public List<string> UnrecognizedSwallowedItems { get; } = [];
 
-    /// <summary>
-    /// Contains serialized strings of swallowed items
-    /// </summary>
-    [SaveFileElement("SWALLOWEDITEMS", ListDelimiter = "<svB>")]
-    public List<string> SwallowedItems { get; private set; } = [];
+    // TODO PLAYERGRASPS
 
     /// <summary>
     /// Contains serialized strings of grabbed items and creatures that were not recognized by the game. <para/>
@@ -212,7 +216,7 @@ public class SaveState : SaveElementContainer
     [SaveFileElement("FORCEPUPS")]
     public int ForcePupsNextCycle { get; set; } = 0;
 
-    // ObjectTrackers
+    // TODO OBJECTTRACKERS
 
     /// <summary>
     /// Saved objects and critters in the world.
@@ -249,162 +253,6 @@ public class SaveState : SaveElementContainer
             ParseField(this, key, value);
         }
     }
-
-    /*
-    private void ParseField(string key, string value)
-    {
-        // TODO Error handling for Parse functions
-        switch (key)
-        {
-            case "DENPOS":
-                DenPosition = value;
-                break;
-            case "LASTVDENPOS":
-                LastVanillaDen = value;
-                break;
-            case "CYCLENUM":
-                CycleNumber = int.Parse(value, NumberStyles.Any, CultureInfo.InvariantCulture); // TODO Handle parse fail?
-                break;
-            case "FOOD":
-                FoodCount = int.Parse(value, NumberStyles.Any, CultureInfo.InvariantCulture);
-                break;
-            case "NEXTID":
-                NextIssuedId = int.Parse(value, NumberStyles.Any, CultureInfo.InvariantCulture);
-                break;
-            case "HASTHEGLOW":
-                HasNeuronGlow = true;
-                break;
-            case "GUIDEOVERSEERDEAD":
-                IsGuideOverseerDead = true;
-                break;
-            case "RESPAWNS":
-                CreaturesToRespawn.Clear();
-                CreaturesToRespawn.AddRange(value.Split('.').Where(x => x != "").Select(x => int.Parse(x, NumberStyles.Any, CultureInfo.InvariantCulture)));
-                break;
-            case "WAITRESPAWNS":
-                CreaturesWaitingToRespawn.Clear();
-                CreaturesWaitingToRespawn.AddRange(value.Split('.').Where(x => x != "").Select(x => int.Parse(x, NumberStyles.Any, CultureInfo.InvariantCulture)));
-                break;
-            case "REGIONSTATE":
-                var regions = value.Split("<rgB>");
-
-                // This may have invalid / modded / unrecognized regions
-                foreach (var region in regions)
-                {
-                    var state = new RegionState();
-                    state.Read(region);
-                    RegionStates.Add(state);
-                }
-
-                break;
-            case "COMMUNITIES":
-                // TODO Implement remaining strings
-                UnrecognizedFields[key] = value;
-                break;
-            case "MISCWORLDSAVEDATA":
-                // TODO Implement remaining strings
-                UnrecognizedFields[key] = value;
-                break;
-            case "DEATHPERSISTENTSAVEDATA":
-                DeathPersistentSaveData.Read(value);
-                break;
-            case "SWALLOWEDITEMS":
-                // TODO Implement remaining strings
-                UnrecognizedFields[key] = value;
-                break;
-            case "UNRECOGNIZEDSWALLOWED":
-                UnrecognizedSwallowedItems.Clear();
-                UnrecognizedSwallowedItems.AddRange(value.Split("<svB>", StringSplitOptions.RemoveEmptyEntries));
-                break;
-            case "PLAYERGRASPS":
-                // TODO Implement remaining strings
-                UnrecognizedFields[key] = value;
-                break;
-            case "UNRECOGNIZEDPLAYERGRASPS":
-                UnrecognizedPlayerGrasps.Clear();
-                UnrecognizedPlayerGrasps.AddRange(value.Split("<svB>", StringSplitOptions.RemoveEmptyEntries));
-                break;
-            case "VERSION":
-                GameVersion = int.Parse(value, NumberStyles.Any, CultureInfo.InvariantCulture);
-                break;
-            case "INITVERSION":
-                InitialGameVersion = int.Parse(value, NumberStyles.Any, CultureInfo.InvariantCulture);
-                break;
-            case "WORLDVERSION":
-                WorldVersion = int.Parse(value, NumberStyles.Any, CultureInfo.InvariantCulture);
-                break;
-            case "SEED":
-                Seed = int.Parse(value, NumberStyles.Any, CultureInfo.InvariantCulture);
-                break;
-            case "DREAMSSTATE":
-                DreamsState = new DreamsState();
-                DreamsState.Read(value);
-                break;
-            case "TOTFOOD":
-                TotalFoodEaten = int.Parse(value, NumberStyles.Any, CultureInfo.InvariantCulture);
-                break;
-            case "TOTTIME":
-                TotalTimeInSeconds = int.Parse(value, NumberStyles.Any, CultureInfo.InvariantCulture);
-                break;
-            case "CURRVERCYCLES":
-                CyclesInCurrentWorldVersion = int.Parse(value, NumberStyles.Any, CultureInfo.InvariantCulture);
-                break;
-            case "KILLS":
-                Kills.Clear();
-                var pairs = value.Split("<svC>", StringSplitOptions.RemoveEmptyEntries);
-
-                foreach (var pair in pairs)
-                {
-                    var fields = pair.Split("<svD>", 2);
-                    Kills.Add((fields[0], fields[1]));
-                }
-
-                break;
-            case "REDEXTRACYCLES":
-                HunterExtraCycles = true;
-                break;
-            case "JUSTBEATGAME":
-                GameRecentlyBeaten = true;
-                break;
-            case "HASROBO":
-                HasCitizenDrone = true;
-                break;
-            case "CLOAK":
-                IsWearingCloak = true;
-                break;
-            case "KARMADREAM":
-                KarmaDream = true;
-                break;
-            case "FORCEPUPS":
-                ForcePupsNextCycle = int.Parse(value, NumberStyles.Any, CultureInfo.InvariantCulture);
-                break;
-            case "OBJECTTRACKERS":
-                // TODO Implement remaining strings
-                UnrecognizedFields[key] = value;
-                break;
-            case "OBJECTS":
-                Objects.Clear();
-                Objects.AddRange(value.Split("<svC>").Where(x => x != ""));
-                break;
-            case "FRIENDS":
-                // TODO Parse friend data
-                Friends.Clear();
-                Friends.AddRange(value.Split("<svC>").Where(x => x != ""));
-                break;
-            case "OEENCOUNTERS":
-                OuterExpanseEncounters.Clear();
-                OuterExpanseEncounters.AddRange(value.Split("<svC>").Where(x => x != ""));
-                break;
-            case "SAV STATE NUMBER":
-                SaveStateNumber = value;
-                break;
-            default:
-                // Fallback for unrecognized / invalid / modded fields
-                UnrecognizedFields[key] = value;
-                break;
-        }
-    }
-    */
 
     public string Write()
     {
