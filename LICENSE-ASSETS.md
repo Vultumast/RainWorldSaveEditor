@@ -90,10 +90,16 @@ Assets marked with the license "Rain World" are the intellectual property of the
 | ---- | ----------- | ------- | ------ |
 | Yellow_Overseer_icon.png | Yellow Oversser Icon | Rain World | [Rain World Miraheze Wiki](https://rainworld.miraheze.org/wiki/Category:Creature_icons#/media/File:Yellow_Overseer_icon.png) |
 
-# RainWorldSaveEditor/Resources/UI/Overseer Icons
+# RainWorldSaveEditor/Resources/UI/Slugcat
 | Name | Description | License | Source |
 | ---- | ----------- | ------- | ------ |
 | hunter_dead.png    | Hunter Long Legs Icon | Rain World (Custom for Miraheze?) | [Rain World Miraheze Wiki](https://static.miraheze.org/rainworldwiki/7/77/Hunter_dead_icon_%28custom%29.png)              |
 | hunter_happy.png   | Happy Hunter Icon     | Rain World (Edited by Vultumast)  | [Rain World Miraheze Wiki](https://rainworld.miraheze.org/wiki/File:Hunter_icon_(custom).png)                             |
 | slugcat_dead.png   | Dead Survivor Icon    | Rain World                        | [Rain World Miraheze Wiki](https://rainworld.miraheze.org/wiki/Category:Slugcat_icons#/media/File:Survivor_dead_icon.png) |
 | artifcer_drone.png | Sofanthiel Icon       | Saneko                            | N/A                                                                                                                       |
+
+# RainWorldSaveEditor/Resources/UI/Tab Icons
+| Name | Description | License | Source |
+| ---- | ----------- | ------- | ------ |
+| echo_tab_icon.png | Echo Tab Icon | Rain World | [Rain World Miraheze Wiki](https://static.miraheze.org/rainworldwiki/c/c8/Echo_icon.png) |
+| slugcat_tab_icon.png | Slugcat Tab Icon | Rain World | [Rain World Miraheze Wiki](https://rainworld.miraheze.org/wiki/Category:Slugcat_icons#/media/File:Slugcat_icon.png) |

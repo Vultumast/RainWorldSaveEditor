@@ -55,7 +55,7 @@
             // 
             karmaNumericUpDown.Location = new Point(126, 3);
             karmaNumericUpDown.Maximum = new decimal(new int[] { 10, 0, 0, 0 });
-            karmaNumericUpDown.Minimum = new decimal(new int[] { 10, 0, 0, int.MinValue });
+            karmaNumericUpDown.Minimum = new decimal(new int[] { 1, 0, 0, int.MinValue });
             karmaNumericUpDown.Name = "karmaNumericUpDown";
             karmaNumericUpDown.Size = new Size(64, 23);
             karmaNumericUpDown.TabIndex = 1;

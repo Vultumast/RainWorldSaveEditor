@@ -4,7 +4,7 @@ using System.Globalization;
 namespace RainWorldSaveAPI.SaveElements;
 
 
-public enum GhostState
+public enum EchoState
 {
     /// <summary>
     /// The echo has not been met yet.
@@ -20,16 +20,16 @@ public enum GhostState
     Met,
 }
 
-public class Ghosts : IParsable<Ghosts>
+public class Echos : IParsable<Echos>
 {
-    public Dictionary<string, GhostState> GhostStates { get; } = [];
+    public Dictionary<string, EchoState> EchoStates { get; } = [];
 
     public List<string> UnrecognizedStates { get; } = [];
 
-    public static Ghosts Parse(string s, IFormatProvider? provider)
+    public static Echos Parse(string s, IFormatProvider? provider)
     {
         // TODO: This has a backwards compatible format that needs to be added
-        var ghost = new Ghosts();
+        var ghost = new Echos();
 
         foreach (var ghostData in s.Split(",", StringSplitOptions.RemoveEmptyEntries))
         {
@@ -43,7 +43,7 @@ public class Ghosts : IParsable<Ghosts>
             {
                 try
                 {
-                    ghost.GhostStates[parts[0]] = (GhostState)int.Parse(parts[1], NumberStyles.Any, CultureInfo.InvariantCulture);
+                    ghost.EchoStates[parts[0]] = (EchoState)int.Parse(parts[1], NumberStyles.Any, CultureInfo.InvariantCulture);
                 }
                 catch (ArgumentException)
                 {
@@ -55,7 +55,7 @@ public class Ghosts : IParsable<Ghosts>
         return ghost;
     }
 
-    public static bool TryParse([NotNullWhen(true)] string? s, IFormatProvider? provider, [MaybeNullWhen(false)] out Ghosts result)
+    public static bool TryParse([NotNullWhen(true)] string? s, IFormatProvider? provider, [MaybeNullWhen(false)] out Echos result)
     {
         throw new NotImplementedException();
     }

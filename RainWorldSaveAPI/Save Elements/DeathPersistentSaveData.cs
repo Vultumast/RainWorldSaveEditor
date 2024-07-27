@@ -48,7 +48,7 @@ public class DeathPersistentSaveData : SaveElementContainer, IParsable<DeathPers
     /// Hunter in particular can meet echoes without having to visit the area beforehand.
     /// </summary>
     [SaveFileElement("GHOSTS")]
-    public Ghosts Ghosts { get; private set; } = new();
+    public Echos Echos { get; private set; } = new();
 
     /// <summary>
     /// Tracks when was a particular song last played.

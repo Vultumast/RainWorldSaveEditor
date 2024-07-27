@@ -16,7 +16,7 @@ public class RainWorldSave
 
         // Computed hash doesn't seem to match at the moment for some reason
         if (hash != computedHash)
-            Logger.Warn("Hash check failed! Save may be modified / damaged / corrupted.");
+            Logger.Warn("Hash check failed! Save may be modified / damaged / corrupted. (This doesn't appear to affect the game at all, so you can safely ignore this we believe)");
         else
             Logger.Info("Hash OK.");
 

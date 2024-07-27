@@ -12,6 +12,7 @@ using System.Windows.Forms;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 using RainWorldSaveAPI;
 using RainWorldSaveAPI.SaveElements;
+using RainWorldSaveEditor.Forms;
 
 namespace RainWorldSaveEditor.Controls;
 
@@ -36,6 +37,7 @@ public partial class SlugConfigControl : UserControl
     {
         SaveState = state;
         SetupSlugCatInfoTabPageFromState(state);
+        SetupEchoTabPageFromState(state);
         SetupPersistentDataInfoTabPageFromState(state);
         SetupAdvancedInfoTabPage(state);
     }
@@ -61,6 +63,25 @@ public partial class SlugConfigControl : UserControl
         citizenIDDroneCheckBox.Checked = state.HasCitizenDrone;
         moonsCloakCheckBox.Checked = state.IsWearingCloak;
 
+
+    }
+
+    private void SetupEchoTabPageFromState(SaveState state)
+    {
+        echoDataGridView.Rows.Clear();
+
+
+        foreach (var echo in state.DeathPersistentSaveData.Echos.EchoStates)
+        {
+            var stateStr = echo.Value switch
+            {
+                EchoState.NotMet => "Not Met",
+                EchoState.Visited => "Active",
+                EchoState.Met => "Met",
+                _ => "Not Met",
+            };
+            echoDataGridView.Rows.Add([echo.Key, Translation.GetRegionName(echo.Key), stateStr]);
+        }
 
     }
 
@@ -138,6 +159,10 @@ public partial class SlugConfigControl : UserControl
     private void KarmaSelectorControl_KarmaMaxChanged(object sender, EventArgs e) => SaveState.DeathPersistentSaveData.KarmaCap = KarmaSelectorControl.KarmaMax;
     private void KarmaSelectorControl_ReinforcedChanged(object sender, EventArgs e) => SaveState.DeathPersistentSaveData.HasReinforcedKarma = KarmaSelectorControl.Reinforced ? 1 : 0;
     #endregion
+
+    #endregion
+
+    #region Echos tab
 
     #endregion
 
@@ -388,4 +413,59 @@ public partial class SlugConfigControl : UserControl
     }
     #endregion
 
+    #region Echo Tabpage
+    private void echoDataGridView_UserDeletingRow(object sender, DataGridViewRowCancelEventArgs e)
+    {
+        if (e.Row is null)
+            return;
+
+        string regionCode = e.Row.Cells[0].Value!.ToString()!;
+        string regionName = "";
+        if (Translation.RegionNames.TryGetValue(regionCode, out regionName!))
+        {
+            if (MessageBox.Show($"Deleting a vanilla game's echo information might cause instability!\nAre you sure you want to delete \"{regionCode}\" - \"{regionName}\"?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.No)
+            {
+                e.Cancel = true;
+                return;
+            }
+        }
+
+    }
+
+    private void echoDataGridView_UserDeletedRow(object sender, DataGridViewRowEventArgs e)
+    {
+        SaveState.DeathPersistentSaveData.Echos.EchoStates.Remove(e.Row.Cells[0].Value.ToString()!);
+    }
+    #endregion
+
+    private void addEchoToolStripMenuItem_Click(object sender, EventArgs e)
+    {
+        using AddEchoForm form = new AddEchoForm(SaveState);
+
+        if (form.ShowDialog() == DialogResult.Cancel)
+            return;
+
+        var upperRegionCode = form.RegionCode.ToUpper();
+
+        var stateStr = form.EchoState switch
+        {
+            EchoState.NotMet => "Not Met",
+            EchoState.Visited => "Active",
+            EchoState.Met => "Met",
+            _ => "Not Met",
+        };
+
+        SaveState.DeathPersistentSaveData.Echos.EchoStates.Add(upperRegionCode, form.EchoState);
+        echoDataGridView.Rows.Add([upperRegionCode, Translation.GetRegionName(upperRegionCode), stateStr]);
+    }
+
+    private void removeEchoToolStripMenuItem_Click(object sender, EventArgs e)
+    {
+
+    }
+
+    private void duplicateEchoToolStripMenuItem_Click(object sender, EventArgs e)
+    {
+
+    }
 }

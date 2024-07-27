@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(SlugConfigControl));
             FoodPipControl = new FoodPipControl();
             cycleNumberNumericUpDown = new NumericUpDown();
             label1 = new Label();
@@ -36,6 +37,7 @@
             slugcatInfoTabPage = new TabPage();
             markOfCommunicationCheckBox = new CheckBox();
             groupBox1 = new GroupBox();
+            citizenIDDronePictureBox = new PictureBox();
             pictureBox7 = new PictureBox();
             citizenIDDroneCheckBox = new CheckBox();
             moonsCloakCheckBox = new CheckBox();
@@ -53,6 +55,15 @@
             currentDenLabel = new Label();
             slugcatInfoKarmaGroupBox = new GroupBox();
             KarmaSelectorControl = new KarmaSelectorControl();
+            echosTabPage = new TabPage();
+            echoDataGridView = new DataGridView();
+            regionCodeColumn = new DataGridViewTextBoxColumn();
+            regionNameColumn = new DataGridViewTextBoxColumn();
+            echoValueColumn = new DataGridViewComboBoxColumn();
+            echoDataGridContextMenuStrip = new ContextMenuStrip(components);
+            addEchoToolStripMenuItem = new ToolStripMenuItem();
+            removeEchoToolStripMenuItem = new ToolStripMenuItem();
+            duplicateEchoToolStripMenuItem = new ToolStripMenuItem();
             communitiesTabPage = new TabPage();
             communityRegionRepDataGridView = new DataGridView();
             communityListBox = new ListBox();
@@ -94,18 +105,22 @@
             initalGameVersionLabel = new Label();
             initialGameVersionNumericUpDown = new NumericUpDown();
             gameVerisonNumericUpDown = new NumericUpDown();
+            tabImageList = new ImageList(components);
             commonToolTip = new ToolTip(components);
-            citizenIDDronePictureBox = new PictureBox();
             ((System.ComponentModel.ISupportInitialize)cycleNumberNumericUpDown).BeginInit();
             tabControl.SuspendLayout();
             slugcatInfoTabPage.SuspendLayout();
             groupBox1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)citizenIDDronePictureBox).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox7).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox5).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox6).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             denInfoGroupBox.SuspendLayout();
             slugcatInfoKarmaGroupBox.SuspendLayout();
+            echosTabPage.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)echoDataGridView).BeginInit();
+            echoDataGridContextMenuStrip.SuspendLayout();
             communitiesTabPage.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)communityRegionRepDataGridView).BeginInit();
             worldInfoTabPage.SuspendLayout();
@@ -128,7 +143,6 @@
             ((System.ComponentModel.ISupportInitialize)worldVersionNumericUpDown).BeginInit();
             ((System.ComponentModel.ISupportInitialize)initialGameVersionNumericUpDown).BeginInit();
             ((System.ComponentModel.ISupportInitialize)gameVerisonNumericUpDown).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)citizenIDDronePictureBox).BeginInit();
             SuspendLayout();
             // 
             // FoodPipControl
@@ -163,11 +177,13 @@
             // tabControl
             // 
             tabControl.Controls.Add(slugcatInfoTabPage);
+            tabControl.Controls.Add(echosTabPage);
             tabControl.Controls.Add(communitiesTabPage);
             tabControl.Controls.Add(worldInfoTabPage);
             tabControl.Controls.Add(persistentInfoTabPage);
             tabControl.Controls.Add(advancedTabPage);
             tabControl.Dock = DockStyle.Fill;
+            tabControl.ImageList = tabImageList;
             tabControl.Location = new Point(0, 0);
             tabControl.Name = "tabControl";
             tabControl.SelectedIndex = 0;
@@ -190,12 +206,13 @@
             slugcatInfoTabPage.Controls.Add(FoodPipControl);
             slugcatInfoTabPage.Controls.Add(label1);
             slugcatInfoTabPage.Controls.Add(cycleNumberNumericUpDown);
+            slugcatInfoTabPage.ImageIndex = 0;
             slugcatInfoTabPage.Location = new Point(4, 24);
             slugcatInfoTabPage.Name = "slugcatInfoTabPage";
             slugcatInfoTabPage.Padding = new Padding(3);
             slugcatInfoTabPage.Size = new Size(541, 412);
             slugcatInfoTabPage.TabIndex = 0;
-            slugcatInfoTabPage.Text = "Slugcat Info";
+            slugcatInfoTabPage.Text = "Slugcat";
             slugcatInfoTabPage.ToolTipText = "Data relating to your slugcat";
             // 
             // markOfCommunicationCheckBox
@@ -224,6 +241,16 @@
             groupBox1.TabIndex = 18;
             groupBox1.TabStop = false;
             groupBox1.Text = "Slugcat Specific";
+            // 
+            // citizenIDDronePictureBox
+            // 
+            citizenIDDronePictureBox.BackgroundImage = Properties.Resources.artificer_drone;
+            citizenIDDronePictureBox.BackgroundImageLayout = ImageLayout.Stretch;
+            citizenIDDronePictureBox.Location = new Point(6, 22);
+            citizenIDDronePictureBox.Name = "citizenIDDronePictureBox";
+            citizenIDDronePictureBox.Size = new Size(23, 23);
+            citizenIDDronePictureBox.TabIndex = 20;
+            citizenIDDronePictureBox.TabStop = false;
             // 
             // pictureBox7
             // 
@@ -407,6 +434,81 @@
             KarmaSelectorControl.ReinforcedChanged += KarmaSelectorControl_ReinforcedChanged;
             KarmaSelectorControl.KarmaLevelChanged += KarmaSelectorControl_KarmaLevelChanged;
             KarmaSelectorControl.KarmaMaxChanged += KarmaSelectorControl_KarmaMaxChanged;
+            // 
+            // echosTabPage
+            // 
+            echosTabPage.Controls.Add(echoDataGridView);
+            echosTabPage.ImageIndex = 1;
+            echosTabPage.Location = new Point(4, 24);
+            echosTabPage.Name = "echosTabPage";
+            echosTabPage.Padding = new Padding(3);
+            echosTabPage.Size = new Size(541, 412);
+            echosTabPage.TabIndex = 5;
+            echosTabPage.Text = "Echos";
+            echosTabPage.ToolTipText = "Data relating to Echos";
+            echosTabPage.UseVisualStyleBackColor = true;
+            // 
+            // echoDataGridView
+            // 
+            echoDataGridView.AllowUserToAddRows = false;
+            echoDataGridView.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            echoDataGridView.Columns.AddRange(new DataGridViewColumn[] { regionCodeColumn, regionNameColumn, echoValueColumn });
+            echoDataGridView.ContextMenuStrip = echoDataGridContextMenuStrip;
+            echoDataGridView.Dock = DockStyle.Fill;
+            echoDataGridView.Location = new Point(3, 3);
+            echoDataGridView.Name = "echoDataGridView";
+            echoDataGridView.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            echoDataGridView.Size = new Size(535, 406);
+            echoDataGridView.TabIndex = 0;
+            echoDataGridView.UserDeletedRow += echoDataGridView_UserDeletedRow;
+            echoDataGridView.UserDeletingRow += echoDataGridView_UserDeletingRow;
+            // 
+            // regionCodeColumn
+            // 
+            regionCodeColumn.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            regionCodeColumn.HeaderText = "Region Code";
+            regionCodeColumn.Name = "regionCodeColumn";
+            // 
+            // regionNameColumn
+            // 
+            regionNameColumn.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            regionNameColumn.HeaderText = "Region Name";
+            regionNameColumn.Name = "regionNameColumn";
+            regionNameColumn.ReadOnly = true;
+            // 
+            // echoValueColumn
+            // 
+            echoValueColumn.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            echoValueColumn.HeaderText = "Value";
+            echoValueColumn.Items.AddRange(new object[] { "Not Met", "Active", "Met" });
+            echoValueColumn.Name = "echoValueColumn";
+            // 
+            // echoDataGridContextMenuStrip
+            // 
+            echoDataGridContextMenuStrip.Items.AddRange(new ToolStripItem[] { addEchoToolStripMenuItem, removeEchoToolStripMenuItem, duplicateEchoToolStripMenuItem });
+            echoDataGridContextMenuStrip.Name = "echoDataGridContextMenuStrip";
+            echoDataGridContextMenuStrip.Size = new Size(154, 70);
+            // 
+            // addEchoToolStripMenuItem
+            // 
+            addEchoToolStripMenuItem.Name = "addEchoToolStripMenuItem";
+            addEchoToolStripMenuItem.Size = new Size(153, 22);
+            addEchoToolStripMenuItem.Text = "Add Echo";
+            addEchoToolStripMenuItem.Click += addEchoToolStripMenuItem_Click;
+            // 
+            // removeEchoToolStripMenuItem
+            // 
+            removeEchoToolStripMenuItem.Name = "removeEchoToolStripMenuItem";
+            removeEchoToolStripMenuItem.Size = new Size(153, 22);
+            removeEchoToolStripMenuItem.Text = "Remove Echo";
+            removeEchoToolStripMenuItem.Click += removeEchoToolStripMenuItem_Click;
+            // 
+            // duplicateEchoToolStripMenuItem
+            // 
+            duplicateEchoToolStripMenuItem.Name = "duplicateEchoToolStripMenuItem";
+            duplicateEchoToolStripMenuItem.Size = new Size(153, 22);
+            duplicateEchoToolStripMenuItem.Text = "Duplicate Echo";
+            duplicateEchoToolStripMenuItem.Click += duplicateEchoToolStripMenuItem_Click;
             // 
             // communitiesTabPage
             // 
@@ -875,15 +977,13 @@
             gameVerisonNumericUpDown.TabIndex = 2;
             gameVerisonNumericUpDown.ValueChanged += gameVerisonNumericUpDown_ValueChanged;
             // 
-            // citizenIDDronePictureBox
+            // tabImageList
             // 
-            citizenIDDronePictureBox.BackgroundImage = Properties.Resources.artificer_drone;
-            citizenIDDronePictureBox.BackgroundImageLayout = ImageLayout.Stretch;
-            citizenIDDronePictureBox.Location = new Point(6, 22);
-            citizenIDDronePictureBox.Name = "citizenIDDronePictureBox";
-            citizenIDDronePictureBox.Size = new Size(23, 23);
-            citizenIDDronePictureBox.TabIndex = 20;
-            citizenIDDronePictureBox.TabStop = false;
+            tabImageList.ColorDepth = ColorDepth.Depth32Bit;
+            tabImageList.ImageStream = (ImageListStreamer)resources.GetObject("tabImageList.ImageStream");
+            tabImageList.TransparentColor = Color.Transparent;
+            tabImageList.Images.SetKeyName(0, "slugcat_tab_icon.png");
+            tabImageList.Images.SetKeyName(1, "echo_tab_icon.png");
             // 
             // SlugConfigControl
             // 
@@ -899,6 +999,7 @@
             slugcatInfoTabPage.PerformLayout();
             groupBox1.ResumeLayout(false);
             groupBox1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)citizenIDDronePictureBox).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox7).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox5).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox6).EndInit();
@@ -906,6 +1007,9 @@
             denInfoGroupBox.ResumeLayout(false);
             denInfoGroupBox.PerformLayout();
             slugcatInfoKarmaGroupBox.ResumeLayout(false);
+            echosTabPage.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)echoDataGridView).EndInit();
+            echoDataGridContextMenuStrip.ResumeLayout(false);
             communitiesTabPage.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)communityRegionRepDataGridView).EndInit();
             worldInfoTabPage.ResumeLayout(false);
@@ -932,7 +1036,6 @@
             ((System.ComponentModel.ISupportInitialize)worldVersionNumericUpDown).EndInit();
             ((System.ComponentModel.ISupportInitialize)initialGameVersionNumericUpDown).EndInit();
             ((System.ComponentModel.ISupportInitialize)gameVerisonNumericUpDown).EndInit();
-            ((System.ComponentModel.ISupportInitialize)citizenIDDronePictureBox).EndInit();
             ResumeLayout(false);
         }
 
@@ -1004,5 +1107,15 @@
         private Label worldVersionLabel;
         private NumericUpDown worldVersionNumericUpDown;
         private PictureBox citizenIDDronePictureBox;
+        private TabPage echosTabPage;
+        private ImageList tabImageList;
+        private DataGridView echoDataGridView;
+        private DataGridViewTextBoxColumn regionCodeColumn;
+        private DataGridViewTextBoxColumn regionNameColumn;
+        private DataGridViewComboBoxColumn echoValueColumn;
+        private ContextMenuStrip echoDataGridContextMenuStrip;
+        private ToolStripMenuItem addEchoToolStripMenuItem;
+        private ToolStripMenuItem removeEchoToolStripMenuItem;
+        private ToolStripMenuItem duplicateEchoToolStripMenuItem;
     }
 }
