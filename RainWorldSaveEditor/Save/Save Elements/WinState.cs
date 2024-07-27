@@ -9,7 +9,6 @@ using System.Threading.Tasks;
 
 namespace RainWorldSaveEditor.Save;
 
-[DebuggerDisplay("ID = {ID} | Consumed = {Consumed}")]
 public class EndgameTracker
 {
     public string ID { get; set; } = "";
@@ -23,7 +22,7 @@ public class EndgameTracker
     }
 }
 
-[DebuggerDisplay("ID = {ID} | Consumed = {Consumed} | Progress = {Progress}")]
+[DebuggerDisplay("Integer | ID = {ID} | Consumed = {Consumed} | Progress = {Progress}")]
 public class IntegerTracker : EndgameTracker
 {
     public int Progress { get; set; } = 0;
@@ -35,7 +34,7 @@ public class IntegerTracker : EndgameTracker
     }
 }
 
-[DebuggerDisplay("ID = {ID} | Consumed = {Consumed} | Progress = {Progress}")]
+[DebuggerDisplay("Float | ID = {ID} | Consumed = {Consumed} | Progress = {Progress}")]
 public class FloatTracker : EndgameTracker
 {
     public float Progress { get; set; } = 0;
@@ -47,7 +46,7 @@ public class FloatTracker : EndgameTracker
     }
 }
 
-[DebuggerDisplay("ID = {ID} | Consumed = {Consumed} | Progress = {string.Join(\", \", Progress)}")]
+[DebuggerDisplay("BoolArray | ID = {ID} | Consumed = {Consumed} | Progress = {string.Join(\", \", Progress)}")]
 public class BoolArrayTracker : EndgameTracker
 {
     public List<bool> Progress { get; } = [];
@@ -68,7 +67,7 @@ public class BoolArrayTracker : EndgameTracker
     }
 }
 
-[DebuggerDisplay("ID = {ID} | Consumed = {Consumed} | Progress = {string.Join(\", \", Progress)}")]
+[DebuggerDisplay("List | ID = {ID} | Consumed = {Consumed} | Progress = {string.Join(\", \", Progress)}")]
 public class ListTracker : EndgameTracker
 {
     public List<int> Progress { get; } = [];
@@ -89,6 +88,7 @@ public class ListTracker : EndgameTracker
     }
 }
 
+[DebuggerDisplay("FoodQuest | ID = {ID} | Consumed = {Consumed} | Progress = {string.Join(\", \", Progress)}")]
 public class GourmandFoodQuestTracker : EndgameTracker
 {
     public List<int> Progress { get; } = [];
