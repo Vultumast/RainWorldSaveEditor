@@ -137,7 +137,7 @@ public abstract class SaveElementContainer
 
             clearMethod.Invoke(propertyBinding, null);
 
-            foreach (var element in value.Split(elementInfo.ListDelimiter))
+            foreach (var element in value.Split(elementInfo.ListDelimiter, StringSplitOptions.RemoveEmptyEntries))
             {
                 addMethod.Invoke(propertyBinding, [element]);
             }
@@ -150,7 +150,7 @@ public abstract class SaveElementContainer
 
             clearMethod.Invoke(propertyBinding, null);
 
-            foreach (var element in value.Split(elementInfo.ListDelimiter))
+            foreach (var element in value.Split(elementInfo.ListDelimiter, StringSplitOptions.RemoveEmptyEntries))
             {
                 addMethod.Invoke(propertyBinding, [parseMethod.Invoke(null, [element, null])]);
             }

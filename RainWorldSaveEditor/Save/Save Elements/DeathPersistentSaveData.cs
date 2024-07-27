@@ -36,14 +36,29 @@ public class DeathPersistentSaveData : SaveElementContainer, IParsable<DeathPers
     /// Position of Karma Flower created upon player death.
     /// </summary>
     [SaveFileElement("FLOWERPOS")]
-    public WorldCoordinate KarmaFlowerPosition { get; set; }
+    public WorldCoordinate? KarmaFlowerPosition { get; set; }
 
     // TODO: GHOSTS
+
+    /// <summary>
+    /// Tracks when was a particular song last played.
+    /// </summary>
     [SaveFileElement("SONGSPLAYRECORDS", ListDelimiter = "<dpC>")]
     public List<SongPlayRecord> SongPlayRecords { get; private set; } = [];
 
-    // TODO: SESSIONRECORDS
-    // TODO: WINSTATE
+    /// <summary>
+    /// Tracks information about game sessions, such as whenever the player survived, etc.
+    /// </summary>
+    [SaveFileElement("SESSIONRECORDS", ListDelimiter = "<dpC>")]
+    public List<SessionRecord> SessionRecords { get; private set; } = [];
+
+    // TODO Parse each passage tracker
+    /// <summary>
+    /// Tracks the progress for each passage.
+    /// </summary>
+    [SaveFileElement("WINSTATE", ListDelimiter = "<wsA>")]
+    public List<string> WinState { get; private set; } = []; 
+
     // TODO: CONSUMEDFLOWERS
 
     /// <summary>
