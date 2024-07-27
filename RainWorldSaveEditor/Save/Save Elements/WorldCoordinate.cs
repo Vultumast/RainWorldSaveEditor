@@ -1,9 +1,11 @@
-﻿using System.Diagnostics.CodeAnalysis;
+﻿using System.Diagnostics;
+using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
 
 namespace RainWorldSaveEditor.Save;
 
 // TODO: Check if this is the only format for world coordinates that is used
+[DebuggerDisplay("Room = {RoomName} | Pos = {X}, {Y} | AbstractNode = {AbstractNode}")]
 public class WorldCoordinate : IParsable<WorldCoordinate>
 {
     public string RoomName { get; set; } = "???";

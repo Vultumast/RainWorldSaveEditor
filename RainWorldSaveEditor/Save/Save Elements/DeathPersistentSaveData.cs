@@ -38,7 +38,16 @@ public class DeathPersistentSaveData : SaveElementContainer, IParsable<DeathPers
     [SaveFileElement("FLOWERPOS")]
     public WorldCoordinate? KarmaFlowerPosition { get; set; }
 
-    // TODO: GHOSTS
+    /// <summary>
+    /// Current state of echoes in the world. <para/>
+    /// 0 = Echo not met yet <para/>
+    /// 1 = Echo area visited on a previous cycle <para/>
+    /// 2 = Echo met and karma increased <para/>
+    /// Some echoes can be met without visiting on a previous cycle. <para/>
+    /// Hunter in particular can meet echoes without having to visit the area beforehand.
+    /// </summary>
+    [SaveFileElement("GHOSTS")]
+    public Ghosts Ghosts { get; private set; } = new();
 
     /// <summary>
     /// Tracks when was a particular song last played.
@@ -52,14 +61,18 @@ public class DeathPersistentSaveData : SaveElementContainer, IParsable<DeathPers
     [SaveFileElement("SESSIONRECORDS", ListDelimiter = "<dpC>")]
     public List<SessionRecord> SessionRecords { get; private set; } = [];
 
-    // TODO Parse each passage tracker
     /// <summary>
     /// Tracks the progress for each passage.
     /// </summary>
     [SaveFileElement("WINSTATE")]
-    public WinState WinState { get; private set; } = new(); 
+    public WinState WinState { get; private set; } = new();
 
-    // TODO: CONSUMEDFLOWERS
+    /// <summary>
+    /// Tracks Karma Flowers that have been consumed by the player in the world. <para/>
+    /// This is used to track when they should respawn.
+    /// </summary>
+    [SaveFileElement("CONSUMEDFLOWERS", ListDelimiter = "<dpC>")]
+    public List<ConsumedItem> ConsumedKarmaFlowers { get; private set; } = [];
 
     /// <summary>
     /// Whenever the slugcat currently has the mark of communication.
@@ -67,8 +80,18 @@ public class DeathPersistentSaveData : SaveElementContainer, IParsable<DeathPers
     [SaveFileElement("HASTHEMARK", true)]
     public bool HasMarkOfCommunication { get; set; } = false;
 
-    // TODO: TUTMESSAGES
-    // TODO: METERSSHOWN
+    /// <summary>
+    /// Contains a list of tutorial messages shown to the player.
+    /// </summary>
+    [SaveFileElement("TUTMESSAGES")]
+    public TutorialMessages TutorialMessages { get; set; } = new();
+
+    /// <summary>
+    /// Contains a list of passage meters that appeared on the sleep screen. <para/>
+    /// Mainly used to force the player to watch the entire karma screen sequence.
+    /// </summary>
+    [SaveFileElement("METERSSHOWN")]
+    public PassageMetersShown PassageMetersShown { get; set; } = new();
 
     /// <summary>
     /// Gets incremented on each death at minimum karma, gets reset on a survived cycle. <para/>
@@ -103,7 +126,13 @@ public class DeathPersistentSaveData : SaveElementContainer, IParsable<DeathPers
     [SaveFileElement("QUITS")]
     public int Quits { get; set; } = 0;
 
-    // TODO: DEATHPOSS
+    /// <summary>
+    /// List of world positions where the player has died. <para/>
+    /// This is used to render the marks on the map. <para/>
+    /// Death positions use the AbstractNode property to track their cycle age, and are removed after 7 cycles.
+    /// </summary>
+    [SaveFileElement("DEATHPOSS", ListDelimiter = "<dpC>")]
+    public List<WorldCoordinate> DeathPositions { get; private set; } = [];
 
     /// <summary>
     /// This value gets set automatically on death, but only makes sense for Hunter's campaign. <para/>
@@ -167,11 +196,20 @@ public class DeathPersistentSaveData : SaveElementContainer, IParsable<DeathPers
     /// <summary>
     /// Unused. Also unknown what the intended usage was going to be, if any.
     /// </summary>
-    [SaveFileElement("SLSiren", true)]
+    [SaveFileElement("SLSIREN", true)]
     public bool SLSiren { get; set; } = false;
 
-    // TODO: CHATLOGS
-    // TODO: PREPEBCHATLOGS
+    /// <summary>
+    /// A list of broadcasts that have been read by the player.
+    /// </summary>
+    [SaveFileElement("CHATLOGS", ListDelimiter = ",")]
+    public List<string> ChatLogsRead { get; private set; } = [];
+
+    /// <summary>
+    /// A list of broadcasts that have been read by the player, before ever interacting with Five Pebbles.
+    /// </summary>
+    [SaveFileElement("PREPEBCHATLOGS", ListDelimiter = ",")]
+    public List<string> ChatLogsReadBeforeFP { get; private set; } = [];
 
     /// <summary>
     /// Counter used for displaying tips in-game.
