@@ -56,8 +56,8 @@ public class DeathPersistentSaveData : SaveElementContainer, IParsable<DeathPers
     /// <summary>
     /// Tracks the progress for each passage.
     /// </summary>
-    [SaveFileElement("WINSTATE", ListDelimiter = "<wsA>")]
-    public List<string> WinState { get; private set; } = []; 
+    [SaveFileElement("WINSTATE")]
+    public WinState WinState { get; private set; } = new(); 
 
     // TODO: CONSUMEDFLOWERS
 
