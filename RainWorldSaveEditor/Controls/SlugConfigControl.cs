@@ -436,8 +436,13 @@ public partial class SlugConfigControl : UserControl
     {
         SaveState.DeathPersistentSaveData.Echos.EchoStates.Remove(e.Row.Cells[0].Value.ToString()!);
     }
-    #endregion
 
+    private void echoDataGridView_SelectionChanged(object sender, EventArgs e)
+    {
+        removeEchoToolStripMenuItem.Enabled = echoDataGridView.SelectedRows.Count > 0;
+    }
+
+    #region Context Menu
     private void addEchoToolStripMenuItem_Click(object sender, EventArgs e)
     {
         using AddEchoForm form = new AddEchoForm(SaveState);
@@ -461,11 +466,50 @@ public partial class SlugConfigControl : UserControl
 
     private void removeEchoToolStripMenuItem_Click(object sender, EventArgs e)
     {
+        string[] selectedRows = new string[echoDataGridView.SelectedRows.Count];
 
+        for (var i = 0; i < echoDataGridView.SelectedRows.Count; i++)
+            selectedRows[i] = echoDataGridView.SelectedRows[i].Cells[0].Value.ToString()!;
+
+
+        for (var i = 0; i < selectedRows.Length; i++)
+        {
+            int id = -1;
+            for (var r = 0; r < echoDataGridView.Rows.Count; r++)
+            {
+                if (echoDataGridView.Rows[r].Cells[0].Value.ToString() == selectedRows[i])
+                {
+                    id = i;
+                    break;
+                }
+            }
+
+            if (id == -1)
+            {
+                Logger.Error($"Unable to find id {id} for echo: \"{selectedRows[i]}\"");
+                continue;
+            }
+
+            string regionCode = echoDataGridView.Rows[id].Cells[0].Value!.ToString()!;
+            string regionName = "";
+            if (Translation.RegionNames.TryGetValue(regionCode, out regionName!))
+            {
+                if (MessageBox.Show($"Deleting a vanilla game's echo information might cause instability!\nAre you sure you want to delete \"{regionCode}\" - \"{regionName}\"?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.No)
+                {
+                    continue;
+                }
+            }
+
+            SaveState.DeathPersistentSaveData.Echos.EchoStates.Remove(regionCode);
+            echoDataGridView.Rows.RemoveAt(id);
+        }
     }
 
     private void duplicateEchoToolStripMenuItem_Click(object sender, EventArgs e)
     {
 
     }
+    #endregion
+    #endregion
+
 }

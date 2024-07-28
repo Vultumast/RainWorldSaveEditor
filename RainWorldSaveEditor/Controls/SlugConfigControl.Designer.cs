@@ -63,7 +63,6 @@
             echoDataGridContextMenuStrip = new ContextMenuStrip(components);
             addEchoToolStripMenuItem = new ToolStripMenuItem();
             removeEchoToolStripMenuItem = new ToolStripMenuItem();
-            duplicateEchoToolStripMenuItem = new ToolStripMenuItem();
             communitiesTabPage = new TabPage();
             communityRegionRepDataGridView = new DataGridView();
             communityListBox = new ListBox();
@@ -460,6 +459,7 @@
             echoDataGridView.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             echoDataGridView.Size = new Size(535, 406);
             echoDataGridView.TabIndex = 0;
+            echoDataGridView.SelectionChanged += echoDataGridView_SelectionChanged;
             echoDataGridView.UserDeletedRow += echoDataGridView_UserDeletedRow;
             echoDataGridView.UserDeletingRow += echoDataGridView_UserDeletingRow;
             // 
@@ -485,30 +485,23 @@
             // 
             // echoDataGridContextMenuStrip
             // 
-            echoDataGridContextMenuStrip.Items.AddRange(new ToolStripItem[] { addEchoToolStripMenuItem, removeEchoToolStripMenuItem, duplicateEchoToolStripMenuItem });
+            echoDataGridContextMenuStrip.Items.AddRange(new ToolStripItem[] { addEchoToolStripMenuItem, removeEchoToolStripMenuItem });
             echoDataGridContextMenuStrip.Name = "echoDataGridContextMenuStrip";
-            echoDataGridContextMenuStrip.Size = new Size(154, 70);
+            echoDataGridContextMenuStrip.Size = new Size(147, 48);
             // 
             // addEchoToolStripMenuItem
             // 
             addEchoToolStripMenuItem.Name = "addEchoToolStripMenuItem";
-            addEchoToolStripMenuItem.Size = new Size(153, 22);
+            addEchoToolStripMenuItem.Size = new Size(146, 22);
             addEchoToolStripMenuItem.Text = "Add Echo";
             addEchoToolStripMenuItem.Click += addEchoToolStripMenuItem_Click;
             // 
             // removeEchoToolStripMenuItem
             // 
             removeEchoToolStripMenuItem.Name = "removeEchoToolStripMenuItem";
-            removeEchoToolStripMenuItem.Size = new Size(153, 22);
+            removeEchoToolStripMenuItem.Size = new Size(146, 22);
             removeEchoToolStripMenuItem.Text = "Remove Echo";
             removeEchoToolStripMenuItem.Click += removeEchoToolStripMenuItem_Click;
-            // 
-            // duplicateEchoToolStripMenuItem
-            // 
-            duplicateEchoToolStripMenuItem.Name = "duplicateEchoToolStripMenuItem";
-            duplicateEchoToolStripMenuItem.Size = new Size(153, 22);
-            duplicateEchoToolStripMenuItem.Text = "Duplicate Echo";
-            duplicateEchoToolStripMenuItem.Click += duplicateEchoToolStripMenuItem_Click;
             // 
             // communitiesTabPage
             // 
@@ -1116,6 +1109,5 @@
         private ContextMenuStrip echoDataGridContextMenuStrip;
         private ToolStripMenuItem addEchoToolStripMenuItem;
         private ToolStripMenuItem removeEchoToolStripMenuItem;
-        private ToolStripMenuItem duplicateEchoToolStripMenuItem;
     }
 }
