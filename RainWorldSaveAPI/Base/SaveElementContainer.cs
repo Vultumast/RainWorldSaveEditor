@@ -101,7 +101,7 @@ public abstract class SaveElementContainer
                     // Logger.Debug($"{propertyInfo.DeclaringType?.Name}: {propertyInfo.Name} => {data} ({data?.GetType().Name})");
                 }
             }
-            else
+            else if (!elementInfo.ValueOptional)
             {
                 Logger.Error($"UNABLE TO SET: \"{propertyInfo.Name}\"! Tell Mario or Vultu!");
                 return false;

@@ -18,9 +18,17 @@ public class MiscWorldSaveData : SaveElementContainer, IParsable<MiscWorldSaveDa
     [SaveFileElement("SSaiThrowOuts")]
     public int TimesKickedOutByFivePebbles { get; set; } = 0;
 
-    // TODO: SLaiState
+    /// <summary>
+    /// Looks to the Moon's current state.
+    /// </summary>
+    [SaveFileElement("SLaiState")]
+    public LooksToTheMoonState? LooksToTheMoonState { get; set; } = null;
 
-    // TODO: playerGuideState
+    /// <summary>
+    /// The guiding overseer's current state.
+    /// </summary>
+    [SaveFileElement("playerGuideState")]
+    public PlayerGuideState PlayerGuideState { get; set; } = new();
 
     /// <summary>
     /// Tracks whenever Hunter successfully delivered the Green Neuron to Looks to the Moon and revived her.

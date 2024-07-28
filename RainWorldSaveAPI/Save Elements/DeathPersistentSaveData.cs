@@ -47,7 +47,7 @@ public class DeathPersistentSaveData : SaveElementContainer, IParsable<DeathPers
     /// Some echoes can be met without visiting on a previous cycle. <para/>
     /// Hunter in particular can meet echoes without having to visit the area beforehand.
     /// </summary>
-    [SaveFileElement("GHOSTS")]
+    [SaveFileElement("GHOSTS", true)] // This can be empty if there are no ghosts, apparently?
     public Echos Echos { get; private set; } = new();
 
     /// <summary>

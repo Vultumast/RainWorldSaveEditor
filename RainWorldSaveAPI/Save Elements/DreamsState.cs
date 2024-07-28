@@ -1,9 +1,15 @@
-﻿using System.Globalization;
+﻿using System.Diagnostics.CodeAnalysis;
+using System.Globalization;
 
 namespace RainWorldSaveAPI.SaveElements;
 
-public class DreamsState
+// TODO: Document fields
+public class DreamsState : IParsable<DreamsState>
 {
+    public List<int> UnrecognizedIntegers { get; } = [];
+
+    public List<string> UnrecognizedSaveStrings { get; } = [];
+
     public int CyclesSinceLastDream { get; set; } = 0;
 
     public int CyclesSinceLastFamilyDream { get; set; } = 0;
@@ -22,56 +28,50 @@ public class DreamsState
 
     public bool EverAteMoonNeuron { get; set; } = false;
 
-    public List<int> UnrecognizedIntegers { get; } = [];
-
-    public List<string> UnrecognizedSaveStrings { get; } = [];
-
-    public void Read(string value)
+    public static DreamsState Parse(string s, IFormatProvider? provider)
     {
-        UnrecognizedIntegers.Clear();
-        UnrecognizedSaveStrings.Clear();
+        var state = new DreamsState();
 
-        var arrays = value.Split("<dsA>");
+        state.UnrecognizedIntegers.Clear();
+        state.UnrecognizedSaveStrings.Clear();
+
+        var arrays = s.Split("<dsA>", StringSplitOptions.RemoveEmptyEntries);
 
         foreach (var array in arrays)
         {
-            var elements = array.Split("<dsB>");
-
-            if (elements.Length != 2)
-            {
-                // TODO Better handling
-                Logger.Debug("A dreamstate array has less than 2 elements.");
-                continue;
-            }
+            var elements = array.Split("<dsB>", StringSplitOptions.RemoveEmptyEntries);
 
             var key = elements[0];
-            var arr = elements[1];
+            var arr = elements.Length >= 2 ? elements[1] : "";
 
             if (key == "integersArray")
             {
-                var integers = arr.Split('.').Select(x => int.Parse(x, System.Globalization.NumberStyles.Any, CultureInfo.InvariantCulture)).ToArray();
+                var integers = new int[9];
 
-                // TODO rewrite this?
-                CyclesSinceLastDream = integers.Length >= 1 ? integers[0] : 0;
-                CyclesSinceLastFamilyDream = integers.Length >= 2 ? integers[1] : 0;
-                CyclesSinceLastGuideDream = integers.Length >= 3 ? integers[2] : 0;
-                FamilyThread = integers.Length >= 4 ? integers[3] : 0;
-                GuideThread = integers.Length >= 5 ? integers[4] : 0;
-                InGWOrSHCounter = integers.Length >= 6 ? integers[5] : 0;
-                EverSleptInSB = integers.Length >= 7 && integers[6] == 1;
-                EverSleptInSB_S01 = integers.Length >= 8 && integers[7] == 1;
-                EverAteMoonNeuron = integers.Length >= 9 && integers[8] == 1;
+                state.UnrecognizedIntegers.AddRange(SaveUtils.LoadIntegerArray(arr, ".", integers));
 
-                if (integers.Length >= 10)
-                {
-                    UnrecognizedIntegers.AddRange(integers.Skip(9));
-                }
+                state.CyclesSinceLastDream = SaveUtils.ElementOrDefault(integers, 0, 0);
+                state.CyclesSinceLastFamilyDream = SaveUtils.ElementOrDefault(integers, 1, 0);
+                state.CyclesSinceLastGuideDream = SaveUtils.ElementOrDefault(integers, 2, 0);
+                state.FamilyThread = SaveUtils.ElementOrDefault(integers, 3, 0);
+                state.GuideThread = SaveUtils.ElementOrDefault(integers, 4, 0);
+                state.InGWOrSHCounter = SaveUtils.ElementOrDefault(integers, 5, 0);
+                state.EverSleptInSB = SaveUtils.ElementOrDefault(integers, 6, 0) == 1;
+                state.EverSleptInSB_S01 = SaveUtils.ElementOrDefault(integers, 7, 0) == 1;
+                state.EverAteMoonNeuron = SaveUtils.ElementOrDefault(integers, 8, 0) == 1;
             }
             else if (array.Trim().Length > 0)
             {
-                UnrecognizedSaveStrings.Add(array);
+                state.UnrecognizedSaveStrings.Add(array);
             }
         }
+
+        return state;
+    }
+
+    public static bool TryParse([NotNullWhen(true)] string? s, IFormatProvider? provider, [MaybeNullWhen(false)] out DreamsState result)
+    {
+        throw new NotImplementedException();
     }
 
     public string Write()

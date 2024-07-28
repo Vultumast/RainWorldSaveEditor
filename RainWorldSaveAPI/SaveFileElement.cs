@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 
 namespace RainWorldSaveAPI;
 
+// TODO: Implement a way to read fields of type "integersArray", "miscBools", etc.
 [AttributeUsage(AttributeTargets.Property, AllowMultiple = false)]
 public class SaveFileElement(string name, bool valueOptional = false) : Attribute
 {

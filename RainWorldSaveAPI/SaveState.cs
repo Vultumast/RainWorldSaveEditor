@@ -185,7 +185,7 @@ public class SaveState : SaveElementContainer
     /// Tracks the total number of kills for each creature.
     /// </summary>
     [SaveFileElement("KILLS", ListDelimiter="<svC>")]
-    public List<(string Thing, string Count)> Kills { get; } = [];
+    public List<CreatureKillData> Kills { get; } = [];
 
     /// <summary>
     /// Indicates whenever the player received extra cycles from visiting Five Pebbles.
@@ -239,19 +239,19 @@ public class SaveState : SaveElementContainer
     /// <summary>
     /// Saved objects and critters in the world.
     /// </summary>
-    [SaveFileElement("OBJECTS")]
+    [SaveFileElement("OBJECTS", ListDelimiter = "<svC>")]
     public List<string> Objects { get; private set; } = [];
 
     /// <summary>
     /// Saved friendly creatures.
     /// </summary>
-    [SaveFileElement("FRIENDS")]
+    [SaveFileElement("FRIENDS", ListDelimiter = "<svC>")]
     public List<string> Friends { get; private set; } = [];
 
     /// <summary>
     /// Tracks the list of slugcat encounters for Gourmand in the Outer Expanse.
     /// </summary>
-    [SaveFileElement("OEENCOUNTERS")]
+    [SaveFileElement("OEENCOUNTERS", ListDelimiter = "<svC>")]
     public List<string> OuterExpanseEncounters { get; private set; } = [];
 
     /// <summary>
