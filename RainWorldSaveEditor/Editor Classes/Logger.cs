@@ -143,6 +143,7 @@ public static class Logger
     public static void WriteAttempt(string filepath) => Info($"Attempting to write file: \"{filepath}\"");
     public static void Success() => Info($"Success!");
     public static void Exception(Exception ex) => Error($"An exception has occured! Details are as follows:\n{ex.Message}");
+    public static void DeserializationError(string path, string objectName, Exception ex) => Error($"Unable to deserialize \"{path}\" into type \"{objectName}\"! Exception details are as follows:\n{ex.Message}");
 
     public static void WriteLine(LogReportType reportType, string message)
     {

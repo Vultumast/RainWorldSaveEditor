@@ -580,7 +580,7 @@
             communityListBox.FormattingEnabled = true;
             communityListBox.IntegralHeight = false;
             communityListBox.ItemHeight = 24;
-            communityListBox.Items.AddRange(new object[] { "All", "Scavengers", "Lizards", "Squidcada", "Garbage Worms", "Deer", "Jet Fish" });
+            communityListBox.Items.AddRange(new object[] { "" });
             communityListBox.Location = new Point(6, 6);
             communityListBox.Name = "communityListBox";
             communityListBox.Size = new Size(194, 400);

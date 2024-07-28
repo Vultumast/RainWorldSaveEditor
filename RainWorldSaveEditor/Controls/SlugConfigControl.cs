@@ -13,6 +13,7 @@ using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 using RainWorldSaveAPI;
 using RainWorldSaveAPI.SaveElements;
 using RainWorldSaveEditor.Forms;
+using System.Collections;
 
 namespace RainWorldSaveEditor.Controls;
 
@@ -266,6 +267,11 @@ public partial class SlugConfigControl : UserControl
 
     private void LoadCommunitiesTabPage()
     {
+        communityListBox.Items.Clear();
+        communityListBox.Items.Add("All");
+
+        foreach (var community in CommunityInfo.Communities)
+            communityListBox.Items.Add(community);
 
     }
 
@@ -279,6 +285,8 @@ public partial class SlugConfigControl : UserControl
         }
 
         communityRegionRepDataGridView.Tag = community;
+
+        communityRegionRepDataGridView.Rows[0].Cells[0].ReadOnly = true;
     }
 
     private void communityListBox_SelectedIndexChanged(object sender, EventArgs e)
@@ -288,8 +296,14 @@ public partial class SlugConfigControl : UserControl
 
         Community communityValue = null!;
 
-        if (SaveState.Communities.Communities.TryGetValue(communityListBox.SelectedItem!.ToString()!, out communityValue!))
-            FillCommunityRegionRepListView(communityValue);
+        if (communityListBox.SelectedIndex == 0)
+            communityValue = SaveState.Communities.Communities["All"];
+        else
+            SaveState.Communities.Communities.TryGetValue(((KeyValuePair<string, CommunityInfo>)communityListBox.SelectedItem!).Value.CommunityID, out communityValue!);
+        
+
+        if (communityValue is not null)
+            FillCommunityRegionRepListView(communityValue );
         else
             Logger.Warn($"SaveState Communities did not contain an entry for \"{communityListBox.SelectedItem!.ToString()!}\"");
 
@@ -299,7 +313,7 @@ public partial class SlugConfigControl : UserControl
 
     private void communityRegionRepDataGridView_CellBeginEdit(object sender, DataGridViewCellCancelEventArgs e)
     {
-        var text = communityRegionRepDataGridView.Rows[e.RowIndex].Cells[e.ColumnIndex].ToString();
+        var text = communityRegionRepDataGridView.Rows[e.RowIndex].Cells[e.ColumnIndex].Value.ToString();
 
         if (text == "EVERY")
             e.Cancel = true;
@@ -309,12 +323,14 @@ public partial class SlugConfigControl : UserControl
 
     private void communityRegionRepDataGridView_CellEndEdit(object sender, DataGridViewCellEventArgs e)
     {
-        var userValue = communityRegionRepDataGridView.Rows[e.RowIndex].Cells[e.ColumnIndex].ToString();
+        var userValue = communityRegionRepDataGridView.Rows[e.RowIndex].Cells[e.ColumnIndex].Value.ToString();
         var userValueCaps = userValue!.ToUpper();
 
         if (userValue == _communityCellPreValue)
             return;
-
+        string communityID = string.Empty;
+        string regionCode = string.Empty;
+        float value = 0;
         switch (e.ColumnIndex)
         {
             case 0:
@@ -324,25 +340,34 @@ public partial class SlugConfigControl : UserControl
                     communityRegionRepDataGridView.Rows[e.RowIndex].Cells[e.ColumnIndex].Value = _communityCellPreValue;
                 }
 
-                foreach (DataRow item in communityRegionRepDataGridView.Rows)
+                if (SaveState.Communities.Communities.ContainsKey(userValue) || SaveState.Communities.Communities.ContainsKey(userValueCaps))
                 {
-                    if (item.ItemArray[0]!.ToString() == userValueCaps)
-                    {
-                        MessageBox.Show("Region Code has already been added.", "Invalid Selection");
-                        communityRegionRepDataGridView.Rows[e.RowIndex].Cells[e.ColumnIndex].Value = _communityCellPreValue;
-                        return;
-                    }
+                    MessageBox.Show("Region Code has already been added.", "Invalid Selection");
+                    communityRegionRepDataGridView.Rows[e.RowIndex].Cells[e.ColumnIndex].Value = _communityCellPreValue;
+                    return;
                 }
 
-                Logger.Trace("SET COMMUNITY CODE");
-                // Adjust value here?
+                communityID = ((KeyValuePair<string, CommunityInfo>)communityListBox.SelectedItem!).Value.CommunityID;
+                regionCode = communityRegionRepDataGridView.Rows[e.RowIndex].Cells[0].Value.ToString()!;
+
+                value = SaveState.Communities.Communities[communityID].PlayerRegionalReputation[_communityCellPreValue];
+
+                SaveState.Communities.Communities[communityID].PlayerRegionalReputation.Remove(_communityCellPreValue);
+                SaveState.Communities.Communities[communityID].PlayerRegionalReputation.Add(regionCode, value);
+
                 break;
             case 2:
-                float value = 0;
+                value = 0;
                 if (float.TryParse(userValue, out value) && value >= -100 && value <= 100)
                 {
-                    Logger.Trace("SET COMMUNITY VALUE");
-                    // Set the value here
+                    communityID = "All";
+
+                    if (communityListBox.SelectedIndex > 0)
+                        communityID = ((KeyValuePair<string, CommunityInfo>)communityListBox.SelectedItem!).Value.CommunityID;
+
+                    regionCode = communityRegionRepDataGridView.Rows[e.RowIndex].Cells[0].Value.ToString()!;
+
+                    SaveState.Communities.Communities[communityID].PlayerRegionalReputation[regionCode] = (value / 100.0f);
                 }
                 else
                 {
@@ -376,7 +401,7 @@ public partial class SlugConfigControl : UserControl
 
     private void communityRegionRepDataGridView_UserDeletedRow(object sender, DataGridViewRowEventArgs e)
     {
-
+        SaveState.Communities.Communities[((KeyValuePair<string, CommunityInfo>)communityListBox.SelectedItem!).Value.CommunityID].PlayerRegionalReputation.Remove(e.Row.Cells[0].Value.ToString()!);
     }
     private void communityListBox_DrawItem(object sender, DrawItemEventArgs e)
     {
@@ -385,10 +410,14 @@ public partial class SlugConfigControl : UserControl
         {
             e.Graphics.FillRectangle(SystemBrushes.Highlight, e.Bounds);
 
-            var item = communityListBox.Items[e.Index].ToString();
-            var strHeight = e.Graphics.MeasureString(item, Font).Height;
+            var selecteditem = "All";
 
-            e.Graphics.DrawString(item, Font, Brushes.White, e.Bounds.X + communityListBox.ItemHeight, (e.Bounds.Y + e.Bounds.Height / 2.0f) - (strHeight / 2.0f));
+            if (e.Index > 0)
+                selecteditem = ((KeyValuePair<string, CommunityInfo>)communityListBox.Items[e.Index]).Value.Name;
+
+            var strHeight = e.Graphics.MeasureString(selecteditem, Font).Height;
+
+            e.Graphics.DrawString(selecteditem, Font, Brushes.White, e.Bounds.X + communityListBox.ItemHeight, (e.Bounds.Y + e.Bounds.Height / 2.0f) - (strHeight / 2.0f));
         }
         else
         {
@@ -396,25 +425,25 @@ public partial class SlugConfigControl : UserControl
 
             e.Graphics.FillRectangle(bgBrush, e.Bounds);
 
-            var item = communityListBox.Items[e.Index].ToString();
-            var strHeight = e.Graphics.MeasureString(item, Font).Height;
+            var selecteditem = "All";
 
-            e.Graphics.DrawString(item, Font, Brushes.Black, e.Bounds.X + communityListBox.ItemHeight, (e.Bounds.Y + e.Bounds.Height / 2.0f) - (strHeight / 2.0f));
+            if (e.Index > 0)
+                selecteditem = ((KeyValuePair<string, CommunityInfo>)communityListBox.Items[e.Index]).Value.Name;
+
+            var strHeight = e.Graphics.MeasureString(selecteditem, Font).Height;
+
+            e.Graphics.DrawString(selecteditem, Font, Brushes.Black, e.Bounds.X + communityListBox.ItemHeight, (e.Bounds.Y + e.Bounds.Height / 2.0f) - (strHeight / 2.0f));
         }
 
-
-        // TEMP
-        Bitmap img = e.Index switch
+        Bitmap img = null!;
+        var item = communityListBox.Items[e.Index];
+        if (item.GetType() == typeof(KeyValuePair<string, CommunityInfo>))
         {
-            1 => Properties.Resources.scavenger_community_icon,
-            2 => Properties.Resources.lizard_community_icon,
-            3 => Properties.Resources.squidcada_community_icon,
-            4 => Properties.Resources.garbageworm_community_icon,
-            5 => Properties.Resources.raindeer_community_icon,
-            6 => Properties.Resources.jetfish_community_icon,
-            _ => null!
-        };
-        // END OF TEMP
+            string filepath = $"{CommunityInfo.CreatureCommunityIconsDirectoryPath}\\{((KeyValuePair<string, CommunityInfo>)item).Value.IconPath}";
+
+            if (File.Exists(filepath))
+                img = new Bitmap(filepath);
+        }
 
         if (img is not null)
         {
@@ -435,6 +464,8 @@ public partial class SlugConfigControl : UserControl
 
             e.Graphics.DrawImage(img, imageSizeCenter.X - imageSizeCenter.X, imagePosCenter.Y - imageSizeCenter.Y, imgHeight, imgWidth);
         }
+
+        img?.Dispose();
 
     }
     #endregion

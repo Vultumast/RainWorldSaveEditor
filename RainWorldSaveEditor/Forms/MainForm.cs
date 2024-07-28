@@ -54,7 +54,7 @@ public partial class MainForm : Form
 
         EditorCommon.ReadSlugcatInfo();
 
-        CommunityInfo.WriteDefaultCommunities();
+        CommunityInfo.ReadCommunities();
 
         for (var i = 0; i < EditorCommon.SlugcatInfo.Length; i++)
             slugcatIconImageList.Images.Add(EditorCommon.SlugcatInfo[i].Name, Image.FromFile(Path.Combine("Resources\\Slugcat Icons\\", $"{EditorCommon.SlugcatInfo[i].Name}.png")));
