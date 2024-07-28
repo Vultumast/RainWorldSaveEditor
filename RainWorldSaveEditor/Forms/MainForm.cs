@@ -4,6 +4,9 @@ using System.Diagnostics;
 using System.Text.Json;
 using RainWorldSaveAPI;
 using RainWorldSaveAPI.SaveElements;
+using System.Reflection;
+using System.Globalization;
+using System.Resources;
 
 namespace RainWorldSaveEditor;
 
@@ -17,20 +20,6 @@ public partial class MainForm : Form
 
     }
 
-
-    // TEMP
-    public struct SlugcatInfo(string name, string saveID, bool requiresDLC, bool modded, byte pipCount, byte pipBarIndex)
-    {
-        public string Name { get; set; } = name;
-        public string SaveID { get; set; } = saveID;
-        public bool RequiresDLC { get; set; } = requiresDLC;
-        public bool Modded { get; set; } = modded;
-        public byte PipCount { get; set; } = pipCount;
-        public byte PipBarIndex { get; set; } = pipBarIndex;
-    }
-
-    public List<SlugcatInfo> Slugcats = new();
-    // TEND OF TEMP
     private void MainForm_Load(object sender, EventArgs e)
     {
         if (!File.Exists(Settings.Filepath))
@@ -56,25 +45,26 @@ public partial class MainForm : Form
             settings.Save();
         }
 
-        var slugcatFiles = Directory.GetFiles("Resources\\Slugcat Info", "*.json", SearchOption.AllDirectories);
-        foreach (var slugcatFile in slugcatFiles)
-            Slugcats.Add(JsonSerializer.Deserialize<SlugcatInfo>(File.ReadAllText(slugcatFile)));
-
-        for (var i = 0; i < Slugcats.Count; i++)
-            slugcatIconImageList.Images.Add(Slugcats[i].Name, Image.FromFile(Path.Combine("Resources\\Slugcat Icons\\", $"{Slugcats[i].Name}.png")));
-
 
         if (!Directory.Exists(settings.RainWorldSaveDirectory))
         {
             Console.WriteLine($"RAIN WORLD DIRECTORY DOESNT EXIST WHAT \"{settings.RainWorldSaveDirectory}\"");
         }
 
-        SetDefaultState();
+
+        EditorCommon.ReadSlugcatInfo();
+
+        CommunityInfo.WriteDefaultCommunities();
+
+        for (var i = 0; i < EditorCommon.SlugcatInfo.Length; i++)
+            slugcatIconImageList.Images.Add(EditorCommon.SlugcatInfo[i].Name, Image.FromFile(Path.Combine("Resources\\Slugcat Icons\\", $"{EditorCommon.SlugcatInfo[i].Name}.png")));
 
         mainTabControl.ImageList = slugcatIconImageList;
-        for (var i = 0; i < Slugcats.Count; i++)
-            SetupSlugcatPage(Slugcats[i]);
+        for (var i = 0; i < EditorCommon.SlugcatInfo.Length; i++)
+            SetupSlugcatPage(EditorCommon.SlugcatInfo[i]);
     }
+
+
 
     void SetDefaultState()
     {
@@ -122,7 +112,7 @@ public partial class MainForm : Form
             return;
         }
 
-        foreach (var slugcat in Slugcats)
+        foreach (var slugcat in EditorCommon.SlugcatInfo)
         {
             SaveState id = null!;
 

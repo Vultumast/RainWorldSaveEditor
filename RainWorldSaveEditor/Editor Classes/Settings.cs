@@ -9,8 +9,6 @@ namespace RainWorldSaveEditor
     public class Settings
     {
         public const string Filepath = "settings.json";
-        public static System.Text.Json.JsonSerializerOptions JSONSerializerOptions { get; private set; } = new() { WriteIndented = true };
-
         public Settings()
         {
 
@@ -41,7 +39,7 @@ namespace RainWorldSaveEditor
             Write(this);
         }
 
-        public static void Write(Settings settings) => File.WriteAllText(Filepath, System.Text.Json.JsonSerializer.Serialize(settings, JSONSerializerOptions));
+        public static void Write(Settings settings) => File.WriteAllText(Filepath, System.Text.Json.JsonSerializer.Serialize(settings, Utils.JSONSerializerOptions));
 
         public static Settings Read() => System.Text.Json.JsonSerializer.Deserialize<Settings>(File.ReadAllText(Filepath))!;
     }

@@ -57,20 +57,19 @@
             KarmaSelectorControl = new KarmaSelectorControl();
             echosTabPage = new TabPage();
             echoDataGridView = new DataGridView();
-            regionCodeColumn = new DataGridViewTextBoxColumn();
-            regionNameColumn = new DataGridViewTextBoxColumn();
+            echoRegionCodeColumn = new DataGridViewTextBoxColumn();
+            echoRegionNameColumn = new DataGridViewTextBoxColumn();
             echoValueColumn = new DataGridViewComboBoxColumn();
             echoDataGridContextMenuStrip = new ContextMenuStrip(components);
             addEchoToolStripMenuItem = new ToolStripMenuItem();
             removeEchoToolStripMenuItem = new ToolStripMenuItem();
             communitiesTabPage = new TabPage();
             communityRegionRepDataGridView = new DataGridView();
+            communityRegionCodeColumn = new DataGridViewTextBoxColumn();
+            communityRegionNameColumn = new DataGridViewTextBoxColumn();
+            communityValueColumn = new DataGridViewTextBoxColumn();
             communityListBox = new ListBox();
             worldInfoTabPage = new TabPage();
-            worldInfoTabControl = new TabControl();
-            commonWorldInfoTabPage = new TabPage();
-            worldInfoOutskirtstabPage = new TabPage();
-            tabPage1 = new TabPage();
             persistentInfoTabPage = new TabPage();
             rngGroupBox = new GroupBox();
             rngNextIssueIDlabel = new Label();
@@ -104,6 +103,23 @@
             initalGameVersionLabel = new Label();
             initialGameVersionNumericUpDown = new NumericUpDown();
             gameVerisonNumericUpDown = new NumericUpDown();
+            tabPage1 = new TabPage();
+            checkBox9 = new CheckBox();
+            groupBox6 = new GroupBox();
+            checkBox7 = new CheckBox();
+            checkBox6 = new CheckBox();
+            label5 = new Label();
+            checkBox5 = new CheckBox();
+            groupBox5 = new GroupBox();
+            label4 = new Label();
+            groupBox4 = new GroupBox();
+            checkBox3 = new CheckBox();
+            checkBox1 = new CheckBox();
+            groupBox2 = new GroupBox();
+            checkBox8 = new CheckBox();
+            checkBox4 = new CheckBox();
+            label3 = new Label();
+            label2 = new Label();
             tabImageList = new ImageList(components);
             commonToolTip = new ToolTip(components);
             ((System.ComponentModel.ISupportInitialize)cycleNumberNumericUpDown).BeginInit();
@@ -122,8 +138,6 @@
             echoDataGridContextMenuStrip.SuspendLayout();
             communitiesTabPage.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)communityRegionRepDataGridView).BeginInit();
-            worldInfoTabPage.SuspendLayout();
-            worldInfoTabControl.SuspendLayout();
             persistentInfoTabPage.SuspendLayout();
             rngGroupBox.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)rngNextIssueIDNumericUpDown).BeginInit();
@@ -142,6 +156,11 @@
             ((System.ComponentModel.ISupportInitialize)worldVersionNumericUpDown).BeginInit();
             ((System.ComponentModel.ISupportInitialize)initialGameVersionNumericUpDown).BeginInit();
             ((System.ComponentModel.ISupportInitialize)gameVerisonNumericUpDown).BeginInit();
+            tabPage1.SuspendLayout();
+            groupBox6.SuspendLayout();
+            groupBox5.SuspendLayout();
+            groupBox4.SuspendLayout();
+            groupBox2.SuspendLayout();
             SuspendLayout();
             // 
             // FoodPipControl
@@ -181,6 +200,7 @@
             tabControl.Controls.Add(worldInfoTabPage);
             tabControl.Controls.Add(persistentInfoTabPage);
             tabControl.Controls.Add(advancedTabPage);
+            tabControl.Controls.Add(tabPage1);
             tabControl.Dock = DockStyle.Fill;
             tabControl.ImageList = tabImageList;
             tabControl.Location = new Point(0, 0);
@@ -451,7 +471,7 @@
             // 
             echoDataGridView.AllowUserToAddRows = false;
             echoDataGridView.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            echoDataGridView.Columns.AddRange(new DataGridViewColumn[] { regionCodeColumn, regionNameColumn, echoValueColumn });
+            echoDataGridView.Columns.AddRange(new DataGridViewColumn[] { echoRegionCodeColumn, echoRegionNameColumn, echoValueColumn });
             echoDataGridView.ContextMenuStrip = echoDataGridContextMenuStrip;
             echoDataGridView.Dock = DockStyle.Fill;
             echoDataGridView.Location = new Point(3, 3);
@@ -463,18 +483,18 @@
             echoDataGridView.UserDeletedRow += echoDataGridView_UserDeletedRow;
             echoDataGridView.UserDeletingRow += echoDataGridView_UserDeletingRow;
             // 
-            // regionCodeColumn
+            // echoRegionCodeColumn
             // 
-            regionCodeColumn.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
-            regionCodeColumn.HeaderText = "Region Code";
-            regionCodeColumn.Name = "regionCodeColumn";
+            echoRegionCodeColumn.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            echoRegionCodeColumn.HeaderText = "Region Code";
+            echoRegionCodeColumn.Name = "echoRegionCodeColumn";
             // 
-            // regionNameColumn
+            // echoRegionNameColumn
             // 
-            regionNameColumn.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
-            regionNameColumn.HeaderText = "Region Name";
-            regionNameColumn.Name = "regionNameColumn";
-            regionNameColumn.ReadOnly = true;
+            echoRegionNameColumn.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            echoRegionNameColumn.HeaderText = "Region Name";
+            echoRegionNameColumn.Name = "echoRegionNameColumn";
+            echoRegionNameColumn.ReadOnly = true;
             // 
             // echoValueColumn
             // 
@@ -521,6 +541,7 @@
             communityRegionRepDataGridView.AllowUserToAddRows = false;
             communityRegionRepDataGridView.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             communityRegionRepDataGridView.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            communityRegionRepDataGridView.Columns.AddRange(new DataGridViewColumn[] { communityRegionCodeColumn, communityRegionNameColumn, communityValueColumn });
             communityRegionRepDataGridView.Enabled = false;
             communityRegionRepDataGridView.Location = new Point(206, 6);
             communityRegionRepDataGridView.MultiSelect = false;
@@ -530,9 +551,27 @@
             communityRegionRepDataGridView.TabIndex = 3;
             communityRegionRepDataGridView.CellBeginEdit += communityRegionRepDataGridView_CellBeginEdit;
             communityRegionRepDataGridView.CellEndEdit += communityRegionRepDataGridView_CellEndEdit;
-            communityRegionRepDataGridView.UserAddedRow += communityRegionRepDataGridView_UserAddedRow;
             communityRegionRepDataGridView.UserDeletedRow += communityRegionRepDataGridView_UserDeletedRow;
             communityRegionRepDataGridView.UserDeletingRow += communityRegionRepDataGridView_UserDeletingRow;
+            // 
+            // communityRegionCodeColumn
+            // 
+            communityRegionCodeColumn.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            communityRegionCodeColumn.HeaderText = "Region Code";
+            communityRegionCodeColumn.Name = "communityRegionCodeColumn";
+            // 
+            // communityRegionNameColumn
+            // 
+            communityRegionNameColumn.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            communityRegionNameColumn.HeaderText = "Region Name";
+            communityRegionNameColumn.Name = "communityRegionNameColumn";
+            communityRegionNameColumn.ReadOnly = true;
+            // 
+            // communityValueColumn
+            // 
+            communityValueColumn.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            communityValueColumn.HeaderText = "Value";
+            communityValueColumn.Name = "communityValueColumn";
             // 
             // communityListBox
             // 
@@ -551,56 +590,13 @@
             // 
             // worldInfoTabPage
             // 
-            worldInfoTabPage.Controls.Add(worldInfoTabControl);
+            worldInfoTabPage.BackColor = SystemColors.Control;
             worldInfoTabPage.Location = new Point(4, 24);
             worldInfoTabPage.Name = "worldInfoTabPage";
             worldInfoTabPage.Padding = new Padding(3);
             worldInfoTabPage.Size = new Size(541, 412);
             worldInfoTabPage.TabIndex = 1;
             worldInfoTabPage.Text = "World Info";
-            worldInfoTabPage.UseVisualStyleBackColor = true;
-            // 
-            // worldInfoTabControl
-            // 
-            worldInfoTabControl.Controls.Add(commonWorldInfoTabPage);
-            worldInfoTabControl.Controls.Add(worldInfoOutskirtstabPage);
-            worldInfoTabControl.Controls.Add(tabPage1);
-            worldInfoTabControl.Location = new Point(41, 51);
-            worldInfoTabControl.Name = "worldInfoTabControl";
-            worldInfoTabControl.SelectedIndex = 0;
-            worldInfoTabControl.Size = new Size(382, 282);
-            worldInfoTabControl.TabIndex = 0;
-            // 
-            // commonWorldInfoTabPage
-            // 
-            commonWorldInfoTabPage.Location = new Point(4, 24);
-            commonWorldInfoTabPage.Name = "commonWorldInfoTabPage";
-            commonWorldInfoTabPage.Padding = new Padding(3);
-            commonWorldInfoTabPage.Size = new Size(374, 254);
-            commonWorldInfoTabPage.TabIndex = 0;
-            commonWorldInfoTabPage.Text = "Common";
-            commonWorldInfoTabPage.ToolTipText = "Info for the world that doesn't fit any specific region";
-            commonWorldInfoTabPage.UseVisualStyleBackColor = true;
-            // 
-            // worldInfoOutskirtstabPage
-            // 
-            worldInfoOutskirtstabPage.Location = new Point(4, 24);
-            worldInfoOutskirtstabPage.Name = "worldInfoOutskirtstabPage";
-            worldInfoOutskirtstabPage.Padding = new Padding(3);
-            worldInfoOutskirtstabPage.Size = new Size(374, 254);
-            worldInfoOutskirtstabPage.TabIndex = 1;
-            worldInfoOutskirtstabPage.Text = "Outskirts";
-            worldInfoOutskirtstabPage.UseVisualStyleBackColor = true;
-            // 
-            // tabPage1
-            // 
-            tabPage1.Location = new Point(4, 24);
-            tabPage1.Name = "tabPage1";
-            tabPage1.Padding = new Padding(3);
-            tabPage1.Size = new Size(374, 254);
-            tabPage1.TabIndex = 2;
-            tabPage1.Text = "tabPage1";
-            tabPage1.UseVisualStyleBackColor = true;
             // 
             // persistentInfoTabPage
             // 
@@ -970,6 +966,185 @@
             gameVerisonNumericUpDown.TabIndex = 2;
             gameVerisonNumericUpDown.ValueChanged += gameVerisonNumericUpDown_ValueChanged;
             // 
+            // tabPage1
+            // 
+            tabPage1.BackColor = SystemColors.Control;
+            tabPage1.Controls.Add(checkBox9);
+            tabPage1.Controls.Add(groupBox6);
+            tabPage1.Controls.Add(groupBox5);
+            tabPage1.Controls.Add(groupBox4);
+            tabPage1.Controls.Add(groupBox2);
+            tabPage1.Location = new Point(4, 24);
+            tabPage1.Name = "tabPage1";
+            tabPage1.Padding = new Padding(3);
+            tabPage1.Size = new Size(541, 412);
+            tabPage1.TabIndex = 6;
+            tabPage1.Text = "Five Pebbles";
+            // 
+            // checkBox9
+            // 
+            checkBox9.AutoSize = true;
+            checkBox9.Location = new Point(242, 129);
+            checkBox9.Name = "checkBox9";
+            checkBox9.Size = new Size(78, 19);
+            checkBox9.TabIndex = 7;
+            checkBox9.Text = "Ascended";
+            commonToolTip.SetToolTip(checkBox9, "Did Saint ascend Five Pebbles?");
+            checkBox9.UseVisualStyleBackColor = true;
+            // 
+            // groupBox6
+            // 
+            groupBox6.Controls.Add(checkBox7);
+            groupBox6.Controls.Add(checkBox6);
+            groupBox6.Controls.Add(label5);
+            groupBox6.Controls.Add(checkBox5);
+            groupBox6.Location = new Point(274, 182);
+            groupBox6.Name = "groupBox6";
+            groupBox6.Size = new Size(231, 132);
+            groupBox6.TabIndex = 3;
+            groupBox6.TabStop = false;
+            groupBox6.Text = "Rivulet";
+            // 
+            // checkBox7
+            // 
+            checkBox7.AutoSize = true;
+            checkBox7.Location = new Point(20, 87);
+            checkBox7.Name = "checkBox7";
+            checkBox7.Size = new Size(130, 19);
+            checkBox7.TabIndex = 6;
+            checkBox7.Text = "Talked after delivery";
+            checkBox7.UseVisualStyleBackColor = true;
+            // 
+            // checkBox6
+            // 
+            checkBox6.AutoSize = true;
+            checkBox6.Location = new Point(6, 62);
+            checkBox6.Name = "checkBox6";
+            checkBox6.Size = new Size(160, 19);
+            checkBox6.TabIndex = 5;
+            checkBox6.Text = "Rarefaction Cell delivered";
+            checkBox6.UseVisualStyleBackColor = true;
+            // 
+            // label5
+            // 
+            label5.AutoSize = true;
+            label5.Location = new Point(20, 44);
+            label5.Name = "label5";
+            label5.Size = new Size(160, 15);
+            label5.TabIndex = 5;
+            label5.Text = "Rarefaction Cell Convo State:";
+            // 
+            // checkBox5
+            // 
+            checkBox5.AutoSize = true;
+            checkBox5.Location = new Point(6, 22);
+            checkBox5.Name = "checkBox5";
+            checkBox5.Size = new Size(162, 19);
+            checkBox5.TabIndex = 4;
+            checkBox5.Text = "Rarefaction Cell Removed";
+            checkBox5.UseVisualStyleBackColor = true;
+            // 
+            // groupBox5
+            // 
+            groupBox5.Controls.Add(label4);
+            groupBox5.Location = new Point(223, 23);
+            groupBox5.Name = "groupBox5";
+            groupBox5.Size = new Size(200, 100);
+            groupBox5.TabIndex = 2;
+            groupBox5.TabStop = false;
+            groupBox5.Text = "Spearmaster";
+            // 
+            // label4
+            // 
+            label4.AutoSize = true;
+            label4.Location = new Point(13, 28);
+            label4.Name = "label4";
+            label4.Size = new Size(136, 15);
+            label4.TabIndex = 3;
+            label4.Text = "Cycles Since First Talked:";
+            // 
+            // groupBox4
+            // 
+            groupBox4.Controls.Add(checkBox3);
+            groupBox4.Controls.Add(checkBox1);
+            groupBox4.Location = new Point(12, 167);
+            groupBox4.Name = "groupBox4";
+            groupBox4.Size = new Size(256, 156);
+            groupBox4.TabIndex = 1;
+            groupBox4.TabStop = false;
+            groupBox4.Text = "Hunter";
+            // 
+            // checkBox3
+            // 
+            checkBox3.AutoSize = true;
+            checkBox3.Location = new Point(6, 47);
+            checkBox3.Name = "checkBox3";
+            checkBox3.Size = new Size(122, 19);
+            checkBox3.TabIndex = 3;
+            checkBox3.Text = "Given Extra Cycles";
+            checkBox3.UseVisualStyleBackColor = true;
+            // 
+            // checkBox1
+            // 
+            checkBox1.AutoSize = true;
+            checkBox1.Location = new Point(6, 22);
+            checkBox1.Name = "checkBox1";
+            checkBox1.Size = new Size(128, 19);
+            checkBox1.TabIndex = 2;
+            checkBox1.Text = "Seen Green Neuron";
+            checkBox1.UseVisualStyleBackColor = true;
+            // 
+            // groupBox2
+            // 
+            groupBox2.Controls.Add(checkBox8);
+            groupBox2.Controls.Add(checkBox4);
+            groupBox2.Controls.Add(label3);
+            groupBox2.Controls.Add(label2);
+            groupBox2.Location = new Point(6, 6);
+            groupBox2.Name = "groupBox2";
+            groupBox2.Size = new Size(200, 155);
+            groupBox2.TabIndex = 0;
+            groupBox2.TabStop = false;
+            groupBox2.Text = "Slugcat Shared";
+            // 
+            // checkBox8
+            // 
+            checkBox8.AutoSize = true;
+            checkBox8.Location = new Point(20, 84);
+            checkBox8.Name = "checkBox8";
+            checkBox8.Size = new Size(120, 19);
+            checkBox8.TabIndex = 7;
+            checkBox8.Text = "Taken Music Pearl";
+            checkBox8.UseVisualStyleBackColor = true;
+            // 
+            // checkBox4
+            // 
+            checkBox4.AutoSize = true;
+            checkBox4.Location = new Point(6, 130);
+            checkBox4.Name = "checkBox4";
+            checkBox4.Size = new Size(171, 19);
+            checkBox4.TabIndex = 4;
+            checkBox4.Text = "Frolicked in Memory Arrays";
+            checkBox4.UseVisualStyleBackColor = true;
+            // 
+            // label3
+            // 
+            label3.AutoSize = true;
+            label3.Location = new Point(6, 54);
+            label3.Name = "label3";
+            label3.Size = new Size(109, 15);
+            label3.TabIndex = 2;
+            label3.Text = "Thrown Out Count:";
+            // 
+            // label2
+            // 
+            label2.AutoSize = true;
+            label2.Location = new Point(6, 28);
+            label2.Name = "label2";
+            label2.Size = new Size(79, 15);
+            label2.TabIndex = 1;
+            label2.Text = "Talked Count:";
+            // 
             // tabImageList
             // 
             tabImageList.ColorDepth = ColorDepth.Depth32Bit;
@@ -1005,8 +1180,6 @@
             echoDataGridContextMenuStrip.ResumeLayout(false);
             communitiesTabPage.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)communityRegionRepDataGridView).EndInit();
-            worldInfoTabPage.ResumeLayout(false);
-            worldInfoTabControl.ResumeLayout(false);
             persistentInfoTabPage.ResumeLayout(false);
             persistentInfoTabPage.PerformLayout();
             rngGroupBox.ResumeLayout(false);
@@ -1029,6 +1202,16 @@
             ((System.ComponentModel.ISupportInitialize)worldVersionNumericUpDown).EndInit();
             ((System.ComponentModel.ISupportInitialize)initialGameVersionNumericUpDown).EndInit();
             ((System.ComponentModel.ISupportInitialize)gameVerisonNumericUpDown).EndInit();
+            tabPage1.ResumeLayout(false);
+            tabPage1.PerformLayout();
+            groupBox6.ResumeLayout(false);
+            groupBox6.PerformLayout();
+            groupBox5.ResumeLayout(false);
+            groupBox5.PerformLayout();
+            groupBox4.ResumeLayout(false);
+            groupBox4.PerformLayout();
+            groupBox2.ResumeLayout(false);
+            groupBox2.PerformLayout();
             ResumeLayout(false);
         }
 
@@ -1040,11 +1223,7 @@
         private TabPage slugcatInfoTabPage;
         private TabPage worldInfoTabPage;
         private TabPage persistentInfoTabPage;
-        private TabControl worldInfoTabControl;
-        private TabPage commonWorldInfoTabPage;
-        private TabPage worldInfoOutskirtstabPage;
         private GroupBox slugcatInfoKarmaGroupBox;
-        private TabPage tabPage1;
         private GroupBox denInfoGroupBox;
         private TextBox currentDenTextBox;
         private Label currentDenLabel;
@@ -1103,11 +1282,31 @@
         private TabPage echosTabPage;
         private ImageList tabImageList;
         private DataGridView echoDataGridView;
-        private DataGridViewTextBoxColumn regionCodeColumn;
-        private DataGridViewTextBoxColumn regionNameColumn;
-        private DataGridViewComboBoxColumn echoValueColumn;
         private ContextMenuStrip echoDataGridContextMenuStrip;
         private ToolStripMenuItem addEchoToolStripMenuItem;
         private ToolStripMenuItem removeEchoToolStripMenuItem;
+        private TabPage tabPage1;
+        private GroupBox groupBox6;
+        private Label label5;
+        private CheckBox checkBox5;
+        private GroupBox groupBox5;
+        private Label label4;
+        private GroupBox groupBox4;
+        private CheckBox checkBox3;
+        private CheckBox checkBox1;
+        private GroupBox groupBox2;
+        private CheckBox checkBox4;
+        private Label label3;
+        private Label label2;
+        private CheckBox checkBox7;
+        private CheckBox checkBox6;
+        private CheckBox checkBox8;
+        private CheckBox checkBox9;
+        private DataGridViewTextBoxColumn echoRegionCodeColumn;
+        private DataGridViewTextBoxColumn echoRegionNameColumn;
+        private DataGridViewComboBoxColumn echoValueColumn;
+        private DataGridViewTextBoxColumn communityRegionCodeColumn;
+        private DataGridViewTextBoxColumn communityRegionNameColumn;
+        private DataGridViewTextBoxColumn communityValueColumn;
     }
 }

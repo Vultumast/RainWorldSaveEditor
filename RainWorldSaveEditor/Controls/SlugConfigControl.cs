@@ -163,35 +163,119 @@ public partial class SlugConfigControl : UserControl
     #endregion
 
     #region Echos tab
+    private void echoDataGridView_UserDeletingRow(object sender, DataGridViewRowCancelEventArgs e)
+    {
+        if (e.Row is null)
+            return;
 
+        string regionCode = e.Row.Cells[0].Value!.ToString()!;
+        string regionName = "";
+        if (Translation.RegionNames.TryGetValue(regionCode, out regionName!))
+        {
+            if (MessageBox.Show($"Deleting a vanilla game's echo information might cause instability!\nAre you sure you want to delete \"{regionCode}\" - \"{regionName}\"?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.No)
+            {
+                e.Cancel = true;
+                return;
+            }
+        }
+
+    }
+
+    private void echoDataGridView_UserDeletedRow(object sender, DataGridViewRowEventArgs e)
+    {
+        SaveState.DeathPersistentSaveData.Echos.EchoStates.Remove(e.Row.Cells[0].Value.ToString()!);
+    }
+
+    private void echoDataGridView_SelectionChanged(object sender, EventArgs e)
+    {
+        removeEchoToolStripMenuItem.Enabled = echoDataGridView.SelectedRows.Count > 0;
+    }
+
+    #region Context Menu
+    private void addEchoToolStripMenuItem_Click(object sender, EventArgs e)
+    {
+        using AddEchoForm form = new AddEchoForm(SaveState);
+
+        if (form.ShowDialog() == DialogResult.Cancel)
+            return;
+
+        var upperRegionCode = form.RegionCode.ToUpper();
+
+        var stateStr = form.EchoState switch
+        {
+            EchoState.NotMet => "Not Met",
+            EchoState.Visited => "Active",
+            EchoState.Met => "Met",
+            _ => "Not Met",
+        };
+
+        SaveState.DeathPersistentSaveData.Echos.EchoStates.Add(upperRegionCode, form.EchoState);
+        echoDataGridView.Rows.Add([upperRegionCode, Translation.GetRegionName(upperRegionCode), stateStr]);
+    }
+
+    private void removeEchoToolStripMenuItem_Click(object sender, EventArgs e)
+    {
+        string[] selectedRows = new string[echoDataGridView.SelectedRows.Count];
+
+        for (var i = 0; i < echoDataGridView.SelectedRows.Count; i++)
+            selectedRows[i] = echoDataGridView.SelectedRows[i].Cells[0].Value.ToString()!;
+
+
+        for (var i = 0; i < selectedRows.Length; i++)
+        {
+            int id = -1;
+            for (var r = 0; r < echoDataGridView.Rows.Count; r++)
+            {
+                if (echoDataGridView.Rows[r].Cells[0].Value.ToString() == selectedRows[i])
+                {
+                    id = i;
+                    break;
+                }
+            }
+
+            if (id == -1)
+            {
+                Logger.Error($"Unable to find id {id} for echo: \"{selectedRows[i]}\"");
+                continue;
+            }
+
+            string regionCode = echoDataGridView.Rows[id].Cells[0].Value!.ToString()!;
+            string regionName = "";
+            if (Translation.RegionNames.TryGetValue(regionCode, out regionName!))
+            {
+                if (MessageBox.Show($"Deleting a vanilla game's echo information might cause instability!\nAre you sure you want to delete \"{regionCode}\" - \"{regionName}\"?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.No)
+                {
+                    continue;
+                }
+            }
+
+            SaveState.DeathPersistentSaveData.Echos.EchoStates.Remove(regionCode);
+            echoDataGridView.Rows.RemoveAt(id);
+        }
+    }
+
+    private void duplicateEchoToolStripMenuItem_Click(object sender, EventArgs e)
+    {
+
+    }
+
+    #endregion
     #endregion
 
     #region Communities Tab
-    DataTable _communitiesDataTable = new DataTable();
+
     private void LoadCommunitiesTabPage()
     {
-        _communitiesDataTable.Columns.Add("Region Code");
-        _communitiesDataTable.Columns.Add("Region Name");
-        _communitiesDataTable.Columns.Add("Value");
-        communityRegionRepDataGridView.DataSource = _communitiesDataTable;
-        communityRegionRepDataGridView.Columns[0].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
-        communityRegionRepDataGridView.Columns[0].SortMode = DataGridViewColumnSortMode.NotSortable;
 
-        communityRegionRepDataGridView.Columns[1].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
-        communityRegionRepDataGridView.Columns[1].SortMode = DataGridViewColumnSortMode.NotSortable;
-        communityRegionRepDataGridView.Columns[1].ReadOnly = true;
-
-        communityRegionRepDataGridView.Columns[2].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
-        communityRegionRepDataGridView.Columns[2].SortMode = DataGridViewColumnSortMode.NotSortable;
     }
 
     private void FillCommunityRegionRepListView(Community community)
     {
-        _communitiesDataTable.Rows.Clear();
+        communityRegionRepDataGridView.Rows.Clear();
 
         foreach (var pair in community.PlayerRegionalReputation)
         {
-            _communitiesDataTable.Rows.Add(pair.Key, Translation.GetRegionName(pair.Key), pair.Value * 100);
+            communityRegionRepDataGridView.Rows.Add(pair.Key, Translation.GetRegionName(pair.Key), pair.Value * 100);
         }
 
         communityRegionRepDataGridView.Tag = community;
@@ -199,39 +283,23 @@ public partial class SlugConfigControl : UserControl
 
     private void communityListBox_SelectedIndexChanged(object sender, EventArgs e)
     {
+        communityRegionRepDataGridView.Rows.Clear();
         communityRegionRepDataGridView.Enabled = communityListBox.SelectedIndex != -1;
 
-        switch (communityListBox.SelectedItem)
-        {
-            case "All":
-                FillCommunityRegionRepListView(SaveState.Communities.All);
-                break;
-            case "Scavengers":
-                FillCommunityRegionRepListView(SaveState.Communities.Scavengers);
-                break;
-            case "Lizards":
-                FillCommunityRegionRepListView(SaveState.Communities.Lizards);
-                break;
-            case "Cicadas":
-                FillCommunityRegionRepListView(SaveState.Communities.Cicadas);
-                break;
-            case "Garbage Worms":
-                FillCommunityRegionRepListView(SaveState.Communities.GarbageWorms);
-                break;
-            case "Deer":
-                FillCommunityRegionRepListView(SaveState.Communities.Deer);
-                break;
-            case "Jet Fish":
-                FillCommunityRegionRepListView(SaveState.Communities.JetFish);
-                break;
-        }
+        Community communityValue = null!;
+
+        if (SaveState.Communities.Communities.TryGetValue(communityListBox.SelectedItem!.ToString()!, out communityValue!))
+            FillCommunityRegionRepListView(communityValue);
+        else
+            Logger.Warn($"SaveState Communities did not contain an entry for \"{communityListBox.SelectedItem!.ToString()!}\"");
+
     }
 
     string _communityCellPreValue = string.Empty;
 
     private void communityRegionRepDataGridView_CellBeginEdit(object sender, DataGridViewCellCancelEventArgs e)
     {
-        var text = _communitiesDataTable.Rows[e.RowIndex][e.ColumnIndex].ToString();
+        var text = communityRegionRepDataGridView.Rows[e.RowIndex].Cells[e.ColumnIndex].ToString();
 
         if (text == "EVERY")
             e.Cancel = true;
@@ -241,7 +309,7 @@ public partial class SlugConfigControl : UserControl
 
     private void communityRegionRepDataGridView_CellEndEdit(object sender, DataGridViewCellEventArgs e)
     {
-        var userValue = _communitiesDataTable.Rows[e.RowIndex][e.ColumnIndex].ToString();
+        var userValue = communityRegionRepDataGridView.Rows[e.RowIndex].Cells[e.ColumnIndex].ToString();
         var userValueCaps = userValue!.ToUpper();
 
         if (userValue == _communityCellPreValue)
@@ -253,41 +321,36 @@ public partial class SlugConfigControl : UserControl
                 if (userValue == string.Empty)
                 {
                     MessageBox.Show("Region Code cannot be blank.", "Invalid Selection");
-                    _communitiesDataTable.Rows[e.RowIndex][e.ColumnIndex] = _communityCellPreValue;
+                    communityRegionRepDataGridView.Rows[e.RowIndex].Cells[e.ColumnIndex].Value = _communityCellPreValue;
                 }
 
-                foreach (DataRow item in _communitiesDataTable.Rows)
+                foreach (DataRow item in communityRegionRepDataGridView.Rows)
                 {
                     if (item.ItemArray[0]!.ToString() == userValueCaps)
                     {
                         MessageBox.Show("Region Code has already been added.", "Invalid Selection");
-                        _communitiesDataTable.Rows[e.RowIndex][e.ColumnIndex] = _communityCellPreValue;
+                        communityRegionRepDataGridView.Rows[e.RowIndex].Cells[e.ColumnIndex].Value = _communityCellPreValue;
                         return;
                     }
                 }
 
+                Logger.Trace("SET COMMUNITY CODE");
                 // Adjust value here?
                 break;
             case 2:
                 float value = 0;
                 if (float.TryParse(userValue, out value) && value >= -100 && value <= 100)
                 {
+                    Logger.Trace("SET COMMUNITY VALUE");
                     // Set the value here
                 }
                 else
                 {
-                    _communitiesDataTable.Rows[e.RowIndex][e.ColumnIndex] = _communityCellPreValue;
+                    communityRegionRepDataGridView.Rows[e.RowIndex].Cells[e.ColumnIndex].Value = _communityCellPreValue;
                     MessageBox.Show("Value must range from -100 to +100.", "Invalid Selection");
                 }
                 break;
         }
-    }
-
-    private void communityRegionRepDataGridView_UserAddedRow(object sender, DataGridViewRowEventArgs e)
-    {
-
-
-
     }
 
     private void communityRegionRepDataGridView_UserDeletingRow(object sender, DataGridViewRowCancelEventArgs e)
@@ -412,104 +475,4 @@ public partial class SlugConfigControl : UserControl
 
     }
     #endregion
-
-    #region Echo Tabpage
-    private void echoDataGridView_UserDeletingRow(object sender, DataGridViewRowCancelEventArgs e)
-    {
-        if (e.Row is null)
-            return;
-
-        string regionCode = e.Row.Cells[0].Value!.ToString()!;
-        string regionName = "";
-        if (Translation.RegionNames.TryGetValue(regionCode, out regionName!))
-        {
-            if (MessageBox.Show($"Deleting a vanilla game's echo information might cause instability!\nAre you sure you want to delete \"{regionCode}\" - \"{regionName}\"?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.No)
-            {
-                e.Cancel = true;
-                return;
-            }
-        }
-
-    }
-
-    private void echoDataGridView_UserDeletedRow(object sender, DataGridViewRowEventArgs e)
-    {
-        SaveState.DeathPersistentSaveData.Echos.EchoStates.Remove(e.Row.Cells[0].Value.ToString()!);
-    }
-
-    private void echoDataGridView_SelectionChanged(object sender, EventArgs e)
-    {
-        removeEchoToolStripMenuItem.Enabled = echoDataGridView.SelectedRows.Count > 0;
-    }
-
-    #region Context Menu
-    private void addEchoToolStripMenuItem_Click(object sender, EventArgs e)
-    {
-        using AddEchoForm form = new AddEchoForm(SaveState);
-
-        if (form.ShowDialog() == DialogResult.Cancel)
-            return;
-
-        var upperRegionCode = form.RegionCode.ToUpper();
-
-        var stateStr = form.EchoState switch
-        {
-            EchoState.NotMet => "Not Met",
-            EchoState.Visited => "Active",
-            EchoState.Met => "Met",
-            _ => "Not Met",
-        };
-
-        SaveState.DeathPersistentSaveData.Echos.EchoStates.Add(upperRegionCode, form.EchoState);
-        echoDataGridView.Rows.Add([upperRegionCode, Translation.GetRegionName(upperRegionCode), stateStr]);
-    }
-
-    private void removeEchoToolStripMenuItem_Click(object sender, EventArgs e)
-    {
-        string[] selectedRows = new string[echoDataGridView.SelectedRows.Count];
-
-        for (var i = 0; i < echoDataGridView.SelectedRows.Count; i++)
-            selectedRows[i] = echoDataGridView.SelectedRows[i].Cells[0].Value.ToString()!;
-
-
-        for (var i = 0; i < selectedRows.Length; i++)
-        {
-            int id = -1;
-            for (var r = 0; r < echoDataGridView.Rows.Count; r++)
-            {
-                if (echoDataGridView.Rows[r].Cells[0].Value.ToString() == selectedRows[i])
-                {
-                    id = i;
-                    break;
-                }
-            }
-
-            if (id == -1)
-            {
-                Logger.Error($"Unable to find id {id} for echo: \"{selectedRows[i]}\"");
-                continue;
-            }
-
-            string regionCode = echoDataGridView.Rows[id].Cells[0].Value!.ToString()!;
-            string regionName = "";
-            if (Translation.RegionNames.TryGetValue(regionCode, out regionName!))
-            {
-                if (MessageBox.Show($"Deleting a vanilla game's echo information might cause instability!\nAre you sure you want to delete \"{regionCode}\" - \"{regionName}\"?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.No)
-                {
-                    continue;
-                }
-            }
-
-            SaveState.DeathPersistentSaveData.Echos.EchoStates.Remove(regionCode);
-            echoDataGridView.Rows.RemoveAt(id);
-        }
-    }
-
-    private void duplicateEchoToolStripMenuItem_Click(object sender, EventArgs e)
-    {
-
-    }
-    #endregion
-    #endregion
-
 }

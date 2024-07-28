@@ -39,7 +39,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Resources\Creature Community\Info\" />
     <Folder Include="Resources\Worldstate Info\" />
     <Folder Include="TestFiles\" />
   </ItemGroup>
@@ -75,6 +74,24 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Update="Resources\Creature Community\Icons\garbageworm_community_icon.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="Resources\Creature Community\Icons\jetfish_community_icon.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="Resources\Creature Community\Icons\lizard_community_icon.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="Resources\Creature Community\Icons\raindeer_community_icon.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="Resources\Creature Community\Icons\scavenger_community_icon.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="Resources\Creature Community\Icons\squidcada_community_icon.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Update="Resources\modded_region_names.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>

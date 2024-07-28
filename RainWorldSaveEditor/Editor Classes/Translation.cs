@@ -10,7 +10,6 @@ namespace RainWorldSaveEditor.Editor_Classes
     public static class Translation
     {
         public const string SavePath = "Resources\\modded_region_names.json";
-        public static System.Text.Json.JsonSerializerOptions JSONSerializerOptions { get; private set; } = new() { WriteIndented = true };
 
         public static Dictionary<string, string> RegionNames { get; private set; } = new()
         {
@@ -188,7 +187,7 @@ namespace RainWorldSaveEditor.Editor_Classes
             Logger.WriteAttempt(SavePath);
             try
             {
-                File.WriteAllText(SavePath, System.Text.Json.JsonSerializer.Serialize(ModRegionNames, JSONSerializerOptions));
+                File.WriteAllText(SavePath, System.Text.Json.JsonSerializer.Serialize(ModRegionNames, Utils.JSONSerializerOptions));
             }
             catch (Exception ex)
             {

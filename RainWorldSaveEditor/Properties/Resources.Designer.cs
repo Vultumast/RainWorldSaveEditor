@@ -71,6 +71,66 @@ namespace RainWorldSaveEditor.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] CommunityInfo_Garbageworm {
+            get {
+                object obj = ResourceManager.GetObject("CommunityInfo_Garbageworm", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] CommunityInfo_Jetfish {
+            get {
+                object obj = ResourceManager.GetObject("CommunityInfo_Jetfish", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] CommunityInfo_Lizard {
+            get {
+                object obj = ResourceManager.GetObject("CommunityInfo_Lizard", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] CommunityInfo_Raindeer {
+            get {
+                object obj = ResourceManager.GetObject("CommunityInfo_Raindeer", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] CommunityInfo_Scavenger {
+            get {
+                object obj = ResourceManager.GetObject("CommunityInfo_Scavenger", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] CommunityInfo_Squidcada {
+            get {
+                object obj = ResourceManager.GetObject("CommunityInfo_Squidcada", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
         internal static System.Drawing.Bitmap console {
@@ -527,6 +587,96 @@ namespace RainWorldSaveEditor.Properties {
             get {
                 object obj = ResourceManager.GetObject("slugcat_dead", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] SlugcatInfo_Artificer {
+            get {
+                object obj = ResourceManager.GetObject("SlugcatInfo_Artificer", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] SlugcatInfo_Gourmand {
+            get {
+                object obj = ResourceManager.GetObject("SlugcatInfo_Gourmand", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] SlugcatInfo_Hunter {
+            get {
+                object obj = ResourceManager.GetObject("SlugcatInfo_Hunter", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] SlugcatInfo_Inv {
+            get {
+                object obj = ResourceManager.GetObject("SlugcatInfo_Inv", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] SlugcatInfo_Monk {
+            get {
+                object obj = ResourceManager.GetObject("SlugcatInfo_Monk", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] SlugcatInfo_Rivulet {
+            get {
+                object obj = ResourceManager.GetObject("SlugcatInfo_Rivulet", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] SlugcatInfo_Saint {
+            get {
+                object obj = ResourceManager.GetObject("SlugcatInfo_Saint", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] SlugcatInfo_Spearmaster {
+            get {
+                object obj = ResourceManager.GetObject("SlugcatInfo_Spearmaster", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] SlugcatInfo_Survivor {
+            get {
+                object obj = ResourceManager.GetObject("SlugcatInfo_Survivor", resourceCulture);
+                return ((byte[])(obj));
             }
         }
         
