@@ -129,7 +129,6 @@
             ShowInTaskbar = false;
             StartPosition = FormStartPosition.CenterParent;
             Text = "About";
-            TopMost = true;
             Load += AboutForm_Load;
             ((System.ComponentModel.ISupportInitialize)iconPictureBox).EndInit();
             ResumeLayout(false);
