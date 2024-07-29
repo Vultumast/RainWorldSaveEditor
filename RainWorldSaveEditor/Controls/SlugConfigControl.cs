@@ -32,7 +32,7 @@ public partial class SlugConfigControl : UserControl
     private void SlugConfigControl_Load(object sender, EventArgs e)
     {
         LoadCommunitiesTabPage();
-        LoadIteratorTabPage();
+        InitIteratorTabPage();
     }
 
     #region Setup
@@ -41,6 +41,7 @@ public partial class SlugConfigControl : UserControl
         SaveState = state;
         SetupSlugCatInfoTabPageFromState(state);
         SetupEchoTabPageFromState(state);
+        LoadIteratorTabPage(state);
         SetupPersistentDataInfoTabPageFromState(state);
         SetupAdvancedInfoTabPage(state);
     }
@@ -512,7 +513,7 @@ public partial class SlugConfigControl : UserControl
 
     #region Iterator
 
-    private void LoadIteratorTabPage()
+    private void InitIteratorTabPage()
     {
         _pebblesCellConvoRadioButtons = [
             pebblesCellState0RadioButton,
@@ -521,12 +522,29 @@ public partial class SlugConfigControl : UserControl
             pebblesCellState3RadioButton,
         ];
     }
-
-    private void fivePebblesConversationCountNumericUpDown_ValueChanged(object sender, EventArgs e)
+    private void LoadIteratorTabPage(SaveState state)
     {
+        pebblesConversationCountNumericUpDown.Value = state.MiscWorldSaveData.TimesTalkedWithFivePebbles;
+        pebblesThrownOutCountNumericUpDown.Value = state.MiscWorldSaveData.TimesKickedOutByFivePebbles;
+        frolickedInMemoryArraysCheckBox.Checked = state.MiscWorldSaveData.HasFrolickedInMemoryArrays;
+
+        pebblesFirstVisitCountNumericUpDown.Value = state.MiscWorldSaveData.CyclesSinceFirstFivePebblesVisit;
+
+        pebblesRivuletPostGameTalkCheckBox.Checked = state.MiscWorldSaveData.HasTalkedWithFivePebblesInRivuletPostgame;
+        musicPearlStolenCheckBox.Checked = state.MiscWorldSaveData.HasStolenFivePebblesMusicPearl;
+        cellRemovedCheckBox.Checked = state.MiscWorldSaveData.HasRemovedRarefactionCell;
+        pebblesAscendedCheckBox.Checked = state.DeathPersistentSaveData.IsPebblesAscendedBySaint;
+
+        FivePebblesRarefactionCellConversationState = state.MiscWorldSaveData.RarefactionCellConversationState;
+
 
     }
+    private void fivePebblesConversationCountNumericUpDown_ValueChanged(object sender, EventArgs e) => SaveState.MiscWorldSaveData.TimesTalkedWithFivePebbles = (int)pebblesConversationCountNumericUpDown.Value;
+    private void pebblesThrownOutCountNumericUpDown_ValueChanged(object sender, EventArgs e) => SaveState.MiscWorldSaveData.TimesKickedOutByFivePebbles = (int)pebblesConversationCountNumericUpDown.Value;
 
+    private void frolickedInMemoryArraysCheckBox_CheckedChanged(object sender, EventArgs e) => SaveState.MiscWorldSaveData.HasFrolickedInMemoryArrays = frolickedInMemoryArraysCheckBox.Checked;
+
+    private void pebblesFirstVisitCountNumericUpDown_ValueChanged(object sender, EventArgs e) => SaveState.MiscWorldSaveData.CyclesSinceFirstFivePebblesVisit = (int)pebblesFirstVisitCountNumericUpDown.Value;
 
     private RadioButton[] _pebblesCellConvoRadioButtons = Array.Empty<RadioButton>();
     public int FivePebblesRarefactionCellConversationState
@@ -573,7 +591,7 @@ public partial class SlugConfigControl : UserControl
     }
 
 
-    #endregion
+    private void pebblesRivuletPostGameTalkCheckBox_CheckedChanged(object sender, EventArgs e) => SaveState.MiscWorldSaveData.HasTalkedWithFivePebblesInRivuletPostgame = pebblesRivuletPostGameTalkCheckBox.Checked;
 
     private void pebblesMusicPearlStolenCheckBox_CheckedChanged(object sender, EventArgs e)
     {
@@ -583,4 +601,13 @@ public partial class SlugConfigControl : UserControl
             commonToolTip.SetToolTip((Control)sender, "Did you steal Five Pebbles' music pearl?");
 
     }
+    private void cellRemovedCheckBox_CheckedChanged(object sender, EventArgs e) => SaveState.MiscWorldSaveData.HasRemovedRarefactionCell = cellRemovedCheckBox.Checked;
+
+    private void pebblesAscendedCheckBox_CheckedChanged(object sender, EventArgs e) => SaveState.DeathPersistentSaveData.IsPebblesAscendedBySaint = pebblesRivuletPostGameTalkCheckBox.Checked;
+
+    #endregion
+
+
+
+
 }

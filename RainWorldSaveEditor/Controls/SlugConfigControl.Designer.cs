@@ -64,6 +64,8 @@
             addEchoToolStripMenuItem = new ToolStripMenuItem();
             removeEchoToolStripMenuItem = new ToolStripMenuItem();
             iteratorTabPage = new TabPage();
+            tabControl1 = new TabControl();
+            iteratorFivePebblesTabPage = new TabPage();
             fivePebblesSlugcatSpecificGroupBox = new GroupBox();
             musicPearlStolenPictureBox = new PictureBox();
             ascendedFivePebblesPictureBox = new PictureBox();
@@ -79,19 +81,17 @@
             pebblesRivuletPostGameTalkCheckBox = new CheckBox();
             cellRemovedCheckBox = new CheckBox();
             musicPearlStolenCheckBox = new CheckBox();
-            fivePebblesFirstVisitCountLabel = new Label();
-            numericUpDown2 = new NumericUpDown();
-            tabControl1 = new TabControl();
-            iteratorFivePebblesTabPage = new TabPage();
+            pebblesFirstVisitCountLabel = new Label();
+            pebblesFirstVisitCountNumericUpDown = new NumericUpDown();
+            fivePebblesSlugcatSharedGroupBox = new GroupBox();
+            frolickedInMemoryArraysCheckBox = new CheckBox();
+            pebblesThrownOutCountNumericUpDown = new NumericUpDown();
+            fivePebblesThrownOutCountLabel = new Label();
+            pebblesConversationCountNumericUpDown = new NumericUpDown();
+            fivePebblesConversationCountLabel = new Label();
             iteratorLooksToTheMoonTabPage = new TabPage();
             numericUpDown1 = new NumericUpDown();
             iteratorTabImageList = new ImageList(components);
-            fivePebblesSlugcatSharedGroupBox = new GroupBox();
-            fivePebblesFrolickedInMemoryArraysCheckBox = new CheckBox();
-            fivePebblesThrownOutCountNumericUpDown = new NumericUpDown();
-            fivePebblesThrownOutCountLabel = new Label();
-            fivePebblesConversationCountNumericUpDown = new NumericUpDown();
-            fivePebblesConversationCountLabel = new Label();
             communitiesTabPage = new TabPage();
             communityRegionRepDataGridView = new DataGridView();
             communityRegionCodeColumn = new DataGridViewTextBoxColumn();
@@ -149,20 +149,20 @@
             ((System.ComponentModel.ISupportInitialize)echoDataGridView).BeginInit();
             echoDataGridContextMenuStrip.SuspendLayout();
             iteratorTabPage.SuspendLayout();
+            tabControl1.SuspendLayout();
+            iteratorFivePebblesTabPage.SuspendLayout();
             fivePebblesSlugcatSpecificGroupBox.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)musicPearlStolenPictureBox).BeginInit();
             ((System.ComponentModel.ISupportInitialize)ascendedFivePebblesPictureBox).BeginInit();
             ((System.ComponentModel.ISupportInitialize)cellRemovedPictureBox).BeginInit();
             fivePebblesCellConvoStateGroupBox.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pebblesCellConvoStateNumericUpDown).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)numericUpDown2).BeginInit();
-            tabControl1.SuspendLayout();
-            iteratorFivePebblesTabPage.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)pebblesFirstVisitCountNumericUpDown).BeginInit();
+            fivePebblesSlugcatSharedGroupBox.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)pebblesThrownOutCountNumericUpDown).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)pebblesConversationCountNumericUpDown).BeginInit();
             iteratorLooksToTheMoonTabPage.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)numericUpDown1).BeginInit();
-            fivePebblesSlugcatSharedGroupBox.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)fivePebblesThrownOutCountNumericUpDown).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)fivePebblesConversationCountNumericUpDown).BeginInit();
             communitiesTabPage.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)communityRegionRepDataGridView).BeginInit();
             persistentInfoTabPage.SuspendLayout();
@@ -556,6 +556,31 @@
             iteratorTabPage.TabIndex = 6;
             iteratorTabPage.Text = "Iterator";
             // 
+            // tabControl1
+            // 
+            tabControl1.Controls.Add(iteratorFivePebblesTabPage);
+            tabControl1.Controls.Add(iteratorLooksToTheMoonTabPage);
+            tabControl1.Dock = DockStyle.Fill;
+            tabControl1.ImageList = iteratorTabImageList;
+            tabControl1.Location = new Point(3, 3);
+            tabControl1.Name = "tabControl1";
+            tabControl1.SelectedIndex = 0;
+            tabControl1.Size = new Size(648, 457);
+            tabControl1.TabIndex = 0;
+            // 
+            // iteratorFivePebblesTabPage
+            // 
+            iteratorFivePebblesTabPage.BackColor = SystemColors.Control;
+            iteratorFivePebblesTabPage.Controls.Add(fivePebblesSlugcatSpecificGroupBox);
+            iteratorFivePebblesTabPage.Controls.Add(fivePebblesSlugcatSharedGroupBox);
+            iteratorFivePebblesTabPage.ImageIndex = 0;
+            iteratorFivePebblesTabPage.Location = new Point(4, 24);
+            iteratorFivePebblesTabPage.Name = "iteratorFivePebblesTabPage";
+            iteratorFivePebblesTabPage.Padding = new Padding(3);
+            iteratorFivePebblesTabPage.Size = new Size(640, 429);
+            iteratorFivePebblesTabPage.TabIndex = 0;
+            iteratorFivePebblesTabPage.Text = "Five Pebbles";
+            // 
             // fivePebblesSlugcatSpecificGroupBox
             // 
             fivePebblesSlugcatSpecificGroupBox.Controls.Add(musicPearlStolenPictureBox);
@@ -566,8 +591,8 @@
             fivePebblesSlugcatSpecificGroupBox.Controls.Add(pebblesRivuletPostGameTalkCheckBox);
             fivePebblesSlugcatSpecificGroupBox.Controls.Add(cellRemovedCheckBox);
             fivePebblesSlugcatSpecificGroupBox.Controls.Add(musicPearlStolenCheckBox);
-            fivePebblesSlugcatSpecificGroupBox.Controls.Add(fivePebblesFirstVisitCountLabel);
-            fivePebblesSlugcatSpecificGroupBox.Controls.Add(numericUpDown2);
+            fivePebblesSlugcatSpecificGroupBox.Controls.Add(pebblesFirstVisitCountLabel);
+            fivePebblesSlugcatSpecificGroupBox.Controls.Add(pebblesFirstVisitCountNumericUpDown);
             fivePebblesSlugcatSpecificGroupBox.Location = new Point(12, 132);
             fivePebblesSlugcatSpecificGroupBox.Name = "fivePebblesSlugcatSpecificGroupBox";
             fivePebblesSlugcatSpecificGroupBox.Size = new Size(381, 291);
@@ -704,6 +729,7 @@
             pebblesAscendedCheckBox.Text = "Ascended";
             commonToolTip.SetToolTip(pebblesAscendedCheckBox, "Has Five Pebbles been ascended?");
             pebblesAscendedCheckBox.UseVisualStyleBackColor = true;
+            pebblesAscendedCheckBox.CheckedChanged += pebblesAscendedCheckBox_CheckedChanged;
             // 
             // pebblesRivuletPostGameTalkCheckBox
             // 
@@ -715,6 +741,7 @@
             pebblesRivuletPostGameTalkCheckBox.Text = "Talked in Rivulet post-game";
             commonToolTip.SetToolTip(pebblesRivuletPostGameTalkCheckBox, "Have you talked to Five Pebbles during Rivulet's post-game?");
             pebblesRivuletPostGameTalkCheckBox.UseVisualStyleBackColor = true;
+            pebblesRivuletPostGameTalkCheckBox.CheckedChanged += pebblesRivuletPostGameTalkCheckBox_CheckedChanged;
             // 
             // cellRemovedCheckBox
             // 
@@ -726,6 +753,7 @@
             cellRemovedCheckBox.Text = "Removed Rarefaction Cell";
             commonToolTip.SetToolTip(cellRemovedCheckBox, "Has the Rarefaction Cell been removed?");
             cellRemovedCheckBox.UseVisualStyleBackColor = true;
+            cellRemovedCheckBox.CheckedChanged += cellRemovedCheckBox_CheckedChanged;
             // 
             // musicPearlStolenCheckBox
             // 
@@ -739,49 +767,91 @@
             musicPearlStolenCheckBox.UseVisualStyleBackColor = true;
             musicPearlStolenCheckBox.CheckedChanged += pebblesMusicPearlStolenCheckBox_CheckedChanged;
             // 
-            // fivePebblesFirstVisitCountLabel
+            // pebblesFirstVisitCountLabel
             // 
-            fivePebblesFirstVisitCountLabel.AutoSize = true;
-            fivePebblesFirstVisitCountLabel.Location = new Point(6, 24);
-            fivePebblesFirstVisitCountLabel.Name = "fivePebblesFirstVisitCountLabel";
-            fivePebblesFirstVisitCountLabel.Size = new Size(125, 15);
-            fivePebblesFirstVisitCountLabel.TabIndex = 16;
-            fivePebblesFirstVisitCountLabel.Text = "Cycles Since First Visit:";
+            pebblesFirstVisitCountLabel.AutoSize = true;
+            pebblesFirstVisitCountLabel.Location = new Point(6, 24);
+            pebblesFirstVisitCountLabel.Name = "pebblesFirstVisitCountLabel";
+            pebblesFirstVisitCountLabel.Size = new Size(125, 15);
+            pebblesFirstVisitCountLabel.TabIndex = 16;
+            pebblesFirstVisitCountLabel.Text = "Cycles Since First Visit:";
             // 
-            // numericUpDown2
+            // pebblesFirstVisitCountNumericUpDown
             // 
-            numericUpDown2.Location = new Point(137, 22);
-            numericUpDown2.Maximum = new decimal(new int[] { 7, 5, 0, 0 });
-            numericUpDown2.Minimum = new decimal(new int[] { int.MinValue, 0, 0, int.MinValue });
-            numericUpDown2.Name = "numericUpDown2";
-            numericUpDown2.Size = new Size(232, 23);
-            numericUpDown2.TabIndex = 13;
-            commonToolTip.SetToolTip(numericUpDown2, "The number of cycles since you first talked with Five Pebbles\r\n(Appears to be used for tracking Spearmaster's pearl wound recover)");
+            pebblesFirstVisitCountNumericUpDown.Location = new Point(137, 22);
+            pebblesFirstVisitCountNumericUpDown.Maximum = new decimal(new int[] { 7, 5, 0, 0 });
+            pebblesFirstVisitCountNumericUpDown.Minimum = new decimal(new int[] { int.MinValue, 0, 0, int.MinValue });
+            pebblesFirstVisitCountNumericUpDown.Name = "pebblesFirstVisitCountNumericUpDown";
+            pebblesFirstVisitCountNumericUpDown.Size = new Size(232, 23);
+            pebblesFirstVisitCountNumericUpDown.TabIndex = 13;
+            commonToolTip.SetToolTip(pebblesFirstVisitCountNumericUpDown, "The number of cycles since you first talked with Five Pebbles\r\n(Appears to be used for tracking Spearmaster's pearl wound recover)");
+            pebblesFirstVisitCountNumericUpDown.ValueChanged += pebblesFirstVisitCountNumericUpDown_ValueChanged;
             // 
-            // tabControl1
+            // fivePebblesSlugcatSharedGroupBox
             // 
-            tabControl1.Controls.Add(iteratorFivePebblesTabPage);
-            tabControl1.Controls.Add(iteratorLooksToTheMoonTabPage);
-            tabControl1.Dock = DockStyle.Fill;
-            tabControl1.ImageList = iteratorTabImageList;
-            tabControl1.Location = new Point(3, 3);
-            tabControl1.Name = "tabControl1";
-            tabControl1.SelectedIndex = 0;
-            tabControl1.Size = new Size(648, 457);
-            tabControl1.TabIndex = 0;
+            fivePebblesSlugcatSharedGroupBox.Controls.Add(frolickedInMemoryArraysCheckBox);
+            fivePebblesSlugcatSharedGroupBox.Controls.Add(pebblesThrownOutCountNumericUpDown);
+            fivePebblesSlugcatSharedGroupBox.Controls.Add(fivePebblesThrownOutCountLabel);
+            fivePebblesSlugcatSharedGroupBox.Controls.Add(pebblesConversationCountNumericUpDown);
+            fivePebblesSlugcatSharedGroupBox.Controls.Add(fivePebblesConversationCountLabel);
+            fivePebblesSlugcatSharedGroupBox.Location = new Point(6, 6);
+            fivePebblesSlugcatSharedGroupBox.Name = "fivePebblesSlugcatSharedGroupBox";
+            fivePebblesSlugcatSharedGroupBox.Size = new Size(370, 120);
+            fivePebblesSlugcatSharedGroupBox.TabIndex = 14;
+            fivePebblesSlugcatSharedGroupBox.TabStop = false;
+            fivePebblesSlugcatSharedGroupBox.Text = "Slugcat Shared";
             // 
-            // iteratorFivePebblesTabPage
+            // frolickedInMemoryArraysCheckBox
             // 
-            iteratorFivePebblesTabPage.BackColor = SystemColors.Control;
-            iteratorFivePebblesTabPage.Controls.Add(fivePebblesSlugcatSpecificGroupBox);
-            iteratorFivePebblesTabPage.Controls.Add(fivePebblesSlugcatSharedGroupBox);
-            iteratorFivePebblesTabPage.ImageIndex = 0;
-            iteratorFivePebblesTabPage.Location = new Point(4, 24);
-            iteratorFivePebblesTabPage.Name = "iteratorFivePebblesTabPage";
-            iteratorFivePebblesTabPage.Padding = new Padding(3);
-            iteratorFivePebblesTabPage.Size = new Size(640, 429);
-            iteratorFivePebblesTabPage.TabIndex = 0;
-            iteratorFivePebblesTabPage.Text = "Five Pebbles";
+            frolickedInMemoryArraysCheckBox.AutoSize = true;
+            frolickedInMemoryArraysCheckBox.Location = new Point(6, 80);
+            frolickedInMemoryArraysCheckBox.Name = "frolickedInMemoryArraysCheckBox";
+            frolickedInMemoryArraysCheckBox.Size = new Size(171, 19);
+            frolickedInMemoryArraysCheckBox.TabIndex = 16;
+            frolickedInMemoryArraysCheckBox.Text = "Frolicked in Memory Arrays";
+            commonToolTip.SetToolTip(frolickedInMemoryArraysCheckBox, "Have you frolicked in Five Pebbles' Memory Arrays?\r\n(This value is specifically set if the player enters SS_D02)");
+            frolickedInMemoryArraysCheckBox.UseVisualStyleBackColor = true;
+            frolickedInMemoryArraysCheckBox.CheckedChanged += frolickedInMemoryArraysCheckBox_CheckedChanged;
+            // 
+            // pebblesThrownOutCountNumericUpDown
+            // 
+            pebblesThrownOutCountNumericUpDown.Location = new Point(128, 51);
+            pebblesThrownOutCountNumericUpDown.Maximum = new decimal(new int[] { 7, 5, 0, 0 });
+            pebblesThrownOutCountNumericUpDown.Minimum = new decimal(new int[] { int.MinValue, 0, 0, int.MinValue });
+            pebblesThrownOutCountNumericUpDown.Name = "pebblesThrownOutCountNumericUpDown";
+            pebblesThrownOutCountNumericUpDown.Size = new Size(236, 23);
+            pebblesThrownOutCountNumericUpDown.TabIndex = 15;
+            commonToolTip.SetToolTip(pebblesThrownOutCountNumericUpDown, "How many times has Five Pebbles kicked you out?");
+            pebblesThrownOutCountNumericUpDown.ValueChanged += pebblesThrownOutCountNumericUpDown_ValueChanged;
+            // 
+            // fivePebblesThrownOutCountLabel
+            // 
+            fivePebblesThrownOutCountLabel.AutoSize = true;
+            fivePebblesThrownOutCountLabel.Location = new Point(6, 53);
+            fivePebblesThrownOutCountLabel.Name = "fivePebblesThrownOutCountLabel";
+            fivePebblesThrownOutCountLabel.Size = new Size(109, 15);
+            fivePebblesThrownOutCountLabel.TabIndex = 15;
+            fivePebblesThrownOutCountLabel.Text = "Thrown Out Count:";
+            // 
+            // pebblesConversationCountNumericUpDown
+            // 
+            pebblesConversationCountNumericUpDown.Location = new Point(128, 22);
+            pebblesConversationCountNumericUpDown.Maximum = new decimal(new int[] { 7, 5, 0, 0 });
+            pebblesConversationCountNumericUpDown.Minimum = new decimal(new int[] { int.MinValue, 0, 0, int.MinValue });
+            pebblesConversationCountNumericUpDown.Name = "pebblesConversationCountNumericUpDown";
+            pebblesConversationCountNumericUpDown.Size = new Size(236, 23);
+            pebblesConversationCountNumericUpDown.TabIndex = 12;
+            commonToolTip.SetToolTip(pebblesConversationCountNumericUpDown, "How many times have you talked with Five Pebbles?");
+            pebblesConversationCountNumericUpDown.ValueChanged += fivePebblesConversationCountNumericUpDown_ValueChanged;
+            // 
+            // fivePebblesConversationCountLabel
+            // 
+            fivePebblesConversationCountLabel.AutoSize = true;
+            fivePebblesConversationCountLabel.Location = new Point(6, 24);
+            fivePebblesConversationCountLabel.Name = "fivePebblesConversationCountLabel";
+            fivePebblesConversationCountLabel.Size = new Size(116, 15);
+            fivePebblesConversationCountLabel.TabIndex = 13;
+            fivePebblesConversationCountLabel.Text = "Conversation Count:";
             // 
             // iteratorLooksToTheMoonTabPage
             // 
@@ -791,7 +861,7 @@
             iteratorLooksToTheMoonTabPage.Location = new Point(4, 24);
             iteratorLooksToTheMoonTabPage.Name = "iteratorLooksToTheMoonTabPage";
             iteratorLooksToTheMoonTabPage.Padding = new Padding(3);
-            iteratorLooksToTheMoonTabPage.Size = new Size(504, 426);
+            iteratorLooksToTheMoonTabPage.Size = new Size(640, 429);
             iteratorLooksToTheMoonTabPage.TabIndex = 1;
             iteratorLooksToTheMoonTabPage.Text = "Looks To The Moon";
             // 
@@ -812,70 +882,6 @@
             iteratorTabImageList.TransparentColor = Color.Transparent;
             iteratorTabImageList.Images.SetKeyName(0, "five_pebbles_icon.png");
             iteratorTabImageList.Images.SetKeyName(1, "looks_to_the_moon_icon.png");
-            // 
-            // fivePebblesSlugcatSharedGroupBox
-            // 
-            fivePebblesSlugcatSharedGroupBox.Controls.Add(fivePebblesFrolickedInMemoryArraysCheckBox);
-            fivePebblesSlugcatSharedGroupBox.Controls.Add(fivePebblesThrownOutCountNumericUpDown);
-            fivePebblesSlugcatSharedGroupBox.Controls.Add(fivePebblesThrownOutCountLabel);
-            fivePebblesSlugcatSharedGroupBox.Controls.Add(fivePebblesConversationCountNumericUpDown);
-            fivePebblesSlugcatSharedGroupBox.Controls.Add(fivePebblesConversationCountLabel);
-            fivePebblesSlugcatSharedGroupBox.Location = new Point(6, 6);
-            fivePebblesSlugcatSharedGroupBox.Name = "fivePebblesSlugcatSharedGroupBox";
-            fivePebblesSlugcatSharedGroupBox.Size = new Size(370, 120);
-            fivePebblesSlugcatSharedGroupBox.TabIndex = 14;
-            fivePebblesSlugcatSharedGroupBox.TabStop = false;
-            fivePebblesSlugcatSharedGroupBox.Text = "Slugcat Shared";
-            // 
-            // fivePebblesFrolickedInMemoryArraysCheckBox
-            // 
-            fivePebblesFrolickedInMemoryArraysCheckBox.AutoSize = true;
-            fivePebblesFrolickedInMemoryArraysCheckBox.Location = new Point(6, 80);
-            fivePebblesFrolickedInMemoryArraysCheckBox.Name = "fivePebblesFrolickedInMemoryArraysCheckBox";
-            fivePebblesFrolickedInMemoryArraysCheckBox.Size = new Size(171, 19);
-            fivePebblesFrolickedInMemoryArraysCheckBox.TabIndex = 16;
-            fivePebblesFrolickedInMemoryArraysCheckBox.Text = "Frolicked in Memory Arrays";
-            commonToolTip.SetToolTip(fivePebblesFrolickedInMemoryArraysCheckBox, "Have you frolicked in Five Pebbles' Memory Arrays?\r\n(This value is specifically set if the player enters SS_D02)");
-            fivePebblesFrolickedInMemoryArraysCheckBox.UseVisualStyleBackColor = true;
-            // 
-            // fivePebblesThrownOutCountNumericUpDown
-            // 
-            fivePebblesThrownOutCountNumericUpDown.Location = new Point(128, 51);
-            fivePebblesThrownOutCountNumericUpDown.Maximum = new decimal(new int[] { 7, 5, 0, 0 });
-            fivePebblesThrownOutCountNumericUpDown.Minimum = new decimal(new int[] { int.MinValue, 0, 0, int.MinValue });
-            fivePebblesThrownOutCountNumericUpDown.Name = "fivePebblesThrownOutCountNumericUpDown";
-            fivePebblesThrownOutCountNumericUpDown.Size = new Size(236, 23);
-            fivePebblesThrownOutCountNumericUpDown.TabIndex = 15;
-            commonToolTip.SetToolTip(fivePebblesThrownOutCountNumericUpDown, "How many times has Five Pebbles kicked you out?");
-            // 
-            // fivePebblesThrownOutCountLabel
-            // 
-            fivePebblesThrownOutCountLabel.AutoSize = true;
-            fivePebblesThrownOutCountLabel.Location = new Point(6, 53);
-            fivePebblesThrownOutCountLabel.Name = "fivePebblesThrownOutCountLabel";
-            fivePebblesThrownOutCountLabel.Size = new Size(109, 15);
-            fivePebblesThrownOutCountLabel.TabIndex = 15;
-            fivePebblesThrownOutCountLabel.Text = "Thrown Out Count:";
-            // 
-            // fivePebblesConversationCountNumericUpDown
-            // 
-            fivePebblesConversationCountNumericUpDown.Location = new Point(128, 22);
-            fivePebblesConversationCountNumericUpDown.Maximum = new decimal(new int[] { 7, 5, 0, 0 });
-            fivePebblesConversationCountNumericUpDown.Minimum = new decimal(new int[] { int.MinValue, 0, 0, int.MinValue });
-            fivePebblesConversationCountNumericUpDown.Name = "fivePebblesConversationCountNumericUpDown";
-            fivePebblesConversationCountNumericUpDown.Size = new Size(236, 23);
-            fivePebblesConversationCountNumericUpDown.TabIndex = 12;
-            commonToolTip.SetToolTip(fivePebblesConversationCountNumericUpDown, "How many times have you talked with Five Pebbles?");
-            fivePebblesConversationCountNumericUpDown.ValueChanged += fivePebblesConversationCountNumericUpDown_ValueChanged;
-            // 
-            // fivePebblesConversationCountLabel
-            // 
-            fivePebblesConversationCountLabel.AutoSize = true;
-            fivePebblesConversationCountLabel.Location = new Point(6, 24);
-            fivePebblesConversationCountLabel.Name = "fivePebblesConversationCountLabel";
-            fivePebblesConversationCountLabel.Size = new Size(116, 15);
-            fivePebblesConversationCountLabel.TabIndex = 13;
-            fivePebblesConversationCountLabel.Text = "Conversation Count:";
             // 
             // communitiesTabPage
             // 
@@ -1354,6 +1360,8 @@
             ((System.ComponentModel.ISupportInitialize)echoDataGridView).EndInit();
             echoDataGridContextMenuStrip.ResumeLayout(false);
             iteratorTabPage.ResumeLayout(false);
+            tabControl1.ResumeLayout(false);
+            iteratorFivePebblesTabPage.ResumeLayout(false);
             fivePebblesSlugcatSpecificGroupBox.ResumeLayout(false);
             fivePebblesSlugcatSpecificGroupBox.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)musicPearlStolenPictureBox).EndInit();
@@ -1362,15 +1370,13 @@
             fivePebblesCellConvoStateGroupBox.ResumeLayout(false);
             fivePebblesCellConvoStateGroupBox.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)pebblesCellConvoStateNumericUpDown).EndInit();
-            ((System.ComponentModel.ISupportInitialize)numericUpDown2).EndInit();
-            tabControl1.ResumeLayout(false);
-            iteratorFivePebblesTabPage.ResumeLayout(false);
-            iteratorLooksToTheMoonTabPage.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)numericUpDown1).EndInit();
+            ((System.ComponentModel.ISupportInitialize)pebblesFirstVisitCountNumericUpDown).EndInit();
             fivePebblesSlugcatSharedGroupBox.ResumeLayout(false);
             fivePebblesSlugcatSharedGroupBox.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)fivePebblesThrownOutCountNumericUpDown).EndInit();
-            ((System.ComponentModel.ISupportInitialize)fivePebblesConversationCountNumericUpDown).EndInit();
+            ((System.ComponentModel.ISupportInitialize)pebblesThrownOutCountNumericUpDown).EndInit();
+            ((System.ComponentModel.ISupportInitialize)pebblesConversationCountNumericUpDown).EndInit();
+            iteratorLooksToTheMoonTabPage.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)numericUpDown1).EndInit();
             communitiesTabPage.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)communityRegionRepDataGridView).EndInit();
             persistentInfoTabPage.ResumeLayout(false);
@@ -1478,12 +1484,12 @@
         private ImageList iteratorTabImageList;
         private GroupBox fivePebblesSlugcatSharedGroupBox;
         private Label fivePebblesConversationCountLabel;
-        private NumericUpDown fivePebblesConversationCountNumericUpDown;
+        private NumericUpDown pebblesConversationCountNumericUpDown;
         private GroupBox fivePebblesSlugcatSpecificGroupBox;
-        private Label fivePebblesFirstVisitCountLabel;
-        private NumericUpDown numericUpDown2;
-        private CheckBox fivePebblesFrolickedInMemoryArraysCheckBox;
-        private NumericUpDown fivePebblesThrownOutCountNumericUpDown;
+        private Label pebblesFirstVisitCountLabel;
+        private NumericUpDown pebblesFirstVisitCountNumericUpDown;
+        private CheckBox frolickedInMemoryArraysCheckBox;
+        private NumericUpDown pebblesThrownOutCountNumericUpDown;
         private Label fivePebblesThrownOutCountLabel;
         private RadioButton pebblesCellState3RadioButton;
         private RadioButton pebblesCellState2RadioButton;
