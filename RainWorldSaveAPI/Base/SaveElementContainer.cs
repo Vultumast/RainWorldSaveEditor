@@ -129,12 +129,20 @@ public abstract class SaveElementContainer
         {
             var propertyBinding = propertyInfo.GetValue(container);
 
-            clearMethod.Invoke(propertyBinding, null);
-
-            foreach (var element in value.Split(elementInfo.ListDelimiter, StringSplitOptions.RemoveEmptyEntries))
+            if (elementInfo.IsRepeatableKey)
             {
-                addMethod.Invoke(propertyBinding, [element]);
+                addMethod.Invoke(propertyBinding, [value]);
             }
+            else
+            {
+                clearMethod.Invoke(propertyBinding, null);
+
+                foreach (var element in value.Split(elementInfo.ListDelimiter, StringSplitOptions.RemoveEmptyEntries))
+                {
+                    addMethod.Invoke(propertyBinding, [element]);
+                }
+            }
+
 
             return true;
         }
@@ -142,11 +150,18 @@ public abstract class SaveElementContainer
         {
             var propertyBinding = propertyInfo.GetValue(container);
 
-            clearMethod.Invoke(propertyBinding, null);
-
-            foreach (var element in value.Split(elementInfo.ListDelimiter, StringSplitOptions.RemoveEmptyEntries))
+            if (elementInfo.IsRepeatableKey)
             {
-                addMethod.Invoke(propertyBinding, [parseMethod.Invoke(null, [element, null])]);
+                addMethod.Invoke(propertyBinding, [parseMethod.Invoke(null, [value, null])]);
+            }
+            else
+            {
+                clearMethod.Invoke(propertyBinding, null);
+
+                foreach (var element in value.Split(elementInfo.ListDelimiter, StringSplitOptions.RemoveEmptyEntries))
+                {
+                    addMethod.Invoke(propertyBinding, [parseMethod.Invoke(null, [element, null])]);
+                }
             }
 
             return true;
@@ -184,8 +199,11 @@ public abstract class SaveElementContainer
             }
             else if (collectionInterface is not null)
             {
-                if (elementInfo.ListDelimiter is null)
-                    Logger.Debug($"{key} => {value}, \"{propertyInfo.PropertyType}\" is a collection that doesn't have a delimiter! Tell Mario or Vultu!");
+                if (elementInfo.ListDelimiter is not null && elementInfo.IsRepeatableKey)
+                    Logger.Debug($"{key} => {value}, \"{propertyInfo.PropertyType}\" is a collection that has both a delimiter and is marked as repeatable! Tell Mario or Vultu!");
+
+                if (elementInfo.ListDelimiter is null && !elementInfo.IsRepeatableKey)
+                    Logger.Debug($"{key} => {value}, \"{propertyInfo.PropertyType}\" is a collection that doesn't have a delimiter and is not marked as repeatable! Tell Mario or Vultu!");
 
                 else if (SetListProperty(container, propertyInfo, elementInfo, value, collectionInterface))
                     return;

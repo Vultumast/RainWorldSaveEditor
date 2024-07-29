@@ -22,9 +22,14 @@ public class SaveFileElement(string name, bool valueOptional = false) : Attribut
     public bool ValueOptional { get; } = valueOptional;
 
     /// <summary>
-    /// For lists, defines the delimiter to use for elements.
+    /// For lists, defines the delimiter to use for elements. Ignored if <see cref="IsRepeatableKey"/> is set.
     /// </summary>
     public string? ListDelimiter { get; init; } = null;
+
+    /// <summary>
+    /// For lists, defines that this key can appear multiple times and the fields should be added into the list.
+    /// </summary>
+    public bool IsRepeatableKey { get; init; } = false;
 
 }
 

@@ -8,6 +8,8 @@ public class RainWorldSave
 {
     public List<SaveState> SaveStates { get; } = [];
 
+    public MiscProgressionData MiscProgressionData { get; set; } = new();
+
     public void Read(string saveString)
     {
         var hash = saveString[..32];
@@ -35,6 +37,9 @@ public class RainWorldSave
                 var saveState = new SaveState();
                 saveState.Read(value);
                 SaveStates.Add(saveState);
+                break;
+            case "MISCPROG":
+                MiscProgressionData = MiscProgressionData.Parse(value, null);
                 break;
             default:
                 Logger.Warn($"Unknown Save Entry: \"{entryId}\"");
