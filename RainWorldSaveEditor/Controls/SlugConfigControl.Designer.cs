@@ -63,6 +63,35 @@
             echoDataGridContextMenuStrip = new ContextMenuStrip(components);
             addEchoToolStripMenuItem = new ToolStripMenuItem();
             removeEchoToolStripMenuItem = new ToolStripMenuItem();
+            iteratorTabPage = new TabPage();
+            fivePebblesSlugcatSpecificGroupBox = new GroupBox();
+            musicPearlStolenPictureBox = new PictureBox();
+            ascendedFivePebblesPictureBox = new PictureBox();
+            cellRemovedPictureBox = new PictureBox();
+            fivePebblesCellConvoStateGroupBox = new GroupBox();
+            label2 = new Label();
+            pebblesCellConvoStateNumericUpDown = new NumericUpDown();
+            pebblesCellState3RadioButton = new RadioButton();
+            pebblesCellState0RadioButton = new RadioButton();
+            pebblesCellState1RadioButton = new RadioButton();
+            pebblesCellState2RadioButton = new RadioButton();
+            pebblesAscendedCheckBox = new CheckBox();
+            pebblesRivuletPostGameTalkCheckBox = new CheckBox();
+            cellRemovedCheckBox = new CheckBox();
+            musicPearlStolenCheckBox = new CheckBox();
+            fivePebblesFirstVisitCountLabel = new Label();
+            numericUpDown2 = new NumericUpDown();
+            tabControl1 = new TabControl();
+            iteratorFivePebblesTabPage = new TabPage();
+            iteratorLooksToTheMoonTabPage = new TabPage();
+            numericUpDown1 = new NumericUpDown();
+            iteratorTabImageList = new ImageList(components);
+            fivePebblesSlugcatSharedGroupBox = new GroupBox();
+            fivePebblesFrolickedInMemoryArraysCheckBox = new CheckBox();
+            fivePebblesThrownOutCountNumericUpDown = new NumericUpDown();
+            fivePebblesThrownOutCountLabel = new Label();
+            fivePebblesConversationCountNumericUpDown = new NumericUpDown();
+            fivePebblesConversationCountLabel = new Label();
             communitiesTabPage = new TabPage();
             communityRegionRepDataGridView = new DataGridView();
             communityRegionCodeColumn = new DataGridViewTextBoxColumn();
@@ -103,23 +132,6 @@
             initalGameVersionLabel = new Label();
             initialGameVersionNumericUpDown = new NumericUpDown();
             gameVerisonNumericUpDown = new NumericUpDown();
-            tabPage1 = new TabPage();
-            checkBox9 = new CheckBox();
-            groupBox6 = new GroupBox();
-            checkBox7 = new CheckBox();
-            checkBox6 = new CheckBox();
-            label5 = new Label();
-            checkBox5 = new CheckBox();
-            groupBox5 = new GroupBox();
-            label4 = new Label();
-            groupBox4 = new GroupBox();
-            checkBox3 = new CheckBox();
-            checkBox1 = new CheckBox();
-            groupBox2 = new GroupBox();
-            checkBox8 = new CheckBox();
-            checkBox4 = new CheckBox();
-            label3 = new Label();
-            label2 = new Label();
             tabImageList = new ImageList(components);
             commonToolTip = new ToolTip(components);
             ((System.ComponentModel.ISupportInitialize)cycleNumberNumericUpDown).BeginInit();
@@ -136,6 +148,21 @@
             echosTabPage.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)echoDataGridView).BeginInit();
             echoDataGridContextMenuStrip.SuspendLayout();
+            iteratorTabPage.SuspendLayout();
+            fivePebblesSlugcatSpecificGroupBox.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)musicPearlStolenPictureBox).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)ascendedFivePebblesPictureBox).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)cellRemovedPictureBox).BeginInit();
+            fivePebblesCellConvoStateGroupBox.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)pebblesCellConvoStateNumericUpDown).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)numericUpDown2).BeginInit();
+            tabControl1.SuspendLayout();
+            iteratorFivePebblesTabPage.SuspendLayout();
+            iteratorLooksToTheMoonTabPage.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)numericUpDown1).BeginInit();
+            fivePebblesSlugcatSharedGroupBox.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)fivePebblesThrownOutCountNumericUpDown).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)fivePebblesConversationCountNumericUpDown).BeginInit();
             communitiesTabPage.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)communityRegionRepDataGridView).BeginInit();
             persistentInfoTabPage.SuspendLayout();
@@ -156,11 +183,6 @@
             ((System.ComponentModel.ISupportInitialize)worldVersionNumericUpDown).BeginInit();
             ((System.ComponentModel.ISupportInitialize)initialGameVersionNumericUpDown).BeginInit();
             ((System.ComponentModel.ISupportInitialize)gameVerisonNumericUpDown).BeginInit();
-            tabPage1.SuspendLayout();
-            groupBox6.SuspendLayout();
-            groupBox5.SuspendLayout();
-            groupBox4.SuspendLayout();
-            groupBox2.SuspendLayout();
             SuspendLayout();
             // 
             // FoodPipControl
@@ -171,7 +193,7 @@
             FoodPipControl.Name = "FoodPipControl";
             FoodPipControl.PipBarIndex = 4;
             FoodPipControl.PipCount = 7;
-            FoodPipControl.Size = new Size(535, 42);
+            FoodPipControl.Size = new Size(648, 42);
             FoodPipControl.TabIndex = 0;
             FoodPipControl.PipCountChanged += FoodPipControl_PipCountChanged;
             // 
@@ -196,18 +218,18 @@
             // 
             tabControl.Controls.Add(slugcatInfoTabPage);
             tabControl.Controls.Add(echosTabPage);
+            tabControl.Controls.Add(iteratorTabPage);
             tabControl.Controls.Add(communitiesTabPage);
             tabControl.Controls.Add(worldInfoTabPage);
             tabControl.Controls.Add(persistentInfoTabPage);
             tabControl.Controls.Add(advancedTabPage);
-            tabControl.Controls.Add(tabPage1);
             tabControl.Dock = DockStyle.Fill;
             tabControl.ImageList = tabImageList;
             tabControl.Location = new Point(0, 0);
             tabControl.Name = "tabControl";
             tabControl.SelectedIndex = 0;
             tabControl.ShowToolTips = true;
-            tabControl.Size = new Size(549, 440);
+            tabControl.Size = new Size(662, 491);
             tabControl.TabIndex = 3;
             // 
             // slugcatInfoTabPage
@@ -229,7 +251,7 @@
             slugcatInfoTabPage.Location = new Point(4, 24);
             slugcatInfoTabPage.Name = "slugcatInfoTabPage";
             slugcatInfoTabPage.Padding = new Padding(3);
-            slugcatInfoTabPage.Size = new Size(541, 412);
+            slugcatInfoTabPage.Size = new Size(654, 463);
             slugcatInfoTabPage.TabIndex = 0;
             slugcatInfoTabPage.Text = "Slugcat";
             slugcatInfoTabPage.ToolTipText = "Data relating to your slugcat";
@@ -461,7 +483,7 @@
             echosTabPage.Location = new Point(4, 24);
             echosTabPage.Name = "echosTabPage";
             echosTabPage.Padding = new Padding(3);
-            echosTabPage.Size = new Size(541, 412);
+            echosTabPage.Size = new Size(654, 463);
             echosTabPage.TabIndex = 5;
             echosTabPage.Text = "Echos";
             echosTabPage.ToolTipText = "Data relating to Echos";
@@ -477,7 +499,7 @@
             echoDataGridView.Location = new Point(3, 3);
             echoDataGridView.Name = "echoDataGridView";
             echoDataGridView.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            echoDataGridView.Size = new Size(535, 406);
+            echoDataGridView.Size = new Size(648, 457);
             echoDataGridView.TabIndex = 0;
             echoDataGridView.SelectionChanged += echoDataGridView_SelectionChanged;
             echoDataGridView.UserDeletedRow += echoDataGridView_UserDeletedRow;
@@ -523,6 +545,338 @@
             removeEchoToolStripMenuItem.Text = "Remove Echo";
             removeEchoToolStripMenuItem.Click += removeEchoToolStripMenuItem_Click;
             // 
+            // iteratorTabPage
+            // 
+            iteratorTabPage.BackColor = SystemColors.Control;
+            iteratorTabPage.Controls.Add(tabControl1);
+            iteratorTabPage.Location = new Point(4, 24);
+            iteratorTabPage.Name = "iteratorTabPage";
+            iteratorTabPage.Padding = new Padding(3);
+            iteratorTabPage.Size = new Size(654, 463);
+            iteratorTabPage.TabIndex = 6;
+            iteratorTabPage.Text = "Iterator";
+            // 
+            // fivePebblesSlugcatSpecificGroupBox
+            // 
+            fivePebblesSlugcatSpecificGroupBox.Controls.Add(musicPearlStolenPictureBox);
+            fivePebblesSlugcatSpecificGroupBox.Controls.Add(ascendedFivePebblesPictureBox);
+            fivePebblesSlugcatSpecificGroupBox.Controls.Add(cellRemovedPictureBox);
+            fivePebblesSlugcatSpecificGroupBox.Controls.Add(fivePebblesCellConvoStateGroupBox);
+            fivePebblesSlugcatSpecificGroupBox.Controls.Add(pebblesAscendedCheckBox);
+            fivePebblesSlugcatSpecificGroupBox.Controls.Add(pebblesRivuletPostGameTalkCheckBox);
+            fivePebblesSlugcatSpecificGroupBox.Controls.Add(cellRemovedCheckBox);
+            fivePebblesSlugcatSpecificGroupBox.Controls.Add(musicPearlStolenCheckBox);
+            fivePebblesSlugcatSpecificGroupBox.Controls.Add(fivePebblesFirstVisitCountLabel);
+            fivePebblesSlugcatSpecificGroupBox.Controls.Add(numericUpDown2);
+            fivePebblesSlugcatSpecificGroupBox.Location = new Point(12, 132);
+            fivePebblesSlugcatSpecificGroupBox.Name = "fivePebblesSlugcatSpecificGroupBox";
+            fivePebblesSlugcatSpecificGroupBox.Size = new Size(381, 291);
+            fivePebblesSlugcatSpecificGroupBox.TabIndex = 15;
+            fivePebblesSlugcatSpecificGroupBox.TabStop = false;
+            fivePebblesSlugcatSpecificGroupBox.Text = "Slugcat Specific";
+            // 
+            // musicPearlStolenPictureBox
+            // 
+            musicPearlStolenPictureBox.BackgroundImage = Properties.Resources.pearl_music;
+            musicPearlStolenPictureBox.BackgroundImageLayout = ImageLayout.Center;
+            musicPearlStolenPictureBox.Location = new Point(216, 51);
+            musicPearlStolenPictureBox.Name = "musicPearlStolenPictureBox";
+            musicPearlStolenPictureBox.Size = new Size(24, 24);
+            musicPearlStolenPictureBox.TabIndex = 16;
+            musicPearlStolenPictureBox.TabStop = false;
+            // 
+            // ascendedFivePebblesPictureBox
+            // 
+            ascendedFivePebblesPictureBox.BackgroundImage = Properties.Resources.fivepebblesdeadicon;
+            ascendedFivePebblesPictureBox.BackgroundImageLayout = ImageLayout.Center;
+            ascendedFivePebblesPictureBox.Location = new Point(216, 81);
+            ascendedFivePebblesPictureBox.Name = "ascendedFivePebblesPictureBox";
+            ascendedFivePebblesPictureBox.Size = new Size(24, 24);
+            ascendedFivePebblesPictureBox.TabIndex = 17;
+            ascendedFivePebblesPictureBox.TabStop = false;
+            // 
+            // cellRemovedPictureBox
+            // 
+            cellRemovedPictureBox.BackgroundImage = Properties.Resources.rarefaction_cell_icon;
+            cellRemovedPictureBox.BackgroundImageLayout = ImageLayout.Center;
+            cellRemovedPictureBox.Location = new Point(8, 81);
+            cellRemovedPictureBox.Name = "cellRemovedPictureBox";
+            cellRemovedPictureBox.Size = new Size(24, 24);
+            cellRemovedPictureBox.TabIndex = 18;
+            cellRemovedPictureBox.TabStop = false;
+            // 
+            // fivePebblesCellConvoStateGroupBox
+            // 
+            fivePebblesCellConvoStateGroupBox.Controls.Add(label2);
+            fivePebblesCellConvoStateGroupBox.Controls.Add(pebblesCellConvoStateNumericUpDown);
+            fivePebblesCellConvoStateGroupBox.Controls.Add(pebblesCellState3RadioButton);
+            fivePebblesCellConvoStateGroupBox.Controls.Add(pebblesCellState0RadioButton);
+            fivePebblesCellConvoStateGroupBox.Controls.Add(pebblesCellState1RadioButton);
+            fivePebblesCellConvoStateGroupBox.Controls.Add(pebblesCellState2RadioButton);
+            fivePebblesCellConvoStateGroupBox.Location = new Point(6, 111);
+            fivePebblesCellConvoStateGroupBox.Name = "fivePebblesCellConvoStateGroupBox";
+            fivePebblesCellConvoStateGroupBox.Size = new Size(369, 174);
+            fivePebblesCellConvoStateGroupBox.TabIndex = 21;
+            fivePebblesCellConvoStateGroupBox.TabStop = false;
+            fivePebblesCellConvoStateGroupBox.Text = "Rarefaction Cell Conversation";
+            // 
+            // label2
+            // 
+            label2.AutoSize = true;
+            label2.Location = new Point(6, 128);
+            label2.Name = "label2";
+            label2.Size = new Size(63, 15);
+            label2.TabIndex = 22;
+            label2.Text = "Raw Value:";
+            // 
+            // pebblesCellConvoStateNumericUpDown
+            // 
+            pebblesCellConvoStateNumericUpDown.Location = new Point(75, 126);
+            pebblesCellConvoStateNumericUpDown.Maximum = new decimal(new int[] { 7, 5, 0, 0 });
+            pebblesCellConvoStateNumericUpDown.Minimum = new decimal(new int[] { int.MinValue, 0, 0, int.MinValue });
+            pebblesCellConvoStateNumericUpDown.Name = "pebblesCellConvoStateNumericUpDown";
+            pebblesCellConvoStateNumericUpDown.Size = new Size(288, 23);
+            pebblesCellConvoStateNumericUpDown.TabIndex = 20;
+            commonToolTip.SetToolTip(pebblesCellConvoStateNumericUpDown, resources.GetString("pebblesCellConvoStateNumericUpDown.ToolTip"));
+            pebblesCellConvoStateNumericUpDown.ValueChanged += pebblesCellConvoStateNumericUpDown_ValueChanged;
+            // 
+            // pebblesCellState3RadioButton
+            // 
+            pebblesCellState3RadioButton.AutoSize = true;
+            pebblesCellState3RadioButton.Location = new Point(6, 101);
+            pebblesCellState3RadioButton.Name = "pebblesCellState3RadioButton";
+            pebblesCellState3RadioButton.Size = new Size(134, 19);
+            pebblesCellState3RadioButton.TabIndex = 19;
+            pebblesCellState3RadioButton.Tag = "3";
+            pebblesCellState3RadioButton.Text = "Saw Rivulet with Cell";
+            commonToolTip.SetToolTip(pebblesCellState3RadioButton, "Five Pebbles saw Rivulet hold the cell on one of the visits, or Five Pebbles acknowledged that the cell has been removed after being visited again");
+            pebblesCellState3RadioButton.UseVisualStyleBackColor = true;
+            pebblesCellState3RadioButton.CheckedChanged += pebblesCellStateRadioButton_CheckedChanged;
+            // 
+            // pebblesCellState0RadioButton
+            // 
+            pebblesCellState0RadioButton.AutoSize = true;
+            pebblesCellState0RadioButton.Checked = true;
+            pebblesCellState0RadioButton.Location = new Point(6, 26);
+            pebblesCellState0RadioButton.Name = "pebblesCellState0RadioButton";
+            pebblesCellState0RadioButton.Size = new Size(63, 19);
+            pebblesCellState0RadioButton.TabIndex = 16;
+            pebblesCellState0RadioButton.TabStop = true;
+            pebblesCellState0RadioButton.Tag = "0";
+            pebblesCellState0RadioButton.Text = "Default";
+            commonToolTip.SetToolTip(pebblesCellState0RadioButton, "The default state of the interaction (you haven't interacted yet)");
+            pebblesCellState0RadioButton.UseVisualStyleBackColor = true;
+            pebblesCellState0RadioButton.CheckedChanged += pebblesCellStateRadioButton_CheckedChanged;
+            // 
+            // pebblesCellState1RadioButton
+            // 
+            pebblesCellState1RadioButton.AutoSize = true;
+            pebblesCellState1RadioButton.Location = new Point(6, 51);
+            pebblesCellState1RadioButton.Name = "pebblesCellState1RadioButton";
+            pebblesCellState1RadioButton.Size = new Size(166, 19);
+            pebblesCellState1RadioButton.TabIndex = 17;
+            pebblesCellState1RadioButton.Tag = "1";
+            pebblesCellState1RadioButton.Text = "Told Rivulet to remove Cell";
+            commonToolTip.SetToolTip(pebblesCellState1RadioButton, "Five Pebbles told Rivulet about the cell on their first visit");
+            pebblesCellState1RadioButton.UseVisualStyleBackColor = true;
+            pebblesCellState1RadioButton.CheckedChanged += pebblesCellStateRadioButton_CheckedChanged;
+            // 
+            // pebblesCellState2RadioButton
+            // 
+            pebblesCellState2RadioButton.AutoSize = true;
+            pebblesCellState2RadioButton.Location = new Point(6, 76);
+            pebblesCellState2RadioButton.Name = "pebblesCellState2RadioButton";
+            pebblesCellState2RadioButton.Size = new Size(156, 19);
+            pebblesCellState2RadioButton.TabIndex = 18;
+            pebblesCellState2RadioButton.Tag = "2";
+            pebblesCellState2RadioButton.Text = "Knows Cell was removed";
+            commonToolTip.SetToolTip(pebblesCellState2RadioButton, "Five Pebbles acknowledged that the cell has been removed on Rivulet's first visit (without them holding the cell");
+            pebblesCellState2RadioButton.UseVisualStyleBackColor = true;
+            pebblesCellState2RadioButton.CheckedChanged += pebblesCellStateRadioButton_CheckedChanged;
+            // 
+            // pebblesAscendedCheckBox
+            // 
+            pebblesAscendedCheckBox.AutoSize = true;
+            pebblesAscendedCheckBox.Location = new Point(246, 86);
+            pebblesAscendedCheckBox.Name = "pebblesAscendedCheckBox";
+            pebblesAscendedCheckBox.Size = new Size(78, 19);
+            pebblesAscendedCheckBox.TabIndex = 23;
+            pebblesAscendedCheckBox.Text = "Ascended";
+            commonToolTip.SetToolTip(pebblesAscendedCheckBox, "Has Five Pebbles been ascended?");
+            pebblesAscendedCheckBox.UseVisualStyleBackColor = true;
+            // 
+            // pebblesRivuletPostGameTalkCheckBox
+            // 
+            pebblesRivuletPostGameTalkCheckBox.AutoSize = true;
+            pebblesRivuletPostGameTalkCheckBox.Location = new Point(38, 56);
+            pebblesRivuletPostGameTalkCheckBox.Name = "pebblesRivuletPostGameTalkCheckBox";
+            pebblesRivuletPostGameTalkCheckBox.Size = new Size(172, 19);
+            pebblesRivuletPostGameTalkCheckBox.TabIndex = 24;
+            pebblesRivuletPostGameTalkCheckBox.Text = "Talked in Rivulet post-game";
+            commonToolTip.SetToolTip(pebblesRivuletPostGameTalkCheckBox, "Have you talked to Five Pebbles during Rivulet's post-game?");
+            pebblesRivuletPostGameTalkCheckBox.UseVisualStyleBackColor = true;
+            // 
+            // cellRemovedCheckBox
+            // 
+            cellRemovedCheckBox.AutoSize = true;
+            cellRemovedCheckBox.Location = new Point(38, 81);
+            cellRemovedCheckBox.Name = "cellRemovedCheckBox";
+            cellRemovedCheckBox.Size = new Size(162, 19);
+            cellRemovedCheckBox.TabIndex = 22;
+            cellRemovedCheckBox.Text = "Removed Rarefaction Cell";
+            commonToolTip.SetToolTip(cellRemovedCheckBox, "Has the Rarefaction Cell been removed?");
+            cellRemovedCheckBox.UseVisualStyleBackColor = true;
+            // 
+            // musicPearlStolenCheckBox
+            // 
+            musicPearlStolenCheckBox.AutoSize = true;
+            musicPearlStolenCheckBox.Location = new Point(246, 56);
+            musicPearlStolenCheckBox.Name = "musicPearlStolenCheckBox";
+            musicPearlStolenCheckBox.Size = new Size(123, 19);
+            musicPearlStolenCheckBox.TabIndex = 25;
+            musicPearlStolenCheckBox.Text = "Stolen Music Pearl";
+            commonToolTip.SetToolTip(musicPearlStolenCheckBox, "Did you steal Five Pebbles' music pearl?");
+            musicPearlStolenCheckBox.UseVisualStyleBackColor = true;
+            musicPearlStolenCheckBox.CheckedChanged += pebblesMusicPearlStolenCheckBox_CheckedChanged;
+            // 
+            // fivePebblesFirstVisitCountLabel
+            // 
+            fivePebblesFirstVisitCountLabel.AutoSize = true;
+            fivePebblesFirstVisitCountLabel.Location = new Point(6, 24);
+            fivePebblesFirstVisitCountLabel.Name = "fivePebblesFirstVisitCountLabel";
+            fivePebblesFirstVisitCountLabel.Size = new Size(125, 15);
+            fivePebblesFirstVisitCountLabel.TabIndex = 16;
+            fivePebblesFirstVisitCountLabel.Text = "Cycles Since First Visit:";
+            // 
+            // numericUpDown2
+            // 
+            numericUpDown2.Location = new Point(137, 22);
+            numericUpDown2.Maximum = new decimal(new int[] { 7, 5, 0, 0 });
+            numericUpDown2.Minimum = new decimal(new int[] { int.MinValue, 0, 0, int.MinValue });
+            numericUpDown2.Name = "numericUpDown2";
+            numericUpDown2.Size = new Size(232, 23);
+            numericUpDown2.TabIndex = 13;
+            commonToolTip.SetToolTip(numericUpDown2, "The number of cycles since you first talked with Five Pebbles\r\n(Appears to be used for tracking Spearmaster's pearl wound recover)");
+            // 
+            // tabControl1
+            // 
+            tabControl1.Controls.Add(iteratorFivePebblesTabPage);
+            tabControl1.Controls.Add(iteratorLooksToTheMoonTabPage);
+            tabControl1.Dock = DockStyle.Fill;
+            tabControl1.ImageList = iteratorTabImageList;
+            tabControl1.Location = new Point(3, 3);
+            tabControl1.Name = "tabControl1";
+            tabControl1.SelectedIndex = 0;
+            tabControl1.Size = new Size(648, 457);
+            tabControl1.TabIndex = 0;
+            // 
+            // iteratorFivePebblesTabPage
+            // 
+            iteratorFivePebblesTabPage.BackColor = SystemColors.Control;
+            iteratorFivePebblesTabPage.Controls.Add(fivePebblesSlugcatSpecificGroupBox);
+            iteratorFivePebblesTabPage.Controls.Add(fivePebblesSlugcatSharedGroupBox);
+            iteratorFivePebblesTabPage.ImageIndex = 0;
+            iteratorFivePebblesTabPage.Location = new Point(4, 24);
+            iteratorFivePebblesTabPage.Name = "iteratorFivePebblesTabPage";
+            iteratorFivePebblesTabPage.Padding = new Padding(3);
+            iteratorFivePebblesTabPage.Size = new Size(640, 429);
+            iteratorFivePebblesTabPage.TabIndex = 0;
+            iteratorFivePebblesTabPage.Text = "Five Pebbles";
+            // 
+            // iteratorLooksToTheMoonTabPage
+            // 
+            iteratorLooksToTheMoonTabPage.BackColor = SystemColors.Control;
+            iteratorLooksToTheMoonTabPage.Controls.Add(numericUpDown1);
+            iteratorLooksToTheMoonTabPage.ImageIndex = 1;
+            iteratorLooksToTheMoonTabPage.Location = new Point(4, 24);
+            iteratorLooksToTheMoonTabPage.Name = "iteratorLooksToTheMoonTabPage";
+            iteratorLooksToTheMoonTabPage.Padding = new Padding(3);
+            iteratorLooksToTheMoonTabPage.Size = new Size(504, 426);
+            iteratorLooksToTheMoonTabPage.TabIndex = 1;
+            iteratorLooksToTheMoonTabPage.Text = "Looks To The Moon";
+            // 
+            // numericUpDown1
+            // 
+            numericUpDown1.Location = new Point(92, 6);
+            numericUpDown1.Maximum = new decimal(new int[] { 7, 5, 0, 0 });
+            numericUpDown1.Minimum = new decimal(new int[] { int.MinValue, 0, 0, int.MinValue });
+            numericUpDown1.Name = "numericUpDown1";
+            numericUpDown1.Size = new Size(193, 23);
+            numericUpDown1.TabIndex = 11;
+            commonToolTip.SetToolTip(numericUpDown1, "The RNG Seed assigned to your save file when you created it");
+            // 
+            // iteratorTabImageList
+            // 
+            iteratorTabImageList.ColorDepth = ColorDepth.Depth32Bit;
+            iteratorTabImageList.ImageStream = (ImageListStreamer)resources.GetObject("iteratorTabImageList.ImageStream");
+            iteratorTabImageList.TransparentColor = Color.Transparent;
+            iteratorTabImageList.Images.SetKeyName(0, "five_pebbles_icon.png");
+            iteratorTabImageList.Images.SetKeyName(1, "looks_to_the_moon_icon.png");
+            // 
+            // fivePebblesSlugcatSharedGroupBox
+            // 
+            fivePebblesSlugcatSharedGroupBox.Controls.Add(fivePebblesFrolickedInMemoryArraysCheckBox);
+            fivePebblesSlugcatSharedGroupBox.Controls.Add(fivePebblesThrownOutCountNumericUpDown);
+            fivePebblesSlugcatSharedGroupBox.Controls.Add(fivePebblesThrownOutCountLabel);
+            fivePebblesSlugcatSharedGroupBox.Controls.Add(fivePebblesConversationCountNumericUpDown);
+            fivePebblesSlugcatSharedGroupBox.Controls.Add(fivePebblesConversationCountLabel);
+            fivePebblesSlugcatSharedGroupBox.Location = new Point(6, 6);
+            fivePebblesSlugcatSharedGroupBox.Name = "fivePebblesSlugcatSharedGroupBox";
+            fivePebblesSlugcatSharedGroupBox.Size = new Size(370, 120);
+            fivePebblesSlugcatSharedGroupBox.TabIndex = 14;
+            fivePebblesSlugcatSharedGroupBox.TabStop = false;
+            fivePebblesSlugcatSharedGroupBox.Text = "Slugcat Shared";
+            // 
+            // fivePebblesFrolickedInMemoryArraysCheckBox
+            // 
+            fivePebblesFrolickedInMemoryArraysCheckBox.AutoSize = true;
+            fivePebblesFrolickedInMemoryArraysCheckBox.Location = new Point(6, 80);
+            fivePebblesFrolickedInMemoryArraysCheckBox.Name = "fivePebblesFrolickedInMemoryArraysCheckBox";
+            fivePebblesFrolickedInMemoryArraysCheckBox.Size = new Size(171, 19);
+            fivePebblesFrolickedInMemoryArraysCheckBox.TabIndex = 16;
+            fivePebblesFrolickedInMemoryArraysCheckBox.Text = "Frolicked in Memory Arrays";
+            commonToolTip.SetToolTip(fivePebblesFrolickedInMemoryArraysCheckBox, "Have you frolicked in Five Pebbles' Memory Arrays?\r\n(This value is specifically set if the player enters SS_D02)");
+            fivePebblesFrolickedInMemoryArraysCheckBox.UseVisualStyleBackColor = true;
+            // 
+            // fivePebblesThrownOutCountNumericUpDown
+            // 
+            fivePebblesThrownOutCountNumericUpDown.Location = new Point(128, 51);
+            fivePebblesThrownOutCountNumericUpDown.Maximum = new decimal(new int[] { 7, 5, 0, 0 });
+            fivePebblesThrownOutCountNumericUpDown.Minimum = new decimal(new int[] { int.MinValue, 0, 0, int.MinValue });
+            fivePebblesThrownOutCountNumericUpDown.Name = "fivePebblesThrownOutCountNumericUpDown";
+            fivePebblesThrownOutCountNumericUpDown.Size = new Size(236, 23);
+            fivePebblesThrownOutCountNumericUpDown.TabIndex = 15;
+            commonToolTip.SetToolTip(fivePebblesThrownOutCountNumericUpDown, "How many times has Five Pebbles kicked you out?");
+            // 
+            // fivePebblesThrownOutCountLabel
+            // 
+            fivePebblesThrownOutCountLabel.AutoSize = true;
+            fivePebblesThrownOutCountLabel.Location = new Point(6, 53);
+            fivePebblesThrownOutCountLabel.Name = "fivePebblesThrownOutCountLabel";
+            fivePebblesThrownOutCountLabel.Size = new Size(109, 15);
+            fivePebblesThrownOutCountLabel.TabIndex = 15;
+            fivePebblesThrownOutCountLabel.Text = "Thrown Out Count:";
+            // 
+            // fivePebblesConversationCountNumericUpDown
+            // 
+            fivePebblesConversationCountNumericUpDown.Location = new Point(128, 22);
+            fivePebblesConversationCountNumericUpDown.Maximum = new decimal(new int[] { 7, 5, 0, 0 });
+            fivePebblesConversationCountNumericUpDown.Minimum = new decimal(new int[] { int.MinValue, 0, 0, int.MinValue });
+            fivePebblesConversationCountNumericUpDown.Name = "fivePebblesConversationCountNumericUpDown";
+            fivePebblesConversationCountNumericUpDown.Size = new Size(236, 23);
+            fivePebblesConversationCountNumericUpDown.TabIndex = 12;
+            commonToolTip.SetToolTip(fivePebblesConversationCountNumericUpDown, "How many times have you talked with Five Pebbles?");
+            fivePebblesConversationCountNumericUpDown.ValueChanged += fivePebblesConversationCountNumericUpDown_ValueChanged;
+            // 
+            // fivePebblesConversationCountLabel
+            // 
+            fivePebblesConversationCountLabel.AutoSize = true;
+            fivePebblesConversationCountLabel.Location = new Point(6, 24);
+            fivePebblesConversationCountLabel.Name = "fivePebblesConversationCountLabel";
+            fivePebblesConversationCountLabel.Size = new Size(116, 15);
+            fivePebblesConversationCountLabel.TabIndex = 13;
+            fivePebblesConversationCountLabel.Text = "Conversation Count:";
+            // 
             // communitiesTabPage
             // 
             communitiesTabPage.Controls.Add(communityRegionRepDataGridView);
@@ -530,7 +884,7 @@
             communitiesTabPage.Location = new Point(4, 24);
             communitiesTabPage.Name = "communitiesTabPage";
             communitiesTabPage.Padding = new Padding(3);
-            communitiesTabPage.Size = new Size(541, 412);
+            communitiesTabPage.Size = new Size(654, 463);
             communitiesTabPage.TabIndex = 3;
             communitiesTabPage.Text = "Communities";
             communitiesTabPage.ToolTipText = "Data relating to creature communities";
@@ -547,7 +901,7 @@
             communityRegionRepDataGridView.MultiSelect = false;
             communityRegionRepDataGridView.Name = "communityRegionRepDataGridView";
             communityRegionRepDataGridView.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            communityRegionRepDataGridView.Size = new Size(329, 400);
+            communityRegionRepDataGridView.Size = new Size(442, 451);
             communityRegionRepDataGridView.TabIndex = 3;
             communityRegionRepDataGridView.CellBeginEdit += communityRegionRepDataGridView_CellBeginEdit;
             communityRegionRepDataGridView.CellEndEdit += communityRegionRepDataGridView_CellEndEdit;
@@ -583,7 +937,7 @@
             communityListBox.Items.AddRange(new object[] { "" });
             communityListBox.Location = new Point(6, 6);
             communityListBox.Name = "communityListBox";
-            communityListBox.Size = new Size(194, 400);
+            communityListBox.Size = new Size(194, 451);
             communityListBox.TabIndex = 0;
             communityListBox.DrawItem += communityListBox_DrawItem;
             communityListBox.SelectedIndexChanged += communityListBox_SelectedIndexChanged;
@@ -594,7 +948,7 @@
             worldInfoTabPage.Location = new Point(4, 24);
             worldInfoTabPage.Name = "worldInfoTabPage";
             worldInfoTabPage.Padding = new Padding(3);
-            worldInfoTabPage.Size = new Size(541, 412);
+            worldInfoTabPage.Size = new Size(654, 463);
             worldInfoTabPage.TabIndex = 1;
             worldInfoTabPage.Text = "World Info";
             // 
@@ -614,7 +968,7 @@
             persistentInfoTabPage.Location = new Point(4, 24);
             persistentInfoTabPage.Name = "persistentInfoTabPage";
             persistentInfoTabPage.Padding = new Padding(3);
-            persistentInfoTabPage.Size = new Size(541, 412);
+            persistentInfoTabPage.Size = new Size(654, 463);
             persistentInfoTabPage.TabIndex = 2;
             persistentInfoTabPage.Text = "Persistent Info";
             persistentInfoTabPage.ToolTipText = "Data that persists across death";
@@ -901,7 +1255,7 @@
             advancedTabPage.Location = new Point(4, 24);
             advancedTabPage.Name = "advancedTabPage";
             advancedTabPage.Padding = new Padding(3);
-            advancedTabPage.Size = new Size(541, 412);
+            advancedTabPage.Size = new Size(654, 463);
             advancedTabPage.TabIndex = 4;
             advancedTabPage.Text = "Advanced";
             advancedTabPage.ToolTipText = "Advanced settings for the save file. **DO NOT EDIT UNLESS YOU KNOW WHAT YOU'RE DOING ***";
@@ -922,7 +1276,7 @@
             worldVersionNumericUpDown.Maximum = new decimal(new int[] { 7, 5, 0, 0 });
             worldVersionNumericUpDown.Minimum = new decimal(new int[] { int.MinValue, 0, 0, int.MinValue });
             worldVersionNumericUpDown.Name = "worldVersionNumericUpDown";
-            worldVersionNumericUpDown.Size = new Size(155, 23);
+            worldVersionNumericUpDown.Size = new Size(268, 23);
             worldVersionNumericUpDown.TabIndex = 6;
             worldVersionNumericUpDown.ValueChanged += worldVersionNumericUpDown_ValueChanged;
             // 
@@ -951,7 +1305,7 @@
             initialGameVersionNumericUpDown.Maximum = new decimal(new int[] { 7, 5, 0, 0 });
             initialGameVersionNumericUpDown.Minimum = new decimal(new int[] { int.MinValue, 0, 0, int.MinValue });
             initialGameVersionNumericUpDown.Name = "initialGameVersionNumericUpDown";
-            initialGameVersionNumericUpDown.Size = new Size(155, 23);
+            initialGameVersionNumericUpDown.Size = new Size(268, 23);
             initialGameVersionNumericUpDown.TabIndex = 3;
             initialGameVersionNumericUpDown.ValueChanged += initialGameVersionNumericUpDown_ValueChanged;
             // 
@@ -962,188 +1316,9 @@
             gameVerisonNumericUpDown.Maximum = new decimal(new int[] { 7, 5, 0, 0 });
             gameVerisonNumericUpDown.Minimum = new decimal(new int[] { int.MinValue, 0, 0, int.MinValue });
             gameVerisonNumericUpDown.Name = "gameVerisonNumericUpDown";
-            gameVerisonNumericUpDown.Size = new Size(155, 23);
+            gameVerisonNumericUpDown.Size = new Size(268, 23);
             gameVerisonNumericUpDown.TabIndex = 2;
             gameVerisonNumericUpDown.ValueChanged += gameVerisonNumericUpDown_ValueChanged;
-            // 
-            // tabPage1
-            // 
-            tabPage1.BackColor = SystemColors.Control;
-            tabPage1.Controls.Add(checkBox9);
-            tabPage1.Controls.Add(groupBox6);
-            tabPage1.Controls.Add(groupBox5);
-            tabPage1.Controls.Add(groupBox4);
-            tabPage1.Controls.Add(groupBox2);
-            tabPage1.Location = new Point(4, 24);
-            tabPage1.Name = "tabPage1";
-            tabPage1.Padding = new Padding(3);
-            tabPage1.Size = new Size(541, 412);
-            tabPage1.TabIndex = 6;
-            tabPage1.Text = "Five Pebbles";
-            // 
-            // checkBox9
-            // 
-            checkBox9.AutoSize = true;
-            checkBox9.Location = new Point(242, 129);
-            checkBox9.Name = "checkBox9";
-            checkBox9.Size = new Size(78, 19);
-            checkBox9.TabIndex = 7;
-            checkBox9.Text = "Ascended";
-            commonToolTip.SetToolTip(checkBox9, "Did Saint ascend Five Pebbles?");
-            checkBox9.UseVisualStyleBackColor = true;
-            // 
-            // groupBox6
-            // 
-            groupBox6.Controls.Add(checkBox7);
-            groupBox6.Controls.Add(checkBox6);
-            groupBox6.Controls.Add(label5);
-            groupBox6.Controls.Add(checkBox5);
-            groupBox6.Location = new Point(274, 182);
-            groupBox6.Name = "groupBox6";
-            groupBox6.Size = new Size(231, 132);
-            groupBox6.TabIndex = 3;
-            groupBox6.TabStop = false;
-            groupBox6.Text = "Rivulet";
-            // 
-            // checkBox7
-            // 
-            checkBox7.AutoSize = true;
-            checkBox7.Location = new Point(20, 87);
-            checkBox7.Name = "checkBox7";
-            checkBox7.Size = new Size(130, 19);
-            checkBox7.TabIndex = 6;
-            checkBox7.Text = "Talked after delivery";
-            checkBox7.UseVisualStyleBackColor = true;
-            // 
-            // checkBox6
-            // 
-            checkBox6.AutoSize = true;
-            checkBox6.Location = new Point(6, 62);
-            checkBox6.Name = "checkBox6";
-            checkBox6.Size = new Size(160, 19);
-            checkBox6.TabIndex = 5;
-            checkBox6.Text = "Rarefaction Cell delivered";
-            checkBox6.UseVisualStyleBackColor = true;
-            // 
-            // label5
-            // 
-            label5.AutoSize = true;
-            label5.Location = new Point(20, 44);
-            label5.Name = "label5";
-            label5.Size = new Size(160, 15);
-            label5.TabIndex = 5;
-            label5.Text = "Rarefaction Cell Convo State:";
-            // 
-            // checkBox5
-            // 
-            checkBox5.AutoSize = true;
-            checkBox5.Location = new Point(6, 22);
-            checkBox5.Name = "checkBox5";
-            checkBox5.Size = new Size(162, 19);
-            checkBox5.TabIndex = 4;
-            checkBox5.Text = "Rarefaction Cell Removed";
-            checkBox5.UseVisualStyleBackColor = true;
-            // 
-            // groupBox5
-            // 
-            groupBox5.Controls.Add(label4);
-            groupBox5.Location = new Point(223, 23);
-            groupBox5.Name = "groupBox5";
-            groupBox5.Size = new Size(200, 100);
-            groupBox5.TabIndex = 2;
-            groupBox5.TabStop = false;
-            groupBox5.Text = "Spearmaster";
-            // 
-            // label4
-            // 
-            label4.AutoSize = true;
-            label4.Location = new Point(13, 28);
-            label4.Name = "label4";
-            label4.Size = new Size(136, 15);
-            label4.TabIndex = 3;
-            label4.Text = "Cycles Since First Talked:";
-            // 
-            // groupBox4
-            // 
-            groupBox4.Controls.Add(checkBox3);
-            groupBox4.Controls.Add(checkBox1);
-            groupBox4.Location = new Point(12, 167);
-            groupBox4.Name = "groupBox4";
-            groupBox4.Size = new Size(256, 156);
-            groupBox4.TabIndex = 1;
-            groupBox4.TabStop = false;
-            groupBox4.Text = "Hunter";
-            // 
-            // checkBox3
-            // 
-            checkBox3.AutoSize = true;
-            checkBox3.Location = new Point(6, 47);
-            checkBox3.Name = "checkBox3";
-            checkBox3.Size = new Size(122, 19);
-            checkBox3.TabIndex = 3;
-            checkBox3.Text = "Given Extra Cycles";
-            checkBox3.UseVisualStyleBackColor = true;
-            // 
-            // checkBox1
-            // 
-            checkBox1.AutoSize = true;
-            checkBox1.Location = new Point(6, 22);
-            checkBox1.Name = "checkBox1";
-            checkBox1.Size = new Size(128, 19);
-            checkBox1.TabIndex = 2;
-            checkBox1.Text = "Seen Green Neuron";
-            checkBox1.UseVisualStyleBackColor = true;
-            // 
-            // groupBox2
-            // 
-            groupBox2.Controls.Add(checkBox8);
-            groupBox2.Controls.Add(checkBox4);
-            groupBox2.Controls.Add(label3);
-            groupBox2.Controls.Add(label2);
-            groupBox2.Location = new Point(6, 6);
-            groupBox2.Name = "groupBox2";
-            groupBox2.Size = new Size(200, 155);
-            groupBox2.TabIndex = 0;
-            groupBox2.TabStop = false;
-            groupBox2.Text = "Slugcat Shared";
-            // 
-            // checkBox8
-            // 
-            checkBox8.AutoSize = true;
-            checkBox8.Location = new Point(20, 84);
-            checkBox8.Name = "checkBox8";
-            checkBox8.Size = new Size(120, 19);
-            checkBox8.TabIndex = 7;
-            checkBox8.Text = "Taken Music Pearl";
-            checkBox8.UseVisualStyleBackColor = true;
-            // 
-            // checkBox4
-            // 
-            checkBox4.AutoSize = true;
-            checkBox4.Location = new Point(6, 130);
-            checkBox4.Name = "checkBox4";
-            checkBox4.Size = new Size(171, 19);
-            checkBox4.TabIndex = 4;
-            checkBox4.Text = "Frolicked in Memory Arrays";
-            checkBox4.UseVisualStyleBackColor = true;
-            // 
-            // label3
-            // 
-            label3.AutoSize = true;
-            label3.Location = new Point(6, 54);
-            label3.Name = "label3";
-            label3.Size = new Size(109, 15);
-            label3.TabIndex = 2;
-            label3.Text = "Thrown Out Count:";
-            // 
-            // label2
-            // 
-            label2.AutoSize = true;
-            label2.Location = new Point(6, 28);
-            label2.Name = "label2";
-            label2.Size = new Size(79, 15);
-            label2.TabIndex = 1;
-            label2.Text = "Talked Count:";
             // 
             // tabImageList
             // 
@@ -1159,7 +1334,7 @@
             AutoScaleMode = AutoScaleMode.Font;
             Controls.Add(tabControl);
             Name = "SlugConfigControl";
-            Size = new Size(549, 440);
+            Size = new Size(662, 491);
             Load += SlugConfigControl_Load;
             ((System.ComponentModel.ISupportInitialize)cycleNumberNumericUpDown).EndInit();
             tabControl.ResumeLayout(false);
@@ -1178,6 +1353,24 @@
             echosTabPage.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)echoDataGridView).EndInit();
             echoDataGridContextMenuStrip.ResumeLayout(false);
+            iteratorTabPage.ResumeLayout(false);
+            fivePebblesSlugcatSpecificGroupBox.ResumeLayout(false);
+            fivePebblesSlugcatSpecificGroupBox.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)musicPearlStolenPictureBox).EndInit();
+            ((System.ComponentModel.ISupportInitialize)ascendedFivePebblesPictureBox).EndInit();
+            ((System.ComponentModel.ISupportInitialize)cellRemovedPictureBox).EndInit();
+            fivePebblesCellConvoStateGroupBox.ResumeLayout(false);
+            fivePebblesCellConvoStateGroupBox.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)pebblesCellConvoStateNumericUpDown).EndInit();
+            ((System.ComponentModel.ISupportInitialize)numericUpDown2).EndInit();
+            tabControl1.ResumeLayout(false);
+            iteratorFivePebblesTabPage.ResumeLayout(false);
+            iteratorLooksToTheMoonTabPage.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)numericUpDown1).EndInit();
+            fivePebblesSlugcatSharedGroupBox.ResumeLayout(false);
+            fivePebblesSlugcatSharedGroupBox.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)fivePebblesThrownOutCountNumericUpDown).EndInit();
+            ((System.ComponentModel.ISupportInitialize)fivePebblesConversationCountNumericUpDown).EndInit();
             communitiesTabPage.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)communityRegionRepDataGridView).EndInit();
             persistentInfoTabPage.ResumeLayout(false);
@@ -1202,16 +1395,6 @@
             ((System.ComponentModel.ISupportInitialize)worldVersionNumericUpDown).EndInit();
             ((System.ComponentModel.ISupportInitialize)initialGameVersionNumericUpDown).EndInit();
             ((System.ComponentModel.ISupportInitialize)gameVerisonNumericUpDown).EndInit();
-            tabPage1.ResumeLayout(false);
-            tabPage1.PerformLayout();
-            groupBox6.ResumeLayout(false);
-            groupBox6.PerformLayout();
-            groupBox5.ResumeLayout(false);
-            groupBox5.PerformLayout();
-            groupBox4.ResumeLayout(false);
-            groupBox4.PerformLayout();
-            groupBox2.ResumeLayout(false);
-            groupBox2.PerformLayout();
             ResumeLayout(false);
         }
 
@@ -1285,28 +1468,40 @@
         private ContextMenuStrip echoDataGridContextMenuStrip;
         private ToolStripMenuItem addEchoToolStripMenuItem;
         private ToolStripMenuItem removeEchoToolStripMenuItem;
-        private TabPage tabPage1;
-        private GroupBox groupBox6;
-        private Label label5;
-        private CheckBox checkBox5;
-        private GroupBox groupBox5;
-        private Label label4;
-        private GroupBox groupBox4;
-        private CheckBox checkBox3;
-        private CheckBox checkBox1;
-        private GroupBox groupBox2;
-        private CheckBox checkBox4;
-        private Label label3;
-        private Label label2;
-        private CheckBox checkBox7;
-        private CheckBox checkBox6;
-        private CheckBox checkBox8;
-        private CheckBox checkBox9;
         private DataGridViewTextBoxColumn echoRegionCodeColumn;
         private DataGridViewTextBoxColumn echoRegionNameColumn;
         private DataGridViewComboBoxColumn echoValueColumn;
         private DataGridViewTextBoxColumn communityRegionCodeColumn;
         private DataGridViewTextBoxColumn communityRegionNameColumn;
         private DataGridViewTextBoxColumn communityValueColumn;
+        private TabPage iteratorTabPage;
+        private ImageList iteratorTabImageList;
+        private GroupBox fivePebblesSlugcatSharedGroupBox;
+        private Label fivePebblesConversationCountLabel;
+        private NumericUpDown fivePebblesConversationCountNumericUpDown;
+        private GroupBox fivePebblesSlugcatSpecificGroupBox;
+        private Label fivePebblesFirstVisitCountLabel;
+        private NumericUpDown numericUpDown2;
+        private CheckBox fivePebblesFrolickedInMemoryArraysCheckBox;
+        private NumericUpDown fivePebblesThrownOutCountNumericUpDown;
+        private Label fivePebblesThrownOutCountLabel;
+        private RadioButton pebblesCellState3RadioButton;
+        private RadioButton pebblesCellState2RadioButton;
+        private RadioButton pebblesCellState1RadioButton;
+        private RadioButton pebblesCellState0RadioButton;
+        private NumericUpDown pebblesCellConvoStateNumericUpDown;
+        private GroupBox fivePebblesCellConvoStateGroupBox;
+        private Label label2;
+        private CheckBox pebblesRivuletPostGameTalkCheckBox;
+        private CheckBox pebblesAscendedCheckBox;
+        private CheckBox cellRemovedCheckBox;
+        private CheckBox musicPearlStolenCheckBox;
+        private PictureBox cellRemovedPictureBox;
+        private PictureBox ascendedFivePebblesPictureBox;
+        private PictureBox musicPearlStolenPictureBox;
+        private TabControl tabControl1;
+        private TabPage iteratorFivePebblesTabPage;
+        private TabPage iteratorLooksToTheMoonTabPage;
+        private NumericUpDown numericUpDown1;
     }
 }

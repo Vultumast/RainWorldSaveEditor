@@ -54,7 +54,10 @@ partial class MainForm
         toggleConsoleToolStripMenuItem = new ToolStripMenuItem();
         mainTabControl = new TabControl();
         slugcatIconImageList = new ImageList(components);
+        statusStrip1 = new StatusStrip();
+        MoreInfoToolStripStatusLabel = new ToolStripStatusLabel();
         menuStrip1.SuspendLayout();
+        statusStrip1.SuspendLayout();
         SuspendLayout();
         // 
         // menuStrip1
@@ -229,11 +232,27 @@ partial class MainForm
         slugcatIconImageList.ImageSize = new Size(16, 16);
         slugcatIconImageList.TransparentColor = Color.Transparent;
         // 
+        // statusStrip1
+        // 
+        statusStrip1.Items.AddRange(new ToolStripItem[] { MoreInfoToolStripStatusLabel });
+        statusStrip1.Location = new Point(0, 428);
+        statusStrip1.Name = "statusStrip1";
+        statusStrip1.Size = new Size(800, 22);
+        statusStrip1.TabIndex = 2;
+        statusStrip1.Text = "statusStrip";
+        // 
+        // MoreInfoToolStripStatusLabel
+        // 
+        MoreInfoToolStripStatusLabel.Name = "MoreInfoToolStripStatusLabel";
+        MoreInfoToolStripStatusLabel.Size = new Size(162, 17);
+        MoreInfoToolStripStatusLabel.Text = "MoreInfoToolStripStatusLabel";
+        // 
         // MainForm
         // 
         AutoScaleDimensions = new SizeF(7F, 15F);
         AutoScaleMode = AutoScaleMode.Font;
         ClientSize = new Size(800, 450);
+        Controls.Add(statusStrip1);
         Controls.Add(mainTabControl);
         Controls.Add(menuStrip1);
         Icon = (Icon)resources.GetObject("$this.Icon");
@@ -243,6 +262,8 @@ partial class MainForm
         Load += MainForm_Load;
         menuStrip1.ResumeLayout(false);
         menuStrip1.PerformLayout();
+        statusStrip1.ResumeLayout(false);
+        statusStrip1.PerformLayout();
         ResumeLayout(false);
         PerformLayout();
     }
@@ -273,4 +294,6 @@ partial class MainForm
     private ToolStripMenuItem aboutToolStripMenuItem;
     private ToolStripMenuItem toggleConsoleToolStripMenuItem;
     private ToolStripMenuItem rainworldExecutableDirectoryToolStripMenuItem;
+    private StatusStrip statusStrip1;
+    public ToolStripStatusLabel MoreInfoToolStripStatusLabel;
 }

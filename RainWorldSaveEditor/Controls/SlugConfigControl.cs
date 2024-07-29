@@ -27,10 +27,12 @@ public partial class SlugConfigControl : UserControl
         cycleNumberNumericUpDown.Maximum = uint.MaxValue;
     }
 
+
     public SaveState SaveState { get; private set; } = null!;
     private void SlugConfigControl_Load(object sender, EventArgs e)
     {
         LoadCommunitiesTabPage();
+        LoadIteratorTabPage();
     }
 
     #region Setup
@@ -300,10 +302,10 @@ public partial class SlugConfigControl : UserControl
             communityValue = SaveState.Communities.Communities["All"];
         else
             SaveState.Communities.Communities.TryGetValue(((KeyValuePair<string, CommunityInfo>)communityListBox.SelectedItem!).Value.CommunityID, out communityValue!);
-        
+
 
         if (communityValue is not null)
-            FillCommunityRegionRepListView(communityValue );
+            FillCommunityRegionRepListView(communityValue);
         else
             Logger.Warn($"SaveState Communities did not contain an entry for \"{communityListBox.SelectedItem!.ToString()!}\"");
 
@@ -506,4 +508,79 @@ public partial class SlugConfigControl : UserControl
 
     }
     #endregion
+
+
+    #region Iterator
+
+    private void LoadIteratorTabPage()
+    {
+        _pebblesCellConvoRadioButtons = [
+            pebblesCellState0RadioButton,
+            pebblesCellState1RadioButton,
+            pebblesCellState2RadioButton,
+            pebblesCellState3RadioButton,
+        ];
+    }
+
+    private void fivePebblesConversationCountNumericUpDown_ValueChanged(object sender, EventArgs e)
+    {
+
+    }
+
+
+    private RadioButton[] _pebblesCellConvoRadioButtons = Array.Empty<RadioButton>();
+    public int FivePebblesRarefactionCellConversationState
+    {
+        get => (int)pebblesCellConvoStateNumericUpDown.Value;
+        set
+        {
+            if (value == pebblesCellConvoStateNumericUpDown.Value)
+                return;
+
+            pebblesCellConvoStateNumericUpDown.Value = value;
+
+            var disable = value >= 0 && value < _pebblesCellConvoRadioButtons.Length;
+
+            for (var i = 0; i < _pebblesCellConvoRadioButtons.Length; i++)
+            {
+                if (disable)
+                    _pebblesCellConvoRadioButtons[i].Checked = false;
+                else
+                    _pebblesCellConvoRadioButtons[i].Checked = i == value;
+            }
+        }
+    }
+
+    private void pebblesCellStateRadioButton_CheckedChanged(object sender, EventArgs e)
+    {
+        if (((RadioButton)sender).Checked)
+            pebblesCellConvoStateNumericUpDown.Value = int.Parse((string)((Control)sender).Tag!);
+    }
+
+
+    private void pebblesCellConvoStateNumericUpDown_ValueChanged(object sender, EventArgs e)
+    {
+        var value = pebblesCellConvoStateNumericUpDown.Value;
+        var disable = !(value >= 0 && value < _pebblesCellConvoRadioButtons.Length);
+
+        for (var i = 0; i < _pebblesCellConvoRadioButtons.Length; i++)
+        {
+            if (disable)
+                _pebblesCellConvoRadioButtons[i].Checked = false;
+            else
+                _pebblesCellConvoRadioButtons[i].Checked = i == value;
+        }
+    }
+
+
+    #endregion
+
+    private void pebblesMusicPearlStolenCheckBox_CheckedChanged(object sender, EventArgs e)
+    {
+        if (musicPearlStolenCheckBox.Checked)
+            commonToolTip.SetToolTip((Control)sender, "Did you steal Five Pebbles' music pearl?\nYou monster.");
+        else
+            commonToolTip.SetToolTip((Control)sender, "Did you steal Five Pebbles' music pearl?");
+
+    }
 }

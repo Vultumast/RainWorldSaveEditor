@@ -132,6 +132,50 @@
   <metadata name="echoDataGridContextMenuStrip.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>280, 17</value>
   </metadata>
+  <data name="pebblesCellConvoStateNumericUpDown.ToolTip" xml:space="preserve">
+    <value>The conversation state relating to the Rarefaction Cell
+0 = Default state
+1 = Pebbles told Rivulet about the cell on their first visit
+2 = Pebbles acknowledged that the cell has been removed on Rivulet's first visit (without them holding the cell)
+3 = Pebbles saw Rivulet hold the cell on one of the visits, or Pebbles acknowledged that the cell has been removed after being visited again</value>
+  </data>
+  <metadata name="iteratorTabImageList.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>503, 17</value>
+  </metadata>
+  <data name="iteratorTabImageList.ImageStream" mimetype="application/x-microsoft.net.object.binary.base64">
+    <value>
+        AAEAAAD/////AQAAAAAAAAAMAgAAAEZTeXN0ZW0uV2luZG93cy5Gb3JtcywgQ3VsdHVyZT1uZXV0cmFs
+        LCBQdWJsaWNLZXlUb2tlbj1iNzdhNWM1NjE5MzRlMDg5BQEAAAAmU3lzdGVtLldpbmRvd3MuRm9ybXMu
+        SW1hZ2VMaXN0U3RyZWFtZXIBAAAABERhdGEHAgIAAAAJAwAAAA8DAAAALgYAAAJNU0Z0AUkBTAIBAQIB
+        AAG4AQABuAEAARABAAEQAQAE/wEhAQAI/wFCAU0BNgcAATYDAAEoAwABQAMAARADAAEBAQABIAYAARAq
+        AAMzAVADRgGAA0YBgANGAYAwAAMzAVADRgGAA0YBgANGAYCvAAH/A58N/wMAAf8DIQEwJwAB/wOfDf8D
+        AAH/AyEBMJwAAx0BKANjAd8DgAH/AzAB/wMAAf8DAAH/AwAB/wOAAf8DgAH/AzoBYBgAAx0BKANjAd8D
+        gAH/AzAB/wMAAf8DAAH/AwAB/wOAAf8DgAH/AzoBYJgAA1AB/wNAAf8DAAH/AwAB/wMAAf8DAAH/AwAB
+        /wMAAf8DAAH/A78B/wMzAVAUAANQAf8DQAH/AwAB/wMAAf8DAAH/AwAB/wMAAf8DAAH/AwAB/wO/Af8D
+        MwFQjAADJgE4A2cB7wOAAf8DIAH/AwAB/wMAAf8DAAH/AwAB/wMAAf8DAAH/AwAB/wOAAf8DgAH/A0AB
+        cAgAAyYBOANnAe8DgAH/AyAB/wMAAf8DAAH/AwAB/wMAAf8DAAH/AwAB/wMAAf8DgAH/A4AB/wNAAXCI
+        AANwAf8DIAH/A68B/wMABf8DYAH/AwAB/wMAAf8DAAX/AzAB/wNAAf8DUAH/A98B/wNAAXAEAANwAf8D
+        IAH/A68B/wMABf8DYAH/AwAB/wMAAf8DAAX/AzAB/wNAAf8DUAH/A98B/wNAAXCEAANwAf8DIAH/A68B
+        /wMABf8DYAH/AwAB/wMAAf8DAAX/AzAB/wNAAf8DUAH/A98B/wNAAXAEAANwAf8DIAH/A68B/wO/Bf8D
+        YAH/AwAB/wMAAf8DAAn/A0AB/wNQAf8D3wH/A0ABcIQAA3AB/wMgAf8DrwH/AwAF/wNgAf8DAAH/AwAB
+        /wMABf8DMAH/A0AB/wNQAf8D3wH/A0ABcAQAA3AB/wMgAf8DrwH/AwAB/wMAAf8DAAH/AwAB/wMAAf8D
+        AAH/AwAB/wMAAf8DQAH/A1AB/wPfAf8DQAFwhAADcAH/A48B/wOvAf8DAAH/AwAB/wMAAf8DAAH/AwAB
+        /wMAAf8DAAH/AwAB/wNAAf8DpwH/A98B/wNAAXADAAX/A48B/wOvAf8DAAH/AwAB/wNQAf8DgAH/A4AB
+        /wOAAf8DAAH/AwAB/wNAAf8DpwX/A3AB/4QAA3AB/wMgAf8DrwH/AwAB/wMAAf8DAAH/AwAB/wMAAf8D
+        AAH/AwAB/wMAAf8DQAH/A1AB/wPfAf8DQAFwAwAF/wMgAf8DrwH/AwAB/wMAAf8DnwH/AwAB/wMAAf8D
+        7wH/AwAB/wMAAf8DQAH/A1AF/wNwAf+EAANwAf8DIAH/A4AB/wMgAf8DAAH/AwAB/wMAAf8DAAH/AwAB
+        /wMAAf8DAAH/A4AB/wMoAf8D3wH/A0ABcAMAAf8DxwH/A0sBjwOAAf8DIAH/AwAB/wNQAf8DgAH/A4AB
+        /wOAAf8DAAH/AwAB/wOAAf8DUwGnA48B/wNwAf+EAANwAf8DIAH/A1AB/wNAAf8DAAH/AwAB/wMAAf8D
+        AAH/AwAB/wMAAf8DAAH/A78B/wMAAf8D3wH/A0ABcAQAA0sBjwQAA1AB/wNAAf8DAAH/AwAB/wMAAf8D
+        AAH/AwAB/wMAAf8DAAH/A78B/wMzAVADGAEgA0ABcIQAAyYBOAMMARADHQEoA2MB3wOAAf8DMAH/AwAB
+        /wMAAf8DAAH/A4AB/wOAAf8DOgFgBAADQAFwEAADHQEoA2MB3wOAAf8DMAH/AwAB/wMAAf8DAAH/A4AB
+        /wOAAf8DOgFgowAB/wOfDf8DAAH/AyEBMCcAAf8Dnw3/AwAB/wMhATCoAAMzAVADRgGAA0YBgANGAYAw
+        AAMzAVADRgGAA0YBgANGAYD/AJkAAUIBTQE+BwABPgMAASgDAAFAAwABEAMAAQEBAAEBBQABgBcAA/8B
+        AAH8AT8B/AE/BAAB+AEPAfgBDwQAAeABBwHgAQcEAAHgAQMB4AEDBAABgAEBAYABAQQAAYABAAGABQAB
+        gAEAAYAFAAGAAQABgAUAAYAHAAGABwABgAcAAYABAAGgBQABgAEFAeABBwQAAfgBDwH4AQ8EAAH8AT8B
+        /AE/BAAE/wQACw==
+</value>
+  </data>
   <metadata name="communityRegionCodeColumn.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
   </metadata>
@@ -149,7 +193,7 @@
         AAEAAAD/////AQAAAAAAAAAMAgAAAEZTeXN0ZW0uV2luZG93cy5Gb3JtcywgQ3VsdHVyZT1uZXV0cmFs
         LCBQdWJsaWNLZXlUb2tlbj1iNzdhNWM1NjE5MzRlMDg5BQEAAAAmU3lzdGVtLldpbmRvd3MuRm9ybXMu
         SW1hZ2VMaXN0U3RyZWFtZXIBAAAABERhdGEHAgIAAAAJAwAAAA8DAAAATgYAAAJNU0Z0AUkBTAIBAQIB
-        AAGIAQABiAEAARABAAEQAQAE/wEhAQAI/wFCAU0BNgcAATYDAAEoAwABQAMAARADAAEBAQABIAYAARBu
+        AAFIAQEBSAEBARABAAEQAQAE/wEhAQAI/wFCAU0BNgcAATYDAAEoAwABQAMAARADAAEBAQABIAYAARBu
         AAMMARABIgFNAW0B/6cAAf8DAAH/AwAB/wMAAf8DAAH/AwAB/wMAAf8DAAH/AwAB/wMAAf8DAAH/AwAB
         /yQAAQIBBgEKAf8BFQEzAV4B/wMMARCcAANGAYADYwH/A4AB/wNjAf8DYwH/A2MB/wNjAf8DYwH/A2MB
         /wNjAf8DYwH/A2MB/wOAAf8DAAH/IAABDgEiAT8B/wE7AYQBugH/AQEBAgEEAf+cAANGAYADxgH/AwAB

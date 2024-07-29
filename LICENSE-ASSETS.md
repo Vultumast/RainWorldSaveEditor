@@ -52,12 +52,13 @@ Assets marked with the license "Rain World" are the intellectual property of the
 # RainWorldSaveEditor/Resources/UI/Iterator Icons
 | Name | Description | License | Source |
 | ---- | ----------- | ------- | ------ |
-| fivepebblesdeadicon.png    | Ascended Five Pebbles Icon      | Rain World (Edited by Vultumast) | [Rain World Miraheze Wiki](https://static.miraheze.org/rainworldwiki/5/54/Five_Pebbles_icon.png)      |
-| fivepebblesicon.png        | Five Pebbles Icon               | Rain World                       | [Rain World Miraheze Wiki](https://static.miraheze.org/rainworldwiki/5/54/Five_Pebbles_icon.png)      |
-| lookstothemoondeadicon.png | Ascended Looks To The Moon Icon | Rain World (Edited by Vultumast) | [Rain World Miraheze Wiki](https://static.miraheze.org/rainworldwiki/8/80/Looks_to_the_Moon_icon.png) |
-| lookstothemoonicon.png     | Looks To The Moon Icon          | Rain World                       | [Rain World Miraheze Wiki](https://static.miraheze.org/rainworldwiki/8/80/Looks_to_the_Moon_icon.png) |
-| lttm_cloak_icon.png        | Looks To The Moon's Cloak       | Rain World                       | [Rain World Miraheze Wiki](https://rainworld.miraheze.org/wiki/Cloak#/media/File:Cloak_icon.png)      |
-| Neuron_Fly.png             | Five Pebbles Neuron Fly Icon    | Rain World                       | [Rain World Miraheze Wiki](https://static.miraheze.org/rainworldwiki/2/2a/Neuron_Fly_icon.png)        |
+| fivepebblesdeadicon.png    | Ascended Five Pebbles Icon      | Rain World (Edited by Vultumast) | [Rain World Miraheze Wiki](https://static.miraheze.org/rainworldwiki/5/54/Five_Pebbles_icon.png)                       |
+| five_pebbles_icon.png      | Five Pebbles Icon               | Rain World                       | [Rain World Miraheze Wiki](https://static.miraheze.org/rainworldwiki/5/54/Five_Pebbles_icon.png)                       |
+| lookstothemoondeadicon.png | Ascended Looks To The Moon Icon | Rain World (Edited by Vultumast) | [Rain World Miraheze Wiki](https://static.miraheze.org/rainworldwiki/8/80/Looks_to_the_Moon_icon.png)                  |
+| looks_to_the_moon_icon.png | Looks To The Moon Icon          | Rain World                       | [Rain World Miraheze Wiki](https://static.miraheze.org/rainworldwiki/8/80/Looks_to_the_Moon_icon.png)                  |
+| lttm_cloak_icon.png        | Looks To The Moon's Cloak       | Rain World                       | [Rain World Miraheze Wiki](https://rainworld.miraheze.org/wiki/Cloak#/media/File:Cloak_icon.png)                       |
+| Neuron_Fly.png             | Five Pebbles Neuron Fly Icon    | Rain World                       | [Rain World Miraheze Wiki](https://static.miraheze.org/rainworldwiki/2/2a/Neuron_Fly_icon.png)                         |
+| rarefaction_cell_icon.png  | Mass Rarefaction Cell Icon      | Rain World                       | [Rain World Miraheze Wiki](https://rainworld.miraheze.org/wiki/Rarefaction_Cell#/media/File:Rarefaction_Cell_icon.png) |
 
 # RainWorldSaveEditor/Resources/UI/Karma
 | Name | Description | License | Source |
@@ -89,6 +90,11 @@ Assets marked with the license "Rain World" are the intellectual property of the
 | Name | Description | License | Source |
 | ---- | ----------- | ------- | ------ |
 | Yellow_Overseer_icon.png | Yellow Oversser Icon | Rain World | [Rain World Miraheze Wiki](https://rainworld.miraheze.org/wiki/Category:Creature_icons#/media/File:Yellow_Overseer_icon.png) |
+
+# RainWorldSaveEditor/Resources/UI/Pearl
+| Name | Description | License | Source |
+| ---- | ----------- | ------- | ------ |
+| pearl_music.png | Music Pearl Icon | Rain World | [Rain World Miraheze Wiki](https://static.miraheze.org/rainworldwiki/7/7d/Pearl_RM.png) |
 
 # RainWorldSaveEditor/Resources/UI/Slugcat
 | Name | Description | License | Source |
