@@ -74,7 +74,7 @@ public class MiscProgressionData : SaveElementContainer, IParsable<MiscProgressi
     public List<ColorChoice> CustomColors { get; set; } = [];
 
     [SaveFileElement("CAMPAIGNTIME", IsRepeatableKey = true)]
-    public List<string> CampaignTime { get; set; } = [];
+    public List<CampaignTime> CampaignTime { get; set; } = [];
 
     /// <summary>
     /// Tracks the slugcat that gave Moon the cloak. <para/>
