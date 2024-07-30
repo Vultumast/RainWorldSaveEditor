@@ -134,7 +134,6 @@ public partial class MainForm : Form
             }
 
             control.SetupFromState(id);
-
         }
     }
 
@@ -158,6 +157,7 @@ public partial class MainForm : Form
         openFile1ToolStripMenuItem.Checked = true;
         openFile2ToolStripMenuItem.Checked = false;
         openFile3ToolStripMenuItem.Checked = false;
+        openFileToolStripMenuItem.Checked = false;
         ReadSaveData($"{settings.RainWorldSaveDirectory}\\sav");
 
     }
@@ -167,6 +167,7 @@ public partial class MainForm : Form
         openFile1ToolStripMenuItem.Checked = false;
         openFile2ToolStripMenuItem.Checked = true;
         openFile3ToolStripMenuItem.Checked = false;
+        openFileToolStripMenuItem.Checked = false;
         ReadSaveData($"{settings.RainWorldSaveDirectory}\\sav2");
     }
 
@@ -175,9 +176,25 @@ public partial class MainForm : Form
         openFile1ToolStripMenuItem.Checked = false;
         openFile2ToolStripMenuItem.Checked = false;
         openFile3ToolStripMenuItem.Checked = true;
+        openFileToolStripMenuItem.Checked = false;
         ReadSaveData($"{settings.RainWorldSaveDirectory}\\sav3");
     }
 
+    private void openFileToolStripMenuItem_Click(object sender, EventArgs e)
+    {
+        using var dialog = new OpenFileDialog();
+
+        if (dialog.ShowDialog() != DialogResult.OK)
+            return;
+
+        openFile1ToolStripMenuItem.Checked = false;
+        openFile2ToolStripMenuItem.Checked = false;
+        openFile3ToolStripMenuItem.Checked = false;
+        openFileToolStripMenuItem.Checked = true;
+
+        Logger.Info($"Opening save file {dialog.FileName}");
+        ReadSaveData(dialog.FileName);
+    }
 
     private void closeToolStripMenuItem_Click(object sender, EventArgs e)
     {
@@ -197,5 +214,4 @@ public partial class MainForm : Form
     {
         Logger.ConsoleShown = !Logger.ConsoleShown;
     }
-
 }

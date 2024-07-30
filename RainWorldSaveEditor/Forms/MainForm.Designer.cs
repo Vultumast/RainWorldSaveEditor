@@ -182,6 +182,7 @@ partial class MainForm
         openFileToolStripMenuItem.Size = new Size(133, 22);
         openFileToolStripMenuItem.Text = "Open File...";
         openFileToolStripMenuItem.ToolTipText = "Open an external Save File";
+        openFileToolStripMenuItem.Click += openFileToolStripMenuItem_Click;
         // 
         // toolStripSeparator2
         // 
