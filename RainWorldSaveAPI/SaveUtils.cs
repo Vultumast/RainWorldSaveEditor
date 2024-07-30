@@ -73,6 +73,7 @@ public static class SaveUtils
         return [];
     }
 
+    [Obsolete("See GenericBoolArray")]
     public static bool[] LoadBooleanArray(string value, bool[] bools)
     {
         var parsedBools = value.Select(x => x == '1').ToArray();

@@ -4,7 +4,7 @@ using System.Globalization;
 
 namespace RainWorldSaveAPI;
 
-[DebuggerDisplay("Slugcat = {Slugcat} | ColorsEnabled = {ColorsEnabled} | Colors = {string.Join(\", \", ColorChoices)}")]
+[DebuggerDisplay("Slugcat = {Slugcat} | FreeTime = {UndeterminedFreeTime} / {CompletedFreeTime} / {LostFreeTime} | FixedTime = {UndeterminedFixedTime} / {CompletedFixedTime} / {LostFixedTime} |")]
 public class CampaignTime : IParsable<CampaignTime>
 {
     public string Slugcat { get; set; } = "White";

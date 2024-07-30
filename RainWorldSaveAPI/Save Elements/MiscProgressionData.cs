@@ -243,8 +243,8 @@ public class MiscProgressionData : SaveElementContainer, IParsable<MiscProgressi
     [SaveFileElement("CHARENAS", ListDelimiter = "<mpdC>")]
     public List<string> ChallengeArenaUnlocks { get; set; } = [];
 
-    [SaveFileElement("CHCLEAR", ListDelimiter = "<mpdC>")]
-    public List<string> CompletedChallenges { get; set; } = [];
+    [SaveFileElement("CHCLEAR")]
+    public GenericBoolArray CompletedChallenges { get; set; } = new();
 
     [SaveFileElement("CHCLEARTIMES", ListDelimiter = "<mpdC>")]
     public List<int> CompletedChallengeTimes { get; set; } = [];

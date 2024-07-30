@@ -1,80 +1,79 @@
-﻿using System.Diagnostics.CodeAnalysis;
-using System.Globalization;
+﻿using RainWorldSaveAPI.Base;
+using System.Diagnostics.CodeAnalysis;
 
 namespace RainWorldSaveAPI.SaveElements;
 
 // TODO: Document fields
-public class DreamsState : IParsable<DreamsState>
+public class DreamsState : SaveElementContainer, IParsable<DreamsState>
 {
-    public List<int> UnrecognizedIntegers { get; } = [];
+    [SaveFileElement("integersArray")]
+    public GenericIntegerArray Integers { get; set; } = new();
 
-    public List<string> UnrecognizedSaveStrings { get; } = [];
+    public int CyclesSinceLastDream
+    {
+        get => Integers.TryGet(0);
+        set => Integers.TrySet(0, value);
+    }
 
-    public int CyclesSinceLastDream { get; set; } = 0;
+    public int CyclesSinceLastFamilyDream
+    {
+        get => Integers.TryGet(1);
+        set => Integers.TrySet(1, value);
+    }
 
-    public int CyclesSinceLastFamilyDream { get; set; } = 0;
+    public int CyclesSinceLastGuideDream
+    {
+        get => Integers.TryGet(2);
+        set => Integers.TrySet(2, value);
+    }
 
-    public int CyclesSinceLastGuideDream { get; set; } = 0;
+    public int FamilyThread
+    {
+        get => Integers.TryGet(3);
+        set => Integers.TrySet(3, value);
+    }
 
-    public int FamilyThread { get; set; } = 0;
+    public int GuideThread
+    {
+        get => Integers.TryGet(4);
+        set => Integers.TrySet(4, value);
+    }
 
-    public int GuideThread { get; set; } = 0;
+    public int InGWOrSHCounter
+    {
+        get => Integers.TryGet(5);
+        set => Integers.TrySet(5, value);
+    }
 
-    public int InGWOrSHCounter { get; set; } = 0;
+    public bool EverSleptInSB
+    {
+        get => Integers.TryGet(6) == 1;
+        set => Integers.TrySet(6, value ? 1 : 0);
+    }
 
-    public bool EverSleptInSB { get; set; } = false;
+    public bool EverSleptInSB_S01
+    {
+        get => Integers.TryGet(7) == 1;
+        set => Integers.TrySet(7, value ? 1 : 0);
+    }
 
-    public bool EverSleptInSB_S01 { get; set; } = false;
-
-    public bool EverAteMoonNeuron { get; set; } = false;
+    public bool EverAteMoonNeuron
+    {
+        get => Integers.TryGet(8) == 1;
+        set => Integers.TrySet(8, value ? 1 : 0);
+    }
 
     public static DreamsState Parse(string s, IFormatProvider? provider)
     {
         var state = new DreamsState();
 
-        state.UnrecognizedIntegers.Clear();
-        state.UnrecognizedSaveStrings.Clear();
-
-        var arrays = s.Split("<dsA>", StringSplitOptions.RemoveEmptyEntries);
-
-        foreach (var array in arrays)
-        {
-            var elements = array.Split("<dsB>", StringSplitOptions.RemoveEmptyEntries);
-
-            var key = elements[0];
-            var arr = elements.Length >= 2 ? elements[1] : "";
-
-            if (key == "integersArray")
-            {
-                var integers = new int[9];
-
-                state.UnrecognizedIntegers.AddRange(SaveUtils.LoadIntegerArray(arr, ".", integers));
-
-                state.CyclesSinceLastDream = SaveUtils.ElementOrDefault(integers, 0, 0);
-                state.CyclesSinceLastFamilyDream = SaveUtils.ElementOrDefault(integers, 1, 0);
-                state.CyclesSinceLastGuideDream = SaveUtils.ElementOrDefault(integers, 2, 0);
-                state.FamilyThread = SaveUtils.ElementOrDefault(integers, 3, 0);
-                state.GuideThread = SaveUtils.ElementOrDefault(integers, 4, 0);
-                state.InGWOrSHCounter = SaveUtils.ElementOrDefault(integers, 5, 0);
-                state.EverSleptInSB = SaveUtils.ElementOrDefault(integers, 6, 0) == 1;
-                state.EverSleptInSB_S01 = SaveUtils.ElementOrDefault(integers, 7, 0) == 1;
-                state.EverAteMoonNeuron = SaveUtils.ElementOrDefault(integers, 8, 0) == 1;
-            }
-            else if (array.Trim().Length > 0)
-            {
-                state.UnrecognizedSaveStrings.Add(array);
-            }
-        }
+        foreach ((var key, var value) in SaveUtils.GetFields(s, "<dsB>", "<dsA>"))
+            ParseField(state, key, value);
 
         return state;
     }
 
     public static bool TryParse([NotNullWhen(true)] string? s, IFormatProvider? provider, [MaybeNullWhen(false)] out DreamsState result)
-    {
-        throw new NotImplementedException();
-    }
-
-    public string Write()
     {
         throw new NotImplementedException();
     }

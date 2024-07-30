@@ -103,7 +103,6 @@ public partial class MainForm : Form
 
         if (table["save"] is string saveData)
         {
-
             save.Read(saveData);
         }
         else
