@@ -1,13 +1,16 @@
-﻿using System.Security.Cryptography;
+﻿using RainWorldSaveAPI.Base;
+using System.Security.Cryptography;
 using System.Text;
 using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace RainWorldSaveAPI;
 
-public class RainWorldSave
+public class RainWorldSave : SaveElementContainer
 {
+    [SaveFileElement("SAVE STATE", IsRepeatableKey = true)]
     public List<SaveState> SaveStates { get; } = [];
 
+    [SaveFileElement("MISCPROG")]
     public MiscProgressionData MiscProgressionData { get; set; } = new();
 
     public void Read(string saveString)
@@ -23,30 +26,7 @@ public class RainWorldSave
             Logger.Info("Hash OK.");
 
         foreach ((var key, var value) in SaveUtils.GetFields(data, "<progDivB>", "<progDivA>"))
-        {
-            ParseSaveEntry(key, value);
-            // Logger.Error("===Read a save entry===");
-        }
-    }
-
-    private void ParseSaveEntry(string entryId, string value)
-    {
-        switch (entryId)
-        {
-            case "SAVE STATE":
-                var saveState = new SaveState();
-                saveState.Read(value);
-                SaveStates.Add(saveState);
-                break;
-            case "MISCPROG":
-                MiscProgressionData = MiscProgressionData.Parse(value, null);
-                break;
-            default:
-                Logger.Warn($"Unknown Save Entry: \"{entryId}\"");
-                break;
-        }
-
-        return;
+            ParseField(this, key, value);
     }
 
     private static string ComputeChecksum(string data)

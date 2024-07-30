@@ -2,6 +2,7 @@
 using System.CodeDom;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
 using System.Linq;
 using System.Reflection;
@@ -14,7 +15,7 @@ using RainWorldSaveAPI.SaveElements;
 namespace RainWorldSaveAPI;
 
 [DebuggerDisplay("{SaveStateNumber} | Game version {GameVersion} | World version {WorldVersion}")]
-public class SaveState : SaveElementContainer
+public class SaveState : SaveElementContainer, IParsable<SaveState>
 {
     public SaveState() : base()
     {
@@ -260,19 +261,17 @@ public class SaveState : SaveElementContainer
     [SaveFileElement("SAV STATE NUMBER")]
     public string SaveStateNumber { get; set; } = "???";
 
-    public void Read(string data)
+    public static SaveState Parse(string s, IFormatProvider? provider)
     {
-        foreach ((var key, var value) in SaveUtils.GetFields(data, "<svB>", "<svA>"))
-        {
-            if (key == "UNRECOGNIZEDPLAYERGRASPS")
-            {
-                Console.WriteLine("wawa");
-            }
-            ParseField(this, key, value);
-        }
+        SaveState data = new();
+
+        foreach ((var key, var value) in SaveUtils.GetFields(s, "<svB>", "<svA>"))
+            ParseField(data, key, value);
+
+        return data;
     }
 
-    public string Write()
+    public static bool TryParse([NotNullWhen(true)] string? s, IFormatProvider? provider, [MaybeNullWhen(false)] out SaveState result)
     {
         throw new NotImplementedException();
     }

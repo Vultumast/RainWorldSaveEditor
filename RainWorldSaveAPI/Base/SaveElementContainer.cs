@@ -15,6 +15,8 @@ namespace RainWorldSaveAPI.Base;
 
 public abstract class SaveElementContainer
 {
+    private const int MaxDebugChars = 50;
+
     public SaveElementContainer()
     {
         var properties = this.GetType().GetProperties().Where(property => Attribute.IsDefined(property, typeof(SaveFileElement)));
@@ -179,7 +181,7 @@ public abstract class SaveElementContainer
             Logger.Warn($"Unable to set \"{key}\" because it was already present!");
 
         // TODO Remove this later
-        Logger.Debug($"Unknown field: {key} => {value}");
+        Logger.Debug($"Unknown field: {key} => {LimitString(value)}");
     }
 
     public static void ParseField(SaveElementContainer container, string key, string value)
@@ -200,20 +202,25 @@ public abstract class SaveElementContainer
             else if (collectionInterface is not null)
             {
                 if (elementInfo.ListDelimiter is not null && elementInfo.IsRepeatableKey)
-                    Logger.Debug($"{key} => {value}, \"{propertyInfo.PropertyType}\" is a collection that has both a delimiter and is marked as repeatable! Tell Mario or Vultu!");
+                    Logger.Debug($"{key} => {LimitString(value)}, \"{propertyInfo.PropertyType}\" is a collection that has both a delimiter and is marked as repeatable! Tell Mario or Vultu!");
 
                 if (elementInfo.ListDelimiter is null && !elementInfo.IsRepeatableKey)
-                    Logger.Debug($"{key} => {value}, \"{propertyInfo.PropertyType}\" is a collection that doesn't have a delimiter and is not marked as repeatable! Tell Mario or Vultu!");
+                    Logger.Debug($"{key} => {LimitString(value)}, \"{propertyInfo.PropertyType}\" is a collection that doesn't have a delimiter and is not marked as repeatable! Tell Mario or Vultu!");
 
                 else if (SetListProperty(container, propertyInfo, elementInfo, value, collectionInterface))
                     return;
             }
             else
-                Logger.Debug($"{key} => {value}, \"{propertyInfo.PropertyType}\" does not derive from IParsable! Tell Mario or Vultu!");
+                Logger.Debug($"{key} => {LimitString(value)}, \"{propertyInfo.PropertyType}\" does not derive from IParsable! Tell Mario or Vultu!");
 
             HandleUnrecognizedField(container, key, value);
         }
         else
-            Logger.Warn($"Unknown Key: \"{key}\" => {value}");
+            Logger.Warn($"Unknown Key: \"{key}\" => {LimitString(value)}");
+    }
+
+    private static string LimitString(string input)
+    {
+        return input.Length <= MaxDebugChars ? input : input[..MaxDebugChars] + "...";
     }
 }
