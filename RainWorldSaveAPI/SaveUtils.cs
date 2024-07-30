@@ -54,6 +54,7 @@ public static class SaveUtils
         }
     }
 
+    [Obsolete("See GenericIntegerArray")]
     public static int[] LoadIntegerArray(string value, string delimiter, int[] integers)
     {
         var parsedIntegers = value.Split(delimiter).Select(x => int.Parse(x, System.Globalization.NumberStyles.Any, CultureInfo.InvariantCulture)).ToArray();
