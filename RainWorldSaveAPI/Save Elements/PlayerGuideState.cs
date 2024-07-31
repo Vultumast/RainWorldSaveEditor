@@ -1,101 +1,86 @@
-﻿using System.Diagnostics.CodeAnalysis;
+﻿using RainWorldSaveAPI.Base;
+using RainWorldSaveAPI.SaveElements;
+using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
 
 namespace RainWorldSaveAPI;
 
 // TODO: Document this
-public class PlayerGuideState : IParsable<PlayerGuideState>
+public class PlayerGuideState : SaveElementContainer, IParsable<PlayerGuideState>
 {
-    public List<string> UnrecognizedSaveStrings { get; } = [];
+    [SaveFileElement("integersArray")]
+    public GenericIntegerArray Integers { get; set; } = new();
 
-    public bool PlayerHasVisitedMoon { get; set; } = false;
+    public bool PlayerHasVisitedMoon
+    {
+        get => Integers.TryGet(0) == 1;
+        set => Integers.TrySet(0, value ? 1 : 0);
+    }
 
-    public int SuperJumpsShown { get; set; } = 0;
+    public int SuperJumpsShown
+    {
+        get => Integers.TryGet(1);
+        set => Integers.TrySet(1, value);
+    }
 
-    public int PickupObjectsShown { get; set; } = 0;
+    public int PickupObjectsShown
+    {
+        get => Integers.TryGet(2);
+        set => Integers.TrySet(2, value);
+    }
 
-    public bool ScavengerTradeInstructionCompleted { get; set; } = false;
+    public bool ScavengerTradeInstructionCompleted
+    {
+        get => Integers.TryGet(3) > 0;
+        set => Integers.TrySet(3, value ? 1 : 0);
+    }
 
-    public bool AngryWithPlayer { get; set; } = false;
+    public bool AngryWithPlayer
+    {
+        get => Integers.TryGet(4) > 0;
+        set => Integers.TrySet(4, value ? 1 : 0);
+    }
 
-    public bool DisplayedAnger { get; set; } = false;
+    public bool DisplayedAnger
+    {
+        get => Integers.TryGet(5) > 0;
+        set => Integers.TrySet(5, value ? 1 : 0);
+    }
 
-    public int GuideSymbol { get; set; } = 0;
+    public int GuideSymbol
+    {
+        get => Integers.TryGet(6);
+        set => Integers.TrySet(6, value);
+    }
 
+    // TODO: backwards compatibility
+    [SaveFileElement("itemTypes", ListDelimiter = ",")]
     public List<string> FoodItemsLearned { get; set; } = [];
 
+    // TODO: backwards compatibility
+    [SaveFileElement("creatureTypes", ListDelimiter = ",")]
     public List<string> CreatureTypesWarnedAbout { get; set; } = [];
 
+    [SaveFileElement("likesPlayer")]
     public float PlayerReputation { get; set; } = 0;
 
+    [SaveFileElement("directionHandHolding")]
     public float HandHolding { get; set; } = 0;
 
+    [SaveFileElement("imagesShown", ListDelimiter = ".")]
     public List<string> ImagesShown { get; set; } = [];
 
+    [SaveFileElement("forcedDirsGiven", ListDelimiter = ".")]
     public List<string> ForcedDirectionsGiven { get; set; } = [];
 
     public static PlayerGuideState Parse(string s, IFormatProvider? provider)
     {
-        var state = new PlayerGuideState();
+        PlayerGuideState data = new();
 
-        state.UnrecognizedSaveStrings.Clear();
+        foreach ((var key, var value) in SaveUtils.GetFields(s, "<pgsB>", "<pgsA>"))
+            ParseField(data, key, value);
 
-        var arrays = s.Split("<pgsA>", StringSplitOptions.RemoveEmptyEntries);
-
-        foreach (var array in arrays)
-        {
-            var elements = array.Split("<pgsB>", StringSplitOptions.RemoveEmptyEntries);
-
-            var key = elements[0];
-            var value = elements.Length >= 2 ? elements[1] : "";
-
-            if (key == "integersArray")
-            {
-                var integers = new int[7];
-
-                _ = SaveUtils.LoadIntegerArray(value, ".", integers);
-
-                state.PlayerHasVisitedMoon = SaveUtils.ElementOrDefault(integers, 0, 0) > 0;
-                state.SuperJumpsShown = SaveUtils.ElementOrDefault(integers, 1, 0);
-                state.PickupObjectsShown = SaveUtils.ElementOrDefault(integers, 2, 0);
-                state.ScavengerTradeInstructionCompleted = SaveUtils.ElementOrDefault(integers, 3, 0) > 0;
-                state.AngryWithPlayer = SaveUtils.ElementOrDefault(integers, 4, 0) > 0;
-                state.DisplayedAnger = SaveUtils.ElementOrDefault(integers, 5, 0) > 0;
-                state.GuideSymbol = SaveUtils.ElementOrDefault(integers, 6, 0);
-            }
-            else if (key == "itemTypes")
-            {
-                // TODO: backwards compatibility
-                state.FoodItemsLearned.AddRange(value.Split(",", StringSplitOptions.RemoveEmptyEntries));
-            }
-            else if (key == "creatureTypes")
-            {
-                // TODO: backwards compatibility
-                state.CreatureTypesWarnedAbout.AddRange(value.Split(",", StringSplitOptions.RemoveEmptyEntries));
-            }
-            else if (key == "likesPlayer")
-            {
-                state.PlayerReputation = float.Parse(value, NumberStyles.Any, CultureInfo.InvariantCulture);
-            }
-            else if (key == "directionHandHolding")
-            {
-                state.HandHolding = float.Parse(value, NumberStyles.Any, CultureInfo.InvariantCulture);
-            }
-            else if (key == "imagesShown")
-            {
-                state.ImagesShown.AddRange(value.Split("."));
-            }
-            else if (key == "forcedDirsGiven")
-            {
-                state.ForcedDirectionsGiven.AddRange(value.Split("."));
-            }
-            else if (array.Trim().Length > 0)
-            {
-                state.UnrecognizedSaveStrings.Add(array);
-            }
-        }
-
-        return state;
+        return data;
     }
 
     public static bool TryParse([NotNullWhen(true)] string? s, IFormatProvider? provider, [MaybeNullWhen(false)] out PlayerGuideState result)
