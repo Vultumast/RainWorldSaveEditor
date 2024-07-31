@@ -95,61 +95,118 @@
     <None Update="Resources\modded_region_names.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Update="Resources\Slugcat Icons\artificer.png">
+    <None Update="Resources\Slugcats\Icons\artificer.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Update="Resources\Slugcat Icons\gourmand.png">
+    <None Update="Resources\Slugcats\Icons\gourmand.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Update="Resources\Slugcat Icons\hunter.png">
+    <None Update="Resources\Slugcats\Icons\hunter.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Update="Resources\Slugcat Icons\inv.png">
+    <None Update="Resources\Slugcats\Icons\inv.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Update="Resources\Slugcat Icons\monk.png">
+    <None Update="Resources\Slugcats\Icons\monk.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Update="Resources\Slugcat Icons\rivulet.png">
+    <None Update="Resources\Slugcats\Icons\rivulet.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Update="Resources\Slugcat Icons\saint.png">
+    <None Update="Resources\Slugcats\Icons\saint.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Update="Resources\Slugcat Icons\spearmaster.png">
+    <None Update="Resources\Slugcats\Icons\spearmaster.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Update="Resources\Slugcat Icons\survivor.png">
+    <None Update="Resources\Slugcats\Icons\survivor.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Update="Resources\Slugcat Icons\watcher.png">
+    <None Update="Resources\Slugcats\Icons\watcher.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Update="Resources\Slugcat Info\Artificer.json">
+    <None Update="Resources\Slugcats\Info\Artificer.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Update="Resources\Slugcat Info\Gourmand.json">
+    <None Update="Resources\Slugcats\Info\Gourmand.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Update="Resources\Slugcat Info\Hunter.json">
+    <None Update="Resources\Slugcats\Info\Hunter.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Update="Resources\Slugcat Info\Inv.json">
+    <None Update="Resources\Slugcats\Info\Inv.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Update="Resources\Slugcat Info\Monk.json">
+    <None Update="Resources\Slugcats\Info\Monk.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Update="Resources\Slugcat Info\Rivulet.json">
+    <None Update="Resources\Slugcats\Info\Rivulet.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Update="Resources\Slugcat Info\Saint.json">
+    <None Update="Resources\Slugcats\Info\Saint.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Update="Resources\Slugcat Info\Spearmaster.json">
+    <None Update="Resources\Slugcats\Info\Spearmaster.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Update="Resources\Slugcat Info\Survivor.json">
+    <None Update="Resources\Slugcats\Info\Survivor.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Resources\Slugcat\Icons\artificer.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Resources\Slugcat\Icons\gourmand.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Resources\Slugcat\Icons\hunter.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Resources\Slugcat\Icons\inv.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Resources\Slugcat\Icons\monk.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Resources\Slugcat\Icons\rivulet.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Resources\Slugcat\Icons\saint.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Resources\Slugcat\Icons\spearmaster.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Resources\Slugcat\Icons\survivor.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Resources\Slugcat\Icons\watcher.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Resources\Slugcat\Info\Artificer.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Resources\Slugcat\Info\Gourmand.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Resources\Slugcat\Info\Hunter.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Resources\Slugcat\Info\Inv.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Resources\Slugcat\Info\Monk.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Resources\Slugcat\Info\Rivulet.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Resources\Slugcat\Info\Saint.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Resources\Slugcat\Info\Spearmaster.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Resources\Slugcat\Info\Survivor.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Update="Resources\UI\Food UI\Food_line.png">

@@ -253,16 +253,6 @@ namespace RainWorldSaveEditor.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap jetfish_community_icon {
-            get {
-                object obj = ResourceManager.GetObject("jetfish_community_icon", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
         internal static System.Drawing.Bitmap karma_empty {
             get {
                 object obj = ResourceManager.GetObject("karma_empty", resourceCulture);
@@ -483,16 +473,6 @@ namespace RainWorldSaveEditor.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap lizard_community_icon {
-            get {
-                object obj = ResourceManager.GetObject("lizard_community_icon", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
         internal static System.Drawing.Bitmap looks_to_the_moon_icon {
             get {
                 object obj = ResourceManager.GetObject("looks_to_the_moon_icon", resourceCulture);
@@ -533,16 +513,6 @@ namespace RainWorldSaveEditor.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap missing_slugcat {
-            get {
-                object obj = ResourceManager.GetObject("missing_slugcat", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
         internal static System.Drawing.Bitmap Neuron_Fly {
             get {
                 object obj = ResourceManager.GetObject("Neuron_Fly", resourceCulture);
@@ -563,29 +533,9 @@ namespace RainWorldSaveEditor.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap raindeer_community_icon {
-            get {
-                object obj = ResourceManager.GetObject("raindeer_community_icon", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
         internal static System.Drawing.Bitmap rarefaction_cell_icon {
             get {
                 object obj = ResourceManager.GetObject("rarefaction_cell_icon", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap scavenger_community_icon {
-            get {
-                object obj = ResourceManager.GetObject("scavenger_community_icon", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -606,6 +556,16 @@ namespace RainWorldSaveEditor.Properties {
         internal static System.Drawing.Bitmap slugcat_dead {
             get {
                 object obj = ResourceManager.GetObject("slugcat_dead", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Slugcat_Missing {
+            get {
+                object obj = ResourceManager.GetObject("Slugcat_Missing", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -697,16 +657,6 @@ namespace RainWorldSaveEditor.Properties {
             get {
                 object obj = ResourceManager.GetObject("SlugcatInfo_Survivor", resourceCulture);
                 return ((byte[])(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap squidcada_community_icon {
-            get {
-                object obj = ResourceManager.GetObject("squidcada_community_icon", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
             }
         }
         

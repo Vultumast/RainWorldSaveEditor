@@ -13,6 +13,8 @@ namespace RainWorldSaveEditor;
 public partial class MainForm : Form
 {
     Settings settings = new();
+    RainWorldSave save = new();
+
     public MainForm()
     {
 
@@ -22,6 +24,8 @@ public partial class MainForm : Form
 
     private void MainForm_Load(object sender, EventArgs e)
     {
+        slugConfigControl.SetupFromState(null!);
+
         if (!File.Exists(Settings.Filepath))
         {
             Logger.Info("Unable to find settings file, creating a new one.");
@@ -48,7 +52,7 @@ public partial class MainForm : Form
 
         if (!Directory.Exists(settings.RainWorldSaveDirectory))
         {
-            Console.WriteLine($"RAIN WORLD DIRECTORY DOESNT EXIST WHAT \"{settings.RainWorldSaveDirectory}\"");
+            Logger.Warn($"RAIN WORLD DIRECTORY DOESNT EXIST WHAT \"{settings.RainWorldSaveDirectory}\"");
         }
 
 
@@ -57,14 +61,64 @@ public partial class MainForm : Form
         CommunityInfo.ReadCommunities();
 
         for (var i = 0; i < EditorCommon.SlugcatInfo.Length; i++)
-            slugcatIconImageList.Images.Add(EditorCommon.SlugcatInfo[i].Name, Image.FromFile(Path.Combine("Resources\\Slugcat Icons\\", $"{EditorCommon.SlugcatInfo[i].Name}.png")));
+        {
+            var slugcatInfo = EditorCommon.SlugcatInfo[i];
 
-        mainTabControl.ImageList = slugcatIconImageList;
-        for (var i = 0; i < EditorCommon.SlugcatInfo.Length; i++)
-            SetupSlugcatPage(EditorCommon.SlugcatInfo[i]);
+            Bitmap bmp = null!;
+
+            var imgPath = $"Resources\\Slugcat\\Icons\\{slugcatInfo.Name}.png";
+            ToolStripMenuItem menuItem = null!;
+
+            if (!File.Exists(imgPath))
+            {
+                Logger.Warn($"Unable to find slugcat image: \"{imgPath}\"");
+                bmp = Properties.Resources.Slugcat_Missing;
+            }
+            else
+                bmp = new Bitmap(imgPath);
+
+            if (slugcatInfo.Modded)
+                menuItem = vanillaSlugcatsToolStripMenuItem;
+            else if (slugcatInfo.RequiresDLC)
+                menuItem = dlcSlugcatsToolStripMenuItem;
+            else
+                menuItem = vanillaSlugcatsToolStripMenuItem;
+
+            menuItem.DropDownItems.Add(slugcatInfo.Name, bmp, SlugcatMenuItem_Click).Tag = slugcatInfo;
+        }
     }
 
+    private void SlugcatMenuItem_Click(object? sender, EventArgs e)
+    { 
+        ToolStripMenuItem menuItem = (ToolStripMenuItem)sender!;
+        SlugcatInfo slugcatInfo = (SlugcatInfo)menuItem.Tag!;
 
+
+
+        SaveState id = null!;
+
+        foreach (var slugcat in EditorCommon.SlugcatInfo)
+        {
+            for (var i = 0; i < save.SaveStates.Count; i++)
+            {
+                if (save.SaveStates[i].SaveStateNumber == slugcat.SaveID)
+                {
+                    id = save.SaveStates[i];
+                    break;
+                }
+            }
+        }
+
+
+        if (id is null)
+        {
+            Logger.Info($"Save does not have information for slugcat: \"{slugcatInfo.Name}\" ID: \"{slugcatInfo.SaveID}\"");
+            slugConfigControl.SetupFromState(null!);
+            return;
+        }
+
+        slugConfigControl.SetupFromState(id!);
+    }
 
     void SetDefaultState()
     {
@@ -77,20 +131,6 @@ public partial class MainForm : Form
         openFile3ToolStripMenuItem.Checked = false;
     }
 
-    void SetupSlugcatPage(SlugcatInfo slugcatInfo)
-    {
-        mainTabControl.TabPages.Add($"{slugcatInfo.SaveID}_TabPage", slugcatInfo.Name, mainTabControl.ImageList!.Images.IndexOfKey(slugcatInfo.Name));
-
-        TabPage page = mainTabControl.TabPages[mainTabControl.TabPages.Count - 1];
-
-        page.Controls.Add(new Controls.SlugConfigControl());
-        Controls.SlugConfigControl control = (Controls.SlugConfigControl)page.Controls[page.Controls.Count - 1];
-
-        control.Dock = DockStyle.Fill;
-
-        control.FoodPipControl.PipCount = slugcatInfo.PipCount;
-        control.FoodPipControl.PipBarIndex = slugcatInfo.PipBarIndex;
-    }
 
     void ReadSaveData(string filepath)
     {
@@ -99,7 +139,6 @@ public partial class MainForm : Form
         fs.Close();
 
         // HashtableSerializer.Write(File.OpenWrite("TestFiles/savsaved.xml"), table);
-        RainWorldSave save = new();
 
         if (table["save"] is string saveData)
         {
@@ -111,32 +150,12 @@ public partial class MainForm : Form
             return;
         }
 
-        foreach (var slugcat in EditorCommon.SlugcatInfo)
-        {
-            SaveState id = null!;
-
-            for (var i = 0; i < save.SaveStates.Count; i++)
-            {
-                if (save.SaveStates[i].SaveStateNumber == slugcat.SaveID)
-                {
-                    id = save.SaveStates[i];
-                    break;
-                }
-            }
-
-            Controls.SlugConfigControl control = (Controls.SlugConfigControl)(mainTabControl.TabPages[$"{slugcat.SaveID}_TabPage"]!.Controls[0]);
-
-            if (id is null)
-            {
-                Logger.Info($"Save does not have information for slugcat: \"{slugcat.Name}\" ID: \"{slugcat.SaveID}\"");
-                control.Enabled = false;
-                continue;
-            }
-
-            control.SetupFromState(id);
-        }
     }
 
+    void UpdateTitle()
+    {
+        Text = "Rainworld Save Editor";
+    }
 
     #region Menustrip
 

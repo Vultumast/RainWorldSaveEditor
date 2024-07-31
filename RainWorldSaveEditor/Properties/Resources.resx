@@ -175,9 +175,6 @@
   <data name="hunter_happy" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\UI\Slugcat\hunter_happy.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="jetfish_community_icon" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Creature Community\Icons\jetfish_community_icon.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
   <data name="karma00" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\UI\Karma\karma00.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
@@ -244,9 +241,6 @@
   <data name="karma_empty_reinforced" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\UI\Karma\karma_empty_reinforced.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="lizard_community_icon" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Creature Community\Icons\lizard_community_icon.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
   <data name="lookstothemoondeadicon" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\UI\Iterator Icons\lookstothemoondeadicon.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
@@ -259,59 +253,50 @@
   <data name="missing" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\missing.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="missing_slugcat" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Slugcat Icons\missing_slugcat.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
   <data name="Neuron_Fly" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\UI\Iterator Icons\Neuron_Fly.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="pearl_music" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\UI\Pearls\pearl_music.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="raindeer_community_icon" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Creature Community\Icons\raindeer_community_icon.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
   <data name="rarefaction_cell_icon" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\UI\Iterator Icons\rarefaction_cell_icon.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="scavenger_community_icon" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Creature Community\Icons\scavenger_community_icon.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="shelter_icon" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\UI\shelter_icon.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="SlugcatInfo_Artificer" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Slugcat Info\Artificer.json;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>..\Resources\Slugcat\Info\Artificer.json;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="SlugcatInfo_Gourmand" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Slugcat Info\Gourmand.json;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>..\Resources\Slugcat\Info\Gourmand.json;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="SlugcatInfo_Hunter" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Slugcat Info\Hunter.json;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>..\Resources\Slugcat\Info\Hunter.json;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="SlugcatInfo_Inv" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Slugcat Info\Inv.json;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>..\Resources\Slugcat\Info\Inv.json;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="SlugcatInfo_Monk" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Slugcat Info\Monk.json;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>..\Resources\Slugcat\Info\Monk.json;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="SlugcatInfo_Rivulet" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Slugcat Info\Rivulet.json;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>..\Resources\Slugcat\Info\Rivulet.json;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="SlugcatInfo_Saint" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Slugcat Info\Saint.json;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>..\Resources\Slugcat\Info\Saint.json;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="SlugcatInfo_Spearmaster" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Slugcat Info\Spearmaster.json;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>..\Resources\Slugcat\Info\Spearmaster.json;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="SlugcatInfo_Survivor" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Slugcat Info\Survivor.json;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>..\Resources\Slugcat\Info\Survivor.json;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="slugcat_dead" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\UI\Slugcat\slugcat_dead.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="squidcada_community_icon" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Creature Community\Icons\squidcada_community_icon.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="Slugcat_Missing" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\UI\Slugcat\missing_slugcat.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="Yellow_Overseer_icon" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\UI\Overseer\Yellow_Overseer_icon.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>

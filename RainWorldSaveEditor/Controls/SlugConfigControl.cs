@@ -38,106 +38,68 @@ public partial class SlugConfigControl : UserControl
     #region Setup
     public void SetupFromState(SaveState state)
     {
-        SaveState = state;
-        SetupSlugCatInfoTabPageFromState(state);
-        SetupEchoTabPageFromState(state);
-        LoadIteratorTabPage(state);
-        SetupPersistentDataInfoTabPageFromState(state);
-        SetupAdvancedInfoTabPage(state);
+        tabControl.Enabled = state is not null;
+        tabControl.SelectedTab = slugcatInfoTabPage;
+
+        SaveState = state!;
+        SetupSlugCatInfoTabPageFromState(state!);
+        SetupEchoTabPageFromState(state!);
+        LoadIteratorTabPage(state!);
+        SetupPersistentDataInfoTabPageFromState(state!);
+        SetupAdvancedInfoTabPage(state!);
     }
 
-    private void SetupSlugCatInfoTabPageFromState(SaveState state)
-    {
-        FoodPipControl.FilledPips = (byte)state.FoodCount;
-        cycleNumberNumericUpDown.Value = (uint)state.CycleNumber;
-        currentDenTextBox.Text = state.DenPosition;
-        KarmaSelectorControl.KarmaMax = state.DeathPersistentSaveData.KarmaCap;
-        KarmaSelectorControl.KarmaLevel = Math.Min(state.DeathPersistentSaveData.Karma, state.DeathPersistentSaveData.KarmaCap);
-        KarmaSelectorControl.Reinforced = state.DeathPersistentSaveData.HasReinforcedKarma == 1;
-
-        lastVanillaDenTextBox.Text = state.LastVanillaDen;
-
-        // Common for all Slugcats
-        markOfCommunicationCheckBox.Checked = state.DeathPersistentSaveData.HasMarkOfCommunication;
-        justBeatGameCheckBox.Checked = state.GameRecentlyBeaten;
-        guideOverseerDeadCheckBox.Checked = state.IsGuideOverseerDead;
-
-        // Slugcat Specific
-        neuronGlowCheckBox.Checked = state.HasNeuronGlow;
-        citizenIDDroneCheckBox.Checked = state.HasCitizenDrone;
-        moonsCloakCheckBox.Checked = state.IsWearingCloak;
-
-
-    }
-
-    private void SetupEchoTabPageFromState(SaveState state)
-    {
-        echoDataGridView.Rows.Clear();
-
-
-        foreach (var echo in state.DeathPersistentSaveData.Echos.EchoStates)
-        {
-            var stateStr = echo.Value switch
-            {
-                EchoState.NotMet => "Not Met",
-                EchoState.Visited => "Active",
-                EchoState.Met => "Met",
-                _ => "Not Met",
-            };
-            echoDataGridView.Rows.Add([echo.Key, Translation.GetRegionName(echo.Key), stateStr]);
-        }
-
-    }
-
-    private void SetupPersistentDataInfoTabPageFromState(SaveState state)
-    {
-        if (state.DeathPersistentSaveData.KarmaFlowerPosition is not null)
-        {
-            karmaFlowerGroupBox.Enabled = true;
-            karmaFlowerWorldPositionEditControl.RoomName = state.DeathPersistentSaveData.KarmaFlowerPosition!.RoomName;
-            karmaFlowerWorldPositionEditControl.X = state.DeathPersistentSaveData.KarmaFlowerPosition!.X;
-            karmaFlowerWorldPositionEditControl.Y = state.DeathPersistentSaveData.KarmaFlowerPosition!.Y;
-            karmaFlowerWorldPositionEditControl.AbstractNode = state.DeathPersistentSaveData.KarmaFlowerPosition!.AbstractNode;
-        }
-        else
-        {
-            karmaFlowerGroupBox.Enabled = false;
-            karmaFlowerWorldPositionEditControl.RoomName = string.Empty;
-            karmaFlowerWorldPositionEditControl.X = 0;
-            karmaFlowerWorldPositionEditControl.Y = 0;
-            karmaFlowerWorldPositionEditControl.AbstractNode = 0;
-        }
-
-        totalDeathsNumericUpDown.Value = state.DeathPersistentSaveData.Deaths;
-        totalSurvivesNumericUpDown.Value = state.DeathPersistentSaveData.Survives;
-        totalQuitsNumericUpDown.Value = state.DeathPersistentSaveData.Quits;
-        totalFoodNumericUpDown.Value = state.TotalFoodEaten;
-
-        totalFriendsSavedNumericUpDown.Value = state.DeathPersistentSaveData.FriendsSaved;
-
-        ascendedLooksToTheMoonCheckBox.Checked = state.DeathPersistentSaveData.IsMoonAscendedBySaint;
-        ascendedFivePebblesCheckBox.Checked = state.DeathPersistentSaveData.IsPebblesAscendedBySaint;
-
-        ascendedCheckBox.Checked = state.DeathPersistentSaveData.HasAscended;
-        hunterPermaDeathCheckBox.Checked = state.DeathPersistentSaveData.IsHunterDead;
-
-        rngSeedNumericUpDown.Value = state.Seed;
-        rngNextIssueIDNumericUpDown.Value = state.NextIssuedId;
-
-    }
-
-    private void SetupAdvancedInfoTabPage(SaveState state)
-    {
-        gameVerisonNumericUpDown.Value = state.GameVersion;
-        initialGameVersionNumericUpDown.Value = state.InitialGameVersion;
-
-        worldVersionNumericUpDown.Value = state.WorldVersion;
-
-    }
 
     #endregion
 
     #region Slugcat Info
+
+    private void SetupSlugCatInfoTabPageFromState(SaveState state)
+    {
+        if (state is not null)
+        {
+            FoodPipControl.FilledPips = (byte)state.FoodCount;
+            cycleNumberNumericUpDown.Value = (uint)state.CycleNumber;
+            currentDenTextBox.Text = state.DenPosition;
+            KarmaSelectorControl.KarmaMax = state.DeathPersistentSaveData.KarmaCap;
+            KarmaSelectorControl.KarmaLevel = Math.Min(state.DeathPersistentSaveData.Karma, state.DeathPersistentSaveData.KarmaCap);
+            KarmaSelectorControl.Reinforced = state.DeathPersistentSaveData.HasReinforcedKarma == 1;
+
+            lastVanillaDenTextBox.Text = state.LastVanillaDen;
+
+            // Common for all Slugcats
+            markOfCommunicationCheckBox.Checked = state.DeathPersistentSaveData.HasMarkOfCommunication;
+            justBeatGameCheckBox.Checked = state.GameRecentlyBeaten;
+            guideOverseerDeadCheckBox.Checked = state.IsGuideOverseerDead;
+
+            // Slugcat Specific
+            neuronGlowCheckBox.Checked = state.HasNeuronGlow;
+            citizenIDDroneCheckBox.Checked = state.HasCitizenDrone;
+            moonsCloakCheckBox.Checked = state.IsWearingCloak;
+        }
+        else
+        {
+            FoodPipControl.FilledPips = 0;
+            cycleNumberNumericUpDown.Value = 0;
+            currentDenTextBox.Text = string.Empty;
+            KarmaSelectorControl.KarmaMax = 9;
+            KarmaSelectorControl.KarmaLevel = 0;
+            KarmaSelectorControl.Reinforced = false;
+
+            lastVanillaDenTextBox.Text = string.Empty;
+
+            // Common for all Slugcats
+            markOfCommunicationCheckBox.Checked = false;
+            justBeatGameCheckBox.Checked = false;
+            guideOverseerDeadCheckBox.Checked = false;
+
+            // Slugcat Specific
+            neuronGlowCheckBox.Checked = false;
+            citizenIDDroneCheckBox.Checked = false;
+            moonsCloakCheckBox.Checked = false;
+        }
+    }
+
     private void FoodPipControl_PipCountChanged(object sender, EventArgs e) => SaveState.FoodCount = FoodPipControl.FilledPips;
 
 
@@ -167,6 +129,28 @@ public partial class SlugConfigControl : UserControl
     #endregion
 
     #region Echos tab
+    private void SetupEchoTabPageFromState(SaveState state)
+    {
+        if (state is not null)
+        {
+            echoDataGridView.Rows.Clear();
+
+            foreach (var echo in state.DeathPersistentSaveData.Echos.EchoStates)
+            {
+                var stateStr = echo.Value switch
+                {
+                    EchoState.NotMet => "Not Met",
+                    EchoState.Visited => "Active",
+                    EchoState.Met => "Met",
+                    _ => "Not Met",
+                };
+                echoDataGridView.Rows.Add([echo.Key, Translation.GetRegionName(echo.Key), stateStr]);
+            }
+        }
+        else
+            echoDataGridView.Rows.Clear();
+    }
+
     private void echoDataGridView_UserDeletingRow(object sender, DataGridViewRowCancelEventArgs e)
     {
         if (e.Row is null)
@@ -474,6 +458,62 @@ public partial class SlugConfigControl : UserControl
     #endregion
 
     #region Persistent Info
+    private void SetupPersistentDataInfoTabPageFromState(SaveState state)
+    {
+        if (state is not null)
+        {
+            if (state.DeathPersistentSaveData.KarmaFlowerPosition is not null)
+            {
+                karmaFlowerGroupBox.Enabled = true;
+                karmaFlowerWorldPositionEditControl.RoomName = state.DeathPersistentSaveData.KarmaFlowerPosition!.RoomName;
+                karmaFlowerWorldPositionEditControl.X = state.DeathPersistentSaveData.KarmaFlowerPosition!.X;
+                karmaFlowerWorldPositionEditControl.Y = state.DeathPersistentSaveData.KarmaFlowerPosition!.Y;
+                karmaFlowerWorldPositionEditControl.AbstractNode = state.DeathPersistentSaveData.KarmaFlowerPosition!.AbstractNode;
+            }
+            else
+            {
+                karmaFlowerGroupBox.Enabled = false;
+                karmaFlowerWorldPositionEditControl.RoomName = string.Empty;
+                karmaFlowerWorldPositionEditControl.X = 0;
+                karmaFlowerWorldPositionEditControl.Y = 0;
+                karmaFlowerWorldPositionEditControl.AbstractNode = 0;
+            }
+
+            totalDeathsNumericUpDown.Value = state.DeathPersistentSaveData.Deaths;
+            totalSurvivesNumericUpDown.Value = state.DeathPersistentSaveData.Survives;
+            totalQuitsNumericUpDown.Value = state.DeathPersistentSaveData.Quits;
+            totalFoodNumericUpDown.Value = state.TotalFoodEaten;
+
+            totalFriendsSavedNumericUpDown.Value = state.DeathPersistentSaveData.FriendsSaved;
+
+            ascendedLooksToTheMoonCheckBox.Checked = state.DeathPersistentSaveData.IsMoonAscendedBySaint;
+            ascendedFivePebblesCheckBox.Checked = state.DeathPersistentSaveData.IsPebblesAscendedBySaint;
+
+            ascendedCheckBox.Checked = state.DeathPersistentSaveData.HasAscended;
+            hunterPermaDeathCheckBox.Checked = state.DeathPersistentSaveData.IsHunterDead;
+
+            rngSeedNumericUpDown.Value = state.Seed;
+            rngNextIssueIDNumericUpDown.Value = state.NextIssuedId;
+        }
+        else
+        {
+            totalDeathsNumericUpDown.Value = 0;
+            totalSurvivesNumericUpDown.Value = 0;
+            totalQuitsNumericUpDown.Value = 0;
+            totalFoodNumericUpDown.Value = 0;
+
+            totalFriendsSavedNumericUpDown.Value = 0;
+
+            ascendedLooksToTheMoonCheckBox.Checked = false;
+            ascendedFivePebblesCheckBox.Checked = false;
+
+            ascendedCheckBox.Checked = false;
+            hunterPermaDeathCheckBox.Checked = false;
+
+            rngSeedNumericUpDown.Value = 0;
+            rngNextIssueIDNumericUpDown.Value = 0;
+        }
+    }
 
     private void ascendedLooksToTheMoonCheckBox_CheckedChanged(object sender, EventArgs e) => SaveState.DeathPersistentSaveData.IsMoonAscendedBySaint = ((CheckBox)sender).Checked;
 
@@ -494,6 +534,25 @@ public partial class SlugConfigControl : UserControl
     #endregion
 
     #region Advanced
+    private void SetupAdvancedInfoTabPage(SaveState state)
+    {
+        if (state is not null)
+        {
+            gameVerisonNumericUpDown.Value = state.GameVersion;
+            initialGameVersionNumericUpDown.Value = state.InitialGameVersion;
+
+            worldVersionNumericUpDown.Value = state.WorldVersion;
+        }
+        else
+        {
+            gameVerisonNumericUpDown.Value = 0;
+            initialGameVersionNumericUpDown.Value = 0;
+
+            worldVersionNumericUpDown.Value = 0;
+        }
+
+    }
+
     private void gameVerisonNumericUpDown_ValueChanged(object sender, EventArgs e)
     {
 
@@ -524,19 +583,36 @@ public partial class SlugConfigControl : UserControl
     }
     private void LoadIteratorTabPage(SaveState state)
     {
-        pebblesConversationCountNumericUpDown.Value = state.MiscWorldSaveData.TimesTalkedWithFivePebbles;
-        pebblesThrownOutCountNumericUpDown.Value = state.MiscWorldSaveData.TimesKickedOutByFivePebbles;
-        frolickedInMemoryArraysCheckBox.Checked = state.MiscWorldSaveData.HasFrolickedInMemoryArrays;
+        if (state is not null)
+        {
+            pebblesConversationCountNumericUpDown.Value = state.MiscWorldSaveData.TimesTalkedWithFivePebbles;
+            pebblesThrownOutCountNumericUpDown.Value = state.MiscWorldSaveData.TimesKickedOutByFivePebbles;
+            frolickedInMemoryArraysCheckBox.Checked = state.MiscWorldSaveData.HasFrolickedInMemoryArrays;
 
-        pebblesFirstVisitCountNumericUpDown.Value = state.MiscWorldSaveData.CyclesSinceFirstFivePebblesVisit;
+            pebblesFirstVisitCountNumericUpDown.Value = state.MiscWorldSaveData.CyclesSinceFirstFivePebblesVisit;
 
-        pebblesRivuletPostGameTalkCheckBox.Checked = state.MiscWorldSaveData.HasTalkedWithFivePebblesInRivuletPostgame;
-        musicPearlStolenCheckBox.Checked = state.MiscWorldSaveData.HasStolenFivePebblesMusicPearl;
-        cellRemovedCheckBox.Checked = state.MiscWorldSaveData.HasRemovedRarefactionCell;
-        pebblesAscendedCheckBox.Checked = state.DeathPersistentSaveData.IsPebblesAscendedBySaint;
+            pebblesRivuletPostGameTalkCheckBox.Checked = state.MiscWorldSaveData.HasTalkedWithFivePebblesInRivuletPostgame;
+            musicPearlStolenCheckBox.Checked = state.MiscWorldSaveData.HasStolenFivePebblesMusicPearl;
+            cellRemovedCheckBox.Checked = state.MiscWorldSaveData.HasRemovedRarefactionCell;
+            pebblesAscendedCheckBox.Checked = state.DeathPersistentSaveData.IsPebblesAscendedBySaint;
 
-        FivePebblesRarefactionCellConversationState = state.MiscWorldSaveData.RarefactionCellConversationState;
+            FivePebblesRarefactionCellConversationState = state.MiscWorldSaveData.RarefactionCellConversationState;
+        }
+        else
+        {
+            pebblesConversationCountNumericUpDown.Value = 0;
+            pebblesThrownOutCountNumericUpDown.Value = 0;
+            frolickedInMemoryArraysCheckBox.Checked = false;
 
+            pebblesFirstVisitCountNumericUpDown.Value = 0;
+
+            pebblesRivuletPostGameTalkCheckBox.Checked = false;
+            musicPearlStolenCheckBox.Checked = false;
+            cellRemovedCheckBox.Checked = false;
+            pebblesAscendedCheckBox.Checked = false;
+
+            FivePebblesRarefactionCellConversationState = 0;
+        }
 
     }
     private void fivePebblesConversationCountNumericUpDown_ValueChanged(object sender, EventArgs e) => SaveState.MiscWorldSaveData.TimesTalkedWithFivePebbles = (int)pebblesConversationCountNumericUpDown.Value;

@@ -20,7 +20,7 @@ Assets marked with the license "Rain World" are the intellectual property of the
 | scavenger_community_icon.png   | Scavenger Community Icon    | Rain World (Edited by Vultumast) | [Rain World Miraheze Wiki](https://static.miraheze.org/rainworldwiki/8/8d/Scavenger_icon.png)                  |
 | squidcada_community_icon.png   | Squidcada Community Icon    | Rain World (Edited by Vultumast) | [Rain World Miraheze Wiki](https://rainworld.miraheze.org/wiki/Squidcada#/media/File:Black_Squidcada_icon.png) |
 
-# RainWorldSaveEditor/Resources/Slugcat Icons
+# RainWorldSaveEditor/Resources/Slugcat/Icons
 | Name | Description | License | Source |
 | ---- | ----------- | ------- | ------ |
 | artificer.png       | Artificer Icon       | Rain World      | [Rain World Miraheze Wiki](https://rainworld.miraheze.org/wiki/File:Artificer_icon_(custom).png)   |
@@ -33,7 +33,6 @@ Assets marked with the license "Rain World" are the intellectual property of the
 | spearmaster.png     | Spearmaster Icon     | Rain World      | [Rain World Miraheze Wiki](https://rainworld.miraheze.org/wiki/File:Spearmaster_icon_(custom).png) |
 | survivor.png        | Survivor Icon        | Rain World      | [Rain World Miraheze Wiki](https://rainworld.miraheze.org/wiki/File:Survivor_icon_(custom).png)    |
 | watcher.png         | Watcher Icon         | Rain World      | [Rain World Miraheze Wiki](https://rainworld.miraheze.org/wiki/File:Watcher_icon_(custom).png)     |
-| missing_slugcat.png | Missing Slugcat Icon | Vultumast (MIT) | N/A                                                                                                |
 
 # RainWorldSaveEditor/Resources/UI
 | Name | Description | License | Source |
@@ -103,7 +102,7 @@ Assets marked with the license "Rain World" are the intellectual property of the
 | hunter_happy.png   | Happy Hunter Icon     | Rain World (Edited by Vultumast)  | [Rain World Miraheze Wiki](https://rainworld.miraheze.org/wiki/File:Hunter_icon_(custom).png)                             |
 | slugcat_dead.png   | Dead Survivor Icon    | Rain World                        | [Rain World Miraheze Wiki](https://rainworld.miraheze.org/wiki/Category:Slugcat_icons#/media/File:Survivor_dead_icon.png) |
 | artifcer_drone.png | Sofanthiel Icon       | Saneko                            | N/A                                                                                                                       |
-
+| missing_slugcat.png | Missing Slugcat Icon | Vultumast (MIT)                   | N/A                                                                                                                       |
 # RainWorldSaveEditor/Resources/UI/Tab Icons
 | Name | Description | License | Source |
 | ---- | ----------- | ------- | ------ |

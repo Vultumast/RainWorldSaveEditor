@@ -17,7 +17,7 @@ namespace RainWorldSaveEditor
             if (!Directory.Exists("Resources"))
                 Directory.CreateDirectory("Resources");
 
-            if (!Directory.Exists("Resources\\Slugcat Info"))
+            if (!Directory.Exists("Resources\\Slugcat\\Info"))
             {
                 Logger.Info("Unable to find Slugcat info, so new info will be created.");
                 Directory.CreateDirectory("Resources\\Slugcat_Info");
@@ -26,7 +26,7 @@ namespace RainWorldSaveEditor
 
             List<SlugcatInfo> list = [];
 
-            var slugcatFiles = Directory.GetFiles("Resources\\Slugcat Info", "*.json", SearchOption.AllDirectories);
+            var slugcatFiles = Directory.GetFiles("Resources\\Slugcat\\Info", "*.json", SearchOption.AllDirectories);
             foreach (var slugcatFile in slugcatFiles)
                 list.Add(JsonSerializer.Deserialize<SlugcatInfo>(File.ReadAllText(slugcatFile)));
 

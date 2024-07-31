@@ -50,19 +50,23 @@ partial class MainForm
         toolStripSeparator2 = new ToolStripSeparator();
         saveToolStripMenuItem1 = new ToolStripMenuItem();
         saveAsToolStripMenuItem1 = new ToolStripMenuItem();
+        slugcatsToolStripMenuItem = new ToolStripMenuItem();
+        vanillaSlugcatsToolStripMenuItem = new ToolStripMenuItem();
+        dlcSlugcatsToolStripMenuItem = new ToolStripMenuItem();
+        moddedSlugcatsToolStripMenuItem = new ToolStripMenuItem();
         aboutToolStripMenuItem = new ToolStripMenuItem();
         toggleConsoleToolStripMenuItem = new ToolStripMenuItem();
-        mainTabControl = new TabControl();
         slugcatIconImageList = new ImageList(components);
         statusStrip1 = new StatusStrip();
         MoreInfoToolStripStatusLabel = new ToolStripStatusLabel();
+        slugConfigControl = new Controls.SlugConfigControl();
         menuStrip1.SuspendLayout();
         statusStrip1.SuspendLayout();
         SuspendLayout();
         // 
         // menuStrip1
         // 
-        menuStrip1.Items.AddRange(new ToolStripItem[] { fileToolStripMenuItem, saveSlotToolStripMenuItem, aboutToolStripMenuItem, toggleConsoleToolStripMenuItem });
+        menuStrip1.Items.AddRange(new ToolStripItem[] { fileToolStripMenuItem, saveSlotToolStripMenuItem, slugcatsToolStripMenuItem, aboutToolStripMenuItem, toggleConsoleToolStripMenuItem });
         menuStrip1.Location = new Point(0, 0);
         menuStrip1.Name = "menuStrip1";
         menuStrip1.Size = new Size(800, 24);
@@ -201,6 +205,31 @@ partial class MainForm
         saveAsToolStripMenuItem1.Size = new Size(123, 22);
         saveAsToolStripMenuItem1.Text = "Save As...";
         // 
+        // slugcatsToolStripMenuItem
+        // 
+        slugcatsToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { vanillaSlugcatsToolStripMenuItem, dlcSlugcatsToolStripMenuItem, moddedSlugcatsToolStripMenuItem });
+        slugcatsToolStripMenuItem.Name = "slugcatsToolStripMenuItem";
+        slugcatsToolStripMenuItem.Size = new Size(63, 20);
+        slugcatsToolStripMenuItem.Text = "Slugcats";
+        // 
+        // vanillaSlugcatsToolStripMenuItem
+        // 
+        vanillaSlugcatsToolStripMenuItem.Name = "vanillaSlugcatsToolStripMenuItem";
+        vanillaSlugcatsToolStripMenuItem.Size = new Size(119, 22);
+        vanillaSlugcatsToolStripMenuItem.Text = "Vanilla";
+        // 
+        // dlcSlugcatsToolStripMenuItem
+        // 
+        dlcSlugcatsToolStripMenuItem.Name = "dlcSlugcatsToolStripMenuItem";
+        dlcSlugcatsToolStripMenuItem.Size = new Size(119, 22);
+        dlcSlugcatsToolStripMenuItem.Text = "DLC";
+        // 
+        // moddedSlugcatsToolStripMenuItem
+        // 
+        moddedSlugcatsToolStripMenuItem.Name = "moddedSlugcatsToolStripMenuItem";
+        moddedSlugcatsToolStripMenuItem.Size = new Size(119, 22);
+        moddedSlugcatsToolStripMenuItem.Text = "Modded";
+        // 
         // aboutToolStripMenuItem
         // 
         aboutToolStripMenuItem.Name = "aboutToolStripMenuItem";
@@ -217,15 +246,6 @@ partial class MainForm
         toggleConsoleToolStripMenuItem.Size = new Size(28, 20);
         toggleConsoleToolStripMenuItem.Text = "Toggle Console";
         toggleConsoleToolStripMenuItem.Click += toggleConsoleToolStripMenuItem_Click;
-        // 
-        // mainTabControl
-        // 
-        mainTabControl.Dock = DockStyle.Fill;
-        mainTabControl.Location = new Point(0, 24);
-        mainTabControl.Name = "mainTabControl";
-        mainTabControl.SelectedIndex = 0;
-        mainTabControl.Size = new Size(800, 426);
-        mainTabControl.TabIndex = 1;
         // 
         // slugcatIconImageList
         // 
@@ -248,13 +268,22 @@ partial class MainForm
         MoreInfoToolStripStatusLabel.Size = new Size(162, 17);
         MoreInfoToolStripStatusLabel.Text = "MoreInfoToolStripStatusLabel";
         // 
+        // slugConfigControl
+        // 
+        slugConfigControl.Dock = DockStyle.Fill;
+        slugConfigControl.FivePebblesRarefactionCellConversationState = 0;
+        slugConfigControl.Location = new Point(0, 24);
+        slugConfigControl.Name = "slugConfigControl";
+        slugConfigControl.Size = new Size(800, 404);
+        slugConfigControl.TabIndex = 3;
+        // 
         // MainForm
         // 
         AutoScaleDimensions = new SizeF(7F, 15F);
         AutoScaleMode = AutoScaleMode.Font;
         ClientSize = new Size(800, 450);
+        Controls.Add(slugConfigControl);
         Controls.Add(statusStrip1);
-        Controls.Add(mainTabControl);
         Controls.Add(menuStrip1);
         Icon = (Icon)resources.GetObject("$this.Icon");
         MainMenuStrip = menuStrip1;
@@ -290,11 +319,15 @@ partial class MainForm
     private ToolStripSeparator toolStripSeparator2;
     private ToolStripMenuItem saveToolStripMenuItem1;
     private ToolStripMenuItem saveAsToolStripMenuItem1;
-    private TabControl mainTabControl;
     private ImageList slugcatIconImageList;
     private ToolStripMenuItem aboutToolStripMenuItem;
     private ToolStripMenuItem toggleConsoleToolStripMenuItem;
     private ToolStripMenuItem rainworldExecutableDirectoryToolStripMenuItem;
     private StatusStrip statusStrip1;
     public ToolStripStatusLabel MoreInfoToolStripStatusLabel;
+    private ToolStripMenuItem slugcatsToolStripMenuItem;
+    private ToolStripMenuItem vanillaSlugcatsToolStripMenuItem;
+    private ToolStripMenuItem dlcSlugcatsToolStripMenuItem;
+    private ToolStripMenuItem moddedSlugcatsToolStripMenuItem;
+    private Controls.SlugConfigControl slugConfigControl;
 }
