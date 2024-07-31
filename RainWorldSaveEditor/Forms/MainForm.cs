@@ -208,7 +208,6 @@ public partial class MainForm : Form
 
         if (Text != targetName)
             Text = targetName;
-
     }
 
     #region Menustrip

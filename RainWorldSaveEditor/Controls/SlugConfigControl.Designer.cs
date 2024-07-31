@@ -35,7 +35,14 @@
             label1 = new Label();
             tabControl = new TabControl();
             slugcatInfoTabPage = new TabPage();
+            groupBox3 = new GroupBox();
+            pictureBox6 = new PictureBox();
+            guideOverseerDeadCheckBox = new CheckBox();
+            groupBox2 = new GroupBox();
+            pictureBox1 = new PictureBox();
             markOfCommunicationCheckBox = new CheckBox();
+            neuronGlowCheckBox = new CheckBox();
+            justBeatGameCheckBox = new CheckBox();
             groupBox1 = new GroupBox();
             citizenIDDronePictureBox = new PictureBox();
             pictureBox7 = new PictureBox();
@@ -43,11 +50,6 @@
             moonsCloakCheckBox = new CheckBox();
             pictureBox5 = new PictureBox();
             extraHunterCyclesCheckBox = new CheckBox();
-            pictureBox6 = new PictureBox();
-            guideOverseerDeadCheckBox = new CheckBox();
-            justBeatGameCheckBox = new CheckBox();
-            pictureBox1 = new PictureBox();
-            neuronGlowCheckBox = new CheckBox();
             denInfoGroupBox = new GroupBox();
             lastVanillaDenTextBox = new TextBox();
             lastVanillaDenLabel = new Label();
@@ -100,6 +102,8 @@
             communityListBox = new ListBox();
             worldInfoTabPage = new TabPage();
             persistentInfoTabPage = new TabPage();
+            playTimeLabel = new Label();
+            playTimeNumericUpDown = new NumericUpDown();
             rngGroupBox = new GroupBox();
             rngNextIssueIDlabel = new Label();
             rngNextIssueIDNumericUpDown = new NumericUpDown();
@@ -107,10 +111,8 @@
             rngSeedNumericUpDown = new NumericUpDown();
             currentlyDeadPictureBox = new PictureBox();
             pictureBox3 = new PictureBox();
-            pictureBox2 = new PictureBox();
             hunterPermaDeathCheckBox = new CheckBox();
             ascendedCheckBox = new CheckBox();
-            ascendedFivePebblesCheckBox = new CheckBox();
             ascendedLooksToTheMoonCheckBox = new CheckBox();
             totalsGroupBox = new GroupBox();
             friendsSavedLabel = new Label();
@@ -137,12 +139,14 @@
             ((System.ComponentModel.ISupportInitialize)cycleNumberNumericUpDown).BeginInit();
             tabControl.SuspendLayout();
             slugcatInfoTabPage.SuspendLayout();
+            groupBox3.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)pictureBox6).BeginInit();
+            groupBox2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)citizenIDDronePictureBox).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox7).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox5).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)pictureBox6).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             denInfoGroupBox.SuspendLayout();
             slugcatInfoKarmaGroupBox.SuspendLayout();
             echosTabPage.SuspendLayout();
@@ -166,12 +170,12 @@
             communitiesTabPage.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)communityRegionRepDataGridView).BeginInit();
             persistentInfoTabPage.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)playTimeNumericUpDown).BeginInit();
             rngGroupBox.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)rngNextIssueIDNumericUpDown).BeginInit();
             ((System.ComponentModel.ISupportInitialize)rngSeedNumericUpDown).BeginInit();
             ((System.ComponentModel.ISupportInitialize)currentlyDeadPictureBox).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox3).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
             totalsGroupBox.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)totalFriendsSavedNumericUpDown).BeginInit();
             ((System.ComponentModel.ISupportInitialize)totalQuitsNumericUpDown).BeginInit();
@@ -235,13 +239,9 @@
             // slugcatInfoTabPage
             // 
             slugcatInfoTabPage.BackColor = SystemColors.Control;
-            slugcatInfoTabPage.Controls.Add(markOfCommunicationCheckBox);
+            slugcatInfoTabPage.Controls.Add(groupBox3);
+            slugcatInfoTabPage.Controls.Add(groupBox2);
             slugcatInfoTabPage.Controls.Add(groupBox1);
-            slugcatInfoTabPage.Controls.Add(pictureBox6);
-            slugcatInfoTabPage.Controls.Add(guideOverseerDeadCheckBox);
-            slugcatInfoTabPage.Controls.Add(justBeatGameCheckBox);
-            slugcatInfoTabPage.Controls.Add(pictureBox1);
-            slugcatInfoTabPage.Controls.Add(neuronGlowCheckBox);
             slugcatInfoTabPage.Controls.Add(denInfoGroupBox);
             slugcatInfoTabPage.Controls.Add(slugcatInfoKarmaGroupBox);
             slugcatInfoTabPage.Controls.Add(FoodPipControl);
@@ -256,10 +256,65 @@
             slugcatInfoTabPage.Text = "Slugcat";
             slugcatInfoTabPage.ToolTipText = "Data relating to your slugcat";
             // 
+            // groupBox3
+            // 
+            groupBox3.Controls.Add(pictureBox6);
+            groupBox3.Controls.Add(guideOverseerDeadCheckBox);
+            groupBox3.Location = new Point(230, 272);
+            groupBox3.Name = "groupBox3";
+            groupBox3.Size = new Size(200, 100);
+            groupBox3.TabIndex = 21;
+            groupBox3.TabStop = false;
+            groupBox3.Text = "Unused";
+            // 
+            // pictureBox6
+            // 
+            pictureBox6.BackgroundImageLayout = ImageLayout.Center;
+            pictureBox6.Image = Properties.Resources.Yellow_Overseer_icon;
+            pictureBox6.Location = new Point(6, 22);
+            pictureBox6.Name = "pictureBox6";
+            pictureBox6.Size = new Size(23, 23);
+            pictureBox6.TabIndex = 17;
+            pictureBox6.TabStop = false;
+            // 
+            // guideOverseerDeadCheckBox
+            // 
+            guideOverseerDeadCheckBox.AutoSize = true;
+            guideOverseerDeadCheckBox.Location = new Point(35, 22);
+            guideOverseerDeadCheckBox.Name = "guideOverseerDeadCheckBox";
+            guideOverseerDeadCheckBox.Size = new Size(136, 19);
+            guideOverseerDeadCheckBox.TabIndex = 15;
+            guideOverseerDeadCheckBox.Text = "Guide Overseer Dead";
+            commonToolTip.SetToolTip(guideOverseerDeadCheckBox, "Did you kill the Guide Overseer?");
+            guideOverseerDeadCheckBox.UseVisualStyleBackColor = true;
+            // 
+            // groupBox2
+            // 
+            groupBox2.Controls.Add(pictureBox1);
+            groupBox2.Controls.Add(markOfCommunicationCheckBox);
+            groupBox2.Controls.Add(neuronGlowCheckBox);
+            groupBox2.Controls.Add(justBeatGameCheckBox);
+            groupBox2.Location = new Point(230, 51);
+            groupBox2.Name = "groupBox2";
+            groupBox2.Size = new Size(200, 100);
+            groupBox2.TabIndex = 20;
+            groupBox2.TabStop = false;
+            groupBox2.Text = "Shared";
+            // 
+            // pictureBox1
+            // 
+            pictureBox1.BackgroundImage = Properties.Resources.Neuron_Fly;
+            pictureBox1.BackgroundImageLayout = ImageLayout.Center;
+            pictureBox1.Location = new Point(6, 22);
+            pictureBox1.Name = "pictureBox1";
+            pictureBox1.Size = new Size(23, 23);
+            pictureBox1.TabIndex = 10;
+            pictureBox1.TabStop = false;
+            // 
             // markOfCommunicationCheckBox
             // 
             markOfCommunicationCheckBox.AutoSize = true;
-            markOfCommunicationCheckBox.Location = new Point(292, 197);
+            markOfCommunicationCheckBox.Location = new Point(34, 72);
             markOfCommunicationCheckBox.Name = "markOfCommunicationCheckBox";
             markOfCommunicationCheckBox.Size = new Size(154, 19);
             markOfCommunicationCheckBox.TabIndex = 19;
@@ -267,6 +322,30 @@
             commonToolTip.SetToolTip(markOfCommunicationCheckBox, "Do you have the Mark of Communication?");
             markOfCommunicationCheckBox.UseVisualStyleBackColor = true;
             markOfCommunicationCheckBox.CheckedChanged += markOfCommunicationCheckBox_CheckedChanged;
+            // 
+            // neuronGlowCheckBox
+            // 
+            neuronGlowCheckBox.AutoSize = true;
+            neuronGlowCheckBox.Location = new Point(35, 22);
+            neuronGlowCheckBox.Name = "neuronGlowCheckBox";
+            neuronGlowCheckBox.Size = new Size(96, 19);
+            neuronGlowCheckBox.TabIndex = 9;
+            neuronGlowCheckBox.Text = "Neuron Glow";
+            commonToolTip.SetToolTip(neuronGlowCheckBox, "Have you eaten a Neuron Fly?");
+            neuronGlowCheckBox.UseVisualStyleBackColor = true;
+            neuronGlowCheckBox.CheckedChanged += neuronGlowCheckBox_CheckedChanged;
+            // 
+            // justBeatGameCheckBox
+            // 
+            justBeatGameCheckBox.AutoSize = true;
+            justBeatGameCheckBox.Location = new Point(34, 47);
+            justBeatGameCheckBox.Name = "justBeatGameCheckBox";
+            justBeatGameCheckBox.Size = new Size(106, 19);
+            justBeatGameCheckBox.TabIndex = 12;
+            justBeatGameCheckBox.Text = "Just Beat Game";
+            commonToolTip.SetToolTip(justBeatGameCheckBox, "Was the last exit the result of you beating the game?");
+            justBeatGameCheckBox.UseVisualStyleBackColor = true;
+            justBeatGameCheckBox.CheckedChanged += justBeatGameCheckBox_CheckedChanged;
             // 
             // groupBox1
             // 
@@ -276,7 +355,7 @@
             groupBox1.Controls.Add(moonsCloakCheckBox);
             groupBox1.Controls.Add(pictureBox5);
             groupBox1.Controls.Add(extraHunterCyclesCheckBox);
-            groupBox1.Location = new Point(224, 227);
+            groupBox1.Location = new Point(230, 159);
             groupBox1.Name = "groupBox1";
             groupBox1.Size = new Size(200, 107);
             groupBox1.TabIndex = 18;
@@ -348,61 +427,6 @@
             commonToolTip.SetToolTip(extraHunterCyclesCheckBox, "Did Five Pebbles give Hunter Extra Cycles?");
             extraHunterCyclesCheckBox.UseVisualStyleBackColor = true;
             extraHunterCyclesCheckBox.CheckedChanged += extraHunterCyclesCheckBox_CheckedChanged;
-            // 
-            // pictureBox6
-            // 
-            pictureBox6.BackgroundImageLayout = ImageLayout.Center;
-            pictureBox6.Image = Properties.Resources.Yellow_Overseer_icon;
-            pictureBox6.Location = new Point(315, 356);
-            pictureBox6.Name = "pictureBox6";
-            pictureBox6.Size = new Size(23, 23);
-            pictureBox6.TabIndex = 17;
-            pictureBox6.TabStop = false;
-            // 
-            // guideOverseerDeadCheckBox
-            // 
-            guideOverseerDeadCheckBox.AutoSize = true;
-            guideOverseerDeadCheckBox.Location = new Point(344, 356);
-            guideOverseerDeadCheckBox.Name = "guideOverseerDeadCheckBox";
-            guideOverseerDeadCheckBox.Size = new Size(136, 19);
-            guideOverseerDeadCheckBox.TabIndex = 15;
-            guideOverseerDeadCheckBox.Text = "Guide Overseer Dead";
-            commonToolTip.SetToolTip(guideOverseerDeadCheckBox, "Did you kill the Guide Overseer?");
-            guideOverseerDeadCheckBox.UseVisualStyleBackColor = true;
-            // 
-            // justBeatGameCheckBox
-            // 
-            justBeatGameCheckBox.AutoSize = true;
-            justBeatGameCheckBox.Location = new Point(292, 172);
-            justBeatGameCheckBox.Name = "justBeatGameCheckBox";
-            justBeatGameCheckBox.Size = new Size(106, 19);
-            justBeatGameCheckBox.TabIndex = 12;
-            justBeatGameCheckBox.Text = "Just Beat Game";
-            commonToolTip.SetToolTip(justBeatGameCheckBox, "Was the last exit the result of you beating the game?");
-            justBeatGameCheckBox.UseVisualStyleBackColor = true;
-            justBeatGameCheckBox.CheckedChanged += justBeatGameCheckBox_CheckedChanged;
-            // 
-            // pictureBox1
-            // 
-            pictureBox1.BackgroundImage = Properties.Resources.Neuron_Fly;
-            pictureBox1.BackgroundImageLayout = ImageLayout.Center;
-            pictureBox1.Location = new Point(243, 148);
-            pictureBox1.Name = "pictureBox1";
-            pictureBox1.Size = new Size(23, 23);
-            pictureBox1.TabIndex = 10;
-            pictureBox1.TabStop = false;
-            // 
-            // neuronGlowCheckBox
-            // 
-            neuronGlowCheckBox.AutoSize = true;
-            neuronGlowCheckBox.Location = new Point(292, 148);
-            neuronGlowCheckBox.Name = "neuronGlowCheckBox";
-            neuronGlowCheckBox.Size = new Size(96, 19);
-            neuronGlowCheckBox.TabIndex = 9;
-            neuronGlowCheckBox.Text = "Neuron Glow";
-            commonToolTip.SetToolTip(neuronGlowCheckBox, "Have you eaten a Neuron Fly?");
-            neuronGlowCheckBox.UseVisualStyleBackColor = true;
-            neuronGlowCheckBox.CheckedChanged += neuronGlowCheckBox_CheckedChanged;
             // 
             // denInfoGroupBox
             // 
@@ -583,6 +607,7 @@
             // 
             // fivePebblesSlugcatSpecificGroupBox
             // 
+            fivePebblesSlugcatSpecificGroupBox.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             fivePebblesSlugcatSpecificGroupBox.Controls.Add(musicPearlStolenPictureBox);
             fivePebblesSlugcatSpecificGroupBox.Controls.Add(ascendedFivePebblesPictureBox);
             fivePebblesSlugcatSpecificGroupBox.Controls.Add(cellRemovedPictureBox);
@@ -593,9 +618,9 @@
             fivePebblesSlugcatSpecificGroupBox.Controls.Add(musicPearlStolenCheckBox);
             fivePebblesSlugcatSpecificGroupBox.Controls.Add(pebblesFirstVisitCountLabel);
             fivePebblesSlugcatSpecificGroupBox.Controls.Add(pebblesFirstVisitCountNumericUpDown);
-            fivePebblesSlugcatSpecificGroupBox.Location = new Point(182, 139);
+            fivePebblesSlugcatSpecificGroupBox.Location = new Point(247, 6);
             fivePebblesSlugcatSpecificGroupBox.Name = "fivePebblesSlugcatSpecificGroupBox";
-            fivePebblesSlugcatSpecificGroupBox.Size = new Size(381, 291);
+            fivePebblesSlugcatSpecificGroupBox.Size = new Size(387, 417);
             fivePebblesSlugcatSpecificGroupBox.TabIndex = 15;
             fivePebblesSlugcatSpecificGroupBox.TabStop = false;
             fivePebblesSlugcatSpecificGroupBox.Text = "Slugcat Specific";
@@ -632,6 +657,7 @@
             // 
             // fivePebblesCellConvoStateGroupBox
             // 
+            fivePebblesCellConvoStateGroupBox.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             fivePebblesCellConvoStateGroupBox.Controls.Add(label2);
             fivePebblesCellConvoStateGroupBox.Controls.Add(pebblesCellConvoStateNumericUpDown);
             fivePebblesCellConvoStateGroupBox.Controls.Add(pebblesCellState3RadioButton);
@@ -640,7 +666,7 @@
             fivePebblesCellConvoStateGroupBox.Controls.Add(pebblesCellState2RadioButton);
             fivePebblesCellConvoStateGroupBox.Location = new Point(6, 111);
             fivePebblesCellConvoStateGroupBox.Name = "fivePebblesCellConvoStateGroupBox";
-            fivePebblesCellConvoStateGroupBox.Size = new Size(369, 174);
+            fivePebblesCellConvoStateGroupBox.Size = new Size(375, 300);
             fivePebblesCellConvoStateGroupBox.TabIndex = 21;
             fivePebblesCellConvoStateGroupBox.TabStop = false;
             fivePebblesCellConvoStateGroupBox.Text = "Rarefaction Cell Conversation";
@@ -656,11 +682,12 @@
             // 
             // pebblesCellConvoStateNumericUpDown
             // 
+            pebblesCellConvoStateNumericUpDown.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
             pebblesCellConvoStateNumericUpDown.Location = new Point(75, 126);
             pebblesCellConvoStateNumericUpDown.Maximum = new decimal(new int[] { 7, 5, 0, 0 });
             pebblesCellConvoStateNumericUpDown.Minimum = new decimal(new int[] { int.MinValue, 0, 0, int.MinValue });
             pebblesCellConvoStateNumericUpDown.Name = "pebblesCellConvoStateNumericUpDown";
-            pebblesCellConvoStateNumericUpDown.Size = new Size(288, 23);
+            pebblesCellConvoStateNumericUpDown.Size = new Size(294, 23);
             pebblesCellConvoStateNumericUpDown.TabIndex = 20;
             commonToolTip.SetToolTip(pebblesCellConvoStateNumericUpDown, resources.GetString("pebblesCellConvoStateNumericUpDown.ToolTip"));
             pebblesCellConvoStateNumericUpDown.ValueChanged += pebblesCellConvoStateNumericUpDown_ValueChanged;
@@ -778,17 +805,19 @@
             // 
             // pebblesFirstVisitCountNumericUpDown
             // 
+            pebblesFirstVisitCountNumericUpDown.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
             pebblesFirstVisitCountNumericUpDown.Location = new Point(137, 22);
             pebblesFirstVisitCountNumericUpDown.Maximum = new decimal(new int[] { 7, 5, 0, 0 });
             pebblesFirstVisitCountNumericUpDown.Minimum = new decimal(new int[] { int.MinValue, 0, 0, int.MinValue });
             pebblesFirstVisitCountNumericUpDown.Name = "pebblesFirstVisitCountNumericUpDown";
-            pebblesFirstVisitCountNumericUpDown.Size = new Size(232, 23);
+            pebblesFirstVisitCountNumericUpDown.Size = new Size(244, 23);
             pebblesFirstVisitCountNumericUpDown.TabIndex = 13;
             commonToolTip.SetToolTip(pebblesFirstVisitCountNumericUpDown, "The number of cycles since you first talked with Five Pebbles\r\n(Appears to be used for tracking Spearmaster's pearl wound recover)");
             pebblesFirstVisitCountNumericUpDown.ValueChanged += pebblesFirstVisitCountNumericUpDown_ValueChanged;
             // 
             // fivePebblesSlugcatSharedGroupBox
             // 
+            fivePebblesSlugcatSharedGroupBox.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left;
             fivePebblesSlugcatSharedGroupBox.Controls.Add(frolickedInMemoryArraysCheckBox);
             fivePebblesSlugcatSharedGroupBox.Controls.Add(pebblesThrownOutCountNumericUpDown);
             fivePebblesSlugcatSharedGroupBox.Controls.Add(fivePebblesThrownOutCountLabel);
@@ -796,7 +825,7 @@
             fivePebblesSlugcatSharedGroupBox.Controls.Add(fivePebblesConversationCountLabel);
             fivePebblesSlugcatSharedGroupBox.Location = new Point(6, 6);
             fivePebblesSlugcatSharedGroupBox.Name = "fivePebblesSlugcatSharedGroupBox";
-            fivePebblesSlugcatSharedGroupBox.Size = new Size(370, 120);
+            fivePebblesSlugcatSharedGroupBox.Size = new Size(235, 417);
             fivePebblesSlugcatSharedGroupBox.TabIndex = 14;
             fivePebblesSlugcatSharedGroupBox.TabStop = false;
             fivePebblesSlugcatSharedGroupBox.Text = "Slugcat Shared";
@@ -815,11 +844,12 @@
             // 
             // pebblesThrownOutCountNumericUpDown
             // 
+            pebblesThrownOutCountNumericUpDown.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
             pebblesThrownOutCountNumericUpDown.Location = new Point(128, 51);
             pebblesThrownOutCountNumericUpDown.Maximum = new decimal(new int[] { 7, 5, 0, 0 });
             pebblesThrownOutCountNumericUpDown.Minimum = new decimal(new int[] { int.MinValue, 0, 0, int.MinValue });
             pebblesThrownOutCountNumericUpDown.Name = "pebblesThrownOutCountNumericUpDown";
-            pebblesThrownOutCountNumericUpDown.Size = new Size(236, 23);
+            pebblesThrownOutCountNumericUpDown.Size = new Size(101, 23);
             pebblesThrownOutCountNumericUpDown.TabIndex = 15;
             commonToolTip.SetToolTip(pebblesThrownOutCountNumericUpDown, "How many times has Five Pebbles kicked you out?");
             pebblesThrownOutCountNumericUpDown.ValueChanged += pebblesThrownOutCountNumericUpDown_ValueChanged;
@@ -835,11 +865,12 @@
             // 
             // pebblesConversationCountNumericUpDown
             // 
+            pebblesConversationCountNumericUpDown.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
             pebblesConversationCountNumericUpDown.Location = new Point(128, 22);
             pebblesConversationCountNumericUpDown.Maximum = new decimal(new int[] { 7, 5, 0, 0 });
             pebblesConversationCountNumericUpDown.Minimum = new decimal(new int[] { int.MinValue, 0, 0, int.MinValue });
             pebblesConversationCountNumericUpDown.Name = "pebblesConversationCountNumericUpDown";
-            pebblesConversationCountNumericUpDown.Size = new Size(236, 23);
+            pebblesConversationCountNumericUpDown.Size = new Size(101, 23);
             pebblesConversationCountNumericUpDown.TabIndex = 12;
             commonToolTip.SetToolTip(pebblesConversationCountNumericUpDown, "How many times have you talked with Five Pebbles?");
             pebblesConversationCountNumericUpDown.ValueChanged += fivePebblesConversationCountNumericUpDown_ValueChanged;
@@ -961,13 +992,13 @@
             // persistentInfoTabPage
             // 
             persistentInfoTabPage.BackColor = SystemColors.Control;
+            persistentInfoTabPage.Controls.Add(playTimeLabel);
+            persistentInfoTabPage.Controls.Add(playTimeNumericUpDown);
             persistentInfoTabPage.Controls.Add(rngGroupBox);
             persistentInfoTabPage.Controls.Add(currentlyDeadPictureBox);
             persistentInfoTabPage.Controls.Add(pictureBox3);
-            persistentInfoTabPage.Controls.Add(pictureBox2);
             persistentInfoTabPage.Controls.Add(hunterPermaDeathCheckBox);
             persistentInfoTabPage.Controls.Add(ascendedCheckBox);
-            persistentInfoTabPage.Controls.Add(ascendedFivePebblesCheckBox);
             persistentInfoTabPage.Controls.Add(ascendedLooksToTheMoonCheckBox);
             persistentInfoTabPage.Controls.Add(totalsGroupBox);
             persistentInfoTabPage.Controls.Add(karmaFlowerGroupBox);
@@ -978,6 +1009,25 @@
             persistentInfoTabPage.TabIndex = 2;
             persistentInfoTabPage.Text = "Persistent Info";
             persistentInfoTabPage.ToolTipText = "Data that persists across death";
+            // 
+            // playTimeLabel
+            // 
+            playTimeLabel.AutoSize = true;
+            playTimeLabel.Location = new Point(319, 234);
+            playTimeLabel.Name = "playTimeLabel";
+            playTimeLabel.Size = new Size(38, 15);
+            playTimeLabel.TabIndex = 13;
+            playTimeLabel.Text = "label3";
+            // 
+            // playTimeNumericUpDown
+            // 
+            playTimeNumericUpDown.Location = new Point(319, 189);
+            playTimeNumericUpDown.Maximum = new decimal(new int[] { int.MaxValue, 0, 0, 0 });
+            playTimeNumericUpDown.Minimum = new decimal(new int[] { int.MinValue, 0, 0, int.MinValue });
+            playTimeNumericUpDown.Name = "playTimeNumericUpDown";
+            playTimeNumericUpDown.Size = new Size(120, 23);
+            playTimeNumericUpDown.TabIndex = 12;
+            playTimeNumericUpDown.ValueChanged += playTimeNumericUpDown_ValueChanged;
             // 
             // rngGroupBox
             // 
@@ -1036,7 +1086,7 @@
             // 
             currentlyDeadPictureBox.BackgroundImage = Properties.Resources.slugcat_dead;
             currentlyDeadPictureBox.BackgroundImageLayout = ImageLayout.Center;
-            currentlyDeadPictureBox.Location = new Point(306, 296);
+            currentlyDeadPictureBox.Location = new Point(307, 385);
             currentlyDeadPictureBox.Name = "currentlyDeadPictureBox";
             currentlyDeadPictureBox.Size = new Size(24, 24);
             currentlyDeadPictureBox.TabIndex = 9;
@@ -1046,26 +1096,16 @@
             // 
             pictureBox3.BackgroundImage = Properties.Resources.lookstothemoondeadicon;
             pictureBox3.BackgroundImageLayout = ImageLayout.Center;
-            pictureBox3.Location = new Point(306, 236);
+            pictureBox3.Location = new Point(307, 325);
             pictureBox3.Name = "pictureBox3";
             pictureBox3.Size = new Size(24, 24);
             pictureBox3.TabIndex = 8;
             pictureBox3.TabStop = false;
             // 
-            // pictureBox2
-            // 
-            pictureBox2.BackgroundImage = Properties.Resources.fivepebblesdeadicon;
-            pictureBox2.BackgroundImageLayout = ImageLayout.Center;
-            pictureBox2.Location = new Point(306, 266);
-            pictureBox2.Name = "pictureBox2";
-            pictureBox2.Size = new Size(24, 24);
-            pictureBox2.TabIndex = 7;
-            pictureBox2.TabStop = false;
-            // 
             // hunterPermaDeathCheckBox
             // 
             hunterPermaDeathCheckBox.AutoSize = true;
-            hunterPermaDeathCheckBox.Location = new Point(335, 296);
+            hunterPermaDeathCheckBox.Location = new Point(336, 385);
             hunterPermaDeathCheckBox.Name = "hunterPermaDeathCheckBox";
             hunterPermaDeathCheckBox.Size = new Size(105, 19);
             hunterPermaDeathCheckBox.TabIndex = 6;
@@ -1077,7 +1117,7 @@
             // ascendedCheckBox
             // 
             ascendedCheckBox.AutoSize = true;
-            ascendedCheckBox.Location = new Point(335, 321);
+            ascendedCheckBox.Location = new Point(336, 410);
             ascendedCheckBox.Name = "ascendedCheckBox";
             ascendedCheckBox.Size = new Size(78, 19);
             ascendedCheckBox.TabIndex = 5;
@@ -1086,22 +1126,10 @@
             ascendedCheckBox.UseVisualStyleBackColor = true;
             ascendedCheckBox.CheckedChanged += ascendedCheckBox_CheckedChanged;
             // 
-            // ascendedFivePebblesCheckBox
-            // 
-            ascendedFivePebblesCheckBox.AutoSize = true;
-            ascendedFivePebblesCheckBox.Location = new Point(335, 266);
-            ascendedFivePebblesCheckBox.Name = "ascendedFivePebblesCheckBox";
-            ascendedFivePebblesCheckBox.Size = new Size(146, 19);
-            ascendedFivePebblesCheckBox.TabIndex = 3;
-            ascendedFivePebblesCheckBox.Text = "Ascended Five Pebbles";
-            commonToolTip.SetToolTip(ascendedFivePebblesCheckBox, "Was Five Pebbles ascended by Saint?");
-            ascendedFivePebblesCheckBox.UseVisualStyleBackColor = true;
-            ascendedFivePebblesCheckBox.CheckedChanged += ascendedFivePebblesCheckBox_CheckedChanged;
-            // 
             // ascendedLooksToTheMoonCheckBox
             // 
             ascendedLooksToTheMoonCheckBox.AutoSize = true;
-            ascendedLooksToTheMoonCheckBox.Location = new Point(335, 236);
+            ascendedLooksToTheMoonCheckBox.Location = new Point(336, 325);
             ascendedLooksToTheMoonCheckBox.Name = "ascendedLooksToTheMoonCheckBox";
             ascendedLooksToTheMoonCheckBox.Size = new Size(184, 19);
             ascendedLooksToTheMoonCheckBox.TabIndex = 2;
@@ -1348,13 +1376,17 @@
             tabControl.ResumeLayout(false);
             slugcatInfoTabPage.ResumeLayout(false);
             slugcatInfoTabPage.PerformLayout();
+            groupBox3.ResumeLayout(false);
+            groupBox3.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)pictureBox6).EndInit();
+            groupBox2.ResumeLayout(false);
+            groupBox2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             groupBox1.ResumeLayout(false);
             groupBox1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)citizenIDDronePictureBox).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox7).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox5).EndInit();
-            ((System.ComponentModel.ISupportInitialize)pictureBox6).EndInit();
-            ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             denInfoGroupBox.ResumeLayout(false);
             denInfoGroupBox.PerformLayout();
             slugcatInfoKarmaGroupBox.ResumeLayout(false);
@@ -1383,13 +1415,13 @@
             ((System.ComponentModel.ISupportInitialize)communityRegionRepDataGridView).EndInit();
             persistentInfoTabPage.ResumeLayout(false);
             persistentInfoTabPage.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)playTimeNumericUpDown).EndInit();
             rngGroupBox.ResumeLayout(false);
             rngGroupBox.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)rngNextIssueIDNumericUpDown).EndInit();
             ((System.ComponentModel.ISupportInitialize)rngSeedNumericUpDown).EndInit();
             ((System.ComponentModel.ISupportInitialize)currentlyDeadPictureBox).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox3).EndInit();
-            ((System.ComponentModel.ISupportInitialize)pictureBox2).EndInit();
             totalsGroupBox.ResumeLayout(false);
             totalsGroupBox.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)totalFriendsSavedNumericUpDown).EndInit();
@@ -1437,10 +1469,8 @@
         private CheckBox ascendedLooksToTheMoonCheckBox;
         private CheckBox hunterPermaDeathCheckBox;
         private CheckBox ascendedCheckBox;
-        private CheckBox ascendedFivePebblesCheckBox;
         private CheckBox neuronGlowCheckBox;
         private PictureBox pictureBox1;
-        private PictureBox pictureBox2;
         private PictureBox pictureBox3;
         private PictureBox currentlyDeadPictureBox;
         private ToolTip commonToolTip;
@@ -1511,5 +1541,9 @@
         private TabPage iteratorFivePebblesTabPage;
         private TabPage iteratorLooksToTheMoonTabPage;
         private NumericUpDown numericUpDown1;
+        private GroupBox groupBox3;
+        private GroupBox groupBox2;
+        private Label playTimeLabel;
+        private NumericUpDown playTimeNumericUpDown;
     }
 }

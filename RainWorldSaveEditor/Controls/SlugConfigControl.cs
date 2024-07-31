@@ -552,13 +552,14 @@ public partial class SlugConfigControl : UserControl
             totalFriendsSavedNumericUpDown.Value = state.DeathPersistentSaveData.FriendsSaved;
 
             ascendedLooksToTheMoonCheckBox.Checked = state.DeathPersistentSaveData.IsMoonAscendedBySaint;
-            ascendedFivePebblesCheckBox.Checked = state.DeathPersistentSaveData.IsPebblesAscendedBySaint;
 
             ascendedCheckBox.Checked = state.DeathPersistentSaveData.HasAscended;
             hunterPermaDeathCheckBox.Checked = state.DeathPersistentSaveData.IsHunterDead;
 
             rngSeedNumericUpDown.Value = state.Seed;
             rngNextIssueIDNumericUpDown.Value = state.NextIssuedId;
+
+            playTimeNumericUpDown.Value = state.TotalTimeInSeconds;
         }
         else
         {
@@ -570,13 +571,13 @@ public partial class SlugConfigControl : UserControl
             totalFriendsSavedNumericUpDown.Value = 0;
 
             ascendedLooksToTheMoonCheckBox.Checked = false;
-            ascendedFivePebblesCheckBox.Checked = false;
 
             ascendedCheckBox.Checked = false;
             hunterPermaDeathCheckBox.Checked = false;
 
             rngSeedNumericUpDown.Value = 0;
             rngNextIssueIDNumericUpDown.Value = 0;
+            playTimeNumericUpDown.Value = 0;
         }
     }
 
@@ -632,6 +633,17 @@ public partial class SlugConfigControl : UserControl
     }
 
     #endregion
+
+    private void playTimeNumericUpDown_ValueChanged(object sender, EventArgs e)
+    {
+        var t = TimeSpan.FromSeconds((double)playTimeNumericUpDown.Value);
+
+        playTimeLabel.Text = string.Format("Playtime: {0:D5}:d{1:D2}h:{2:D2}m:{3:D2}s", t.Days,  t.Hours, t.Minutes, t.Seconds);
+
+        if (SaveState is not null)
+            SaveState.TotalTimeInSeconds = (int)playTimeNumericUpDown.Value;
+    }
+
     #endregion
 
     #region Advanced
@@ -832,4 +844,5 @@ public partial class SlugConfigControl : UserControl
     {
 
     }
+
 }
