@@ -208,6 +208,7 @@ partial class MainForm
         // slugcatsToolStripMenuItem
         // 
         slugcatsToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { vanillaSlugcatsToolStripMenuItem, dlcSlugcatsToolStripMenuItem, moddedSlugcatsToolStripMenuItem });
+        slugcatsToolStripMenuItem.Enabled = false;
         slugcatsToolStripMenuItem.Name = "slugcatsToolStripMenuItem";
         slugcatsToolStripMenuItem.Size = new Size(63, 20);
         slugcatsToolStripMenuItem.Text = "Slugcats";
@@ -215,19 +216,19 @@ partial class MainForm
         // vanillaSlugcatsToolStripMenuItem
         // 
         vanillaSlugcatsToolStripMenuItem.Name = "vanillaSlugcatsToolStripMenuItem";
-        vanillaSlugcatsToolStripMenuItem.Size = new Size(119, 22);
+        vanillaSlugcatsToolStripMenuItem.Size = new Size(180, 22);
         vanillaSlugcatsToolStripMenuItem.Text = "Vanilla";
         // 
         // dlcSlugcatsToolStripMenuItem
         // 
         dlcSlugcatsToolStripMenuItem.Name = "dlcSlugcatsToolStripMenuItem";
-        dlcSlugcatsToolStripMenuItem.Size = new Size(119, 22);
+        dlcSlugcatsToolStripMenuItem.Size = new Size(180, 22);
         dlcSlugcatsToolStripMenuItem.Text = "DLC";
         // 
         // moddedSlugcatsToolStripMenuItem
         // 
         moddedSlugcatsToolStripMenuItem.Name = "moddedSlugcatsToolStripMenuItem";
-        moddedSlugcatsToolStripMenuItem.Size = new Size(119, 22);
+        moddedSlugcatsToolStripMenuItem.Size = new Size(180, 22);
         moddedSlugcatsToolStripMenuItem.Text = "Modded";
         // 
         // aboutToolStripMenuItem

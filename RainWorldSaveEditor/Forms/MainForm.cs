@@ -13,7 +13,10 @@ namespace RainWorldSaveEditor;
 public partial class MainForm : Form
 {
     Settings settings = new();
-    RainWorldSave save = new();
+
+    SlugcatInfo _slugcatInfo = null!;
+    RainWorldSave _save = null!;
+    SaveState _saveState = null!;
 
     public MainForm()
     {
@@ -94,30 +97,32 @@ public partial class MainForm : Form
         SlugcatInfo slugcatInfo = (SlugcatInfo)menuItem.Tag!;
 
 
-
-        SaveState id = null!;
-
-        foreach (var slugcat in EditorCommon.SlugcatInfo)
-        {
-            for (var i = 0; i < save.SaveStates.Count; i++)
+            for (var i = 0; i < _save.SaveStates.Count; i++)
             {
-                if (save.SaveStates[i].SaveStateNumber == slugcat.SaveID)
+                if (_save.SaveStates[i].SaveStateNumber == slugcatInfo.SaveID)
                 {
-                    id = save.SaveStates[i];
+                    _slugcatInfo = slugcatInfo;
+                    _saveState = _save.SaveStates[i];
                     break;
                 }
             }
-        }
 
 
-        if (id is null)
+        slugConfigControl.SetupFromState(null!);
+        slugConfigControl.FoodPipControl.FilledPips = 0;
+        slugConfigControl.FoodPipControl.PipBarIndex = 4;
+        slugConfigControl.FoodPipControl.PipCount = 7;
+
+        if (_saveState is null)
         {
             Logger.Info($"Save does not have information for slugcat: \"{slugcatInfo.Name}\" ID: \"{slugcatInfo.SaveID}\"");
-            slugConfigControl.SetupFromState(null!);
             return;
         }
 
-        slugConfigControl.SetupFromState(id!);
+        slugConfigControl.FoodPipControl.PipBarIndex = slugcatInfo.PipBarIndex;
+        slugConfigControl.FoodPipControl.PipCount = slugcatInfo.PipCount;
+
+        slugConfigControl.SetupFromState(_saveState!);
     }
 
     void SetDefaultState()
@@ -132,9 +137,13 @@ public partial class MainForm : Form
     }
 
 
-    void ReadSaveData(string filepath)
+    void LoadSaveData(string filepath)
     {
-        var fs = File.OpenRead(filepath);
+        UnloadSave();
+        _save = new();
+        slugcatsToolStripMenuItem.Enabled = true;
+
+        using var fs = File.OpenRead(filepath);
         var table = HashtableSerializer.Read(fs);
         fs.Close();
 
@@ -142,7 +151,7 @@ public partial class MainForm : Form
 
         if (table["save"] is string saveData)
         {
-            save.Read(saveData);
+            _save.Read(saveData);
         }
         else
         {
@@ -152,9 +161,19 @@ public partial class MainForm : Form
 
     }
 
+    void UnloadSave()
+    {
+        _save = null!;
+        slugcatsToolStripMenuItem.Enabled = false;
+    }
+
     void UpdateTitle()
     {
-        Text = "Rainworld Save Editor";
+        if (_slugcatInfo is not null)
+            Text = $"Rain World Save Editor - {_slugcatInfo.Name}";
+        else
+            Text = $"Rain World Save Editor";
+
     }
 
     #region Menustrip
@@ -177,7 +196,7 @@ public partial class MainForm : Form
         openFile2ToolStripMenuItem.Checked = false;
         openFile3ToolStripMenuItem.Checked = false;
         openFileToolStripMenuItem.Checked = false;
-        ReadSaveData($"{settings.RainWorldSaveDirectory}\\sav");
+        LoadSaveData($"{settings.RainWorldSaveDirectory}\\sav");
 
     }
 
@@ -187,7 +206,7 @@ public partial class MainForm : Form
         openFile2ToolStripMenuItem.Checked = true;
         openFile3ToolStripMenuItem.Checked = false;
         openFileToolStripMenuItem.Checked = false;
-        ReadSaveData($"{settings.RainWorldSaveDirectory}\\sav2");
+        LoadSaveData($"{settings.RainWorldSaveDirectory}\\sav2");
     }
 
     private void openFile3ToolStripMenuItem_Click(object sender, EventArgs e)
@@ -196,7 +215,7 @@ public partial class MainForm : Form
         openFile2ToolStripMenuItem.Checked = false;
         openFile3ToolStripMenuItem.Checked = true;
         openFileToolStripMenuItem.Checked = false;
-        ReadSaveData($"{settings.RainWorldSaveDirectory}\\sav3");
+        LoadSaveData($"{settings.RainWorldSaveDirectory}\\sav3");
     }
 
     private void openFileToolStripMenuItem_Click(object sender, EventArgs e)
@@ -212,7 +231,7 @@ public partial class MainForm : Form
         openFileToolStripMenuItem.Checked = true;
 
         Logger.Info($"Opening save file {dialog.FileName}");
-        ReadSaveData(dialog.FileName);
+        LoadSaveData(dialog.FileName);
     }
 
     private void closeToolStripMenuItem_Click(object sender, EventArgs e)
