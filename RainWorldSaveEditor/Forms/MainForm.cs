@@ -23,7 +23,7 @@ public partial class MainForm : Form
     {
         InitializeComponent();
 
-        EditorCommon.ReadSlugcatInfo();
+        SlugcatInfo.ReadSlugcatInfo();
 
         CommunityInfo.ReadCommunities();
     }
@@ -61,9 +61,9 @@ public partial class MainForm : Form
             Logger.Warn($"RAIN WORLD DIRECTORY DOESNT EXIST WHAT \"{settings.RainWorldSaveDirectory}\"");
         }
 
-        for (var i = 0; i < EditorCommon.SlugcatInfo.Length; i++)
+        for (var i = 0; i < SlugcatInfo.SlugcatInfos.Length; i++)
         {
-            var slugcatInfo = EditorCommon.SlugcatInfo[i];
+            var slugcatInfo = SlugcatInfo.SlugcatInfos[i];
 
             Bitmap bmp = null!;
 
