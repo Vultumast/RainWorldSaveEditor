@@ -249,10 +249,10 @@ public class MiscProgressionData : SaveElementContainer, IParsable<MiscProgressi
     [SaveFileElement("CHCLEARTIMES", ListDelimiter = "<mpdC>")]
     public List<int> CompletedChallengeTimes { get; set; } = [];
 
-    [SaveFileElement("CUSTCOLORS", IsRepeatableKey = true)]
+    [SaveFileElement("CUSTCOLORS", IsRepeatableKey = RepeatMode.Exact)]
     public List<ColorChoice> CustomColors { get; set; } = [];
 
-    [SaveFileElement("CAMPAIGNTIME", IsRepeatableKey = true)]
+    [SaveFileElement("CAMPAIGNTIME", IsRepeatableKey = RepeatMode.Exact)]
     public List<CampaignTime> CampaignTime { get; set; } = [];
 
     /// <summary>

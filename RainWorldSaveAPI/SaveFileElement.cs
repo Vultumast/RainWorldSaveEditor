@@ -7,6 +7,13 @@ using System.Threading.Tasks;
 
 namespace RainWorldSaveAPI;
 
+public enum RepeatMode
+{
+    None,
+    Exact,
+    Prefix
+}
+
 // TODO: Implement a way to read fields of type "integersArray", "miscBools", etc.
 [AttributeUsage(AttributeTargets.Property, AllowMultiple = false)]
 public class SaveFileElement(string name, bool valueOptional = false) : Attribute
@@ -29,7 +36,7 @@ public class SaveFileElement(string name, bool valueOptional = false) : Attribut
     /// <summary>
     /// For lists, defines that this key can appear multiple times and the fields should be added into the list.
     /// </summary>
-    public bool IsRepeatableKey { get; init; } = false;
+    public RepeatMode IsRepeatableKey { get; init; } = RepeatMode.None;
 
 }
 

@@ -1,17 +1,29 @@
 ﻿using RainWorldSaveAPI.Base;
+using RainWorldSaveAPI.Save_Elements;
 using System.Security.Cryptography;
 using System.Text;
-using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace RainWorldSaveAPI;
 
 public class RainWorldSave : SaveElementContainer
 {
-    [SaveFileElement("SAVE STATE", IsRepeatableKey = true)]
+    [SaveFileElement("SAVE STATE", IsRepeatableKey = RepeatMode.Exact)]
     public List<SaveState> SaveStates { get; } = [];
 
     [SaveFileElement("MISCPROG")]
     public MiscProgressionData MiscProgressionData { get; set; } = new();
+
+    [SaveFileElement("MAP", IsRepeatableKey = RepeatMode.Exact)]
+    public List<MapData> VanillaMaps { get; set; } = [];
+
+    [SaveFileElement("MAPUPDATE", IsRepeatableKey = RepeatMode.Exact)]
+    public List<MapUpdateData> VanillaMapUpdates { get; set; } = [];
+
+    [SaveFileElement("MAP_", IsRepeatableKey = RepeatMode.Prefix)]
+    public List<MapData> ModdedMaps { get; set; } = [];
+
+    [SaveFileElement("MAPUPDATE_", IsRepeatableKey = RepeatMode.Prefix)]
+    public List<MapUpdateData> ModdedMapUpdates { get; set; } = [];
 
     public void Read(string saveString)
     {

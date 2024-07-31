@@ -131,7 +131,7 @@ public abstract class SaveElementContainer
         {
             var propertyBinding = propertyInfo.GetValue(container);
 
-            if (elementInfo.IsRepeatableKey)
+            if (elementInfo.IsRepeatableKey != RepeatMode.None)
             {
                 addMethod.Invoke(propertyBinding, [value]);
             }
@@ -152,7 +152,7 @@ public abstract class SaveElementContainer
         {
             var propertyBinding = propertyInfo.GetValue(container);
 
-            if (elementInfo.IsRepeatableKey)
+            if (elementInfo.IsRepeatableKey != RepeatMode.None)
             {
                 addMethod.Invoke(propertyBinding, [parseMethod.Invoke(null, [value, null])]);
             }
@@ -186,28 +186,47 @@ public abstract class SaveElementContainer
 
     public static void ParseField(SaveElementContainer container, string key, string value)
     {
-        SaveFileElement elementInfo;
-        if (container.SaveFileElements.TryGetValue(key, out elementInfo!))
+        SaveFileElement? elementInfo = GetRelevantElementInfo(container, key);
+
+        if (elementInfo != null)
         {
-            var propertyInfo = container.PropertyInfos[key];
+            var propertyInfo = container.PropertyInfos[elementInfo.Name];
 
             var collectionInterface = propertyInfo.PropertyType.GetInterfaces().Where(x => x.IsGenericType && x.GetGenericTypeDefinition() == typeof(ICollection<>)).FirstOrDefault();
             var parsableInterface = propertyInfo.PropertyType.GetInterfaces().Where(x => x.IsGenericType && x.GetGenericTypeDefinition() == typeof(IParsable<>)).FirstOrDefault();
 
             if (parsableInterface is not null)
             {
-                if (SetScalarProperty(container, propertyInfo, elementInfo, value))
+                var actualValueToUse = value;
+
+                var rawAttrib = propertyInfo.PropertyType.GetCustomAttribute<SerializeRawAttribute>();
+
+                if (rawAttrib != null)
+                {
+                    actualValueToUse = key + rawAttrib.KeyValueDelimiter + value;
+                }
+
+                if (SetScalarProperty(container, propertyInfo, elementInfo, actualValueToUse))
                     return;
             }
             else if (collectionInterface is not null)
             {
-                if (elementInfo.ListDelimiter is not null && elementInfo.IsRepeatableKey)
+                var actualValueToUse = value;
+
+                var rawAttrib = propertyInfo.PropertyType.GetGenericArguments()[0].GetCustomAttribute<SerializeRawAttribute>();
+
+                if (rawAttrib != null)
+                {
+                    actualValueToUse = key + rawAttrib.KeyValueDelimiter + value;
+                }
+
+                if (elementInfo.ListDelimiter is not null && elementInfo.IsRepeatableKey != RepeatMode.None)
                     Logger.Debug($"{key} => {LimitString(value)}, \"{propertyInfo.PropertyType}\" is a collection that has both a delimiter and is marked as repeatable! Tell Mario or Vultu!");
 
-                if (elementInfo.ListDelimiter is null && !elementInfo.IsRepeatableKey)
+                if (elementInfo.ListDelimiter is null && elementInfo.IsRepeatableKey == RepeatMode.None)
                     Logger.Debug($"{key} => {LimitString(value)}, \"{propertyInfo.PropertyType}\" is a collection that doesn't have a delimiter and is not marked as repeatable! Tell Mario or Vultu!");
 
-                else if (SetListProperty(container, propertyInfo, elementInfo, value, collectionInterface))
+                else if (SetListProperty(container, propertyInfo, elementInfo, actualValueToUse, collectionInterface))
                     return;
             }
             else
@@ -217,6 +236,19 @@ public abstract class SaveElementContainer
         }
         else
             Logger.Warn($"Unknown Key: \"{key}\" => {LimitString(value)}");
+    }
+
+    private static SaveFileElement? GetRelevantElementInfo(SaveElementContainer container, string key)
+    {
+        var prefixedInfo = container.SaveFileElements.Values.FirstOrDefault(x => key.StartsWith(x.Name) && x.IsRepeatableKey == RepeatMode.Prefix);
+
+        if (prefixedInfo != null)
+            return prefixedInfo;
+
+        if (container.SaveFileElements.TryGetValue(key, out SaveFileElement? info))
+            return info;
+
+        return null;
     }
 
     private static string LimitString(string input)
