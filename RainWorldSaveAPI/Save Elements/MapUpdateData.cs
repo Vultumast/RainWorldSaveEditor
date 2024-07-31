@@ -1,17 +1,29 @@
 ﻿using System.Diagnostics.CodeAnalysis;
+using System.Globalization;
 
 namespace RainWorldSaveAPI.Save_Elements;
 
 [SerializeRaw(":")]
 public class MapUpdateData : IParsable<MapUpdateData>
 {
-    public string Data { get; set; } = "";
+    public string Key { get; set; } = "";
+
+    public string Region { get; set; } = "";
+
+    public long MapLastUpdated { get; set; } = 0;
 
     public static MapUpdateData Parse(string s, IFormatProvider? provider)
     {
         var mapData = new MapUpdateData();
 
-        mapData.Data = s;
+        var parts = s.Split(":", 2);
+
+        mapData.Key = parts[0];
+
+        var valueParts = parts[1].Split("<progDivB>");
+
+        mapData.Region = valueParts[0];
+        mapData.MapLastUpdated = long.Parse(valueParts[1], NumberStyles.Any, CultureInfo.InvariantCulture);
 
         return mapData;
     }
