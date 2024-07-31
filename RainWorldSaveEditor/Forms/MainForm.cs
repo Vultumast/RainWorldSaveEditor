@@ -93,10 +93,12 @@ public partial class MainForm : Form
     }
 
     private void SlugcatMenuItem_Click(object? sender, EventArgs e)
-    { 
+    {
         ToolStripMenuItem menuItem = (ToolStripMenuItem)sender!;
         SlugcatInfo slugcatInfo = (SlugcatInfo)menuItem.Tag!;
 
+        if (_saveState is not null)
+            Logger.Info($"Clearing current info from: \"{_saveState.SaveStateNumber}\"");
 
         for (var i = 0; i < _save.SaveStates.Count; i++)
         {
@@ -112,6 +114,7 @@ public partial class MainForm : Form
         ClearSlugcatCheckStates();
         menuItem.Checked = true;
 
+
         // Clear Current State info
         slugConfigControl.SetupFromState(null!);
         slugConfigControl.FoodPipControl.FilledPips = 0;
@@ -124,6 +127,7 @@ public partial class MainForm : Form
             return;
         }
 
+        Logger.Info($"Loading state info from: \"{_saveState.SaveStateNumber}\"");
 
         // Load new state info
         slugConfigControl.FoodPipControl.PipBarIndex = slugcatInfo.PipBarIndex;
@@ -132,6 +136,7 @@ public partial class MainForm : Form
         slugConfigControl.SetupFromState(_saveState!);
 
         UpdateTitle();
+        Logger.Info($"Finished updating state info for \"{_saveState.SaveStateNumber}\"");
     }
 
     void ClearSlugcatCheckStates()
@@ -273,7 +278,6 @@ public partial class MainForm : Form
         // Vultu: Put needed close code in here
         this.Close();
     }
-    #endregion
 
 
     private void aboutToolStripMenuItem_Click(object sender, EventArgs e)
@@ -286,4 +290,24 @@ public partial class MainForm : Form
     {
         Logger.ConsoleShown = !Logger.ConsoleShown;
     }
+
+    private void exportToolStripMenuItem_Click(object sender, EventArgs e)
+    {
+        using SaveFileDialog dlg = new SaveFileDialog();
+
+        dlg.Filter = "*.json (JSON File)|*.json";
+
+        if (dlg.ShowDialog() == DialogResult.OK)
+        {
+            // Vultu: this don't work
+            File.WriteAllText(dlg.FileName, JsonSerializer.Serialize(_saveState, new JsonSerializerOptions() { WriteIndented = true }));
+        }
+
+    }
+
+    private void importToolStripMenuItem_Click(object sender, EventArgs e)
+    {
+
+    }
+    #endregion
 }

@@ -156,6 +156,7 @@ namespace RainWorldSaveEditor.Editor_Classes
 
         public static void Read()
         {
+            Logger.Info($"Reading translation information...");
             Logger.ReadAttempt(SavePath);
             if (!File.Exists(SavePath))
             {
@@ -180,7 +181,7 @@ namespace RainWorldSaveEditor.Editor_Classes
                 Logger.Warn($"ModRegionNames was null, this may be from an error in deserializing \"{SavePath}\"");
                 ModRegionNames = [];
             }
-            Logger.Success();
+            Logger.Info($"Finished reading translation information");
         }
         public static void Write()
         {

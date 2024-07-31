@@ -54,6 +54,9 @@ partial class MainForm
         vanillaSlugcatsToolStripMenuItem = new ToolStripMenuItem();
         dlcSlugcatsToolStripMenuItem = new ToolStripMenuItem();
         moddedSlugcatsToolStripMenuItem = new ToolStripMenuItem();
+        toolStripSeparator4 = new ToolStripSeparator();
+        exportToolStripMenuItem = new ToolStripMenuItem();
+        importToolStripMenuItem = new ToolStripMenuItem();
         aboutToolStripMenuItem = new ToolStripMenuItem();
         toggleConsoleToolStripMenuItem = new ToolStripMenuItem();
         slugcatIconImageList = new ImageList(components);
@@ -148,13 +151,13 @@ partial class MainForm
         // 
         openToolStripMenuItem1.DropDownItems.AddRange(new ToolStripItem[] { openFile1ToolStripMenuItem, openFile2ToolStripMenuItem, openFile3ToolStripMenuItem, toolStripSeparator3, openFileToolStripMenuItem });
         openToolStripMenuItem1.Name = "openToolStripMenuItem1";
-        openToolStripMenuItem1.Size = new Size(180, 22);
+        openToolStripMenuItem1.Size = new Size(123, 22);
         openToolStripMenuItem1.Text = "Open";
         // 
         // openFile1ToolStripMenuItem
         // 
         openFile1ToolStripMenuItem.Name = "openFile1ToolStripMenuItem";
-        openFile1ToolStripMenuItem.Size = new Size(180, 22);
+        openFile1ToolStripMenuItem.Size = new Size(133, 22);
         openFile1ToolStripMenuItem.Text = "File 1";
         openFile1ToolStripMenuItem.ToolTipText = "Switch to Save File 1";
         openFile1ToolStripMenuItem.Click += openFile1ToolStripMenuItem_Click;
@@ -162,7 +165,7 @@ partial class MainForm
         // openFile2ToolStripMenuItem
         // 
         openFile2ToolStripMenuItem.Name = "openFile2ToolStripMenuItem";
-        openFile2ToolStripMenuItem.Size = new Size(180, 22);
+        openFile2ToolStripMenuItem.Size = new Size(133, 22);
         openFile2ToolStripMenuItem.Text = "File 2";
         openFile2ToolStripMenuItem.ToolTipText = "Switch to Save File 2";
         openFile2ToolStripMenuItem.Click += openFile2ToolStripMenuItem_Click;
@@ -170,7 +173,7 @@ partial class MainForm
         // openFile3ToolStripMenuItem
         // 
         openFile3ToolStripMenuItem.Name = "openFile3ToolStripMenuItem";
-        openFile3ToolStripMenuItem.Size = new Size(180, 22);
+        openFile3ToolStripMenuItem.Size = new Size(133, 22);
         openFile3ToolStripMenuItem.Text = "File 3";
         openFile3ToolStripMenuItem.ToolTipText = "Switch to Save File 3";
         openFile3ToolStripMenuItem.Click += openFile3ToolStripMenuItem_Click;
@@ -178,12 +181,12 @@ partial class MainForm
         // toolStripSeparator3
         // 
         toolStripSeparator3.Name = "toolStripSeparator3";
-        toolStripSeparator3.Size = new Size(177, 6);
+        toolStripSeparator3.Size = new Size(130, 6);
         // 
         // openFileToolStripMenuItem
         // 
         openFileToolStripMenuItem.Name = "openFileToolStripMenuItem";
-        openFileToolStripMenuItem.Size = new Size(180, 22);
+        openFileToolStripMenuItem.Size = new Size(133, 22);
         openFileToolStripMenuItem.Text = "Open File...";
         openFileToolStripMenuItem.ToolTipText = "Open an external Save File";
         openFileToolStripMenuItem.Click += openFileToolStripMenuItem_Click;
@@ -191,23 +194,23 @@ partial class MainForm
         // toolStripSeparator2
         // 
         toolStripSeparator2.Name = "toolStripSeparator2";
-        toolStripSeparator2.Size = new Size(177, 6);
+        toolStripSeparator2.Size = new Size(120, 6);
         // 
         // saveToolStripMenuItem1
         // 
         saveToolStripMenuItem1.Name = "saveToolStripMenuItem1";
-        saveToolStripMenuItem1.Size = new Size(180, 22);
+        saveToolStripMenuItem1.Size = new Size(123, 22);
         saveToolStripMenuItem1.Text = "Save";
         // 
         // saveAsToolStripMenuItem1
         // 
         saveAsToolStripMenuItem1.Name = "saveAsToolStripMenuItem1";
-        saveAsToolStripMenuItem1.Size = new Size(180, 22);
+        saveAsToolStripMenuItem1.Size = new Size(123, 22);
         saveAsToolStripMenuItem1.Text = "Save As...";
         // 
         // slugcatsToolStripMenuItem
         // 
-        slugcatsToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { vanillaSlugcatsToolStripMenuItem, dlcSlugcatsToolStripMenuItem, moddedSlugcatsToolStripMenuItem });
+        slugcatsToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { vanillaSlugcatsToolStripMenuItem, dlcSlugcatsToolStripMenuItem, moddedSlugcatsToolStripMenuItem, toolStripSeparator4, exportToolStripMenuItem, importToolStripMenuItem });
         slugcatsToolStripMenuItem.Enabled = false;
         slugcatsToolStripMenuItem.Name = "slugcatsToolStripMenuItem";
         slugcatsToolStripMenuItem.Size = new Size(63, 20);
@@ -230,6 +233,29 @@ partial class MainForm
         moddedSlugcatsToolStripMenuItem.Name = "moddedSlugcatsToolStripMenuItem";
         moddedSlugcatsToolStripMenuItem.Size = new Size(180, 22);
         moddedSlugcatsToolStripMenuItem.Text = "Modded";
+        // 
+        // toolStripSeparator4
+        // 
+        toolStripSeparator4.Name = "toolStripSeparator4";
+        toolStripSeparator4.Size = new Size(177, 6);
+        // 
+        // exportToolStripMenuItem
+        // 
+        exportToolStripMenuItem.Enabled = false;
+        exportToolStripMenuItem.Name = "exportToolStripMenuItem";
+        exportToolStripMenuItem.Size = new Size(180, 22);
+        exportToolStripMenuItem.Text = "Export...";
+        exportToolStripMenuItem.ToolTipText = "Export current slugcat slot";
+        exportToolStripMenuItem.Click += exportToolStripMenuItem_Click;
+        // 
+        // importToolStripMenuItem
+        // 
+        importToolStripMenuItem.Enabled = false;
+        importToolStripMenuItem.Name = "importToolStripMenuItem";
+        importToolStripMenuItem.Size = new Size(180, 22);
+        importToolStripMenuItem.Text = "Import...";
+        importToolStripMenuItem.ToolTipText = "Import a file to overwrite a slugcat slot";
+        importToolStripMenuItem.Click += importToolStripMenuItem_Click;
         // 
         // aboutToolStripMenuItem
         // 
@@ -331,4 +357,7 @@ partial class MainForm
     private ToolStripMenuItem dlcSlugcatsToolStripMenuItem;
     private ToolStripMenuItem moddedSlugcatsToolStripMenuItem;
     private Controls.SlugConfigControl slugConfigControl;
+    private ToolStripSeparator toolStripSeparator4;
+    private ToolStripMenuItem exportToolStripMenuItem;
+    private ToolStripMenuItem importToolStripMenuItem;
 }
