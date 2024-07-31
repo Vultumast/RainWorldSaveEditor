@@ -7,6 +7,7 @@ using RainWorldSaveAPI.SaveElements;
 using System.Reflection;
 using System.Globalization;
 using System.Resources;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace RainWorldSaveEditor;
 
@@ -20,9 +21,11 @@ public partial class MainForm : Form
 
     public MainForm()
     {
-
         InitializeComponent();
 
+        EditorCommon.ReadSlugcatInfo();
+
+        CommunityInfo.ReadCommunities();
     }
 
     private void MainForm_Load(object sender, EventArgs e)
@@ -58,11 +61,6 @@ public partial class MainForm : Form
             Logger.Warn($"RAIN WORLD DIRECTORY DOESNT EXIST WHAT \"{settings.RainWorldSaveDirectory}\"");
         }
 
-
-        EditorCommon.ReadSlugcatInfo();
-
-        CommunityInfo.ReadCommunities();
-
         for (var i = 0; i < EditorCommon.SlugcatInfo.Length; i++)
         {
             var slugcatInfo = EditorCommon.SlugcatInfo[i];
@@ -81,13 +79,16 @@ public partial class MainForm : Form
                 bmp = new Bitmap(imgPath);
 
             if (slugcatInfo.Modded)
-                menuItem = vanillaSlugcatsToolStripMenuItem;
+                menuItem = moddedSlugcatsToolStripMenuItem;
             else if (slugcatInfo.RequiresDLC)
                 menuItem = dlcSlugcatsToolStripMenuItem;
             else
                 menuItem = vanillaSlugcatsToolStripMenuItem;
 
-            menuItem.DropDownItems.Add(slugcatInfo.Name, bmp, SlugcatMenuItem_Click).Tag = slugcatInfo;
+            ToolStripMenuItem item = (ToolStripMenuItem)menuItem.DropDownItems.Add(slugcatInfo.Name, bmp, SlugcatMenuItem_Click);
+            item.Tag = slugcatInfo;
+            item.CheckOnClick = true;
+
         }
     }
 
@@ -97,17 +98,21 @@ public partial class MainForm : Form
         SlugcatInfo slugcatInfo = (SlugcatInfo)menuItem.Tag!;
 
 
-            for (var i = 0; i < _save.SaveStates.Count; i++)
+        for (var i = 0; i < _save.SaveStates.Count; i++)
+        {
+            if (_save.SaveStates[i].SaveStateNumber == slugcatInfo.SaveID)
             {
-                if (_save.SaveStates[i].SaveStateNumber == slugcatInfo.SaveID)
-                {
-                    _slugcatInfo = slugcatInfo;
-                    _saveState = _save.SaveStates[i];
-                    break;
-                }
+                _slugcatInfo = slugcatInfo;
+                _saveState = _save.SaveStates[i];
+                break;
             }
+        }
 
 
+        ClearSlugcatCheckStates();
+        menuItem.Checked = true;
+
+        // Clear Current State info
         slugConfigControl.SetupFromState(null!);
         slugConfigControl.FoodPipControl.FilledPips = 0;
         slugConfigControl.FoodPipControl.PipBarIndex = 4;
@@ -119,10 +124,26 @@ public partial class MainForm : Form
             return;
         }
 
+
+        // Load new state info
         slugConfigControl.FoodPipControl.PipBarIndex = slugcatInfo.PipBarIndex;
         slugConfigControl.FoodPipControl.PipCount = slugcatInfo.PipCount;
 
         slugConfigControl.SetupFromState(_saveState!);
+
+        UpdateTitle();
+    }
+
+    void ClearSlugcatCheckStates()
+    {
+        foreach (ToolStripMenuItem item in vanillaSlugcatsToolStripMenuItem.DropDownItems)
+            item.Checked = false;
+
+        foreach (ToolStripMenuItem item in dlcSlugcatsToolStripMenuItem.DropDownItems)
+            item.Checked = false;
+
+        foreach (ToolStripMenuItem item in moddedSlugcatsToolStripMenuItem.DropDownItems)
+            item.Checked = false;
     }
 
     void SetDefaultState()
@@ -158,21 +179,35 @@ public partial class MainForm : Form
             Logger.Warn("Save data not found.");
             return;
         }
-
+        UpdateTitle();
     }
 
     void UnloadSave()
     {
         _save = null!;
+        _slugcatInfo = null!;
+        _saveState = null!;
         slugcatsToolStripMenuItem.Enabled = false;
+        slugConfigControl.SetupFromState(null!);
+        slugConfigControl.FoodPipControl.FilledPips = 0;
+        slugConfigControl.FoodPipControl.PipBarIndex = 4;
+        slugConfigControl.FoodPipControl.PipCount = 7;
+        ClearSlugcatCheckStates();
+        UpdateTitle();
     }
 
     void UpdateTitle()
     {
+        var targetName = "Rain World Save Editor";
+
+
         if (_slugcatInfo is not null)
-            Text = $"Rain World Save Editor - {_slugcatInfo.Name}";
+            targetName = $"Rain World Save Editor - {_slugcatInfo.Name}";
         else
-            Text = $"Rain World Save Editor";
+            targetName = $"Rain World Save Editor";
+
+        if (Text != targetName)
+            Text = targetName;
 
     }
 

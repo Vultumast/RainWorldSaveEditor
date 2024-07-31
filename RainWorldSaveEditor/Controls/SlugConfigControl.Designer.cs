@@ -593,7 +593,7 @@
             fivePebblesSlugcatSpecificGroupBox.Controls.Add(musicPearlStolenCheckBox);
             fivePebblesSlugcatSpecificGroupBox.Controls.Add(pebblesFirstVisitCountLabel);
             fivePebblesSlugcatSpecificGroupBox.Controls.Add(pebblesFirstVisitCountNumericUpDown);
-            fivePebblesSlugcatSpecificGroupBox.Location = new Point(12, 132);
+            fivePebblesSlugcatSpecificGroupBox.Location = new Point(182, 139);
             fivePebblesSlugcatSpecificGroupBox.Name = "fivePebblesSlugcatSpecificGroupBox";
             fivePebblesSlugcatSpecificGroupBox.Size = new Size(381, 291);
             fivePebblesSlugcatSpecificGroupBox.TabIndex = 15;
@@ -1010,6 +1010,7 @@
             rngNextIssueIDNumericUpDown.Size = new Size(193, 23);
             rngNextIssueIDNumericUpDown.TabIndex = 12;
             commonToolTip.SetToolTip(rngNextIssueIDNumericUpDown, "The next ID to use when spawning the next entity, this is incremented by 1 each time an entity spawns.");
+            rngNextIssueIDNumericUpDown.ValueChanged += rngNextIssueIDNumericUpDown_ValueChanged;
             // 
             // rngSeedLabel
             // 
@@ -1029,6 +1030,7 @@
             rngSeedNumericUpDown.Size = new Size(193, 23);
             rngSeedNumericUpDown.TabIndex = 10;
             commonToolTip.SetToolTip(rngSeedNumericUpDown, "The RNG Seed assigned to your save file when you created it");
+            rngSeedNumericUpDown.ValueChanged += rngSeedNumericUpDown_ValueChanged;
             // 
             // currentlyDeadPictureBox
             // 

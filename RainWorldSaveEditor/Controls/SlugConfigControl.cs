@@ -45,6 +45,7 @@ public partial class SlugConfigControl : UserControl
         SetupSlugCatInfoTabPageFromState(state!);
         SetupEchoTabPageFromState(state!);
         LoadIteratorTabPage(state!);
+        SetupCommunitiesTabPage(state!);
         SetupPersistentDataInfoTabPageFromState(state!);
         SetupAdvancedInfoTabPage(state!);
     }
@@ -313,6 +314,12 @@ public partial class SlugConfigControl : UserControl
             communityListBox.Items.Add(community);
 
     }
+    private void SetupCommunitiesTabPage(SaveState state)
+    {
+        if (state is null)
+            communityListBox.SelectedIndex = -1;
+
+    }
 
     private void FillCommunityRegionRepListView(Community community)
     {
@@ -330,6 +337,12 @@ public partial class SlugConfigControl : UserControl
 
     private void communityListBox_SelectedIndexChanged(object sender, EventArgs e)
     {
+        if (communityListBox.SelectedIndex == -1)
+        {
+            communityRegionRepDataGridView.Rows.Clear();
+            return;
+        }
+
         communityRegionRepDataGridView.Rows.Clear();
         communityRegionRepDataGridView.Enabled = communityListBox.SelectedIndex != -1;
 
@@ -643,17 +656,20 @@ public partial class SlugConfigControl : UserControl
 
     private void gameVerisonNumericUpDown_ValueChanged(object sender, EventArgs e)
     {
-
+        if (SaveState is not null)
+            SaveState.GameVersion = (int)gameVerisonNumericUpDown.Value;
     }
 
     private void initialGameVersionNumericUpDown_ValueChanged(object sender, EventArgs e)
     {
-
+        if (SaveState is not null)
+            SaveState.InitialGameVersion = (int)initialGameVersionNumericUpDown.Value;
     }
 
     private void worldVersionNumericUpDown_ValueChanged(object sender, EventArgs e)
     {
-
+        if (SaveState is not null)
+            SaveState.WorldVersion = (int)worldVersionNumericUpDown.Value;
     }
     #endregion
 
@@ -768,6 +784,9 @@ public partial class SlugConfigControl : UserControl
             else
                 _pebblesCellConvoRadioButtons[i].Checked = i == value;
         }
+
+        if (SaveState is not null)
+            SaveState.MiscWorldSaveData.RarefactionCellConversationState = (int)pebblesCellConvoStateNumericUpDown.Value;
     }
 
 
@@ -783,6 +802,9 @@ public partial class SlugConfigControl : UserControl
             commonToolTip.SetToolTip((Control)sender, "Did you steal Five Pebbles' music pearl?\nYou monster.");
         else
             commonToolTip.SetToolTip((Control)sender, "Did you steal Five Pebbles' music pearl?");
+
+        if (SaveState is not null)
+            SaveState.MiscWorldSaveData.HasStolenFivePebblesMusicPearl = musicPearlStolenCheckBox.Checked;
 
     }
     private void cellRemovedCheckBox_CheckedChanged(object sender, EventArgs e)
@@ -801,4 +823,13 @@ public partial class SlugConfigControl : UserControl
 
 
 
+    private void rngSeedNumericUpDown_ValueChanged(object sender, EventArgs e)
+    {
+
+    }
+
+    private void rngNextIssueIDNumericUpDown_ValueChanged(object sender, EventArgs e)
+    {
+
+    }
 }
