@@ -41,6 +41,17 @@ public abstract class SaveElementContainer
         }
 
         Elements.Add(GetType(), elementData);
+
+        var unsetOrders = elementData.Select(x => x.Value.SaveFileElement.Order).Where(x => x == -9999).ToList();
+
+        if (unsetOrders.Count > 0)
+            Logger.Warn($"{unsetOrders.Count} Order properties for container {GetType()} are unset!");
+
+        var ordersSet = elementData.Select(x => x.Value.SaveFileElement.Order).Where(x => x != -9999).ToList();
+        var distinct = ordersSet.Distinct().ToList();
+
+        if (ordersSet.Count != distinct.Count)
+            Logger.Warn($"{ordersSet.Count - distinct.Count} Order properties for container {GetType()} are duplicate!");
     }
 
     private static Dictionary<Type, Dictionary<string, ElementData>> Elements { get; } = [];
@@ -165,7 +176,7 @@ public abstract class SaveElementContainer
     {
         StringBuilder builder = new();
 
-        foreach (var elementData in Elements[GetType()].Values)
+        foreach (var elementData in Elements[GetType()].Values.OrderBy(x => x.SaveFileElement.Order))
         {
             var key = elementData.SaveFileElement.Name;
 

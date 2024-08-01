@@ -34,4 +34,9 @@ public class WorldCoordinate : IParsable<WorldCoordinate>
     {
         throw new NotImplementedException();
     }
+
+    public override string ToString()
+    {
+        return $"{RoomName}.{X}.{Y}.{AbstractNode}";
+    }
 }

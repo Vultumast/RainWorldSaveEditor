@@ -3,7 +3,7 @@ using System.Diagnostics.CodeAnalysis;
 
 namespace RainWorldSaveAPI;
 
-[DebuggerDisplay("Booleans = {string.Join(\", \", BoolView())}")]
+[DebuggerDisplay("Booleans = {ToString()}")]
 public class GenericBoolArray : IParsable<GenericBoolArray>
 {
     public bool[] Booleans { get; set; } = [];
@@ -36,5 +36,8 @@ public class GenericBoolArray : IParsable<GenericBoolArray>
         throw new NotImplementedException();
     }
 
-    private string BoolView() => string.Concat(Booleans.Select(x => x ? '1' : '0'));
+    public override string ToString()
+    {
+        return string.Concat(Booleans.Select(x => x ? '1' : '0'));
+    }
 }

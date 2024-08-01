@@ -7,22 +7,22 @@ namespace RainWorldSaveAPI;
 
 public class RainWorldSave : SaveElementContainer
 {
-    [SaveFileElement("SAVE STATE", IsRepeatableKey = RepeatMode.Exact)]
+    [SaveFileElement("SAVE STATE", IsRepeatableKey = RepeatMode.Exact, Order = 0)]
     public List<SaveState> SaveStates { get; } = [];
 
-    [SaveFileElement("MISCPROG")]
+    [SaveFileElement("MISCPROG", Order = 5)]
     public MiscProgressionData MiscProgressionData { get; set; } = new();
 
-    [SaveFileElement("MAP", IsRepeatableKey = RepeatMode.Exact)]
+    [SaveFileElement("MAP", IsRepeatableKey = RepeatMode.Exact, Order = 1)]
     public List<MapData> VanillaMaps { get; set; } = [];
 
-    [SaveFileElement("MAPUPDATE", IsRepeatableKey = RepeatMode.Exact)]
+    [SaveFileElement("MAPUPDATE", IsRepeatableKey = RepeatMode.Exact, Order = 2)]
     public List<MapUpdateData> VanillaMapUpdates { get; set; } = [];
 
-    [SaveFileElement("MAP_", IsRepeatableKey = RepeatMode.Prefix)]
+    [SaveFileElement("MAP_", IsRepeatableKey = RepeatMode.Prefix, Order = 3)]
     public List<MapData> ModdedMaps { get; set; } = [];
 
-    [SaveFileElement("MAPUPDATE_", IsRepeatableKey = RepeatMode.Prefix)]
+    [SaveFileElement("MAPUPDATE_", IsRepeatableKey = RepeatMode.Prefix, Order = 4)]
     public List<MapUpdateData> ModdedMapUpdates { get; set; } = [];
 
     public void Read(string saveString)

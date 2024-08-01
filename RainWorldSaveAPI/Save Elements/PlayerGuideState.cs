@@ -6,7 +6,7 @@ namespace RainWorldSaveAPI;
 // TODO: Document this
 public class PlayerGuideState : SaveElementContainer, IParsable<PlayerGuideState>
 {
-    [SaveFileElement("integersArray")]
+    [SaveFileElement("integersArray", Order = 0)]
     public GenericIntegerArray Integers { get; set; } = new();
 
     public bool PlayerHasVisitedMoon
@@ -52,23 +52,23 @@ public class PlayerGuideState : SaveElementContainer, IParsable<PlayerGuideState
     }
 
     // TODO: backwards compatibility
-    [SaveFileElement("itemTypes", ListDelimiter = ",")]
+    [SaveFileElement("itemTypes", ListDelimiter = ",", Order = 1)]
     public List<string> FoodItemsLearned { get; set; } = [];
 
     // TODO: backwards compatibility
-    [SaveFileElement("creatureTypes", ListDelimiter = ",")]
+    [SaveFileElement("creatureTypes", ListDelimiter = ",", Order = 2)]
     public List<string> CreatureTypesWarnedAbout { get; set; } = [];
 
-    [SaveFileElement("likesPlayer")]
+    [SaveFileElement("likesPlayer", Order = 3)]
     public float PlayerReputation { get; set; } = 0;
 
-    [SaveFileElement("directionHandHolding")]
+    [SaveFileElement("directionHandHolding", Order = 4)]
     public float HandHolding { get; set; } = 0;
 
-    [SaveFileElement("imagesShown", ListDelimiter = ".")]
+    [SaveFileElement("imagesShown", ListDelimiter = ".", Order = 5)]
     public List<string> ImagesShown { get; set; } = [];
 
-    [SaveFileElement("forcedDirsGiven", ListDelimiter = ".")]
+    [SaveFileElement("forcedDirsGiven", ListDelimiter = ".", Order = 6)]
     public List<string> ForcedDirectionsGiven { get; set; } = [];
 
     public static PlayerGuideState Parse(string s, IFormatProvider? provider)

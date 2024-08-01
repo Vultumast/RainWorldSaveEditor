@@ -42,4 +42,15 @@ public class CampaignTime : IParsable<CampaignTime>
     {
         throw new NotImplementedException();
     }
+
+    public override string ToString()
+    {
+        return $"{Slugcat}<mpdB>" +
+            $"{UndeterminedFreeTime}<mpdB>" +
+            $"{CompletedFreeTime}<mpdB>" +
+            $"{LostFreeTime}<mpdB>" +
+            $"{UndeterminedFixedTime}<mpdB>" +
+            $"{CompletedFixedTime}<mpdB>" +
+            $"{LostFixedTime}";
+    }
 }

@@ -6,7 +6,7 @@ namespace RainWorldSaveAPI;
 // TODO: Document fields
 public class LooksToTheMoonState : SaveElementContainer, IParsable<LooksToTheMoonState>
 {
-    [SaveFileElement("integersArray")]
+    [SaveFileElement("integersArray", Order = 0)]
     public GenericIntegerArray Integers { get; set; } = new();
 
     public int PlayerEncounters
@@ -99,7 +99,7 @@ public class LooksToTheMoonState : SaveElementContainer, IParsable<LooksToTheMoo
         set => Integers.TrySet(12, value);
     }
 
-    [SaveFileElement("miscBools")]
+    [SaveFileElement("miscBools", Order = 1)]
     public GenericBoolArray Booleans { get; set; } = new();
 
     /// <summary>
@@ -112,31 +112,31 @@ public class LooksToTheMoonState : SaveElementContainer, IParsable<LooksToTheMoo
         set => Booleans.TrySet(0, value);
     }
 
-    [SaveFileElement("significantPearls", ListDelimiter = ",")]
+    [SaveFileElement("significantPearls", ListDelimiter = ",", Order = 2)]
     public List<string> DataPearlsRead { get; set; } = [];
 
-    [SaveFileElement("miscItemsDescribed", ListDelimiter = ",")]
+    [SaveFileElement("miscItemsDescribed", ListDelimiter = ",", Order = 3)]
     public List<string> MiscItemsDescribed { get; set; } = [];
 
     /// <summary>
     /// Player's reputation / like amount for Moon.
     /// </summary>
-    [SaveFileElement("likesPlayer")]
+    [SaveFileElement("likesPlayer", Order = 4)]
     public float PlayerReputation { get; set; } = 0f;
 
-    [SaveFileElement("itemsAlreadyTalkedAbout", ListDelimiter = "<slosC>")]
+    [SaveFileElement("itemsAlreadyTalkedAbout", ListDelimiter = "<slosC>", Order = 5)]
     public List<string> ItemsTalkedAbout { get; set; } = [];
 
     /// <summary>
     /// Whenever Moon talked about Pebbles after Rivulet removed the Rarefaction Cell.
     /// </summary>
-    [SaveFileElement("talkedPebblesDeath", true)]
+    [SaveFileElement("talkedPebblesDeath", true, Order = 6)]
     public bool TalkedAboutPebblesDying { get; set; } = false;
 
     /// <summary>
     /// Whenever Moon has been given the Rarefaction Cell to describe it.
     /// </summary>
-    [SaveFileElement("shownEnergyCell", true)]
+    [SaveFileElement("shownEnergyCell", true, Order = 7)]
     public bool HasSeenRarefactionCell { get; set; } = false;
 
     public static LooksToTheMoonState Parse(string s, IFormatProvider? provider)

@@ -30,5 +30,10 @@ public class SaveFileElement(string name, bool valueOptional = false) : Attribut
     /// </summary>
     public RepeatMode IsRepeatableKey { get; init; } = RepeatMode.None;
 
+    /// <summary>
+    /// Order to serialize fields in. Fields with lower values get deserialized first.
+    /// </summary>
+    public int Order { get; set; } = -9999;
+
 }
 
