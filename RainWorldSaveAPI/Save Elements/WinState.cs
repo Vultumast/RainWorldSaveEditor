@@ -1,4 +1,5 @@
-﻿using System.Diagnostics;
+﻿using System;
+using System.Diagnostics;
 using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
 
@@ -15,6 +16,14 @@ public class EndgameTracker
         ID = split[0];
         Consumed = split[1] == "1";
     }
+
+    public virtual string[] ToSplit()
+    {
+        return [
+            ID,
+            Consumed ? "1" : "0"
+        ];
+    }
 }
 
 [DebuggerDisplay("Integer | ID = {ID} | Consumed = {Consumed} | Progress = {Progress}")]
@@ -27,6 +36,15 @@ public class IntegerTracker : EndgameTracker
         base.FromString(split);
         Progress = int.Parse(split[2], NumberStyles.Any, CultureInfo.InvariantCulture);
     }
+
+    public override string[] ToSplit()
+    {
+        return [
+            ID,
+            Consumed ? "1" : "0",
+            Progress.ToString()
+        ];
+    }
 }
 
 [DebuggerDisplay("Float | ID = {ID} | Consumed = {Consumed} | Progress = {Progress}")]
@@ -38,6 +56,15 @@ public class FloatTracker : EndgameTracker
     {
         base.FromString(split);
         Progress = float.Parse(split[2], NumberStyles.Any, CultureInfo.InvariantCulture);
+    }
+
+    public override string[] ToSplit()
+    {
+        return [
+            ID,
+            Consumed ? "1" : "0",
+            Progress.ToString()
+        ];
     }
 }
 
@@ -60,6 +87,15 @@ public class BoolArrayTracker : EndgameTracker
             }
         }
     }
+
+    public override string[] ToSplit()
+    {
+        return [
+            ID,
+            Consumed ? "1" : "0",
+            string.Join(".", Progress.Select(x => x ? "1" : "0"))
+        ];
+    }
 }
 
 [DebuggerDisplay("List | ID = {ID} | Consumed = {Consumed} | Progress = {string.Join(\", \", Progress)}")]
@@ -80,6 +116,15 @@ public class ListTracker : EndgameTracker
                 Progress.Add(int.Parse(flag, NumberStyles.Any, CultureInfo.InvariantCulture));
             }
         }
+    }
+
+    public override string[] ToSplit()
+    {
+        return [
+            ID,
+            Consumed ? "1" : "0",
+            string.Join(".", Progress)
+        ];
     }
 }
 
@@ -102,6 +147,15 @@ public class GourmandFoodQuestTracker : EndgameTracker
             }
         }
     }
+
+    public override string[] ToSplit()
+    {
+        return [
+            ID,
+            Consumed ? "1" : "0",
+            string.Join(".", Progress)
+        ];
+    }
 }
 
 public class GenericTracker : EndgameTracker
@@ -116,6 +170,15 @@ public class GenericTracker : EndgameTracker
             Fields.Clear();
             Fields.AddRange(split[2..]);
         }
+    }
+
+    public override string[] ToSplit()
+    {
+        return [
+            ID,
+            Consumed ? "1" : "0",
+            .. Fields
+        ];
     }
 }
 
@@ -145,6 +208,11 @@ public class WinState : IParsable<WinState>
     public static bool TryParse([NotNullWhen(true)] string? s, IFormatProvider? provider, [MaybeNullWhen(false)] out WinState result)
     {
         throw new NotImplementedException();
+    }
+
+    public override string ToString()
+    {
+        return string.Concat(Trackers.Select(x => $"{x}<wsA>"));
     }
 
     private static EndgameTracker GetTrackerFromId(string id) => id switch

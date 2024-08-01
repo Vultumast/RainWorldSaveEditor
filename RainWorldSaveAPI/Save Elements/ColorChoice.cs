@@ -33,4 +33,10 @@ public class ColorChoice : IParsable<ColorChoice>
     {
         throw new NotImplementedException();
     }
+
+    public override string ToString()
+    {
+        return $"{Slugcat}<mpdB>{(ColorsEnabled ? '1' : '0')}<mpdB>" +
+            string.Join("<mpdC>", ColorChoices);
+    }
 }

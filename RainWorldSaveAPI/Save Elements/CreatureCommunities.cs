@@ -27,6 +27,11 @@ public class Community : IParsable<Community>
     {
         throw new NotImplementedException();
     }
+
+    public override string ToString()
+    {
+        return string.Join("|", PlayerRegionalReputation.Select(x => $"{x.Key}:{x.Value}"));
+    }
 }
 
 // TODO do modded creature communities exist?
@@ -76,5 +81,11 @@ public class CreatureCommunities : SaveElementContainer, IParsable<CreatureCommu
         // Vultu: probably make this better
         result = Parse(s, provider);
         return true;
+    }
+
+    public override string ToString()
+    {
+        return $"SCAVSHY<coB>{ScavengerShynesss}<coA>" +
+            string.Concat(Communities.Select(x => $"{x.Key}<coB>{x.Value}<coA>"));
     }
 }

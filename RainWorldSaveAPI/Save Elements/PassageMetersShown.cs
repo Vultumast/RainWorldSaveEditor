@@ -21,4 +21,9 @@ public class PassageMetersShown : IParsable<PassageMetersShown>
     {
         throw new NotImplementedException();
     }
+
+    public override string ToString()
+    {
+        return string.Join(",", Passages);
+    }
 }

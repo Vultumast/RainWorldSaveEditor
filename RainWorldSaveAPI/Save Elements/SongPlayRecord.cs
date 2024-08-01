@@ -27,4 +27,9 @@ public class SongPlayRecord : IParsable<SongPlayRecord>
     {
         throw new NotImplementedException();
     }
+
+    public override string ToString()
+    {
+        return $"{SongName}<dpD>{CycleLastPlayed}";
+    }
 }

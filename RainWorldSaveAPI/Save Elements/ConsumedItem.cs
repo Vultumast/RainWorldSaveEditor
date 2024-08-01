@@ -28,7 +28,7 @@ public class ConsumedItem : IParsable<ConsumedItem>
         Span<string> fields = s.Split(".", StringSplitOptions.RemoveEmptyEntries);
 
         if (fields.Length == 4 && fields[0] == "INV")
-            fields = fields[1..]; // Effectively skips over that field?
+            fields = fields[1..]; // INV usually marks that the room is unknown for whatever reason
 
         item.Room = fields[0];
         item.PlacedObjectIndex = int.Parse(fields[1], NumberStyles.Any, CultureInfo.InvariantCulture);
@@ -40,5 +40,10 @@ public class ConsumedItem : IParsable<ConsumedItem>
     public static bool TryParse([NotNullWhen(true)] string? s, IFormatProvider? provider, [MaybeNullWhen(false)] out ConsumedItem result)
     {
         throw new NotImplementedException();
+    }
+
+    public override string ToString()
+    {
+        return $"{Room}.{PlacedObjectIndex}.{WaitCycles}";
     }
 }

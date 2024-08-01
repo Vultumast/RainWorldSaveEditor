@@ -50,4 +50,9 @@ public class RegionState : SaveElementContainer, IParsable<RegionState>
     {
         throw new NotImplementedException();
     }
+
+    public override string ToString()
+    {
+        return SerializeFields("<rgB>", "<rgA>");
+    }
 }

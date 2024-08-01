@@ -59,4 +59,9 @@ public class Echos : IParsable<Echos>
     {
         throw new NotImplementedException();
     }
+
+    public override string ToString()
+    {
+        return string.Join(",", EchoStates.Select(x => $"{x.Key}:{(int)x.Value}"));
+    }
 }

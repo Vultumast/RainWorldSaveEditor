@@ -26,4 +26,9 @@ public class ConditionalShelterData : IParsable<ConditionalShelterData>
     {
         throw new NotImplementedException();
     }
+
+    public override string ToString()
+    {
+        return $"{ShelterName} : {string.Join(" : ", SlugcatFoundList)} : ";
+    }
 }

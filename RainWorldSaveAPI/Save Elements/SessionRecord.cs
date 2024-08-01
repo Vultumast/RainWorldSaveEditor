@@ -27,4 +27,9 @@ public class SessionRecord : IParsable<SessionRecord>
     {
         throw new NotImplementedException();
     }
+
+    public override string ToString()
+    {
+        return $"{(Survived ? '1' : '0')}{(Travelled ? '1' : '0')}{UnrecognizedRecords}";
+    }
 }

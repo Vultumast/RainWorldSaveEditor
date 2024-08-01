@@ -25,4 +25,9 @@ public class CreatureKillData : IParsable<CreatureKillData>
     {
         throw new NotImplementedException();
     }
+
+    public override string ToString()
+    {
+        return $"{Creature}<svD>{Kills}";
+    }
 }

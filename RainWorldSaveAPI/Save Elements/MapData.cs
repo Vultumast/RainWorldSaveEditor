@@ -31,4 +31,9 @@ public class MapData : IParsable<MapData>
     {
         throw new NotImplementedException();
     }
+
+    public override string ToString()
+    {
+        return $"{Key}:{Region}<progDivB>{Convert.ToBase64String(MapDataPNG)}";
+    }
 }

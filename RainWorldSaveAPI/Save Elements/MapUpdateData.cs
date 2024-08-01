@@ -32,4 +32,9 @@ public class MapUpdateData : IParsable<MapUpdateData>
     {
         throw new NotImplementedException();
     }
+
+    public override string ToString()
+    {
+        return $"{Key}:{Region}<progDivB>{MapLastUpdated}";
+    }
 }
