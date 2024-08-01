@@ -1,7 +1,5 @@
 ﻿using RainWorldSaveAPI.Base;
 using System.Diagnostics.CodeAnalysis;
-using System.Globalization;
-using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace RainWorldSaveAPI;
 
@@ -132,13 +130,13 @@ public class LooksToTheMoonState : SaveElementContainer, IParsable<LooksToTheMoo
     /// <summary>
     /// Whenever Moon talked about Pebbles after Rivulet removed the Rarefaction Cell.
     /// </summary>
-    [SaveFileElement("talkedPebblesDeath")]
+    [SaveFileElement("talkedPebblesDeath", true)]
     public bool TalkedAboutPebblesDying { get; set; } = false;
 
     /// <summary>
     /// Whenever Moon has been given the Rarefaction Cell to describe it.
     /// </summary>
-    [SaveFileElement("shownEnergyCell")]
+    [SaveFileElement("shownEnergyCell", true)]
     public bool HasSeenRarefactionCell { get; set; } = false;
 
     public static LooksToTheMoonState Parse(string s, IFormatProvider? provider)

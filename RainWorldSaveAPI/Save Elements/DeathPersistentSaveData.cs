@@ -179,7 +179,7 @@ public class DeathPersistentSaveData : SaveElementContainer, IParsable<DeathPers
     /// Tracks whenever the alternate ending for slugcats has been achieved. <para/>
     /// Relevant for Survivor, Monk, Rivulet, Artificer, Spearmaster and Gourmand.
     /// </summary>
-    [SaveFileElement("ALTENDING")]
+    [SaveFileElement("ALTENDING", true)]
     public bool AltEndingAchieved { get; set; } = false;
 
     /// <summary>

@@ -1,11 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Reflection;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace RainWorldSaveAPI;
+﻿namespace RainWorldSaveAPI;
 
 public enum RepeatMode
 {
@@ -14,7 +7,6 @@ public enum RepeatMode
     Prefix
 }
 
-// TODO: Implement a way to read fields of type "integersArray", "miscBools", etc.
 [AttributeUsage(AttributeTargets.Property, AllowMultiple = false)]
 public class SaveFileElement(string name, bool valueOptional = false) : Attribute
 {

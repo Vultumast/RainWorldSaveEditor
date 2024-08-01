@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace RainWorldSaveAPI;
+﻿namespace RainWorldSaveAPI;
 
 /// <summary>
 /// If present, specifies that the given class should receive the entire field (key + delimiter + value) as part of serialization.

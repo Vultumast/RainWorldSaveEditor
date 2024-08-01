@@ -1,38 +1,51 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Globalization;
-using System.Linq;
-using System.Linq.Expressions;
-using System.Reflection;
-using System.Runtime.InteropServices.ObjectiveC;
-using System.Text;
-using System.Threading.Tasks;
-using System.Xml.Linq;
-using static System.Runtime.InteropServices.JavaScript.JSType;
+﻿using System.Reflection;
 
 namespace RainWorldSaveAPI.Base;
 
 public abstract class SaveElementContainer
 {
+    private struct ElementData
+    {
+        public SaveFileElement SaveFileElement;
+        public PropertyInfo PropertyInfo;
+    }
+
     private const int MaxDebugChars = 50;
 
     public SaveElementContainer()
     {
-        var properties = this.GetType().GetProperties().Where(property => Attribute.IsDefined(property, typeof(SaveFileElement)));
-        foreach (var prop in properties)
-        {
-            SaveFileElement data = (SaveFileElement)prop.GetCustomAttribute(typeof(SaveFileElement))!;
-        
-            PropertyInfos.Add(data.Name, prop);
-            SaveFileElements.Add(data.Name, data);
-        }
+        CheckForDictionaryInit();
     }
 
-    public Dictionary<string, SaveFileElement> SaveFileElements { get; private set; } = [ ];
-    public Dictionary<string, PropertyInfo> PropertyInfos { get; private set; } = [ ];
+    private void CheckForDictionaryInit()
+    {
+        if (Elements.ContainsKey(GetType()))
+            return;
+
+        var elementData = new Dictionary<string, ElementData>();
+
+        var properties = GetType().GetProperties().Where(property => Attribute.IsDefined(property, typeof(SaveFileElement)));
+
+        foreach (var prop in properties)
+        {
+            SaveFileElement saveFileElement = (SaveFileElement)prop.GetCustomAttribute(typeof(SaveFileElement))!;
+
+            elementData.Add(saveFileElement.Name, new ElementData
+            {
+                SaveFileElement = saveFileElement,
+                PropertyInfo = prop
+            });
+        }
+
+        Elements.Add(GetType(), elementData);
+    }
+
+    private static Dictionary<Type, Dictionary<string, ElementData>> Elements { get; } = [];
 
     public Dictionary<string, string> UnrecognizedFields { get; protected set; } = [ ];
+
+    private static readonly MethodInfo SetScalarPropertyMethod = typeof(SaveElementContainer).GetMethod(nameof(SetScalarProperty), BindingFlags.NonPublic | BindingFlags.Instance)!;
+    private static readonly MethodInfo SetListPropertyMethod = typeof(SaveElementContainer).GetMethod(nameof(SetListProperty), BindingFlags.NonPublic | BindingFlags.Instance)!;
 
 
     /// <summary>
@@ -43,154 +56,97 @@ public abstract class SaveElementContainer
     /// <param name="elementInfo">The SaveFileElement information for the property</param>
     /// <param name="value">The value to set the property too</param>
     /// <returns>True on success, false otherwise</returns>
-    private static bool SetScalarProperty(SaveElementContainer container, PropertyInfo propertyInfo, SaveFileElement elementInfo, string value)
+    private bool SetScalarProperty<T>(PropertyInfo propertyInfo, SaveFileElement elementInfo, string value)
+        where T : IParsable<T>
     {
-        var parseMethodInfo = propertyInfo.PropertyType.GetParseMethod();
-
-        if (propertyInfo.PropertyType == typeof(bool) && elementInfo.ValueOptional)
+        if (typeof(T) == typeof(bool) && elementInfo.ValueOptional)
         {
             var setMethod = propertyInfo.GetSetMethod(true);
             if (setMethod is null)
             {
-                Logger.Warn($"Set Method was null for \"{propertyInfo.Name}\" with container: \"{container.GetType()}\"");
+                Logger.Warn($"Set Method was null for \"{propertyInfo.Name}\" with container: \"{GetType()}\"");
                 return false;
             }
-            setMethod.Invoke(container, [ true ]);
+            setMethod.Invoke(this, [ true ]);
         }
 
-
-
-        // Vultu: IDK why `method` is null for string?? It derives from `IParsable`
-        if (parseMethodInfo is not null || propertyInfo.PropertyType == typeof(string))
+        if (!elementInfo.ValueOptional && value == string.Empty)
         {
-            if (!elementInfo.ValueOptional && value == string.Empty)
+            Logger.Error($"\"{elementInfo.Name}\" is NOT marked as ValueOptional, but no value was provided! Tell Mario or Vultu!");
+            return false;
+        }
+
+        if (value != string.Empty)
+        {
+            if (propertyInfo.PropertyType == typeof(string))
             {
-                Logger.Error($"\"{elementInfo.Name}\" is NOT marked as ValueOptional, but no value was provided! Tell Mario or Vultu!");
-                return false;
+                propertyInfo.GetSetMethod()!.Invoke(this, [value]);
             }
-
-            if (value != string.Empty)
+            else
             {
-                if (propertyInfo.PropertyType == typeof(string))
+                var propertyBinding = propertyInfo.GetValue(this);
+
+                var data = T.Parse(value, null);
+
+                var setMethod = propertyInfo.GetSetMethod(true);
+                if (setMethod is null)
                 {
-                    propertyInfo.GetSetMethod()!.Invoke(container, [value]);
-
-                    // TODO Remove this later
-                    // Logger.Debug($"{propertyInfo.DeclaringType?.Name}: {propertyInfo.Name} => {value} ({value?.GetType().Name})");
+                    Logger.Error($"Set Method was null for \"{propertyInfo.Name}\" with container: \"{GetType()}\"");
+                    return false;
                 }
-                else
-                {
-                    var propertyBinding = propertyInfo.GetValue(container);
-
-
-                    /* if (propertyBinding is null)
-                    {
-                        Logger.Error($"Unable to get property binding for \"{propertyInfo.Name}\" with container: \"{container.GetType()}\"");
-                        return false;
-                    } */
-
-                    var data = parseMethodInfo!.Invoke(propertyBinding, [value, null]);
-
-                    var setMethod = propertyInfo.GetSetMethod(true);
-                    if (setMethod is null)
-                    {
-                        Logger.Error($"Set Method was null for \"{propertyInfo.Name}\" with container: \"{container.GetType()}\"");
-                        return false;
-                    }
-                    setMethod.Invoke(container, [data]);
-
-                    // TODO Remove this later
-                    // Logger.Debug($"{propertyInfo.DeclaringType?.Name}: {propertyInfo.Name} => {data} ({data?.GetType().Name})");
-                }
+                setMethod.Invoke(this, [data]);
             }
-            else if (!elementInfo.ValueOptional)
+        }
+        else if (!elementInfo.ValueOptional)
+        {
+            Logger.Error($"UNABLE TO SET: \"{propertyInfo.Name}\"! Tell Mario or Vultu!");
+            return false;
+        }
+
+        return true;
+    }
+
+    private bool SetListProperty<T, U>(PropertyInfo propertyInfo, SaveFileElement elementInfo, string value)
+        where T : ICollection<U>
+        where U : IParsable<U>
+    {
+        var propertyBinding = (T)propertyInfo.GetValue(this)!;
+
+        if (elementInfo.IsRepeatableKey != RepeatMode.None)
+        {
+            propertyBinding.Add(U.Parse(value, null));
+        }
+        else
+        {
+            propertyBinding.Clear();
+
+            foreach (var element in value.Split(elementInfo.ListDelimiter, StringSplitOptions.RemoveEmptyEntries))
             {
-                Logger.Error($"UNABLE TO SET: \"{propertyInfo.Name}\"! Tell Mario or Vultu!");
-                return false;
+                propertyBinding.Add(U.Parse(element, null));
             }
         }
 
         return true;
     }
 
-    private static bool SetListProperty(SaveElementContainer container, PropertyInfo propertyInfo, SaveFileElement elementInfo, string value, Type collectionInterface)
+    private void HandleUnrecognizedField(string key, string value)
     {
-        Type elementType = collectionInterface.GetGenericArguments()[0];
-
-        var parseMethod = elementType.GetParseMethod();
-        var addMethod = collectionInterface.GetMethod("Add");
-        var clearMethod = collectionInterface.GetMethod("Clear");
-
-        if (addMethod == null || clearMethod == null)
-        {
-            Logger.Warn("Couldn't find add / clear methods for collection type.");
-            return false;
-        }
-
-        if (elementType == typeof(string))
-        {
-            var propertyBinding = propertyInfo.GetValue(container);
-
-            if (elementInfo.IsRepeatableKey != RepeatMode.None)
-            {
-                addMethod.Invoke(propertyBinding, [value]);
-            }
-            else
-            {
-                clearMethod.Invoke(propertyBinding, null);
-
-                foreach (var element in value.Split(elementInfo.ListDelimiter, StringSplitOptions.RemoveEmptyEntries))
-                {
-                    addMethod.Invoke(propertyBinding, [element]);
-                }
-            }
-
-
-            return true;
-        }
-        else if (parseMethod is not null)
-        {
-            var propertyBinding = propertyInfo.GetValue(container);
-
-            if (elementInfo.IsRepeatableKey != RepeatMode.None)
-            {
-                addMethod.Invoke(propertyBinding, [parseMethod.Invoke(null, [value, null])]);
-            }
-            else
-            {
-                clearMethod.Invoke(propertyBinding, null);
-
-                foreach (var element in value.Split(elementInfo.ListDelimiter, StringSplitOptions.RemoveEmptyEntries))
-                {
-                    addMethod.Invoke(propertyBinding, [parseMethod.Invoke(null, [element, null])]);
-                }
-            }
-
-            return true;
-        }
-        else
-        {
-            Logger.Error($"Found Element List: \"{elementInfo.Name}\" with unparsable type: \"{propertyInfo.PropertyType}\"!");
-            return false;
-        }
-    }
-
-    private static void HandleUnrecognizedField(SaveElementContainer container, string key, string value)
-    {
-        if (!container.UnrecognizedFields.TryAdd(key, value))
+        if (!UnrecognizedFields.TryAdd(key, value))
             Logger.Warn($"Unable to set \"{key}\" because it was already present!");
 
         // TODO Remove this later
         Logger.Debug($"Unknown field: {key} => {LimitString(value)}");
     }
 
-    public static void ParseField(SaveElementContainer container, string key, string value)
-    {
-        SaveFileElement? elementInfo = GetRelevantElementInfo(container, key);
+    public static void ParseField(SaveElementContainer container, string key, string value) => container.ParseField(key, value);
 
-        if (elementInfo != null)
+    private void ParseField(string key, string value)
+    {
+        ElementData? elementData = GetRelevantElementInfo(key);
+
+        if (elementData != null)
         {
-            var propertyInfo = container.PropertyInfos[elementInfo.Name];
+            (var elementInfo, var propertyInfo) = (elementData.Value.SaveFileElement, elementData.Value.PropertyInfo);
 
             var collectionInterface = propertyInfo.PropertyType.GetInterfaces().Where(x => x.IsGenericType && x.GetGenericTypeDefinition() == typeof(ICollection<>)).FirstOrDefault();
             var parsableInterface = propertyInfo.PropertyType.GetInterfaces().Where(x => x.IsGenericType && x.GetGenericTypeDefinition() == typeof(IParsable<>)).FirstOrDefault();
@@ -206,14 +162,15 @@ public abstract class SaveElementContainer
                     actualValueToUse = key + rawAttrib.KeyValueDelimiter + value;
                 }
 
-                if (SetScalarProperty(container, propertyInfo, elementInfo, actualValueToUse))
+                if ((bool)SetScalarPropertyMethod.MakeGenericMethod(parsableInterface.GetGenericArguments()[0]).Invoke(this, [propertyInfo, elementInfo, actualValueToUse])!)
                     return;
             }
             else if (collectionInterface is not null)
             {
                 var actualValueToUse = value;
+                var elementType = propertyInfo.PropertyType.GetGenericArguments()[0];
 
-                var rawAttrib = propertyInfo.PropertyType.GetGenericArguments()[0].GetCustomAttribute<SerializeRawAttribute>();
+                var rawAttrib = elementType.GetCustomAttribute<SerializeRawAttribute>();
 
                 if (rawAttrib != null)
                 {
@@ -226,26 +183,26 @@ public abstract class SaveElementContainer
                 if (elementInfo.ListDelimiter is null && elementInfo.IsRepeatableKey == RepeatMode.None)
                     Logger.Debug($"{key} => {LimitString(value)}, \"{propertyInfo.PropertyType}\" is a collection that doesn't have a delimiter and is not marked as repeatable! Tell Mario or Vultu!");
 
-                else if (SetListProperty(container, propertyInfo, elementInfo, actualValueToUse, collectionInterface))
+                else if ((bool)SetListPropertyMethod.MakeGenericMethod(collectionInterface, elementType).Invoke(this, [propertyInfo, elementInfo, actualValueToUse])!)
                     return;
             }
             else
                 Logger.Debug($"{key} => {LimitString(value)}, \"{propertyInfo.PropertyType}\" does not derive from IParsable! Tell Mario or Vultu!");
 
-            HandleUnrecognizedField(container, key, value);
+            HandleUnrecognizedField(key, value);
         }
         else
             Logger.Warn($"Unknown Key: \"{key}\" => {LimitString(value)}");
     }
 
-    private static SaveFileElement? GetRelevantElementInfo(SaveElementContainer container, string key)
+    private ElementData? GetRelevantElementInfo(string key)
     {
-        var prefixedInfo = container.SaveFileElements.Values.FirstOrDefault(x => key.StartsWith(x.Name) && x.IsRepeatableKey == RepeatMode.Prefix);
+        var prefixedInfo = Elements[GetType()].Values.FirstOrDefault(x => key.StartsWith(x.SaveFileElement.Name) && x.SaveFileElement.IsRepeatableKey == RepeatMode.Prefix);
 
-        if (prefixedInfo != null)
+        if (prefixedInfo.SaveFileElement != null && prefixedInfo.PropertyInfo != null)
             return prefixedInfo;
 
-        if (container.SaveFileElements.TryGetValue(key, out SaveFileElement? info))
+        if (Elements[GetType()].TryGetValue(key, out ElementData info))
             return info;
 
         return null;
