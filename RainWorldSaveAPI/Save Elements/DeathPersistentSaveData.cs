@@ -245,4 +245,9 @@ public class DeathPersistentSaveData : SaveElementContainer, IParsable<DeathPers
         result = Parse(s, provider);
         return true;
     }
+
+    public override string ToString()
+    {
+        return SerializeFields("<dpB>", "<dpA>");
+    }
 }

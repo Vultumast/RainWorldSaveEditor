@@ -71,8 +71,8 @@ public class SaveState : SaveElementContainer, IParsable<SaveState>
     public List<int> CreaturesWaitingToRespawn { get; private set; } = [];
 
     // TODO Document this
-    [SaveFileElement("REGIONSTATE")]
-    public RegionStateList RegionStates { get; private set; } = [];
+    [SaveFileElement("REGIONSTATE", IsRepeatableKey = RepeatMode.Exact)]
+    public List<RegionState> RegionStates { get; private set; } = [];
 
     /// <summary>
     /// Community-related data, mostly composed of player reputation for each community in each region.
@@ -265,5 +265,10 @@ public class SaveState : SaveElementContainer, IParsable<SaveState>
     public static bool TryParse([NotNullWhen(true)] string? s, IFormatProvider? provider, [MaybeNullWhen(false)] out SaveState result)
     {
         throw new NotImplementedException();
+    }
+
+    public override string ToString()
+    {
+        return SerializeFields("<svB>", "<svA>");
     }
 }

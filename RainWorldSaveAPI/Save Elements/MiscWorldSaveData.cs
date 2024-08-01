@@ -138,4 +138,9 @@ public class MiscWorldSaveData : SaveElementContainer, IParsable<MiscWorldSaveDa
         result = Parse(s, provider);
         return true;
     }
+
+    public override string ToString()
+    {
+        return SerializeFields("<mwB>", "<mwA>");
+    }
 }

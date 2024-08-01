@@ -41,6 +41,13 @@ public class RainWorldSave : SaveElementContainer
             ParseField(this, key, value);
     }
 
+    public string Write()
+    {
+        var data = SerializeFields("<progDivB>", "<progDivA>");
+        var hash = ComputeChecksum(data);
+        return hash + data;
+    }
+
     private static string ComputeChecksum(string data)
     {
         var utf8 = Encoding.UTF8.GetBytes(data + CheckSumSalt);

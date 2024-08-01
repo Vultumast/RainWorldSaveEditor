@@ -85,4 +85,9 @@ public class PlayerGuideState : SaveElementContainer, IParsable<PlayerGuideState
     {
         throw new NotImplementedException();
     }
+
+    public override string ToString()
+    {
+        return SerializeFields("<pgsB>", "<pgsA>");
+    }
 }

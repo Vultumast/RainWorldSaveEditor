@@ -153,4 +153,9 @@ public class LooksToTheMoonState : SaveElementContainer, IParsable<LooksToTheMoo
     {
         throw new NotImplementedException();
     }
+
+    public override string ToString()
+    {
+        return SerializeFields("<slosB>", "<slosA>");
+    }
 }

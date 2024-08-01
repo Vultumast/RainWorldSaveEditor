@@ -299,4 +299,9 @@ public class MiscProgressionData : SaveElementContainer, IParsable<MiscProgressi
         result = Parse(s, provider);
         return true;
     }
+
+    public override string ToString()
+    {
+        return SerializeFields("<mpdB>", "<mpdA>");
+    }
 }

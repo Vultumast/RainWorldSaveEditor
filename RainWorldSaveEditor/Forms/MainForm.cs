@@ -184,6 +184,8 @@ public partial class MainForm : Form
             Logger.Warn("Save data not found.");
             return;
         }
+        File.WriteAllText("original.txt", saveData);
+        File.WriteAllText("parsed.txt", _save.Write());
         UpdateTitle();
     }
 

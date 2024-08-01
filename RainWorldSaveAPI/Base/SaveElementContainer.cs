@@ -1,4 +1,7 @@
-﻿using System.Reflection;
+﻿using System.Collections;
+using System.Linq.Expressions;
+using System.Reflection;
+using System.Text;
 
 namespace RainWorldSaveAPI.Base;
 
@@ -46,6 +49,7 @@ public abstract class SaveElementContainer
 
     private static readonly MethodInfo SetScalarPropertyMethod = typeof(SaveElementContainer).GetMethod(nameof(SetScalarProperty), BindingFlags.NonPublic | BindingFlags.Instance)!;
     private static readonly MethodInfo SetListPropertyMethod = typeof(SaveElementContainer).GetMethod(nameof(SetListProperty), BindingFlags.NonPublic | BindingFlags.Instance)!;
+    private static readonly MethodInfo SerializeListPropertyMethod = typeof(SaveElementContainer).GetMethod(nameof(SerializeListProperty), BindingFlags.NonPublic | BindingFlags.Instance)!;
 
 
     /// <summary>
@@ -136,6 +140,74 @@ public abstract class SaveElementContainer
 
         // TODO Remove this later
         Logger.Debug($"Unknown field: {key} => {LimitString(value)}");
+    }
+
+    private void SerializeListProperty<T, U>(PropertyInfo propertyInfo, SaveFileElement elementInfo, StringBuilder builder)
+        where T : ICollection<U>
+        where U : IParsable<U>
+    {
+        var propertyBinding = propertyInfo.GetValue(this);
+
+        if (propertyBinding is null)
+            return;
+
+        var rawAttrib = typeof(U).GetCustomAttribute<SerializeRawAttribute>();
+
+        if (typeof(U).GetMethod("ToString", [])!.DeclaringType == typeof(object))
+        {
+            Logger.Warn($"{typeof(U)} is a save element container that has the default ToString method!");
+        }
+
+        builder.Append(string.Join(elementInfo.ListDelimiter, ((T)propertyBinding).Select(x => x.ToString())));
+    }
+
+    public string SerializeFields(string valueDelimiter, string entryDelimiter)
+    {
+        StringBuilder builder = new();
+
+        foreach (var elementData in Elements[GetType()].Values)
+        {
+            var key = elementData.SaveFileElement.Name;
+
+            var collectionInterface = elementData.PropertyInfo.PropertyType.GetInterfaces().Where(x => x.IsGenericType && x.GetGenericTypeDefinition() == typeof(ICollection<>)).FirstOrDefault();
+
+            if (collectionInterface is not null)
+            {
+                var elementType = collectionInterface.GetGenericArguments()[0];
+
+                SerializeListPropertyMethod.MakeGenericMethod(collectionInterface, elementType).Invoke(this, [elementData.PropertyInfo, elementData.SaveFileElement, builder]);
+            }
+            else
+            {
+                var rawAttrib = elementData.PropertyInfo.PropertyType.GetCustomAttribute<SerializeRawAttribute>();
+
+                var obj = elementData.PropertyInfo.GetValue(this);
+
+                if (obj is null)
+                    continue;
+
+                if (obj.GetType().GetMethod("ToString", [])!.DeclaringType == typeof(object))
+                {
+                    Logger.Warn($"{obj.GetType()} is a save element container that has the default ToString method!");
+                }
+
+                var value = obj.ToString();
+
+                if (value != null)
+                {
+                    if (rawAttrib == null)
+                        builder.Append(key + valueDelimiter + value + entryDelimiter);
+                    else builder.Append(value.Replace(rawAttrib.KeyValueDelimiter, valueDelimiter) + entryDelimiter);
+                }
+            }
+        }
+
+        foreach ((var key, var value) in UnrecognizedFields)
+        {
+            builder.Append(key + valueDelimiter + value + entryDelimiter);
+        }
+
+        return builder.ToString();
     }
 
     public static void ParseField(SaveElementContainer container, string key, string value) => container.ParseField(key, value);

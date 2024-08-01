@@ -77,4 +77,9 @@ public class DreamsState : SaveElementContainer, IParsable<DreamsState>
     {
         throw new NotImplementedException();
     }
+
+    public override string ToString()
+    {
+        return SerializeFields("<dsB>", "<dsA>");
+    }
 }
