@@ -4,7 +4,7 @@ using System.Diagnostics.CodeAnalysis;
 namespace RainWorldSaveAPI;
 
 // TODO: Document this
-public class PlayerGuideState : SaveElementContainer, IParsable<PlayerGuideState>
+public class PlayerGuideState : SaveElementContainer, IRWSerializable<PlayerGuideState>
 {
     [SaveFileElement("integersArray", Order = 0)]
     public GenericIntegerArray Integers { get; set; } = new();
@@ -71,23 +71,22 @@ public class PlayerGuideState : SaveElementContainer, IParsable<PlayerGuideState
     [SaveFileElement("forcedDirsGiven", ListDelimiter = ".", Order = 6)]
     public List<string> ForcedDirectionsGiven { get; set; } = [];
 
-    public static PlayerGuideState Parse(string s, IFormatProvider? provider)
+    public static PlayerGuideState Deserialize(string key, string[] values, SerializationContext? context)
     {
         PlayerGuideState data = new();
 
-        foreach ((var key, var value) in SaveUtils.GetFields(s, "<pgsB>", "<pgsA>"))
-            ParseField(data, key, value);
+        data.DeserializeFields(values[0], "<pgsB>", "<pgsA>");
 
         return data;
     }
 
-    public static bool TryParse([NotNullWhen(true)] string? s, IFormatProvider? provider, [MaybeNullWhen(false)] out PlayerGuideState result)
+    public bool Serialize(out string? key, out string[] values, SerializationContext? context)
     {
-        throw new NotImplementedException();
-    }
+        key = null;
+        values = [
+            SerializeFields("<pgsB>", "<pgsA>")
+        ];
 
-    public override string ToString()
-    {
-        return SerializeFields("<pgsB>", "<pgsA>");
+        return true;
     }
 }

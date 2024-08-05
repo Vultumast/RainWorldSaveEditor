@@ -2,7 +2,7 @@
 using RainWorldSaveAPI.Base;
 
 namespace RainWorldSaveAPI.SaveElements;
-public class DeathPersistentSaveData : SaveElementContainer, IParsable<DeathPersistentSaveData>
+public class DeathPersistentSaveData : SaveElementContainer, IRWSerializable<DeathPersistentSaveData>
 {
     /// <summary>
     /// The current karma level.
@@ -224,25 +224,22 @@ public class DeathPersistentSaveData : SaveElementContainer, IParsable<DeathPers
         throw new NotImplementedException();
     }
 
-    public static DeathPersistentSaveData Parse(string s, IFormatProvider? provider)
+    public static DeathPersistentSaveData Deserialize(string key, string[] values, SerializationContext? context)
     {
         DeathPersistentSaveData data = new();
 
-        foreach ((var key, var value) in SaveUtils.GetFields(s, "<dpB>", "<dpA>"))
-            ParseField(data, key, value);
+        data.DeserializeFields(values[0], "<dpB>", "<dpA>");
 
         return data;
     }
 
-    public static bool TryParse([NotNullWhen(true)] string? s, IFormatProvider? provider, [MaybeNullWhen(false)] out DeathPersistentSaveData result)
+    public bool Serialize(out string? key, out string[] values, SerializationContext? context)
     {
-        // Vultu: probably make this better
-        result = Parse(s, provider);
-        return true;
-    }
+        key = null;
+        values = [
+            SerializeFields("<dpB>", "<dpA>")
+        ];
 
-    public override string ToString()
-    {
-        return SerializeFields("<dpB>", "<dpA>");
+        return true;
     }
 }

@@ -1,10 +1,11 @@
-﻿using System.Diagnostics;
+﻿using RainWorldSaveAPI.Base;
+using System.Diagnostics;
 using System.Diagnostics.CodeAnalysis;
 
 namespace RainWorldSaveAPI;
 
 [DebuggerDisplay("Booleans = {ToString()}")]
-public class GenericBoolArray : IParsable<GenericBoolArray>
+public class GenericBoolArray : IRWSerializable<GenericBoolArray>
 {
     public bool[] Booleans { get; set; } = [];
 
@@ -22,22 +23,23 @@ public class GenericBoolArray : IParsable<GenericBoolArray>
             Booleans[index] = value;
     }
 
-    public static GenericBoolArray Parse(string s, IFormatProvider? provider)
+    public static GenericBoolArray Deserialize(string key, string[] values, SerializationContext? context)
     {
-        var array = new GenericBoolArray();
-
-        array.Booleans = s.Select(x => x == '1').ToArray();
+        var array = new GenericBoolArray
+        {
+            Booleans = values[0].Select(x => x == '1').ToArray()
+        };
 
         return array;
     }
 
-    public static bool TryParse([NotNullWhen(true)] string? s, IFormatProvider? provider, [MaybeNullWhen(false)] out GenericBoolArray result)
+    public bool Serialize(out string? key, out string[] values, SerializationContext? context)
     {
-        throw new NotImplementedException();
-    }
+        key = null;
+        values = [
+            string.Concat(Booleans.Select(x => x ? '1' : '0'))
+        ];
 
-    public override string ToString()
-    {
-        return string.Concat(Booleans.Select(x => x ? '1' : '0'));
+        return true;
     }
 }

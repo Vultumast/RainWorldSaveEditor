@@ -4,14 +4,14 @@ using System.Diagnostics.CodeAnalysis;
 
 namespace RainWorldSaveAPI;
 
-public class MiscProgressionData : SaveElementContainer, IParsable<MiscProgressionData>
+public class MiscProgressionData : SaveElementContainer, IRWSerializable<MiscProgressionData>
 {
     [SaveFileElement("CURRENTSLUGCAT", Order = 0)]
     public string CurrentSelectedSave { get; set; } = "White";
 
     // TODO custom object for this
-    [SaveFileElement("SHELTERLIST", IsRepeatableKey = RepeatMode.Exact, Order = 1)]
-    public List<string> DiscoveredShelters { get; set; } = [];
+    [SaveFileElement("SHELTERLIST", Order = 1)]
+    public MultiList<RawValues> DiscoveredShelters { get; set; } = [];
 
     // TODO custom object for this
     [SaveFileElement("CONDITIONALSHELTERDATA", ListDelimiter = "<mpdC>", Order = 2)]
@@ -250,11 +250,11 @@ public class MiscProgressionData : SaveElementContainer, IParsable<MiscProgressi
     [SaveFileElement("CHCLEARTIMES", ListDelimiter = "<mpdC>", Order = 18)]
     public List<int> CompletedChallengeTimes { get; set; } = [];
 
-    [SaveFileElement("CUSTCOLORS", IsRepeatableKey = RepeatMode.Exact, Order = 19)]
-    public List<ColorChoice> CustomColors { get; set; } = [];
+    [SaveFileElement("CUSTCOLORS", Order = 19)]
+    public MultiList<ColorChoice> CustomColors { get; set; } = [];
 
-    [SaveFileElement("CAMPAIGNTIME", IsRepeatableKey = RepeatMode.Exact, Order = 20)]
-    public List<CampaignTime> CampaignTime { get; set; } = [];
+    [SaveFileElement("CAMPAIGNTIME", Order = 20)]
+    public MultiList<CampaignTime> CampaignTime { get; set; } = [];
 
     /// <summary>
     /// Tracks the slugcat that gave Moon the cloak. <para/>
@@ -272,8 +272,8 @@ public class MiscProgressionData : SaveElementContainer, IParsable<MiscProgressi
     [SaveFileElement("SAINTSTOMACH", Order = 7)]
     public string SaintObjectCarriedInStomach { get; set; } = "0";
 
-    [SaveFileElement("VISITED", ListDelimiter = "<mpdC>", Order = 21)]
-    public List<string> RegionsVisited { get; set; } = [];
+    [SaveFileElement("VISITED", Order = 21)]
+    public RawValues RegionsVisited { get; set; } = new();
 
     // TODO backwards compatibility
     /// <summary>
@@ -284,25 +284,22 @@ public class MiscProgressionData : SaveElementContainer, IParsable<MiscProgressi
     [SaveFileElement("REDSFLOWER", Order = 25)]
     public WorldCoordinate? HunterPermadeathLocation { get; set; } = null;
 
-    public static MiscProgressionData Parse(string s, IFormatProvider? provider)
+    public static MiscProgressionData Deserialize(string key, string[] values, SerializationContext? context)
     {
         MiscProgressionData data = new();
 
-        foreach ((var key, var value) in SaveUtils.GetFields(s, "<mpdB>", "<mpdA>"))
-            ParseField(data, key, value);
+        data.DeserializeFields(values[0], "<mpdB>", "<mpdA>");
 
         return data;
     }
 
-    public static bool TryParse([NotNullWhen(true)] string? s, IFormatProvider? provider, [MaybeNullWhen(false)] out MiscProgressionData result)
+    public bool Serialize(out string? key, out string[] values, SerializationContext? context)
     {
-        // Vultu: probably make this better
-        result = Parse(s, provider);
-        return true;
-    }
+        key = null;
+        values = [
+            SerializeFields("<mpdB>", "<mpdA>")
+        ];
 
-    public override string ToString()
-    {
-        return SerializeFields("<mpdB>", "<mpdA>");
+        return true;
     }
 }

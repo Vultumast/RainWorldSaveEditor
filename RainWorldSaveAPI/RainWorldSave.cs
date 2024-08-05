@@ -7,23 +7,23 @@ namespace RainWorldSaveAPI;
 
 public class RainWorldSave : SaveElementContainer
 {
-    [SaveFileElement("SAVE STATE", IsRepeatableKey = RepeatMode.Exact, Order = 0)]
-    public List<SaveState> SaveStates { get; } = [];
+    [SaveFileElement("SAVE STATE", Order = 0)]
+    public MultiList<SaveState> SaveStates { get; } = [];
 
     [SaveFileElement("MISCPROG", Order = 5)]
     public MiscProgressionData MiscProgressionData { get; set; } = new();
 
-    [SaveFileElement("MAP", IsRepeatableKey = RepeatMode.Exact, Order = 1)]
-    public List<MapData> VanillaMaps { get; set; } = [];
+    [SaveFileElement("MAP", Order = 1)]
+    public MultiList<MapData> VanillaMaps { get; set; } = [];
 
-    [SaveFileElement("MAPUPDATE", IsRepeatableKey = RepeatMode.Exact, Order = 2)]
-    public List<MapUpdateData> VanillaMapUpdates { get; set; } = [];
+    [SaveFileElement("MAPUPDATE", Order = 2)]
+    public MultiList<MapUpdateData> VanillaMapUpdates { get; set; } = [];
 
-    [SaveFileElement("MAP_", IsRepeatableKey = RepeatMode.Prefix, Order = 3)]
-    public List<MapData> ModdedMaps { get; set; } = [];
+    [SaveFileElement("MAP_", Order = 3)]
+    public MultiList<MapData> ModdedMaps { get; set; } = [];
 
-    [SaveFileElement("MAPUPDATE_", IsRepeatableKey = RepeatMode.Prefix, Order = 4)]
-    public List<MapUpdateData> ModdedMapUpdates { get; set; } = [];
+    [SaveFileElement("MAPUPDATE_", Order = 4)]
+    public MultiList<MapUpdateData> ModdedMapUpdates { get; set; } = [];
 
     public void Read(string saveString)
     {
@@ -37,8 +37,7 @@ public class RainWorldSave : SaveElementContainer
         else
             Logger.Info("Hash OK.");
 
-        foreach ((var key, var value) in SaveUtils.GetFields(data, "<progDivB>", "<progDivA>"))
-            ParseField(this, key, value);
+        DeserializeFields(data, "<progDivB>", "<progDivA>");
     }
 
     public string Write()

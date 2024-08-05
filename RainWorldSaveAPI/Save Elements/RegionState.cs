@@ -4,7 +4,7 @@ using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace RainWorldSaveAPI.SaveElements;
 
-public class RegionState : SaveElementContainer, IParsable<RegionState>
+public class RegionState : SaveElementContainer, IRWSerializable<RegionState>
 {
     [SaveFileElement("REGIONNAME", Order = 0)]
     public string RegionName { get; set; } = "";
@@ -36,23 +36,22 @@ public class RegionState : SaveElementContainer, IParsable<RegionState>
     [SaveFileElement("ROOMSVISITED", ListDelimiter = ",", Order = 8)]
     public List<string> RoomsVisited { get; set; } = [];
 
-    public static RegionState Parse(string s, IFormatProvider? provider)
+    public static RegionState Deserialize(string key, string[] values, SerializationContext? context)
     {
-        var state = new RegionState();
+        RegionState data = new();
 
-        foreach ((var key, var value) in SaveUtils.GetFields(s, "<rgB>", "<rgA>"))
-            ParseField(state, key, value);
+        data.DeserializeFields(values[0], "<rgB>", "<rgA>");
 
-        return state;
+        return data;
     }
 
-    public static bool TryParse([NotNullWhen(true)] string? s, IFormatProvider? provider, [MaybeNullWhen(false)] out RegionState result)
+    public bool Serialize(out string? key, out string[] values, SerializationContext? context)
     {
-        throw new NotImplementedException();
-    }
+        key = null;
+        values = [
+            SerializeFields("<rgB>", "<rgA>")
+        ];
 
-    public override string ToString()
-    {
-        return SerializeFields("<rgB>", "<rgA>");
+        return true;
     }
 }

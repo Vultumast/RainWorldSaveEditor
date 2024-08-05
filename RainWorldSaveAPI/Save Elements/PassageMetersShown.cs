@@ -1,29 +1,30 @@
-﻿using System.Diagnostics.CodeAnalysis;
+﻿using RainWorldSaveAPI.Base;
+using System.Diagnostics.CodeAnalysis;
 
 namespace RainWorldSaveAPI.SaveElements;
 
-public class PassageMetersShown : IParsable<PassageMetersShown>
+public class PassageMetersShown : IRWSerializable<PassageMetersShown>
 {
     public List<string> Passages { get; } = [];
 
-    public static PassageMetersShown Parse(string s, IFormatProvider? provider)
+    public static PassageMetersShown Deserialize(string key, string[] values, SerializationContext? context)
     {
         // TODO: This has a backwards compatible format that needs to be added
         var messages = new PassageMetersShown();
 
         messages.Passages.Clear();
-        messages.Passages.AddRange(s.Split(","));
+        messages.Passages.AddRange(values[0].Split(","));
 
         return messages;
     }
 
-    public static bool TryParse([NotNullWhen(true)] string? s, IFormatProvider? provider, [MaybeNullWhen(false)] out PassageMetersShown result)
+    public bool Serialize(out string? key, out string[] values, SerializationContext? context)
     {
-        throw new NotImplementedException();
-    }
+        key = null;
+        values = [
+            string.Join(",", Passages)
+        ];
 
-    public override string ToString()
-    {
-        return string.Join(",", Passages);
+        return true;
     }
 }

@@ -26,11 +26,6 @@ public class SaveFileElement(string name, bool valueOptional = false) : Attribut
     public string? ListDelimiter { get; init; } = null;
 
     /// <summary>
-    /// For lists, defines that this key can appear multiple times and the fields should be added into the list.
-    /// </summary>
-    public RepeatMode IsRepeatableKey { get; init; } = RepeatMode.None;
-
-    /// <summary>
     /// Order to serialize fields in. Fields with lower values get deserialized first.
     /// </summary>
     public int Order { get; set; } = -9999;

@@ -12,7 +12,7 @@ public static class SaveUtils
         foreach (var method in type.GetMethods())
         {
             var parameters = method.GetParameters();
-            if (method.Name == "Parse" && parameters.Count() == 2 && parameters[0].ParameterType == typeof(string) && parameters[1].ParameterType == typeof(IFormatProvider))
+            if (method.Name == "Parse" && parameters.Length == 2 && parameters[0].ParameterType == typeof(string) && parameters[1].ParameterType == typeof(IFormatProvider))
             {
                 parseMethodInfo = method;
                 break;

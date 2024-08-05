@@ -6,7 +6,7 @@ using RainWorldSaveAPI.SaveElements;
 namespace RainWorldSaveAPI;
 
 [DebuggerDisplay("{SaveStateNumber} | Game version {GameVersion} | World version {WorldVersion}")]
-public class SaveState : SaveElementContainer, IParsable<SaveState>
+public class SaveState : SaveElementContainer, IRWSerializable<SaveState>
 {
     public SaveState() : base()
     {
@@ -71,8 +71,8 @@ public class SaveState : SaveElementContainer, IParsable<SaveState>
     public List<int> CreaturesWaitingToRespawn { get; private set; } = [];
 
     // TODO Document this
-    [SaveFileElement("REGIONSTATE", IsRepeatableKey = RepeatMode.Exact, Order = 15)]
-    public List<RegionState> RegionStates { get; private set; } = [];
+    [SaveFileElement("REGIONSTATE", Order = 15)]
+    public MultiList<RegionState> RegionStates { get; private set; } = [];
 
     /// <summary>
     /// Community-related data, mostly composed of player reputation for each community in each region.
@@ -110,15 +110,15 @@ public class SaveState : SaveElementContainer, IParsable<SaveState>
     /// <summary>
     /// Contains serialized strings of grabbed items and creatures <para/>
     /// </summary>
-    [SaveFileElement("PLAYERGRASPS", ListDelimiter = "<svB>", Order = 18)]
-    public List<string> PlayerGrasps { get; } = [];
+    [SaveFileElement("PLAYERGRASPS", Order = 18)]
+    public RawValues PlayerGrasps { get; set; } = new();
 
     /// <summary>
     /// Contains serialized strings of grabbed items and creatures that were not recognized by the game. <para/>
     /// The game tries to parse them again on each save load.
     /// </summary>
-    [SaveFileElement("UNRECOGNIZEDPLAYERGRASPS", ListDelimiter = "<svB>", Order = 19)]
-    public List<string> UnrecognizedPlayerGrasps { get; } = [];
+    [SaveFileElement("UNRECOGNIZEDPLAYERGRASPS", Order = 19)]
+    public RawValues UnrecognizedPlayerGrasps { get; set; } = new();
 
     /// <summary>
     /// The version of Rain World for this save.
@@ -252,23 +252,22 @@ public class SaveState : SaveElementContainer, IParsable<SaveState>
     [SaveFileElement("SAV STATE NUMBER", Order = 0)]
     public string SaveStateNumber { get; set; } = "???";
 
-    public static SaveState Parse(string s, IFormatProvider? provider)
+    public static SaveState Deserialize(string key, string[] values, SerializationContext? context)
     {
         SaveState data = new();
 
-        foreach ((var key, var value) in SaveUtils.GetFields(s, "<svB>", "<svA>"))
-            ParseField(data, key, value);
+        data.DeserializeFields(values[0], "<svB>", "<svA>");
 
         return data;
     }
 
-    public static bool TryParse([NotNullWhen(true)] string? s, IFormatProvider? provider, [MaybeNullWhen(false)] out SaveState result)
+    public bool Serialize(out string? key, out string[] values, SerializationContext? context)
     {
-        throw new NotImplementedException();
-    }
+        key = null;
+        values = [
+            SerializeFields("<svB>", "<svA>")
+        ];
 
-    public override string ToString()
-    {
-        return SerializeFields("<svB>", "<svA>");
+        return true;
     }
 }

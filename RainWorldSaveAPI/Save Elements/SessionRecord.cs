@@ -1,10 +1,11 @@
-﻿using System.Diagnostics;
+﻿using RainWorldSaveAPI.Base;
+using System.Diagnostics;
 using System.Diagnostics.CodeAnalysis;
 
 namespace RainWorldSaveAPI.SaveElements;
 
 [DebuggerDisplay("Survived = {Survived} | Travelled = {Travelled}")]
-public class SessionRecord : IParsable<SessionRecord>
+public class SessionRecord : IRWSerializable<SessionRecord>
 {
     public bool Survived { get; set; } = false;
 
@@ -12,24 +13,25 @@ public class SessionRecord : IParsable<SessionRecord>
 
     public string UnrecognizedRecords { get; set; } = "";
 
-    public static SessionRecord Parse(string s, IFormatProvider? provider)
+    public static SessionRecord Deserialize(string key, string[] values, SerializationContext? context)
     {
-        var record = new SessionRecord();
-
-        record.Survived = s[0] == '1';
-        record.Travelled = s[1] == '1';
-        record.UnrecognizedRecords = s[2..];
+        var record = new SessionRecord
+        {
+            Survived = values[0][0] == '1',
+            Travelled = values[0][1] == '1',
+            UnrecognizedRecords = values[0].Length > 2 ? values[0][2..] : ""
+        };
 
         return record;
     }
 
-    public static bool TryParse([NotNullWhen(true)] string? s, IFormatProvider? provider, [MaybeNullWhen(false)] out SessionRecord result)
+    public bool Serialize(out string? key, out string[] values, SerializationContext? context)
     {
-        throw new NotImplementedException();
-    }
+        key = null;
+        values = [
+            $"{(Survived ? '1' : '0')}{(Travelled ? '1' : '0')}{UnrecognizedRecords}"
+        ];
 
-    public override string ToString()
-    {
-        return $"{(Survived ? '1' : '0')}{(Travelled ? '1' : '0')}{UnrecognizedRecords}";
+        return true;
     }
 }

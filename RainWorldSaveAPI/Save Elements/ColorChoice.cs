@@ -1,10 +1,11 @@
-﻿using System.Diagnostics;
+﻿using RainWorldSaveAPI.Base;
+using System.Diagnostics;
 using System.Diagnostics.CodeAnalysis;
 
 namespace RainWorldSaveAPI;
 
 [DebuggerDisplay("Slugcat = {Slugcat} | ColorsEnabled = {ColorsEnabled} | Colors = {string.Join(\", \", ColorChoices)}")]
-public class ColorChoice : IParsable<ColorChoice>
+public class ColorChoice : IRWSerializable<ColorChoice>
 {
     public string Slugcat { get; set; } = "White";
 
@@ -12,31 +13,25 @@ public class ColorChoice : IParsable<ColorChoice>
 
     public List<string> ColorChoices { get; set; } = [];
 
-    public static ColorChoice Parse(string s, IFormatProvider? provider)
+    public static ColorChoice Deserialize(string key, string[] values, SerializationContext? context)
     {
-        var data = new ColorChoice();
-
-        var parts = s.Split("<mpdB>", StringSplitOptions.RemoveEmptyEntries);
-
-        data.Slugcat = parts[0];
-        data.ColorsEnabled = parts[1] == "1";
-
-        if (parts.Length > 2)
+        return new ColorChoice
         {
-            data.ColorChoices.AddRange(parts[2].Split("<mpdC>", StringSplitOptions.RemoveEmptyEntries));
-        }
-
-        return data;
+            Slugcat = values[0],
+            ColorsEnabled = values[1] == "1",
+            ColorChoices = new(values.Length <= 2 ? [] : values[2].Split("<mpdC>", StringSplitOptions.RemoveEmptyEntries))
+        };
     }
 
-    public static bool TryParse([NotNullWhen(true)] string? s, IFormatProvider? provider, [MaybeNullWhen(false)] out ColorChoice result)
+    public bool Serialize(out string? key, out string[] values, SerializationContext? context)
     {
-        throw new NotImplementedException();
-    }
+        key = null;
+        values = [
+            Slugcat,
+            ColorsEnabled ? "1" : "0",
+            string.Join("<mpdC>", ColorChoices)
+        ];
 
-    public override string ToString()
-    {
-        return $"{Slugcat}<mpdB>{(ColorsEnabled ? '1' : '0')}<mpdB>" +
-            string.Join("<mpdC>", ColorChoices);
+        return true;
     }
 }

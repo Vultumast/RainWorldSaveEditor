@@ -1,10 +1,11 @@
 ﻿using RainWorldSaveAPI.Base;
+using RainWorldSaveAPI.SaveElements;
 using System.Diagnostics.CodeAnalysis;
 
 namespace RainWorldSaveAPI;
 
 // TODO: Document fields
-public class LooksToTheMoonState : SaveElementContainer, IParsable<LooksToTheMoonState>
+public class LooksToTheMoonState : SaveElementContainer, IRWSerializable<LooksToTheMoonState>
 {
     [SaveFileElement("integersArray", Order = 0)]
     public GenericIntegerArray Integers { get; set; } = new();
@@ -139,23 +140,22 @@ public class LooksToTheMoonState : SaveElementContainer, IParsable<LooksToTheMoo
     [SaveFileElement("shownEnergyCell", true, Order = 7)]
     public bool HasSeenRarefactionCell { get; set; } = false;
 
-    public static LooksToTheMoonState Parse(string s, IFormatProvider? provider)
+    public static LooksToTheMoonState Deserialize(string key, string[] values, SerializationContext? context)
     {
-        var state = new LooksToTheMoonState();
+        LooksToTheMoonState data = new();
 
-        foreach ((var key, var value) in SaveUtils.GetFields(s, "<slosB>", "<slosA>"))
-            ParseField(state, key, value);
+        data.DeserializeFields(values[0], "<slosB>", "<slosA>");
 
-        return state;
+        return data;
     }
 
-    public static bool TryParse([NotNullWhen(true)] string? s, IFormatProvider? provider, [MaybeNullWhen(false)] out LooksToTheMoonState result)
+    public bool Serialize(out string? key, out string[] values, SerializationContext? context)
     {
-        throw new NotImplementedException();
-    }
+        key = null;
+        values = [
+            SerializeFields("<slosB>", "<slosA>")
+        ];
 
-    public override string ToString()
-    {
-        return SerializeFields("<slosB>", "<slosA>");
+        return true;
     }
 }

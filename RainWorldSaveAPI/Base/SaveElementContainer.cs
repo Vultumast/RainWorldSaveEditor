@@ -2,293 +2,252 @@
 using System.Linq.Expressions;
 using System.Reflection;
 using System.Text;
+using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace RainWorldSaveAPI.Base;
 
 public abstract class SaveElementContainer
 {
-    private struct ElementData
+    private struct FieldSerializationData
     {
-        public SaveFileElement SaveFileElement;
-        public PropertyInfo PropertyInfo;
+        public Serializers.PropSerializer? Serializer;
+        public Serializers.PropDeserializer? Deserializer;
+        public SaveFileElement Metadata;
+        public PropertyInfo Prop;
     }
+
+    private static Dictionary<Type, Dictionary<string, FieldSerializationData>> SerializationData { get; } = [];
 
     private const int MaxDebugChars = 50;
 
     public SaveElementContainer()
     {
-        CheckForDictionaryInit();
+        CheckInit(GetType());
     }
 
-    private void CheckForDictionaryInit()
+    private static Serializers.PropDeserializer? GetDeserializer(PropertyInfo prop)
     {
-        if (Elements.ContainsKey(GetType()))
+        try
+        {
+            return Serializers.GenerateDeserializer(prop);
+        }
+        catch (Exception e)
+        {
+            Logger.Warn($"{prop.PropertyType}: failed to get deserializer.");
+            Logger.Warn(e.ToString());
+            return null;
+        }
+    }
+
+    private static Serializers.PropSerializer? GetSerializer(PropertyInfo prop)
+    {
+        try
+        {
+            return Serializers.GenerateSerializer(prop);
+        }
+        catch (Exception e)
+        {
+            Logger.Warn($"{prop.PropertyType}: failed to get serializer.");
+            Logger.Warn(e.ToString());
+            return null;
+        }
+    }
+
+    private static void CheckInit(Type containerType)
+    {
+        if (SerializationData.ContainsKey(containerType))
             return;
 
-        var elementData = new Dictionary<string, ElementData>();
+        var elementData = new Dictionary<string, FieldSerializationData>();
+        SerializationData.Add(containerType, elementData);
 
-        var properties = GetType().GetProperties().Where(property => Attribute.IsDefined(property, typeof(SaveFileElement)));
+        var properties = containerType.GetProperties().Where(property => Attribute.IsDefined(property, typeof(SaveFileElement)));
 
         foreach (var prop in properties)
         {
-            SaveFileElement saveFileElement = (SaveFileElement)prop.GetCustomAttribute(typeof(SaveFileElement))!;
+            SaveFileElement metadata = (SaveFileElement)prop.GetCustomAttribute(typeof(SaveFileElement))!;
 
-            elementData.Add(saveFileElement.Name, new ElementData
+            try
             {
-                SaveFileElement = saveFileElement,
-                PropertyInfo = prop
-            });
+                elementData.Add(metadata.Name, new FieldSerializationData
+                {
+                    Metadata = metadata,
+                    Prop = prop,
+                    Serializer = GetSerializer(prop) ?? throw new InvalidOperationException($"Serializer is missing for {prop.Name}."),
+                    Deserializer = GetDeserializer(prop) ?? throw new InvalidOperationException($"Deserializer is missing for {prop.Name}."),
+                });
+            }
+            catch (Exception e)
+            {
+                Logger.Warn("Failed to add element data.");
+                Logger.Warn(e.ToString());
+            }
         }
 
-        Elements.Add(GetType(), elementData);
-
-        var unsetOrders = elementData.Select(x => x.Value.SaveFileElement.Order).Where(x => x == -9999).ToList();
+        var unsetOrders = elementData.Select(x => x.Value.Metadata.Order).Where(x => x == -9999).ToList();
 
         if (unsetOrders.Count > 0)
-            Logger.Warn($"{unsetOrders.Count} Order properties for container {GetType()} are unset!");
+            Logger.Warn($"{unsetOrders.Count} Order properties for container {containerType} are unset!");
 
-        var ordersSet = elementData.Select(x => x.Value.SaveFileElement.Order).Where(x => x != -9999).ToList();
+        var ordersSet = elementData.Select(x => x.Value.Metadata.Order).Where(x => x != -9999).ToList();
         var distinct = ordersSet.Distinct().ToList();
 
         if (ordersSet.Count != distinct.Count)
-            Logger.Warn($"{ordersSet.Count - distinct.Count} Order properties for container {GetType()} are duplicate!");
+            Logger.Warn($"{ordersSet.Count - distinct.Count} Order properties for container {containerType} are duplicate!");
     }
 
-    private static Dictionary<Type, Dictionary<string, ElementData>> Elements { get; } = [];
+    public Dictionary<string, string[]> UnrecognizedFields { get; protected set; } = [ ];
 
-    public Dictionary<string, string> UnrecognizedFields { get; protected set; } = [ ];
-
-    private static readonly MethodInfo SetScalarPropertyMethod = typeof(SaveElementContainer).GetMethod(nameof(SetScalarProperty), BindingFlags.NonPublic | BindingFlags.Instance)!;
-    private static readonly MethodInfo SetListPropertyMethod = typeof(SaveElementContainer).GetMethod(nameof(SetListProperty), BindingFlags.NonPublic | BindingFlags.Instance)!;
-    private static readonly MethodInfo SerializeListPropertyMethod = typeof(SaveElementContainer).GetMethod(nameof(SerializeListProperty), BindingFlags.NonPublic | BindingFlags.Instance)!;
-
-
-    /// <summary>
-    /// Sets the value for a scalar property. I.E. A property that is not a collection
-    /// </summary>
-    /// <param name="container">The SaveElementContainer who is calling</param>
-    /// <param name="propertyInfo">The information of the property</param>
-    /// <param name="elementInfo">The SaveFileElement information for the property</param>
-    /// <param name="value">The value to set the property too</param>
-    /// <returns>True on success, false otherwise</returns>
-    private bool SetScalarProperty<T>(PropertyInfo propertyInfo, SaveFileElement elementInfo, string value)
-        where T : IParsable<T>
+    private void HandleUnrecognizedField(string key, string[] values)
     {
-        if (typeof(T) == typeof(bool) && elementInfo.ValueOptional)
-        {
-            var setMethod = propertyInfo.GetSetMethod(true);
-            if (setMethod is null)
-            {
-                Logger.Warn($"Set Method was null for \"{propertyInfo.Name}\" with container: \"{GetType()}\"");
-                return false;
-            }
-            setMethod.Invoke(this, [ true ]);
-        }
-
-        if (!elementInfo.ValueOptional && value == string.Empty)
-        {
-            Logger.Error($"\"{elementInfo.Name}\" is NOT marked as ValueOptional, but no value was provided! Tell Mario or Vultu!");
-            return false;
-        }
-
-        if (value != string.Empty)
-        {
-            if (propertyInfo.PropertyType == typeof(string))
-            {
-                propertyInfo.GetSetMethod()!.Invoke(this, [value]);
-            }
-            else
-            {
-                var propertyBinding = propertyInfo.GetValue(this);
-
-                var data = T.Parse(value, null);
-
-                var setMethod = propertyInfo.GetSetMethod(true);
-                if (setMethod is null)
-                {
-                    Logger.Error($"Set Method was null for \"{propertyInfo.Name}\" with container: \"{GetType()}\"");
-                    return false;
-                }
-                setMethod.Invoke(this, [data]);
-            }
-        }
-        else if (!elementInfo.ValueOptional)
-        {
-            Logger.Error($"UNABLE TO SET: \"{propertyInfo.Name}\"! Tell Mario or Vultu!");
-            return false;
-        }
-
-        return true;
-    }
-
-    private bool SetListProperty<T, U>(PropertyInfo propertyInfo, SaveFileElement elementInfo, string value)
-        where T : ICollection<U>
-        where U : IParsable<U>
-    {
-        var propertyBinding = (T)propertyInfo.GetValue(this)!;
-
-        if (elementInfo.IsRepeatableKey != RepeatMode.None)
-        {
-            propertyBinding.Add(U.Parse(value, null));
-        }
-        else
-        {
-            propertyBinding.Clear();
-
-            foreach (var element in value.Split(elementInfo.ListDelimiter, StringSplitOptions.RemoveEmptyEntries))
-            {
-                propertyBinding.Add(U.Parse(element, null));
-            }
-        }
-
-        return true;
-    }
-
-    private void HandleUnrecognizedField(string key, string value)
-    {
-        if (!UnrecognizedFields.TryAdd(key, value))
+        if (!UnrecognizedFields.TryAdd(key, values))
             Logger.Warn($"Unable to set \"{key}\" because it was already present!");
-
-        // TODO Remove this later
-        Logger.Debug($"Unknown field: {key} => {LimitString(value)}");
-    }
-
-    private void SerializeListProperty<T, U>(PropertyInfo propertyInfo, SaveFileElement elementInfo, StringBuilder builder)
-        where T : ICollection<U>
-        where U : IParsable<U>
-    {
-        var propertyBinding = propertyInfo.GetValue(this);
-
-        if (propertyBinding is null)
-            return;
-
-        var rawAttrib = typeof(U).GetCustomAttribute<SerializeRawAttribute>();
-
-        if (typeof(U).GetMethod("ToString", [])!.DeclaringType == typeof(object))
-        {
-            Logger.Warn($"{typeof(U)} is a save element container that has the default ToString method!");
-        }
-
-        builder.Append(string.Join(elementInfo.ListDelimiter, ((T)propertyBinding).Select(x => x.ToString())));
     }
 
     public string SerializeFields(string valueDelimiter, string entryDelimiter)
     {
         StringBuilder builder = new();
 
-        foreach (var elementData in Elements[GetType()].Values.OrderBy(x => x.SaveFileElement.Order))
+        foreach (var data in SerializationData[GetType()].Values.OrderBy(x => x.Metadata.Order))
         {
-            var key = elementData.SaveFileElement.Name;
+            var serializer = data.Serializer;
 
-            var collectionInterface = elementData.PropertyInfo.PropertyType.GetInterfaces().Where(x => x.IsGenericType && x.GetGenericTypeDefinition() == typeof(ICollection<>)).FirstOrDefault();
-
-            if (collectionInterface is not null)
+            if (serializer == null)
             {
-                var elementType = collectionInterface.GetGenericArguments()[0];
-
-                SerializeListPropertyMethod.MakeGenericMethod(collectionInterface, elementType).Invoke(this, [elementData.PropertyInfo, elementData.SaveFileElement, builder]);
+                Logger.Warn($"{GetType()} => {data.Prop.Name} is missing a serializer.");
+                continue;
             }
-            else
+
+            serializer(this, out var keys, out var valuesArray);
+
+            if (keys.Length != valuesArray.Length)
             {
-                var rawAttrib = elementData.PropertyInfo.PropertyType.GetCustomAttribute<SerializeRawAttribute>();
+                Logger.Warn($"{GetType()} => {data.Prop.Name} deserializer returned a differing number of keys and values.");
+                continue;
+            }
 
-                var obj = elementData.PropertyInfo.GetValue(this);
+            foreach ((var key, var values) in keys.Zip(valuesArray))
+            {
+                var keyToUse = key ?? data.Metadata.Name;
 
-                if (obj is null)
-                    continue;
+                builder.Append(keyToUse);
 
-                if (obj.GetType().GetMethod("ToString", [])!.DeclaringType == typeof(object))
+                if (values.Length > 0)
+                builder.Append(valueDelimiter);
+
+                for (int i = 0; i < values.Length - 1; i++)
                 {
-                    Logger.Warn($"{obj.GetType()} is a save element container that has the default ToString method!");
+                    builder.Append(values[i]);
+                    builder.Append(valueDelimiter);
                 }
 
-                var value = obj.ToString();
+                if (values.Length > 0)
+                    builder.Append(values[^1]);
 
-                if (value != null)
-                {
-                    if (rawAttrib == null)
-                        builder.Append(key + valueDelimiter + value + entryDelimiter);
-                    else builder.Append(value.Replace(rawAttrib.KeyValueDelimiter, valueDelimiter) + entryDelimiter);
-                }
+                builder.Append(entryDelimiter);
             }
         }
 
-        foreach ((var key, var value) in UnrecognizedFields)
+        foreach ((var key, var values) in UnrecognizedFields)
         {
-            builder.Append(key + valueDelimiter + value + entryDelimiter);
+            builder.Append(key);
+            builder.Append(valueDelimiter);
+
+
+            for (int i = 0; i < values.Length - 1; i++)
+            {
+                builder.Append(values[i]);
+                builder.Append(valueDelimiter);
+            }
+
+            if (values.Length > 0)
+                builder.Append(values[^1]);
+
+            builder.Append(entryDelimiter);
         }
 
         return builder.ToString();
     }
 
-    public static void ParseField(SaveElementContainer container, string key, string value) => container.ParseField(key, value);
-
-    private void ParseField(string key, string value)
+    private static IEnumerable<(string Key, string[] Values)> GetFields(string data, string valueDelimiter, string entryDelimiter)
     {
-        ElementData? elementData = GetRelevantElementInfo(key);
+        string[] entries = data.Split(entryDelimiter, StringSplitOptions.RemoveEmptyEntries);
 
-        if (elementData != null)
+        foreach (var entry in entries)
         {
-            (var elementInfo, var propertyInfo) = (elementData.Value.SaveFileElement, elementData.Value.PropertyInfo);
+            string[] fields = entry.Split(valueDelimiter);
 
-            var collectionInterface = propertyInfo.PropertyType.GetInterfaces().Where(x => x.IsGenericType && x.GetGenericTypeDefinition() == typeof(ICollection<>)).FirstOrDefault();
-            var parsableInterface = propertyInfo.PropertyType.GetInterfaces().Where(x => x.IsGenericType && x.GetGenericTypeDefinition() == typeof(IParsable<>)).FirstOrDefault();
-
-            if (parsableInterface is not null)
+            if (fields.Length >= 2)
             {
-                var actualValueToUse = value;
-
-                var rawAttrib = propertyInfo.PropertyType.GetCustomAttribute<SerializeRawAttribute>();
-
-                if (rawAttrib != null)
-                {
-                    actualValueToUse = key + rawAttrib.KeyValueDelimiter + value;
-                }
-
-                if ((bool)SetScalarPropertyMethod.MakeGenericMethod(parsableInterface.GetGenericArguments()[0]).Invoke(this, [propertyInfo, elementInfo, actualValueToUse])!)
-                    return;
+                yield return (fields[0], fields[1..]);
             }
-            else if (collectionInterface is not null)
+            else if (fields.Length == 1)
             {
-                var actualValueToUse = value;
-                var elementType = propertyInfo.PropertyType.GetGenericArguments()[0];
-
-                var rawAttrib = elementType.GetCustomAttribute<SerializeRawAttribute>();
-
-                if (rawAttrib != null)
-                {
-                    actualValueToUse = key + rawAttrib.KeyValueDelimiter + value;
-                }
-
-                if (elementInfo.ListDelimiter is not null && elementInfo.IsRepeatableKey != RepeatMode.None)
-                    Logger.Debug($"{key} => {LimitString(value)}, \"{propertyInfo.PropertyType}\" is a collection that has both a delimiter and is marked as repeatable! Tell Mario or Vultu!");
-
-                if (elementInfo.ListDelimiter is null && elementInfo.IsRepeatableKey == RepeatMode.None)
-                    Logger.Debug($"{key} => {LimitString(value)}, \"{propertyInfo.PropertyType}\" is a collection that doesn't have a delimiter and is not marked as repeatable! Tell Mario or Vultu!");
-
-                else if ((bool)SetListPropertyMethod.MakeGenericMethod(collectionInterface, elementType).Invoke(this, [propertyInfo, elementInfo, actualValueToUse])!)
-                    return;
+                yield return (fields[0], []);
             }
             else
-                Logger.Debug($"{key} => {LimitString(value)}, \"{propertyInfo.PropertyType}\" does not derive from IParsable! Tell Mario or Vultu!");
-
-            HandleUnrecognizedField(key, value);
+            {
+                Logger.Error($"Failed to read an entry.");
+            }
         }
-        else
-            Logger.Warn($"Unknown Key: \"{key}\" => {LimitString(value)}");
     }
 
-    private ElementData? GetRelevantElementInfo(string key)
+    private static bool IsMultiList(Type t)
     {
-        var prefixedInfo = Elements[GetType()].Values.FirstOrDefault(x => key.StartsWith(x.SaveFileElement.Name) && x.SaveFileElement.IsRepeatableKey == RepeatMode.Prefix);
+        return t.IsGenericType && t.GetGenericTypeDefinition() == typeof(MultiList<>);
+    }
 
-        if (prefixedInfo.SaveFileElement != null && prefixedInfo.PropertyInfo != null)
-            return prefixedInfo;
+    private FieldSerializationData? GetDataFromKey(string key)
+    {
+        // Check multilists for any keys that prefix this key
+        // If there is such an element, use that type
+        var prefix = SerializationData[GetType()].FirstOrDefault(x => IsMultiList(x.Value.Prop.PropertyType) && key.StartsWith(x.Value.Metadata.Name));
 
-        if (Elements[GetType()].TryGetValue(key, out ElementData info))
-            return info;
+        if (prefix.Key != null)
+            return prefix.Value;
+        
+        // Otherwise just grab exact matches
+        if (SerializationData[GetType()].TryGetValue(key, out FieldSerializationData data))
+            return data;
 
         return null;
+    }
+
+    public void DeserializeFields(string serializedData, string valueDelimiter, string entryDelimiter)
+    {
+        foreach ((var key, var values) in GetFields(serializedData, valueDelimiter, entryDelimiter))
+        {
+            FieldSerializationData? elementData = GetDataFromKey(key);
+
+            if (elementData == null)
+            {
+                Logger.Warn($"{GetType()}: {key} doesn't have serialization data. Adding to unknown fields.");
+                HandleUnrecognizedField(key, values);
+                continue;
+            }
+
+            var data = elementData.Value;
+            var deserializer = data.Deserializer;
+            
+            if (deserializer == null)
+            {
+                Logger.Warn($"{GetType()} => {data.Prop.Name} does not have a deserializer. Adding to unknown fields.");
+                HandleUnrecognizedField(key, values);
+                continue;
+            }
+
+            try
+            {
+                deserializer(this, key, values);
+            }
+            catch (Exception e)
+            {
+                Logger.Error($"{GetType()} => {data.Prop.Name} deserialized threw an exception during call. Adding to unknown fields.");
+                Logger.Error(e.ToString());
+                HandleUnrecognizedField(key, values);
+                continue;
+            }
+        }
     }
 
     private static string LimitString(string input)

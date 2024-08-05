@@ -3,7 +3,7 @@ using System.Diagnostics.CodeAnalysis;
 
 namespace RainWorldSaveAPI;
 
-public class MiscWorldSaveData : SaveElementContainer, IParsable<MiscWorldSaveData>
+public class MiscWorldSaveData : SaveElementContainer, IRWSerializable<MiscWorldSaveData>
 {
     /// <summary>
     /// Tracks the number of times the player has talked with Five Pebbles.
@@ -122,25 +122,22 @@ public class MiscWorldSaveData : SaveElementContainer, IParsable<MiscWorldSaveDa
     [SaveFileElement("CyclesSinceSlugpup", Order = 17)]
     public int CyclesSinceLastSlugpupSpawn { get; set; } = 0;
 
-    public static MiscWorldSaveData Parse(string s, IFormatProvider? provider)
+    public static MiscWorldSaveData Deserialize(string key, string[] values, SerializationContext? context)
     {
         MiscWorldSaveData data = new();
 
-        foreach ((var key, var value) in SaveUtils.GetFields(s, "<mwB>", "<mwA>"))
-            ParseField(data, key, value);
+        data.DeserializeFields(values[0], "<mwB>", "<mwA>");
 
         return data;
     }
 
-    public static bool TryParse([NotNullWhen(true)] string? s, IFormatProvider? provider, [MaybeNullWhen(false)] out MiscWorldSaveData result)
+    public bool Serialize(out string? key, out string[] values, SerializationContext? context)
     {
-        // Vultu: probably make this better
-        result = Parse(s, provider);
-        return true;
-    }
+        key = null;
+        values = [
+            SerializeFields("<mwB>", "<mwA>")
+        ];
 
-    public override string ToString()
-    {
-        return SerializeFields("<mwB>", "<mwA>");
+        return true;
     }
 }

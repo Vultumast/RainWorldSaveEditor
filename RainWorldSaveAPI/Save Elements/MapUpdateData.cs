@@ -1,10 +1,9 @@
-﻿using System.Diagnostics.CodeAnalysis;
+﻿using RainWorldSaveAPI.Base;
 using System.Globalization;
 
 namespace RainWorldSaveAPI.Save_Elements;
 
-[SerializeRaw(":")]
-public class MapUpdateData : IParsable<MapUpdateData>
+public class MapUpdateData : IRWSerializable<MapUpdateData>
 {
     public string Key { get; set; } = "";
 
@@ -12,29 +11,26 @@ public class MapUpdateData : IParsable<MapUpdateData>
 
     public long MapLastUpdated { get; set; } = 0;
 
-    public static MapUpdateData Parse(string s, IFormatProvider? provider)
+    public static MapUpdateData Deserialize(string key, string[] values, SerializationContext? context)
     {
-        var mapData = new MapUpdateData();
-
-        var parts = s.Split(":", 2);
-
-        mapData.Key = parts[0];
-
-        var valueParts = parts[1].Split("<progDivB>");
-
-        mapData.Region = valueParts[0];
-        mapData.MapLastUpdated = long.Parse(valueParts[1], NumberStyles.Any, CultureInfo.InvariantCulture);
+        var mapData = new MapUpdateData
+        {
+            Key = key,
+            Region = values[0],
+            MapLastUpdated = long.Parse(values[1], NumberStyles.Any, CultureInfo.InvariantCulture)
+        };
 
         return mapData;
     }
 
-    public static bool TryParse([NotNullWhen(true)] string? s, IFormatProvider? provider, [MaybeNullWhen(false)] out MapUpdateData result)
+    public bool Serialize(out string? key, out string[] values, SerializationContext? context)
     {
-        throw new NotImplementedException();
-    }
+        key = Key;
+        values = [
+            Region,
+            MapLastUpdated.ToString()
+        ];
 
-    public override string ToString()
-    {
-        return $"{Key}:{Region}<progDivB>{MapLastUpdated}";
+        return true;
     }
 }

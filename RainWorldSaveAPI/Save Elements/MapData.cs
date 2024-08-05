@@ -1,9 +1,8 @@
-﻿using System.Diagnostics.CodeAnalysis;
+﻿using RainWorldSaveAPI.Base;
 
 namespace RainWorldSaveAPI.Save_Elements;
 
-[SerializeRaw(":")]
-public class MapData : IParsable<MapData>
+public class MapData : IRWSerializable<MapData>
 {
     public string Key { get; set; } = "";
 
@@ -11,29 +10,26 @@ public class MapData : IParsable<MapData>
 
     public byte[] MapDataPNG { get; set; } = [];
 
-    public static MapData Parse(string s, IFormatProvider? provider)
+    public static MapData Deserialize(string key, string[] values, SerializationContext? context)
     {
-        var mapData = new MapData();
-
-        var parts = s.Split(":", 2);
-
-        mapData.Key = parts[0];
-
-        var valueParts = parts[1].Split("<progDivB>");
-
-        mapData.Region = valueParts[0];
-        mapData.MapDataPNG = Convert.FromBase64String(valueParts[1]);
+        var mapData = new MapData
+        {
+            Key = key,
+            Region = values[0],
+            MapDataPNG = Convert.FromBase64String(values[1])
+        };
 
         return mapData;
     }
 
-    public static bool TryParse([NotNullWhen(true)] string? s, IFormatProvider? provider, [MaybeNullWhen(false)] out MapData result)
+    public bool Serialize(out string? key, out string[] values, SerializationContext? context)
     {
-        throw new NotImplementedException();
-    }
+        key = Key;
+        values = [
+            Region,
+            Convert.ToBase64String(MapDataPNG)
+        ];
 
-    public override string ToString()
-    {
-        return $"{Key}:{Region}<progDivB>{Convert.ToBase64String(MapDataPNG)}";
+        return true;
     }
 }

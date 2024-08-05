@@ -186,7 +186,21 @@ public partial class MainForm : Form
         }
         File.WriteAllText("original.txt", saveData);
         File.WriteAllText("parsed.txt", _save.Write());
+        File.WriteAllText("original_indented.txt", Format(saveData));
+        File.WriteAllText("parsed_indented.txt", Format(_save.Write()));
         UpdateTitle();
+    }
+
+    private static string Format(string data)
+    {
+        string result = "";
+
+        for (int i = 0; i < data.Length; i += 80)
+        {
+            result += data[i..Math.Min(i + 80, data.Length - 1)] + '\n';
+        }
+
+        return result;
     }
 
     void UnloadSave()

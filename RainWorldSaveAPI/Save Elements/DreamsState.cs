@@ -4,7 +4,7 @@ using System.Diagnostics.CodeAnalysis;
 namespace RainWorldSaveAPI.SaveElements;
 
 // TODO: Document fields
-public class DreamsState : SaveElementContainer, IParsable<DreamsState>
+public class DreamsState : SaveElementContainer, IRWSerializable<DreamsState>
 {
     [SaveFileElement("integersArray", Order = 0)]
     public GenericIntegerArray Integers { get; set; } = new();
@@ -63,23 +63,22 @@ public class DreamsState : SaveElementContainer, IParsable<DreamsState>
         set => Integers.TrySet(8, value ? 1 : 0);
     }
 
-    public static DreamsState Parse(string s, IFormatProvider? provider)
+    public static DreamsState Deserialize(string key, string[] values, SerializationContext? context)
     {
-        var state = new DreamsState();
+        DreamsState data = new();
 
-        foreach ((var key, var value) in SaveUtils.GetFields(s, "<dsB>", "<dsA>"))
-            ParseField(state, key, value);
+        data.DeserializeFields(values[0], "<dsB>", "<dsA>");
 
-        return state;
+        return data;
     }
 
-    public static bool TryParse([NotNullWhen(true)] string? s, IFormatProvider? provider, [MaybeNullWhen(false)] out DreamsState result)
+    public bool Serialize(out string? key, out string[] values, SerializationContext? context)
     {
-        throw new NotImplementedException();
-    }
+        key = null;
+        values = [
+            SerializeFields("<dsB>", "<dsA>")
+        ];
 
-    public override string ToString()
-    {
-        return SerializeFields("<dsB>", "<dsA>");
+        return true;
     }
 }

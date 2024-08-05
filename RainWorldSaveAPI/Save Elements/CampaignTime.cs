@@ -1,11 +1,12 @@
 ﻿using System.Diagnostics.CodeAnalysis;
 using System.Diagnostics;
 using System.Globalization;
+using RainWorldSaveAPI.Base;
 
 namespace RainWorldSaveAPI;
 
 [DebuggerDisplay("Slugcat = {Slugcat} | FreeTime = {UndeterminedFreeTime} / {CompletedFreeTime} / {LostFreeTime} | FixedTime = {UndeterminedFixedTime} / {CompletedFixedTime} / {LostFixedTime} |")]
-public class CampaignTime : IParsable<CampaignTime>
+public class CampaignTime : IRWSerializable<CampaignTime>
 {
     public string Slugcat { get; set; } = "White";
 
@@ -21,36 +22,33 @@ public class CampaignTime : IParsable<CampaignTime>
 
     public double LostFixedTime { get; set; }
 
-    public static CampaignTime Parse(string s, IFormatProvider? provider)
+    public static CampaignTime Deserialize(string key, string[] values, SerializationContext? context)
     {
-        var data = new CampaignTime();
-
-        var parts = s.Split("<mpdB>", StringSplitOptions.RemoveEmptyEntries);
-
-        data.Slugcat = parts[0];
-        data.UndeterminedFreeTime = double.Parse(parts[1], NumberStyles.Any, CultureInfo.InvariantCulture);
-        data.CompletedFreeTime = double.Parse(parts[2], NumberStyles.Any, CultureInfo.InvariantCulture);
-        data.LostFreeTime = double.Parse(parts[3], NumberStyles.Any, CultureInfo.InvariantCulture);
-        data.UndeterminedFixedTime = double.Parse(parts[4], NumberStyles.Any, CultureInfo.InvariantCulture);
-        data.CompletedFixedTime = double.Parse(parts[5], NumberStyles.Any, CultureInfo.InvariantCulture);
-        data.LostFixedTime = double.Parse(parts[6], NumberStyles.Any, CultureInfo.InvariantCulture);
-
-        return data;
+        return new CampaignTime
+        {
+            Slugcat = values[0],
+            UndeterminedFreeTime = double.Parse(values[1], NumberStyles.Any, CultureInfo.InvariantCulture),
+            CompletedFreeTime = double.Parse(values[2], NumberStyles.Any, CultureInfo.InvariantCulture),
+            LostFreeTime = double.Parse(values[3], NumberStyles.Any, CultureInfo.InvariantCulture),
+            UndeterminedFixedTime = double.Parse(values[4], NumberStyles.Any, CultureInfo.InvariantCulture),
+            CompletedFixedTime = double.Parse(values[5], NumberStyles.Any, CultureInfo.InvariantCulture),
+            LostFixedTime = double.Parse(values[6], NumberStyles.Any, CultureInfo.InvariantCulture)
+        };
     }
 
-    public static bool TryParse([NotNullWhen(true)] string? s, IFormatProvider? provider, [MaybeNullWhen(false)] out CampaignTime result)
+    public bool Serialize(out string? key, out string[] values, SerializationContext? context)
     {
-        throw new NotImplementedException();
-    }
+        key = null;
+        values = [
+            Slugcat,
+            $"{UndeterminedFreeTime}",
+            $"{CompletedFreeTime}",
+            $"{LostFreeTime}",
+            $"{UndeterminedFixedTime}",
+            $"{CompletedFixedTime}",
+            $"{LostFixedTime}"
+        ];
 
-    public override string ToString()
-    {
-        return $"{Slugcat}<mpdB>" +
-            $"{UndeterminedFreeTime}<mpdB>" +
-            $"{CompletedFreeTime}<mpdB>" +
-            $"{LostFreeTime}<mpdB>" +
-            $"{UndeterminedFixedTime}<mpdB>" +
-            $"{CompletedFixedTime}<mpdB>" +
-            $"{LostFixedTime}";
+        return true;
     }
 }

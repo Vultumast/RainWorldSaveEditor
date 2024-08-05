@@ -1,20 +1,21 @@
-﻿using System.Diagnostics;
+﻿using RainWorldSaveAPI.Base;
+using System.Diagnostics;
 using System.Diagnostics.CodeAnalysis;
 
 namespace RainWorldSaveAPI;
 
 [DebuggerDisplay("Shelter = {ShelterName} | Slugcats = {string.Join(\", \", SlugcatFoundList)}")]
-public class ConditionalShelterData : IParsable<ConditionalShelterData>
+public class ConditionalShelterData : IRWSerializable<ConditionalShelterData>
 {
     public string ShelterName { get; set; } = "";
 
     public List<string> SlugcatFoundList { get; set; } = [];
 
-    public static ConditionalShelterData Parse(string s, IFormatProvider? provider)
+    public static ConditionalShelterData Deserialize(string key, string[] values, SerializationContext? context)
     {
         var data = new ConditionalShelterData();
 
-        var parts = s.Split(" : ", StringSplitOptions.RemoveEmptyEntries);
+        var parts = values[0].Split(" : ", StringSplitOptions.RemoveEmptyEntries);
 
         data.ShelterName = parts[0];
         data.SlugcatFoundList.AddRange(parts[1..]);
@@ -22,13 +23,13 @@ public class ConditionalShelterData : IParsable<ConditionalShelterData>
         return data;
     }
 
-    public static bool TryParse([NotNullWhen(true)] string? s, IFormatProvider? provider, [MaybeNullWhen(false)] out ConditionalShelterData result)
+    public bool Serialize(out string? key, out string[] values, SerializationContext? context)
     {
-        throw new NotImplementedException();
-    }
+        key = null;
+        values = [
+            $"{ShelterName} : {string.Join(" : ", SlugcatFoundList)} : "
+        ];
 
-    public override string ToString()
-    {
-        return $"{ShelterName} : {string.Join(" : ", SlugcatFoundList)} : ";
+        return true;
     }
 }

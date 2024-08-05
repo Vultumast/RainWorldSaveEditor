@@ -1,11 +1,12 @@
-﻿using System.Diagnostics;
+﻿using RainWorldSaveAPI.Base;
+using System.Diagnostics;
 using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
 
 namespace RainWorldSaveAPI;
 
 [DebuggerDisplay("Integers = {string.Join(\", \", Integers)}")]
-public class GenericIntegerArray : IParsable<GenericIntegerArray>
+public class GenericIntegerArray : IRWSerializable<GenericIntegerArray>
 {
     public int[] Integers { get; set; } = [];
 
@@ -26,37 +27,37 @@ public class GenericIntegerArray : IParsable<GenericIntegerArray>
             Integers[index] = value;
     }
 
-    public static GenericIntegerArray Parse(string s, IFormatProvider? provider)
+    public static GenericIntegerArray Deserialize(string key, string[] values, SerializationContext? context)
     {
         var array = new GenericIntegerArray();
 
         char delimiter;
 
-        if (s.Contains('.') && !s.Contains(','))
+        if (values[0].Contains('.') && !values[0].Contains(','))
             delimiter = '.';
 
-        else if (s.Contains(',') && !s.Contains('.'))
+        else if (values[0].Contains(',') && !values[0].Contains('.'))
             delimiter = ',';
 
         else throw new ArgumentException("Cannot determine integer array divider.");
 
         array.DelimiterUsed = delimiter;
 
-        array.Integers = s.Split(delimiter, StringSplitOptions.RemoveEmptyEntries).Select(x => int.Parse(x, NumberStyles.Any, CultureInfo.InvariantCulture)).ToArray();
+        array.Integers = values[0].Split(delimiter, StringSplitOptions.RemoveEmptyEntries).Select(x => int.Parse(x, NumberStyles.Any, CultureInfo.InvariantCulture)).ToArray();
 
         return array;
     }
 
-    public static bool TryParse([NotNullWhen(true)] string? s, IFormatProvider? provider, [MaybeNullWhen(false)] out GenericIntegerArray result)
-    {
-        throw new NotImplementedException();
-    }
-
-    public override string ToString()
+    public bool Serialize(out string? key, out string[] values, SerializationContext? context)
     {
         if (DelimiterUsed == ' ')
             throw new InvalidOperationException("GenericIntegerArray Delimiter was not set, cannot deserialize!");
 
-        return string.Join(DelimiterUsed, Integers);
+        key = null;
+        values = [
+            string.Join(DelimiterUsed, Integers)
+        ];
+
+        return true;
     }
 }

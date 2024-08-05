@@ -1,4 +1,5 @@
-﻿using System.Diagnostics.CodeAnalysis;
+﻿using RainWorldSaveAPI.Base;
+using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
 
 namespace RainWorldSaveAPI.SaveElements;
@@ -20,18 +21,18 @@ public enum EchoState
     Met,
 }
 
-public class Echos : IParsable<Echos>
+public class Echos : IRWSerializable<Echos>
 {
     public Dictionary<string, EchoState> EchoStates { get; } = [];
 
     public List<string> UnrecognizedStates { get; } = [];
 
-    public static Echos Parse(string s, IFormatProvider? provider)
+    public static Echos Deserialize(string key, string[] values, SerializationContext? context)
     {
         // TODO: This has a backwards compatible format that needs to be added
         var ghost = new Echos();
 
-        foreach (var ghostData in s.Split(",", StringSplitOptions.RemoveEmptyEntries))
+        foreach (var ghostData in values[0].Split(",", StringSplitOptions.RemoveEmptyEntries))
         {
             string[] parts = ghostData.Split(":", 2);
 
@@ -55,13 +56,13 @@ public class Echos : IParsable<Echos>
         return ghost;
     }
 
-    public static bool TryParse([NotNullWhen(true)] string? s, IFormatProvider? provider, [MaybeNullWhen(false)] out Echos result)
+    public bool Serialize(out string? key, out string[] values, SerializationContext? context)
     {
-        throw new NotImplementedException();
-    }
+        key = null;
+        values = [
+            string.Join(",", EchoStates.Select(x => $"{x.Key}:{(int)x.Value}"))
+        ];
 
-    public override string ToString()
-    {
-        return string.Join(",", EchoStates.Select(x => $"{x.Key}:{(int)x.Value}"));
+        return true;
     }
 }

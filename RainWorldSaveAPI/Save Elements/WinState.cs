@@ -1,4 +1,5 @@
-﻿using System;
+﻿using RainWorldSaveAPI.Base;
+using System;
 using System.Diagnostics;
 using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
@@ -182,15 +183,15 @@ public class GenericTracker : EndgameTracker
     }
 }
 
-public class WinState : IParsable<WinState>
+public class WinState : IRWSerializable<WinState>
 {
     public List<EndgameTracker> Trackers { get; } = [];
 
-    public static WinState Parse(string s, IFormatProvider? provider)
+    public static WinState Deserialize(string key, string[] values, SerializationContext? context)
     {
         var winState = new WinState();
 
-        string[] trackersData = s.Split("<wsA>", StringSplitOptions.RemoveEmptyEntries);
+        string[] trackersData = values[0].Split("<wsA>", StringSplitOptions.RemoveEmptyEntries);
 
         foreach (var trackerData in trackersData)
         {
@@ -205,14 +206,14 @@ public class WinState : IParsable<WinState>
         return winState;
     }
 
-    public static bool TryParse([NotNullWhen(true)] string? s, IFormatProvider? provider, [MaybeNullWhen(false)] out WinState result)
+    public bool Serialize(out string? key, out string[] values, SerializationContext? context)
     {
-        throw new NotImplementedException();
-    }
+        key = null;
+        values = [
+            string.Concat(Trackers.Select(x => $"{x}<wsA>"))
+        ];
 
-    public override string ToString()
-    {
-        return string.Concat(Trackers.Select(x => $"{x}<wsA>"));
+        return true;
     }
 
     private static EndgameTracker GetTrackerFromId(string id) => id switch

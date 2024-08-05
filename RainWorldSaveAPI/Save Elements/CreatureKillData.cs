@@ -1,33 +1,35 @@
-﻿using System.Diagnostics.CodeAnalysis;
+﻿using RainWorldSaveAPI.Base;
+using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
 
 namespace RainWorldSaveAPI;
 
-public class CreatureKillData : IParsable<CreatureKillData>
+public class CreatureKillData : IRWSerializable<CreatureKillData>
 {
     public string Creature { get; set; } = "";
 
     public int Kills { get; set; } = 0;
 
-    public static CreatureKillData Parse(string s, IFormatProvider? provider)
+    public static CreatureKillData Deserialize(string key, string[] values, SerializationContext? context)
     {
-        var data = new CreatureKillData();
+        var parts = values[0].Split("<svD>");
 
-        var parts = s.Split("<svD>");
-
-        data.Creature = parts[0];
-        data.Kills = int.Parse(parts[1], NumberStyles.Any, CultureInfo.InvariantCulture);
+        var data = new CreatureKillData
+        {
+            Creature = parts[0],
+            Kills = int.Parse(parts[1], NumberStyles.Any, CultureInfo.InvariantCulture)
+        };
 
         return data;
     }
 
-    public static bool TryParse([NotNullWhen(true)] string? s, IFormatProvider? provider, [MaybeNullWhen(false)] out CreatureKillData result)
+    public bool Serialize(out string? key, out string[] values, SerializationContext? context)
     {
-        throw new NotImplementedException();
-    }
+        key = null;
+        values = [
+            $"{Creature}<svD>{Kills}"
+        ];
 
-    public override string ToString()
-    {
-        return $"{Creature}<svD>{Kills}";
+        return true;
     }
 }

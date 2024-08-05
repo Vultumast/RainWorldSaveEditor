@@ -3,15 +3,15 @@ using System.Globalization;
 using RainWorldSaveAPI.Base;
 
 namespace RainWorldSaveAPI.SaveElements;
-public class Community : IParsable<Community>
+public class Community : IRWSerializable<Community>
 {
     public Dictionary<string, float> PlayerRegionalReputation { get; } = [];
 
-    public static Community Parse(string s, IFormatProvider? provider)
+    public static Community Deserialize(string key, string[] values, SerializationContext? context)
     {
         var community = new Community();
 
-        var pairs = s.Split("|");
+        var pairs = values[0].Split("|");
 
         foreach (var pair in pairs)
         {
@@ -23,49 +23,44 @@ public class Community : IParsable<Community>
         return community;
     }
 
-    public static bool TryParse([NotNullWhen(true)] string? s, IFormatProvider? provider, [MaybeNullWhen(false)] out Community result)
+    public bool Serialize(out string? key, out string[] values, SerializationContext? context)
     {
-        throw new NotImplementedException();
-    }
+        key = null;
+        values = [
+            string.Join("|", PlayerRegionalReputation.Select(x => $"{x.Key}:{x.Value}"))
+        ];
 
-    public override string ToString()
-    {
-        return string.Join("|", PlayerRegionalReputation.Select(x => $"{x.Key}:{x.Value}"));
+        return true;
     }
 }
 
 // TODO do modded creature communities exist?
 // Vultu: 🤓 Ackshully the DLC is technically a mod
-public class CreatureCommunities : SaveElementContainer, IParsable<CreatureCommunities>
+public class CreatureCommunities : SaveElementContainer, IRWSerializable<CreatureCommunities>
 {
     public float ScavengerShynesss { get; set; } = 0f;
 
     public Dictionary<string, Community> Communities { get; private set; } = [];
 
-
-
-    public static CreatureCommunities Parse(string s, IFormatProvider? provider)
+    public static CreatureCommunities Deserialize(string key, string[] values, SerializationContext? context)
     {
         // This has two ways of parsing, maybe due to backwards compatibility?
 
         CreatureCommunities data = new CreatureCommunities();
 
-        if (!s.Contains("<ccA>") && s.Contains("<coA>"))
+        if (!values[0].Contains("<ccA>") && values[0].Contains("<coA>"))
         {
-            foreach ((var key, var value) in SaveUtils.GetFields(s, "<coB>", "<coA>"))
+            foreach ((var fieldKey, var fieldValue) in SaveUtils.GetFields(values[0], "<coB>", "<coA>"))
             {
-                if (key == "SCAVSHY")
+                if (fieldKey == "SCAVSHY")
                 {
-                    float shyness = 0;
-                    if (!float.TryParse(value, out shyness))
-                        Logger.Error($"Unable to parse \"SCAVSHY\" from value: \"{value}\"");
+                    if (!float.TryParse(fieldValue, out float shyness))
+                        Logger.Error($"Unable to parse \"SCAVSHY\" from value: \"{fieldValue}\"");
                     data.ScavengerShynesss = shyness;
                     continue;
                 }
                 else
-                    data.Communities.Add(key, Community.Parse(value, provider));
-                
-                // ParseField(data, key, value);
+                    data.Communities.Add(fieldKey, Community.Deserialize(fieldKey, [fieldValue], null));
             }
         }
         else
@@ -76,16 +71,18 @@ public class CreatureCommunities : SaveElementContainer, IParsable<CreatureCommu
         return data;
     }
 
-    public static bool TryParse([NotNullWhen(true)] string? s, IFormatProvider? provider, [MaybeNullWhen(false)] out CreatureCommunities result)
+    public bool Serialize(out string? key, out string[] values, SerializationContext? context)
     {
-        // Vultu: probably make this better
-        result = Parse(s, provider);
-        return true;
-    }
+        key = null;
+        values = [
+            $"SCAVSHY<coB>{ScavengerShynesss}<coA>" +
+                string.Join("<coA>", Communities.Select(x =>
+                {
+                    x.Value.Serialize(out _, out var values, null);
+                    return $"{x.Key}<coB>{values[0]}";
+                }))
+        ];
 
-    public override string ToString()
-    {
-        return $"SCAVSHY<coB>{ScavengerShynesss}<coA>" +
-            string.Concat(Communities.Select(x => $"{x.Key}<coB>{x.Value}<coA>"));
+        return true;
     }
 }
