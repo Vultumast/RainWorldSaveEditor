@@ -184,11 +184,26 @@ public partial class MainForm : Form
             Logger.Warn("Save data not found.");
             return;
         }
-        File.WriteAllText("original.txt", saveData);
-        File.WriteAllText("parsed.txt", _save.Write());
-        File.WriteAllText("original_indented.txt", Format(saveData));
-        File.WriteAllText("parsed_indented.txt", Format(_save.Write()));
+
+        WriteComparisons(saveData, _save.Write());
         UpdateTitle();
+    }
+
+    private static void WriteComparisons(string original, string parsed)
+    {
+        File.WriteAllText("original.txt", original);
+        File.WriteAllText("parsed.txt", parsed);
+        File.WriteAllText("original_indented.txt", Format(original));
+        File.WriteAllText("parsed_indented.txt", Format(parsed));
+
+        for (int i = 32; i < original.Length && i < parsed.Length; i++)
+        {
+            if (original[i] != parsed[i])
+            {
+                Logger.Info($"First difference is at {i} (line {i / 80 + 1}, column {(i % 80) + 1}).");
+                break;
+            }
+        }
     }
 
     private static string Format(string data)
@@ -197,7 +212,7 @@ public partial class MainForm : Form
 
         for (int i = 0; i < data.Length; i += 80)
         {
-            result += data[i..Math.Min(i + 80, data.Length - 1)] + '\n';
+            result += data[i..Math.Min(i + 80, data.Length)] + '\n';
         }
 
         return result;

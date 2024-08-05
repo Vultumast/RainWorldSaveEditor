@@ -133,7 +133,7 @@ public abstract class SaveElementContainer
                 builder.Append(keyToUse);
 
                 if (values.Length > 0)
-                builder.Append(valueDelimiter);
+                    builder.Append(valueDelimiter);
 
                 for (int i = 0; i < values.Length - 1; i++)
                 {
@@ -143,6 +143,9 @@ public abstract class SaveElementContainer
 
                 if (values.Length > 0)
                     builder.Append(values[^1]);
+
+                if (data.Metadata.TrailingValueDelimiter)
+                    builder.Append(valueDelimiter);
 
                 builder.Append(entryDelimiter);
             }

@@ -20,13 +20,13 @@ public class RegionState : SaveElementContainer, IRWSerializable<RegionState>
     [SaveFileElement("LINEAGES", ListDelimiter = ",", Order = 3)]
     public List<string> Lineages { get; set; } = [];
 
-    [SaveFileElement("OBJECTS", ListDelimiter = "<rgC>", Order = 4)]
+    [SaveFileElement("OBJECTS", ListDelimiter = "<rgC>", TrailingListDelimiter = true, Order = 4)]
     public List<string> Objects { get; set; } = [];
 
-    [SaveFileElement("POPULATION", ListDelimiter = "<rgC>", Order = 5)]
+    [SaveFileElement("POPULATION", ListDelimiter = "<rgC>", TrailingListDelimiter = true, Order = 5)]
     public List<string> Population { get; set; } = [];
 
-    [SaveFileElement("STICKS", ListDelimiter = "<rgC>", Order = 6)]
+    [SaveFileElement("STICKS", ListDelimiter = "<rgC>", TrailingListDelimiter = true, Order = 6)]
     public List<string> SavedSticks { get; set; } = [];
 
     [SaveFileElement("CONSUMEDITEMS", ListDelimiter = "<rgC>", Order = 7)]
