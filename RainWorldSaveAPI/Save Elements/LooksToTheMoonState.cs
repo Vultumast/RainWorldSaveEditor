@@ -113,10 +113,10 @@ public class LooksToTheMoonState : SaveElementContainer, IRWSerializable<LooksTo
         set => Booleans.TrySet(0, value);
     }
 
-    [SaveFileElement("significantPearls", ListDelimiter = ",", Order = 2)]
+    [SaveFileElement("significantPearls", ListDelimiter = ",", SerializeIfEmpty = true, Order = 2)]
     public List<string> DataPearlsRead { get; set; } = [];
 
-    [SaveFileElement("miscItemsDescribed", ListDelimiter = ",", Order = 3)]
+    [SaveFileElement("miscItemsDescribed", ListDelimiter = ",", SerializeIfEmpty = true, Order = 3)]
     public List<string> MiscItemsDescribed { get; set; } = [];
 
     /// <summary>

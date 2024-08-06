@@ -36,6 +36,11 @@ public class SaveFileElement(string name, bool valueOptional = false) : Attribut
     public bool TrailingValueDelimiter { get; init; } = false;
 
     /// <summary>
+    /// If false, lists and raw values will be skipped from serialization if they have no elements at all.
+    /// </summary>
+    public bool SerializeIfEmpty { get; init; } = false;
+
+    /// <summary>
     /// Order to serialize fields in. Fields with lower values get deserialized first.
     /// </summary>
     public int Order { get; set; } = -9999;

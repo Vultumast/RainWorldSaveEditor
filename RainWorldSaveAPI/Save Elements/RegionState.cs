@@ -13,14 +13,14 @@ public class RegionState : SaveElementContainer, IRWSerializable<RegionState>
     public int LastCycleUpdated { get; set; } = 0;
 
     // TODO backwards compatibility
-    [SaveFileElement("SWARMROOMS", ListDelimiter = ",", Order = 2)]
+    [SaveFileElement("SWARMROOMS", ListDelimiter = ",", SerializeIfEmpty = true, Order = 2)]
     public List<string> SwarmRooms { get; set; } = [];
 
     // TODO backwards compatibility
     [SaveFileElement("LINEAGES", ListDelimiter = ",", Order = 3)]
     public List<string> Lineages { get; set; } = [];
 
-    [SaveFileElement("OBJECTS", ListDelimiter = "<rgC>", TrailingListDelimiter = true, Order = 4)]
+    [SaveFileElement("OBJECTS", ListDelimiter = "<rgC>", TrailingListDelimiter = true,  Order = 4)]
     public List<string> Objects { get; set; } = [];
 
     [SaveFileElement("POPULATION", ListDelimiter = "<rgC>", TrailingListDelimiter = true, Order = 5)]

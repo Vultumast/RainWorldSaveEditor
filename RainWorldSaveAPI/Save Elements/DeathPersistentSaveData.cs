@@ -1,5 +1,6 @@
 ﻿using System.Diagnostics.CodeAnalysis;
 using RainWorldSaveAPI.Base;
+using RainWorldSaveAPI.Save_Elements;
 
 namespace RainWorldSaveAPI.SaveElements;
 public class DeathPersistentSaveData : SaveElementContainer, IRWSerializable<DeathPersistentSaveData>
@@ -102,7 +103,7 @@ public class DeathPersistentSaveData : SaveElementContainer, IRWSerializable<Dea
     /// Similar to save state world version, Rain World will try updating old saves to the newest world version on load.
     /// </summary>
     [SaveFileElement("DDWORLDVERSION", Order = 15)]
-    public int WorldVersion { get; set; } = 0;
+    public IntSerializeIfNotZero WorldVersion { get; set; } = new();
 
     /// <summary>
     /// Tracks the total number of player deaths in this playthrough.
@@ -162,7 +163,7 @@ public class DeathPersistentSaveData : SaveElementContainer, IRWSerializable<Dea
     /// Used for end game score calculation.
     /// </summary>
     [SaveFileElement("FRIENDSAVEBONUS", Order = 27)]
-    public int FriendsSaved { get; set; } = 0;
+    public IntSerializeIfNotZero FriendsSaved { get; set; } = new();
 
     /// <summary>
     /// Tracks the total amount of time spent in a dead state.
@@ -198,13 +199,13 @@ public class DeathPersistentSaveData : SaveElementContainer, IRWSerializable<Dea
     /// <summary>
     /// A list of broadcasts that have been read by the player.
     /// </summary>
-    [SaveFileElement("CHATLOGS", ListDelimiter = ",", Order = 28)]
+    [SaveFileElement("CHATLOGS", ListDelimiter = ",", SerializeIfEmpty = true, Order = 28)]
     public List<string> ChatLogsRead { get; private set; } = [];
 
     /// <summary>
     /// A list of broadcasts that have been read by the player, before ever interacting with Five Pebbles.
     /// </summary>
-    [SaveFileElement("PREPEBCHATLOGS", ListDelimiter = ",", Order = 29)]
+    [SaveFileElement("PREPEBCHATLOGS", ListDelimiter = ",", SerializeIfEmpty = true, Order = 29)]
     public List<string> ChatLogsReadBeforeFP { get; private set; } = [];
 
     /// <summary>

@@ -8,6 +8,7 @@ using System.Reflection;
 using System.Globalization;
 using System.Resources;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
+using System.Text;
 
 namespace RainWorldSaveEditor;
 
@@ -196,26 +197,45 @@ public partial class MainForm : Form
         File.WriteAllText("original_indented.txt", Format(original));
         File.WriteAllText("parsed_indented.txt", Format(parsed));
 
-        for (int i = 32; i < original.Length && i < parsed.Length; i++)
+        int line = 1;
+        int col = 1;
+
+        for (int i = 32; i < Math.Max(original.Length, parsed.Length); i++)
         {
-            if (original[i] != parsed[i])
+            if (i >= parsed.Length || i >= original.Length || original[i] != parsed[i])
             {
-                Logger.Info($"First difference is at {i} (line {i / 80 + 1}, column {(i % 80) + 1}).");
+                Logger.Info($"First difference is at {i} (line {line}, col {col})");
                 break;
+            }
+
+            if (original[i] == '<' || original[i] == '>')
+            {
+                line++;
+                col = 1;
+            }
+            else
+            {
+                col++;
             }
         }
     }
 
-    private static string Format(string data)
+    private static string Format(string original)
     {
-        string result = "";
+        StringBuilder result = new();
 
-        for (int i = 0; i < data.Length; i += 80)
+        for (int i = 0; i < original.Length; i++)
         {
-            result += data[i..Math.Min(i + 80, data.Length)] + '\n';
+            if (original[i] == '<')
+                result.AppendLine();
+
+            result.Append(original[i]);
+
+            if (original[i] == '>')
+                result.AppendLine();
         }
 
-        return result;
+        return result.ToString();
     }
 
     void UnloadSave()

@@ -96,15 +96,15 @@ public class SaveState : SaveElementContainer, IRWSerializable<SaveState>
     /// <summary>
     /// Contains serialized strings of swallowed items
     /// </summary>
-    [SaveFileElement("SWALLOWEDITEMS", ListDelimiter = "<svB>", Order = 16)]
-    public List<string> SwallowedItems { get; private set; } = [];
+    [SaveFileElement("SWALLOWEDITEMS", Order = 16)]
+    public RawValues SwallowedItems { get; set; } = new();
 
     /// <summary>
     /// Contains serialized strings of swallowed items and creatures that were not recognized by the game. <para/>
     /// The game tries to parse them again on each save load.
     /// </summary>
-    [SaveFileElement("UNRECOGNIZEDSWALLOWED", ListDelimiter = "<svB>", Order = 17)]
-    public List<string> UnrecognizedSwallowedItems { get; } = [];
+    [SaveFileElement("UNRECOGNIZEDSWALLOWED", Order = 17)]
+    public RawValues UnrecognizedSwallowedItems { get; set; } = new();
 
     // TODO: Implement grab deserialization
     /// <summary>
@@ -231,7 +231,7 @@ public class SaveState : SaveElementContainer, IRWSerializable<SaveState>
     /// <summary>
     /// Saved objects and critters in the world.
     /// </summary>
-    [SaveFileElement("OBJECTS", ListDelimiter = "<svC>", Order = 34)]
+    [SaveFileElement("OBJECTS", ListDelimiter = "<svC>", SerializeIfEmpty = false, Order = 34)]
     public List<string> Objects { get; private set; } = [];
 
     /// <summary>

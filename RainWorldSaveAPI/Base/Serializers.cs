@@ -186,7 +186,7 @@ public static class Serializers
 
             foreach (var element in list)
             {
-                if (!element.Serialize(out keys[count], out values[count], null))
+                if (!element.Serialize(out keys[count], out values[count], new(prop.GetCustomAttribute<SaveFileElement>(), null)))
                     throw new InvalidOperationException("Failed to serialize.");
 
                 count++;
@@ -274,8 +274,8 @@ public static class Serializers
                 if (!nullableAllowed)
                     throw new InvalidOperationException($"{prop.DeclaringType} => {prop.Name}: Expected {typeof(T)} that is not nullable to not return null.");
 
-                keys = [null];
-                values = [[]];
+                keys = [];
+                values = [];
             }
             else
             {
@@ -317,8 +317,8 @@ public static class Serializers
                 if (!nullableAllowed)
                     throw new InvalidOperationException($"{prop.DeclaringType} => {prop.Name}: Expected {typeof(T)} that is not nullable to not return null.");
 
-                keys = [null];
-                values = [[]];
+                keys = [];
+                values = [];
             }
             else
             {
@@ -328,7 +328,11 @@ public static class Serializers
                 keys = [null];
                 values = [[]];
 
-                serializable.Serialize(out keys[0], out values[0], new(prop.GetCustomAttribute<SaveFileElement>(), prop));
+                if (!serializable.Serialize(out keys[0], out values[0], new(prop.GetCustomAttribute<SaveFileElement>(), prop)))
+                {
+                    keys = [];
+                    values = [];
+                }
             }
         };
     }
@@ -409,10 +413,18 @@ public static class Serializers
 
         var listDelimiter = prop.GetCustomAttribute<SaveFileElement>()?.ListDelimiter ?? throw new ArgumentException("Expected list delimiter to be defined for serializable list.");
         var trailingListDelimiter = prop.GetCustomAttribute<SaveFileElement>()?.TrailingListDelimiter ?? throw new ArgumentException("Expected trailing delimiter to be defined for serializable list.");
+        var serializeListIfEmpty = prop.GetCustomAttribute<SaveFileElement>()?.SerializeIfEmpty ?? throw new ArgumentException("Expected attribute for list.");
 
         return (SaveElementContainer container, out string?[] keys, out string[][] values) =>
         {
             var list = getter.Invoke(container, []) as T ?? throw new InvalidOperationException($"{prop.DeclaringType} => {prop.Name} expected to return {typeof(T)} instead of null or other type.");
+
+            if (list.Count == 0 && !serializeListIfEmpty)
+            {
+                keys = [];
+                values = [];
+                return;
+            }
 
             string combined = "";
             int count = 0;
@@ -477,10 +489,18 @@ public static class Serializers
 
         var listDelimiter = prop.GetCustomAttribute<SaveFileElement>()?.ListDelimiter ?? throw new ArgumentException("Expected list delimiter to be defined for serializable list.");
         var trailingListDelimiter = prop.GetCustomAttribute<SaveFileElement>()?.TrailingListDelimiter ?? throw new ArgumentException("Expected trailing delimiter to be defined for serializable list.");
+        var serializeListIfEmpty = prop.GetCustomAttribute<SaveFileElement>()?.SerializeIfEmpty ?? throw new ArgumentException("Expected attribute for list.");
 
         return (SaveElementContainer container, out string?[] keys, out string[][] values) =>
         {
             var list = getter.Invoke(container, []) as T ?? throw new InvalidOperationException($"{prop.DeclaringType} => {prop.Name} expected to return {typeof(T)} instead of null or other type.");
+
+            if (list.Count == 0 && !serializeListIfEmpty)
+            {
+                keys = [];
+                values = [];
+                return;
+            }
 
             string combined = "";
             int count = 0;

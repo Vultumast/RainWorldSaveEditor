@@ -21,8 +21,11 @@ public class RawValues : IRWSerializable<RawValues>
 
     public bool Serialize(out string? key, out string[] values, SerializationContext? context)
     {
+        if (context?.Metadata == null)
+            throw new InvalidOperationException("RawValues requires context metadata.");
+
         key = null;
         values = [..Values];
-        return true;
+        return context.Metadata.SerializeIfEmpty || values.Length > 0;
     }
 }

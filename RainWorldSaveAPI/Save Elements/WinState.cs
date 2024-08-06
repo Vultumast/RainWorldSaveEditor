@@ -3,6 +3,7 @@ using System;
 using System.Diagnostics;
 using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
+using System.Linq;
 
 namespace RainWorldSaveAPI.SaveElements;
 
@@ -94,7 +95,7 @@ public class BoolArrayTracker : EndgameTracker
         return [
             ID,
             Consumed ? "1" : "0",
-            string.Join(".", Progress.Select(x => x ? "1" : "0"))
+            string.Concat(Progress.Select(x => x ? "1." : "0."))
         ];
     }
 }
@@ -210,7 +211,7 @@ public class WinState : IRWSerializable<WinState>
     {
         key = null;
         values = [
-            string.Concat(Trackers.Select(x => $"{x}<wsA>"))
+            string.Concat(Trackers.Select(x => $"{string.Join("<egA>", x.ToSplit())}<wsA>"))
         ];
 
         return true;

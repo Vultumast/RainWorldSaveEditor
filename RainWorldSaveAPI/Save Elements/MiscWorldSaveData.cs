@@ -1,4 +1,5 @@
 ﻿using RainWorldSaveAPI.Base;
+using RainWorldSaveAPI.Save_Elements;
 using System.Diagnostics.CodeAnalysis;
 
 namespace RainWorldSaveAPI;
@@ -9,14 +10,14 @@ public class MiscWorldSaveData : SaveElementContainer, IRWSerializable<MiscWorld
     /// Tracks the number of times the player has talked with Five Pebbles.
     /// </summary>
     [SaveFileElement("SSaiConversationsHad", Order = 0)]
-    public int TimesTalkedWithFivePebbles { get; set; } = 0;
+    public IntSerializeIfNotZero TimesTalkedWithFivePebbles { get; set; } = new();
 
     /// <summary>
     /// Tracks the number of times the player has been thrown out by Five Pebbles. <para/>
     /// For most slugcats, FP becomes hostile after throwing them out once and will kill them on subsequent visits.
     /// </summary>
     [SaveFileElement("SSaiThrowOuts", Order = 1)]
-    public int TimesKickedOutByFivePebbles { get; set; } = 0;
+    public IntSerializeIfNotZero TimesKickedOutByFivePebbles { get; set; } = new();
 
     /// <summary>
     /// Looks to the Moon's current state.
@@ -54,7 +55,7 @@ public class MiscWorldSaveData : SaveElementContainer, IRWSerializable<MiscWorld
     /// Seems to be used for tracking Spearmaster's pearl wound recovery.
     /// </summary>
     [SaveFileElement("CyclesSinceSSai", Order = 7)]
-    public int CyclesSinceFirstFivePebblesVisit { get; set; } = 0;
+    public IntSerializeIfNotZero CyclesSinceFirstFivePebblesVisit { get; set; } = new();
 
     /// <summary>
     /// Tracks whenever Rivulet removed the Rarefaction Cell from Five Pebbles's generator.
@@ -70,7 +71,7 @@ public class MiscWorldSaveData : SaveElementContainer, IRWSerializable<MiscWorld
     /// 3 = Pebbles saw Rivulet hold the cell on one of the visits, or Pebbles acknowledged that the cell has been removed after being visited again
     /// </summary>
     [SaveFileElement("EnergySeenState", Order = 9)]
-    public int RarefactionCellConversationState { get; set; } = 0;
+    public IntSerializeIfNotZero RarefactionCellConversationState { get; set; } = new();
 
     /// <summary>
     /// Tracks whenever Rivulet delivered the Rarefaction Cell to Moon's core.
@@ -120,7 +121,7 @@ public class MiscWorldSaveData : SaveElementContainer, IRWSerializable<MiscWorld
     /// This is used to guarantee Slugpup spawns after 25 cycles (5 for Hunter).
     /// </summary>
     [SaveFileElement("CyclesSinceSlugpup", Order = 17)]
-    public int CyclesSinceLastSlugpupSpawn { get; set; } = 0;
+    public IntSerializeIfNotZero CyclesSinceLastSlugpupSpawn { get; set; } = new();
 
     public static MiscWorldSaveData Deserialize(string key, string[] values, SerializationContext? context)
     {

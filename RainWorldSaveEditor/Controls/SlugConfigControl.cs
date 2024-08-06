@@ -549,7 +549,7 @@ public partial class SlugConfigControl : UserControl
             totalQuitsNumericUpDown.Value = state.DeathPersistentSaveData.Quits;
             totalFoodNumericUpDown.Value = state.TotalFoodEaten;
 
-            totalFriendsSavedNumericUpDown.Value = state.DeathPersistentSaveData.FriendsSaved;
+            totalFriendsSavedNumericUpDown.Value = state.DeathPersistentSaveData.FriendsSaved.Value;
 
             ascendedLooksToTheMoonCheckBox.Checked = state.DeathPersistentSaveData.IsMoonAscendedBySaint;
 
@@ -629,7 +629,7 @@ public partial class SlugConfigControl : UserControl
     private void totalFriendsSavedNumericUpDown_ValueChanged(object sender, EventArgs e)
     {
         if (SaveState is not null)
-            SaveState.DeathPersistentSaveData.FriendsSaved = (int)((NumericUpDown)(sender)).Value;
+            SaveState.DeathPersistentSaveData.FriendsSaved.Value = (int)((NumericUpDown)(sender)).Value;
     }
 
     #endregion
@@ -701,18 +701,18 @@ public partial class SlugConfigControl : UserControl
     {
         if (state is not null)
         {
-            pebblesConversationCountNumericUpDown.Value = state.MiscWorldSaveData.TimesTalkedWithFivePebbles;
-            pebblesThrownOutCountNumericUpDown.Value = state.MiscWorldSaveData.TimesKickedOutByFivePebbles;
+            pebblesConversationCountNumericUpDown.Value = state.MiscWorldSaveData.TimesTalkedWithFivePebbles.Value;
+            pebblesThrownOutCountNumericUpDown.Value = state.MiscWorldSaveData.TimesKickedOutByFivePebbles.Value;
             frolickedInMemoryArraysCheckBox.Checked = state.MiscWorldSaveData.HasFrolickedInMemoryArrays;
 
-            pebblesFirstVisitCountNumericUpDown.Value = state.MiscWorldSaveData.CyclesSinceFirstFivePebblesVisit;
+            pebblesFirstVisitCountNumericUpDown.Value = state.MiscWorldSaveData.CyclesSinceFirstFivePebblesVisit.Value;
 
             pebblesRivuletPostGameTalkCheckBox.Checked = state.MiscWorldSaveData.HasTalkedWithFivePebblesInRivuletPostgame;
             musicPearlStolenCheckBox.Checked = state.MiscWorldSaveData.HasStolenFivePebblesMusicPearl;
             cellRemovedCheckBox.Checked = state.MiscWorldSaveData.HasRemovedRarefactionCell;
             pebblesAscendedCheckBox.Checked = state.DeathPersistentSaveData.IsPebblesAscendedBySaint;
 
-            FivePebblesRarefactionCellConversationState = state.MiscWorldSaveData.RarefactionCellConversationState;
+            FivePebblesRarefactionCellConversationState = state.MiscWorldSaveData.RarefactionCellConversationState.Value;
         }
         else
         {
@@ -734,12 +734,12 @@ public partial class SlugConfigControl : UserControl
     private void fivePebblesConversationCountNumericUpDown_ValueChanged(object sender, EventArgs e)
     {
         if (SaveState is not null)
-            SaveState.MiscWorldSaveData.TimesTalkedWithFivePebbles = (int)pebblesConversationCountNumericUpDown.Value;
+            SaveState.MiscWorldSaveData.TimesTalkedWithFivePebbles.Value = (int)pebblesConversationCountNumericUpDown.Value;
     }
     private void pebblesThrownOutCountNumericUpDown_ValueChanged(object sender, EventArgs e)
     {
         if (SaveState is not null)
-            SaveState.MiscWorldSaveData.TimesKickedOutByFivePebbles = (int)pebblesConversationCountNumericUpDown.Value;
+            SaveState.MiscWorldSaveData.TimesKickedOutByFivePebbles.Value = (int)pebblesConversationCountNumericUpDown.Value;
     }
 
     private void frolickedInMemoryArraysCheckBox_CheckedChanged(object sender, EventArgs e)
@@ -751,7 +751,7 @@ public partial class SlugConfigControl : UserControl
     private void pebblesFirstVisitCountNumericUpDown_ValueChanged(object sender, EventArgs e)
     {
         if (SaveState is not null)
-            SaveState.MiscWorldSaveData.CyclesSinceFirstFivePebblesVisit = (int)pebblesFirstVisitCountNumericUpDown.Value;
+            SaveState.MiscWorldSaveData.CyclesSinceFirstFivePebblesVisit.Value = (int)pebblesFirstVisitCountNumericUpDown.Value;
     }
 
     private RadioButton[] _pebblesCellConvoRadioButtons = Array.Empty<RadioButton>();
@@ -798,7 +798,7 @@ public partial class SlugConfigControl : UserControl
         }
 
         if (SaveState is not null)
-            SaveState.MiscWorldSaveData.RarefactionCellConversationState = (int)pebblesCellConvoStateNumericUpDown.Value;
+            SaveState.MiscWorldSaveData.RarefactionCellConversationState.Value = (int)pebblesCellConvoStateNumericUpDown.Value;
     }
 
 

@@ -18,6 +18,8 @@ public abstract class SaveElementContainer
 
     private static Dictionary<Type, Dictionary<string, FieldSerializationData>> SerializationData { get; } = [];
 
+    public List<(string, string[])> UnrecognizedFields { get; protected set; } = [];
+
     private const int MaxDebugChars = 50;
 
     public SaveElementContainer()
@@ -96,12 +98,9 @@ public abstract class SaveElementContainer
             Logger.Warn($"{ordersSet.Count - distinct.Count} Order properties for container {containerType} are duplicate!");
     }
 
-    public Dictionary<string, string[]> UnrecognizedFields { get; protected set; } = [ ];
-
     private void HandleUnrecognizedField(string key, string[] values)
     {
-        if (!UnrecognizedFields.TryAdd(key, values))
-            Logger.Warn($"Unable to set \"{key}\" because it was already present!");
+        UnrecognizedFields.Add((key, values));
     }
 
     public string SerializeFields(string valueDelimiter, string entryDelimiter)
@@ -200,33 +199,53 @@ public abstract class SaveElementContainer
         return t.IsGenericType && t.GetGenericTypeDefinition() == typeof(MultiList<>);
     }
 
-    private FieldSerializationData? GetDataFromKey(string key)
+    private FieldSerializationData? GetDataFromKey(string key, out bool requireUnique)
     {
         // Check multilists for any keys that prefix this key
         // If there is such an element, use that type
         var prefix = SerializationData[GetType()].FirstOrDefault(x => IsMultiList(x.Value.Prop.PropertyType) && key.StartsWith(x.Value.Metadata.Name));
 
         if (prefix.Key != null)
+        {
+            requireUnique = false;
             return prefix.Value;
+        }
         
         // Otherwise just grab exact matches
         if (SerializationData[GetType()].TryGetValue(key, out FieldSerializationData data))
+        {
+            requireUnique = true;
             return data;
+        }
 
+        requireUnique = true;
         return null;
     }
 
     public void DeserializeFields(string serializedData, string valueDelimiter, string entryDelimiter)
     {
+        var keysEncountered = new HashSet<string>();
+
         foreach ((var key, var values) in GetFields(serializedData, valueDelimiter, entryDelimiter))
         {
-            FieldSerializationData? elementData = GetDataFromKey(key);
+            FieldSerializationData? elementData = GetDataFromKey(key, out bool requireUnique);
 
             if (elementData == null)
             {
                 Logger.Warn($"{GetType()}: {key} doesn't have serialization data. Adding to unknown fields.");
                 HandleUnrecognizedField(key, values);
                 continue;
+            }
+
+            if (requireUnique)
+            {
+                if (keysEncountered.Contains(key))
+                {
+                    Logger.Warn($"{GetType()}: {key} has already been deserialized from another field. Adding to unknown fields");
+                    HandleUnrecognizedField(key, values);
+                    continue;
+                }
+                else keysEncountered.Add(key);
             }
 
             var data = elementData.Value;
