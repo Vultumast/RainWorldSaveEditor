@@ -7,7 +7,7 @@ namespace RainWorldSaveAPI;
 // TODO: Document fields
 public class LooksToTheMoonState : SaveElementContainer, IRWSerializable<LooksToTheMoonState>
 {
-    [SaveFileElement("integersArray", Order = 0)]
+    [SaveField(0, "integersArray")]
     public GenericIntegerArray Integers { get; set; } = new();
 
     public int PlayerEncounters
@@ -100,7 +100,7 @@ public class LooksToTheMoonState : SaveElementContainer, IRWSerializable<LooksTo
         set => Integers.TrySet(12, value);
     }
 
-    [SaveFileElement("miscBools", Order = 1)]
+    [SaveField(1, "miscBools")]
     public GenericBoolArray Booleans { get; set; } = new();
 
     /// <summary>
@@ -113,31 +113,31 @@ public class LooksToTheMoonState : SaveElementContainer, IRWSerializable<LooksTo
         set => Booleans.TrySet(0, value);
     }
 
-    [SaveFileElement("significantPearls", ListDelimiter = ",", SerializeIfEmpty = true, Order = 2)]
+    [SaveField(2, "significantPearls", ListDelimiter = ",", SerializeIfEmpty = true)]
     public List<string> DataPearlsRead { get; set; } = [];
 
-    [SaveFileElement("miscItemsDescribed", ListDelimiter = ",", SerializeIfEmpty = true, Order = 3)]
+    [SaveField(3, "miscItemsDescribed", ListDelimiter = ",", SerializeIfEmpty = true)]
     public List<string> MiscItemsDescribed { get; set; } = [];
 
     /// <summary>
     /// Player's reputation / like amount for Moon.
     /// </summary>
-    [SaveFileElement("likesPlayer", Order = 4)]
+    [SaveField(4, "likesPlayer")]
     public float PlayerReputation { get; set; } = 0f;
 
-    [SaveFileElement("itemsAlreadyTalkedAbout", ListDelimiter = "<slosC>", Order = 5)]
+    [SaveField(5, "itemsAlreadyTalkedAbout", ListDelimiter = "<slosC>")]
     public List<string> ItemsTalkedAbout { get; set; } = [];
 
     /// <summary>
     /// Whenever Moon talked about Pebbles after Rivulet removed the Rarefaction Cell.
     /// </summary>
-    [SaveFileElement("talkedPebblesDeath", true, Order = 6)]
+    [SaveField(6, "talkedPebblesDeath")]
     public bool TalkedAboutPebblesDying { get; set; } = false;
 
     /// <summary>
     /// Whenever Moon has been given the Rarefaction Cell to describe it.
     /// </summary>
-    [SaveFileElement("shownEnergyCell", true, Order = 7)]
+    [SaveField(7, "shownEnergyCell")]
     public bool HasSeenRarefactionCell { get; set; } = false;
 
     public static LooksToTheMoonState Deserialize(string key, string[] values, SerializationContext? context)

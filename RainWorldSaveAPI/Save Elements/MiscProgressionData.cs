@@ -6,50 +6,90 @@ namespace RainWorldSaveAPI;
 
 public class MiscProgressionData : SaveElementContainer, IRWSerializable<MiscProgressionData>
 {
-    [SaveFileElement("CURRENTSLUGCAT", Order = 0)]
+    [SaveField(0, "CURRENTSLUGCAT")]
     public string CurrentSelectedSave { get; set; } = "White";
 
     // TODO custom object for this
-    [SaveFileElement("SHELTERLIST", Order = 1)]
+    [SaveField(1, "SHELTERLIST")]
     public MultiList<RawValues> DiscoveredShelters { get; set; } = [];
 
     // TODO custom object for this
-    [SaveFileElement("CONDITIONALSHELTERDATA", ListDelimiter = "<mpdC>", Order = 2)]
+    [SaveField(2, "CONDITIONALSHELTERDATA", ListDelimiter = "<mpdC>")]
     public List<ConditionalShelterData> ConditionalShelterData { get; set; } = [];
 
-    [SaveFileElement("MENUREGION", ListDelimiter = "<mpdC>", Order = 26)]
-    public string? MenuRegion { get; set; } = null;
-
     // TODO backwards compatibility
-    [SaveFileElement("LEVELTOKENS", ListDelimiter = ",", Order = 3)]
+    [SaveField(3, "LEVELTOKENS", ListDelimiter = ",")]
     public List<string> LevelTokens { get; set; } = [];
 
     // TODO backwards compatibility
-    [SaveFileElement("SANDBOXTOKENS", ListDelimiter = ",", Order = 4)]
+    [SaveField(4, "SANDBOXTOKENS", ListDelimiter = ",")]
     public List<string> SandboxTokens { get; set; } = [];
 
-    [SaveFileElement("CLASSTOKENS", ListDelimiter = ",", Order = 5)]
+    [SaveField(5, "CLASSTOKENS", ListDelimiter = ",")]
     public List<string> ClassTokens { get; set; } = [];
 
-    [SaveFileElement("SAFARITOKENS", ListDelimiter = ",", Order = 6)]
+    [SaveField(6, "SAFARITOKENS", ListDelimiter = ",")]
     public List<string> SafariTokens { get; set; } = [];
 
-    [SaveFileElement("LORE", ListDelimiter = ",", Order = 10)]
+    /// <summary>
+    /// Tracks the object that Saint carried in their stomach at the end of their campaign. <para/>
+    /// The default value of "0" means they had no item in their stomach. <para/>
+    /// Saint will start with this item in their stomach when restarting their campaign.
+    /// </summary>
+    [SaveField(7, "SAINTSTOMACH")]
+    public string SaintObjectCarriedInStomach { get; set; } = "0";
+
+    [SaveField(8, "PLAYEDARENAS", ListDelimiter = "<mpdC>")]
+    public List<string> PlayedArenaLevels { get; set; } = [];
+
+    /// <summary>
+    /// Tracks the slugcat that gave Moon the cloak. <para/>
+    /// In all other campaigns that are later in the timeline compared to this one, Moon will have the cloak automatically. <para/>
+    /// By default, Moon has the cloak starting with Rivulet.
+    /// </summary>
+    [SaveField(9, "CLOAKTIMELINE")]
+    public string? SlugcatThatGaveMoonTheCloak { get; set; } = null;
+
+    [SaveField(10, "LORE", ListDelimiter = ",")]
     public List<string> DecipheredPearls { get; set; } = [];
 
-    [SaveFileElement("LOREP", ListDelimiter = ",", Order = 11)]
+    [SaveField(11, "LOREP", ListDelimiter = ",")]
     public List<string> DecipheredPearlsArtificer { get; set; } = [];
 
-    [SaveFileElement("LOREDM", ListDelimiter = ",", Order = 12)]
+    [SaveField(12, "LOREDM", ListDelimiter = ",")]
     public List<string> DecipheredPearlsSpearmaster { get; set; } = [];
 
-    [SaveFileElement("LOREFUT", ListDelimiter = ",", Order = 13)]
+    [SaveField(13, "LOREFUT", ListDelimiter = ",")]
     public List<string> DecipheredPearlsSaint { get; set; } = [];
 
-    [SaveFileElement("BROADCASTS", ListDelimiter = ",", Order = 15)]
+    /// <summary>
+    /// Tracks if the player has done the Heartbreak / Fez secret ending for Saint.
+    /// </summary>
+    [SaveField(14, "HASDONEHEARTREBOOT")]
+    public int HasDoneSaintFezEnding { get; set; } = 0;
+
+    [SaveField(15, "BROADCASTS", ListDelimiter = ",")]
     public List<string> DiscoveredBroadcasts { get; set; } = [];
 
-    [SaveFileElement("INTEGERS", Order = 22)]
+    [SaveField(16, "CHARENAS", ListDelimiter = "<mpdC>")]
+    public List<string> ChallengeArenaUnlocks { get; set; } = [];
+
+    [SaveField(17, "CHCLEAR")]
+    public GenericBoolArray CompletedChallenges { get; set; } = new();
+
+    [SaveField(18, "CHCLEARTIMES", ListDelimiter = "<mpdC>")]
+    public List<int> CompletedChallengeTimes { get; set; } = [];
+
+    [SaveField(19, "CUSTCOLORS")]
+    public MultiList<ColorChoice> CustomColors { get; set; } = [];
+
+    [SaveField(20, "CAMPAIGNTIME")]
+    public MultiList<CampaignTime> CampaignTime { get; set; } = [];
+
+    [SaveField(21, "VISITED")]
+    public RawValues RegionsVisited { get; set; } = new();
+
+    [SaveField(22, "INTEGERS")]
     public GenericIntegerArray Integers { get; set; } = new();
 
     public int WatchedSleepScreens
@@ -111,8 +151,35 @@ public class MiscProgressionData : SaveElementContainer, IRWSerializable<MiscPro
         get => Integers.TryGet(10);
         set => Integers.TrySet(10, value);
     }
+    
+    [SaveField(23, "INTEGERSMMF")]
+    public GenericIntegerArray IntegersMMF { get; set; } = new();
 
-    [SaveFileElement("INTEGERSMSC", Order = 24)]
+    public bool GateTutorialShown
+    {
+        get => IntegersMMF.TryGet(0) == 1;
+        set => IntegersMMF.TrySet(0, value ? 1 : 0);
+    }
+
+    public int ReturnExplorationTutorialCounter
+    {
+        get => IntegersMMF.TryGet(1, 3); // Default value of 3 for some reason
+        set => IntegersMMF.TrySet(1, value);
+    }
+
+    public bool SporePuffTutorialShown
+    {
+        get => IntegersMMF.TryGet(2) == 1;
+        set => IntegersMMF.TrySet(2, value ? 1 : 0);
+    }
+
+    public bool DeerControlTutorialShown
+    {
+        get => IntegersMMF.TryGet(3) == 1;
+        set => IntegersMMF.TrySet(3, value ? 1 : 0);
+    }
+
+    [SaveField(24, "INTEGERSMSC")]
     public GenericIntegerArray IntegersMSC { get; set; } = new();
 
     public int PrePebblesBroadcasts
@@ -205,84 +272,17 @@ public class MiscProgressionData : SaveElementContainer, IRWSerializable<MiscPro
         set => IntegersMSC.TrySet(13, value);
     }
 
-    [SaveFileElement("INTEGERSMMF", Order = 23)]
-    public GenericIntegerArray IntegersMMF { get; set; } = new();
-
-    public bool GateTutorialShown
-    {
-        get => IntegersMMF.TryGet(0) == 1;
-        set => IntegersMMF.TrySet(0, value ? 1 : 0);
-    }
-
-    public int ReturnExplorationTutorialCounter
-    {
-        get => IntegersMMF.TryGet(1, 3); // Default value of 3 for some reason
-        set => IntegersMMF.TrySet(1, value);
-    }
-
-    public bool SporePuffTutorialShown
-    {
-        get => IntegersMMF.TryGet(2) == 1;
-        set => IntegersMMF.TrySet(2, value ? 1 : 0);
-    }
-
-    public bool DeerControlTutorialShown
-    {
-        get => IntegersMMF.TryGet(3) == 1;
-        set => IntegersMMF.TrySet(3, value ? 1 : 0);
-    }
-
-    /// <summary>
-    /// Tracks if the player has done the Heartbreak / Fez secret ending for Saint.
-    /// </summary>
-    [SaveFileElement("HASDONEHEARTREBOOT", Order = 14)]
-    public int HasDoneSaintFezEnding { get; set; } = 0;
-
-    [SaveFileElement("PLAYEDARENAS", ListDelimiter = "<mpdC>", Order = 8)]
-    public List<string> PlayedArenaLevels { get; set; } = [];
-
-    [SaveFileElement("CHARENAS", ListDelimiter = "<mpdC>", Order = 16)]
-    public List<string> ChallengeArenaUnlocks { get; set; } = [];
-
-    [SaveFileElement("CHCLEAR", Order = 17)]
-    public GenericBoolArray CompletedChallenges { get; set; } = new();
-
-    [SaveFileElement("CHCLEARTIMES", ListDelimiter = "<mpdC>", Order = 18)]
-    public List<int> CompletedChallengeTimes { get; set; } = [];
-
-    [SaveFileElement("CUSTCOLORS", Order = 19)]
-    public MultiList<ColorChoice> CustomColors { get; set; } = [];
-
-    [SaveFileElement("CAMPAIGNTIME", Order = 20)]
-    public MultiList<CampaignTime> CampaignTime { get; set; } = [];
-
-    /// <summary>
-    /// Tracks the slugcat that gave Moon the cloak. <para/>
-    /// In all other campaigns that are later in the timeline compared to this one, Moon will have the cloak automatically. <para/>
-    /// By default, Moon has the cloak starting with Rivulet.
-    /// </summary>
-    [SaveFileElement("CLOAKTIMELINE", Order = 9)]
-    public string? SlugcatThatGaveMoonTheCloak { get; set; } = null;
-
-    /// <summary>
-    /// Tracks the object that Saint carried in their stomach at the end of their campaign. <para/>
-    /// The default value of "0" means they had no item in their stomach. <para/>
-    /// Saint will start with this item in their stomach when restarting their campaign.
-    /// </summary>
-    [SaveFileElement("SAINTSTOMACH", Order = 7)]
-    public string SaintObjectCarriedInStomach { get; set; } = "0";
-
-    [SaveFileElement("VISITED", Order = 21)]
-    public RawValues RegionsVisited { get; set; } = new();
-
     // TODO backwards compatibility
     /// <summary>
     /// Tracks the location where Hunter died for real. <para/>
     /// This location is used to spawn Karma Flowers in Survivor, Monk, Gourmand, and Inv's campaigns. <para/>
     /// This is also used to spawn Hunter Long Legs in Gourmand and Inv's campaigns.
     /// </summary>
-    [SaveFileElement("REDSFLOWER", Order = 25)]
+    [SaveField(25, "REDSFLOWER")]
     public WorldCoordinate? HunterPermadeathLocation { get; set; } = null;
+
+    [SaveField(26, "MENUREGION", ListDelimiter = "<mpdC>")]
+    public string? MenuRegion { get; set; } = null;
 
     public static MiscProgressionData Deserialize(string key, string[] values, SerializationContext? context)
     {

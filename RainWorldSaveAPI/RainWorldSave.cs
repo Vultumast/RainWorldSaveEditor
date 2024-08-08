@@ -7,23 +7,23 @@ namespace RainWorldSaveAPI;
 
 public class RainWorldSave : SaveElementContainer
 {
-    [SaveFileElement("SAVE STATE", Order = 0)]
+    [SaveField(0, "SAVE STATE")]
     public MultiList<SaveState> SaveStates { get; } = [];
 
-    [SaveFileElement("MISCPROG", Order = 5)]
-    public MiscProgressionData MiscProgressionData { get; set; } = new();
-
-    [SaveFileElement("MAP", Order = 1)]
+    [SaveField(1, "MAP")]
     public MultiList<MapData> VanillaMaps { get; set; } = [];
 
-    [SaveFileElement("MAPUPDATE", Order = 2)]
+    [SaveField(2, "MAPUPDATE")]
     public MultiList<MapUpdateData> VanillaMapUpdates { get; set; } = [];
 
-    [SaveFileElement("MAP_", Order = 3)]
+    [SaveField(3, "MAP_")]
     public MultiList<MapData> ModdedMaps { get; set; } = [];
 
-    [SaveFileElement("MAPUPDATE_", Order = 4)]
+    [SaveField(4, "MAPUPDATE_")]
     public MultiList<MapUpdateData> ModdedMapUpdates { get; set; } = [];
+
+    [SaveField(5, "MISCPROG")]
+    public MiscProgressionData MiscProgressionData { get; set; } = new();
 
     public void Read(string saveString)
     {

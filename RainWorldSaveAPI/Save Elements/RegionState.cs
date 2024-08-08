@@ -6,34 +6,34 @@ namespace RainWorldSaveAPI.SaveElements;
 
 public class RegionState : SaveElementContainer, IRWSerializable<RegionState>
 {
-    [SaveFileElement("REGIONNAME", Order = 0)]
+    [SaveField(0, "REGIONNAME")]
     public string RegionName { get; set; } = "";
 
-    [SaveFileElement("LASTCYCLEUPDATED", Order = 1)]
+    [SaveField(1, "LASTCYCLEUPDATED")]
     public int LastCycleUpdated { get; set; } = 0;
 
     // TODO backwards compatibility
-    [SaveFileElement("SWARMROOMS", ListDelimiter = ",", SerializeIfEmpty = true, Order = 2)]
+    [SaveField(2, "SWARMROOMS", ListDelimiter = ",", SerializeIfEmpty = true)]
     public List<string> SwarmRooms { get; set; } = [];
 
     // TODO backwards compatibility
-    [SaveFileElement("LINEAGES", ListDelimiter = ",", Order = 3)]
+    [SaveField(3, "LINEAGES", ListDelimiter = ",")]
     public List<string> Lineages { get; set; } = [];
 
-    [SaveFileElement("OBJECTS", ListDelimiter = "<rgC>", TrailingListDelimiter = true,  Order = 4)]
+    [SaveField(4, "OBJECTS", ListDelimiter = "<rgC>", TrailingListDelimiter = true)]
     public List<string> Objects { get; set; } = [];
 
-    [SaveFileElement("POPULATION", ListDelimiter = "<rgC>", TrailingListDelimiter = true, Order = 5)]
+    [SaveField(5, "POPULATION", ListDelimiter = "<rgC>", TrailingListDelimiter = true)]
     public List<string> Population { get; set; } = [];
 
-    [SaveFileElement("STICKS", ListDelimiter = "<rgC>", TrailingListDelimiter = true, Order = 6)]
+    [SaveField(6, "STICKS", ListDelimiter = "<rgC>", TrailingListDelimiter = true)]
     public List<string> SavedSticks { get; set; } = [];
 
-    [SaveFileElement("CONSUMEDITEMS", ListDelimiter = "<rgC>", Order = 7)]
+    [SaveField(7, "CONSUMEDITEMS", ListDelimiter = "<rgC>")]
     public List<string> ConsumedItems { get; set; } = [];
 
     // TODO backwards compatibility
-    [SaveFileElement("ROOMSVISITED", ListDelimiter = ",", SerializeIfEmpty = true, Order = 8)]
+    [SaveField(8, "ROOMSVISITED", ListDelimiter = ",", SerializeIfEmpty = true)]
     public List<string> RoomsVisited { get; set; } = [];
 
     public static RegionState Deserialize(string key, string[] values, SerializationContext? context)

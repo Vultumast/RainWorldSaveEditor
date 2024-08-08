@@ -12,7 +12,7 @@ public abstract class SaveElementContainer
     {
         public Serializers.PropSerializer? Serializer;
         public Serializers.PropDeserializer? Deserializer;
-        public SaveFileElement Metadata;
+        public SaveFieldAttribute Metadata;
         public PropertyInfo Prop;
     }
 
@@ -87,11 +87,11 @@ public abstract class SaveElementContainer
         var elementData = new Dictionary<string, FieldSerializationData>();
         SerializationData.Add(containerType, elementData);
 
-        var properties = containerType.GetProperties().Where(property => Attribute.IsDefined(property, typeof(SaveFileElement)));
+        var properties = containerType.GetProperties().Where(property => Attribute.IsDefined(property, typeof(SaveFieldAttribute)));
 
         foreach (var prop in properties)
         {
-            SaveFileElement metadata = (SaveFileElement)prop.GetCustomAttribute(typeof(SaveFileElement))!;
+            SaveFieldAttribute metadata = (SaveFieldAttribute)prop.GetCustomAttribute(typeof(SaveFieldAttribute))!;
 
             try
             {

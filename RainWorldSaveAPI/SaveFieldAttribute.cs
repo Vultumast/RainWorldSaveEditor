@@ -1,24 +1,18 @@
 ﻿namespace RainWorldSaveAPI;
 
-public enum RepeatMode
-{
-    None,
-    Exact,
-    Prefix
-}
-
 [AttributeUsage(AttributeTargets.Property, AllowMultiple = false)]
-public class SaveFileElement(string name, bool valueOptional = false) : Attribute
+public class SaveFieldAttribute(int order, string name) : Attribute
 {
+    /// <summary>
+    /// Order to serialize fields in. Fields with lower values get deserialized first. <para/>
+    /// This is mostly used so that generated save file ordering ois similar to the game's ordering.
+    /// </summary>
+    public int Order { get; } = order;
+
     /// <summary>
     /// The name of the property in the save file
     /// </summary>
     public string Name { get; } = name;
-
-    /// <summary>
-    /// Can the property be valueless?
-    /// </summary>
-    public bool ValueOptional { get; } = valueOptional;
 
     /// <summary>
     /// For lists, defines the delimiter to use for elements. Ignored if <see cref="IsRepeatableKey"/> is set.
@@ -39,11 +33,5 @@ public class SaveFileElement(string name, bool valueOptional = false) : Attribut
     /// If false, lists and raw values will be skipped from serialization if they have no elements at all.
     /// </summary>
     public bool SerializeIfEmpty { get; init; } = false;
-
-    /// <summary>
-    /// Order to serialize fields in. Fields with lower values get deserialized first.
-    /// </summary>
-    public int Order { get; set; } = -9999;
-
 }
 

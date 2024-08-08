@@ -7,22 +7,23 @@ namespace RainWorldSaveAPI.SaveElements;
 public class DeathPersistentSaveData : SaveElementContainer, IRWSerializable<DeathPersistentSaveData>
 {
     /// <summary>
-    /// The current karma level.
+    /// This value gets set automatically on death, but only makes sense for Hunter's campaign. <para/>
+    /// If Hunter is not out of cycles, it gets cleared on load. Otherwise, it prevents loading the save file.
     /// </summary>
-    [SaveFileElement("KARMA", Order = 3)]
-    public int Karma { get; set; } = 0;
+    [SaveField(0, "REDSDEATH")]
+    public bool IsHunterDead { get; set; } = false;
 
     /// <summary>
-    /// The max karma level.
+    /// Whenever the player has ascended in this playthrough.
     /// </summary>
-    [SaveFileElement("KARMACAP", Order = 4)]
-    public int KarmaCap { get; set; } = 0;
+    [SaveField(1, "ASCENDED")]
+    public bool HasAscended { get; set; } = false;
 
     /// <summary>
     /// Whenever the karma is currently reinforced by a Karma Flower.
     /// <para>This IS a bool, but is serialized as a 0 for false and a 1 for true</para>
     /// </summary>
-    [SaveFileElement("REINFORCEDKARMA", Order = 2)]
+    [SaveField(2, "REINFORCEDKARMA")]
     public int HasReinforcedKarma
     {
         get => _hasReinforcedKarma ? 1 : 0;
@@ -31,10 +32,28 @@ public class DeathPersistentSaveData : SaveElementContainer, IRWSerializable<Dea
     private bool _hasReinforcedKarma = false;
 
     /// <summary>
+    /// The current karma level.
+    /// </summary>
+    [SaveField(3, "KARMA")]
+    public int Karma { get; set; } = 0;
+
+    /// <summary>
+    /// The max karma level.
+    /// </summary>
+    [SaveField(4, "KARMACAP")]
+    public int KarmaCap { get; set; } = 0;
+
+    /// <summary>
     /// Position of Karma Flower created upon player death.
     /// </summary>
-    [SaveFileElement("FLOWERPOS", Order = 5)]
+    [SaveField(5, "FLOWERPOS")]
     public WorldCoordinate? KarmaFlowerPosition { get; set; }
+
+    /// <summary>
+    /// Whenever the slugcat currently has the mark of communication.
+    /// </summary>
+    [SaveField(6, "HASTHEMARK")]
+    public bool HasMarkOfCommunication { get; set; } = false;
 
     /// <summary>
     /// Current state of echoes in the world. <para/>
@@ -44,51 +63,45 @@ public class DeathPersistentSaveData : SaveElementContainer, IRWSerializable<Dea
     /// Some echoes can be met without visiting on a previous cycle. <para/>
     /// Hunter in particular can meet echoes without having to visit the area beforehand.
     /// </summary>
-    [SaveFileElement("GHOSTS", true, Order = 7)] // This can be empty if there are no ghosts, apparently?
+    [SaveField(7, "GHOSTS")] // This can be empty if there are no ghosts, apparently?
     public Echos Echos { get; private set; } = new();
 
     /// <summary>
     /// Tracks when was a particular song last played.
     /// </summary>
-    [SaveFileElement("SONGSPLAYRECORDS", ListDelimiter = "<dpC>", Order = 8)]
+    [SaveField(8, "SONGSPLAYRECORDS", ListDelimiter = "<dpC>")]
     public List<SongPlayRecord> SongPlayRecords { get; private set; } = [];
 
     /// <summary>
     /// Tracks information about game sessions, such as whenever the player survived, etc.
     /// </summary>
-    [SaveFileElement("SESSIONRECORDS", ListDelimiter = "<dpC>", Order = 9)]
+    [SaveField(9, "SESSIONRECORDS", ListDelimiter = "<dpC>")]
     public List<SessionRecord> SessionRecords { get; private set; } = [];
 
     /// <summary>
     /// Tracks the progress for each passage.
     /// </summary>
-    [SaveFileElement("WINSTATE", Order = 10)]
+    [SaveField(10, "WINSTATE")]
     public WinState WinState { get; private set; } = new();
 
     /// <summary>
     /// Tracks Karma Flowers that have been consumed by the player in the world. <para/>
     /// This is used to track when they should respawn.
     /// </summary>
-    [SaveFileElement("CONSUMEDFLOWERS", ListDelimiter = "<dpC>", Order = 11)]
+    [SaveField(11, "CONSUMEDFLOWERS", ListDelimiter = "<dpC>")]
     public List<ConsumedItem> ConsumedKarmaFlowers { get; private set; } = [];
-
-    /// <summary>
-    /// Whenever the slugcat currently has the mark of communication.
-    /// </summary>
-    [SaveFileElement("HASTHEMARK", true, Order = 6)]
-    public bool HasMarkOfCommunication { get; set; } = false;
 
     /// <summary>
     /// Contains a list of tutorial messages shown to the player.
     /// </summary>
-    [SaveFileElement("TUTMESSAGES", Order = 12)]
+    [SaveField(12, "TUTMESSAGES")]
     public TutorialMessages TutorialMessages { get; set; } = new();
 
     /// <summary>
     /// Contains a list of passage meters that appeared on the sleep screen. <para/>
     /// Mainly used to force the player to watch the entire karma screen sequence.
     /// </summary>
-    [SaveFileElement("METERSSHOWN", Order = 13)]
+    [SaveField(13, "METERSSHOWN")]
     public PassageMetersShown PassageMetersShown { get; set; } = new();
 
     /// <summary>
@@ -96,129 +109,116 @@ public class DeathPersistentSaveData : SaveElementContainer, IRWSerializable<Dea
     /// Survivor has a 50% chance to increase this on death that is not at minimum karma, and Monk has a 100% chance. <para/>
     /// This causes food-related consumables and bats to replenish at a faster rate.
     /// </summary>
-    [SaveFileElement("FOODREPBONUS", Order = 14)]
+    [SaveField(14, "FOODREPBONUS")]
     public IntSerializeIfNotZero FoodReplenishBonus { get; set; } = new();
 
     /// <summary>
     /// Death persistent data specific world version. <para/>
     /// Similar to save state world version, Rain World will try updating old saves to the newest world version on load.
     /// </summary>
-    [SaveFileElement("DDWORLDVERSION", Order = 15)]
+    [SaveField(15, "DDWORLDVERSION")]
     public IntSerializeIfNotZero WorldVersion { get; set; } = new();
 
     /// <summary>
     /// Tracks the total number of player deaths in this playthrough.
     /// </summary>
-    [SaveFileElement("DEATHS", Order = 16)]
+    [SaveField(16, "DEATHS")]
     public int Deaths { get; set; } = 0;
 
     /// <summary>
     /// Tracks the total number of cycles survived in this playthrough.
     /// </summary>
-    [SaveFileElement("SURVIVES", Order = 17)]
+    [SaveField(17, "SURVIVES")]
     public int Survives { get; set; } = 0;
 
     /// <summary>
     /// Tracks the total number of cycles abandoned in this playthrough.
     /// </summary>
-    [SaveFileElement("QUITS", Order = 18)]
+    [SaveField(18, "QUITS")]
     public int Quits { get; set; } = 0;
-
-    /// <summary>
-    /// List of world positions where the player has died. <para/>
-    /// This is used to render the marks on the map. <para/>
-    /// Death positions use the AbstractNode property to track their cycle age, and are removed after 7 cycles.
-    /// </summary>
-    [SaveFileElement("DEATHPOSS", ListDelimiter = "<dpC>", Order = 21)]
-    public List<WorldCoordinate> DeathPositions { get; private set; } = [];
-
-    /// <summary>
-    /// This value gets set automatically on death, but only makes sense for Hunter's campaign. <para/>
-    /// If Hunter is not out of cycles, it gets cleared on load. Otherwise, it prevents loading the save file.
-    /// </summary>
-    [SaveFileElement("REDSDEATH", true, Order = 0)]
-    public bool IsHunterDead { get; set; } = false;
-
-    /// <summary>
-    /// Whenever the player has ascended in this playthrough.
-    /// </summary>
-    [SaveFileElement("ASCENDED", true, Order = 1)]
-    public bool HasAscended { get; set; } = false;
 
     /// <summary>
     /// Whenever Pebbles has increased Hunter's karma cap by one step. <para/>
     /// This is used to prevent Pebbles from increasing karma cap again if the player fails the previous cycle.
     /// </summary>
-    [SaveFileElement("PHIRKC", true, Order = 19)]
+    [SaveField(19, "PHIRKC")]
     public bool HasPebblesIncreasedHuntersKarma { get; set; } = false;
 
     /// <summary>
     /// List of gates that have been unlocked in this playthrough. <para/>
     /// Gates can be unlocked by default by Monk, and by any other slugcat if the Remix option is enabled.
     /// </summary>
-    [SaveFileElement("UNLOCKEDGATES", ListDelimiter = "<dpC>", Order = 20)]
+    [SaveField(20, "UNLOCKEDGATES", ListDelimiter = "<dpC>")]
     public List<string> UnlockedGates { get; private set; } = [];
 
     /// <summary>
-    /// Number of friends sheltered during this playthrough <para/>
-    /// Used for end game score calculation.
+    /// List of world positions where the player has died. <para/>
+    /// This is used to render the marks on the map. <para/>
+    /// Death positions use the AbstractNode property to track their cycle age, and are removed after 7 cycles.
     /// </summary>
-    [SaveFileElement("FRIENDSAVEBONUS", Order = 27)]
-    public IntSerializeIfNotZero FriendsSaved { get; set; } = new();
-
-    /// <summary>
-    /// Tracks the total amount of time spent in a dead state.
-    /// </summary>
-    [SaveFileElement("DEATHTIME", Order = 26)]
-    public int DeathTimeInSeconds { get; set; } = 0;
+    [SaveField(21, "DEATHPOSS", ListDelimiter = "<dpC>")]
+    public List<WorldCoordinate> DeathPositions { get; private set; } = [];
 
     /// <summary>
     /// Tracks whenever the alternate ending for slugcats has been achieved. <para/>
     /// Relevant for Survivor, Monk, Rivulet, Artificer, Spearmaster and Gourmand.
     /// </summary>
-    [SaveFileElement("ALTENDING", true, Order = 22)]
+    [SaveField(22, "ALTENDING")]
     public bool AltEndingAchieved { get; set; } = false;
 
     /// <summary>
     /// Tracks whenever Five Pebbles has lost his marbles at the hands of Saint.
     /// </summary>
-    [SaveFileElement("ZEROPEBBLES", true, Order = 23)]
+    [SaveField(23, "ZEROPEBBLES")]
     public bool IsPebblesAscendedBySaint { get; set; } = false;
 
     /// <summary>
     /// Tracks whenever Looks to the Moon has been launched to the moon by Saint.
     /// </summary>
-    [SaveFileElement("LOOKSTOTHEDOOM", true, Order = 24)]
+    [SaveField(24, "LOOKSTOTHEDOOM")]
     public bool IsMoonAscendedBySaint { get; set; } = false;
 
     /// <summary>
     /// Unused. Also unknown what the intended usage was going to be, if any.
     /// </summary>
-    [SaveFileElement("SLSIREN", true, Order = 25)]
+    [SaveField(25, "SLSIREN")]
     public bool SLSiren { get; set; } = false;
+
+    /// <summary>
+    /// Tracks the total amount of time spent in a dead state.
+    /// </summary>
+    [SaveField(26, "DEATHTIME")]
+    public int DeathTimeInSeconds { get; set; } = 0;
+
+    /// <summary>
+    /// Number of friends sheltered during this playthrough <para/>
+    /// Used for end game score calculation.
+    /// </summary>
+    [SaveField(27, "FRIENDSAVEBONUS")]
+    public IntSerializeIfNotZero FriendsSaved { get; set; } = new();
 
     /// <summary>
     /// A list of broadcasts that have been read by the player.
     /// </summary>
-    [SaveFileElement("CHATLOGS", ListDelimiter = ",", SerializeIfEmpty = true, Order = 28)]
+    [SaveField(28, "CHATLOGS", ListDelimiter = ",", SerializeIfEmpty = true)]
     public List<string> ChatLogsRead { get; private set; } = [];
 
     /// <summary>
     /// A list of broadcasts that have been read by the player, before ever interacting with Five Pebbles.
     /// </summary>
-    [SaveFileElement("PREPEBCHATLOGS", ListDelimiter = ",", SerializeIfEmpty = true, Order = 29)]
+    [SaveField(29, "PREPEBCHATLOGS", ListDelimiter = ",", SerializeIfEmpty = true)]
     public List<string> ChatLogsReadBeforeFP { get; private set; } = [];
 
     /// <summary>
     /// Counter used for displaying tips in-game.
     /// </summary>
-    [SaveFileElement("TIPS", Order = 30)]
+    [SaveField(30, "TIPS")]
     public int TipCounter { get; set; } = 0;
 
     /// <summary>
     /// Random seed set on game start used for displaying tips in-game.
     /// </summary>
-    [SaveFileElement("TIPSEED", Order = 31)]
+    [SaveField(31, "TIPSEED")]
     public int TipSeed { get; set; } = 0;
 
     public string Write()

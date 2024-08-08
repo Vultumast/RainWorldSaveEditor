@@ -7,9 +7,9 @@ using System.Threading.Tasks;
 
 namespace RainWorldSaveAPI.Base;
 
-public class SerializationContext(SaveFileElement? metadata, PropertyInfo? prop)
+public class SerializationContext(SaveFieldAttribute? metadata, PropertyInfo? prop)
 {
-    public SaveFileElement? Metadata { get; init; } = metadata;
+    public SaveFieldAttribute? Metadata { get; init; } = metadata;
     public PropertyInfo? Prop { get; init; } = prop;
 }
 

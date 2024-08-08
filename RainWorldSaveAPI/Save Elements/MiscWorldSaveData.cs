@@ -9,58 +9,58 @@ public class MiscWorldSaveData : SaveElementContainer, IRWSerializable<MiscWorld
     /// <summary>
     /// Tracks the number of times the player has talked with Five Pebbles.
     /// </summary>
-    [SaveFileElement("SSaiConversationsHad", Order = 0)]
+    [SaveField(0, "SSaiConversationsHad")]
     public IntSerializeIfNotZero TimesTalkedWithFivePebbles { get; set; } = new();
 
     /// <summary>
     /// Tracks the number of times the player has been thrown out by Five Pebbles. <para/>
     /// For most slugcats, FP becomes hostile after throwing them out once and will kill them on subsequent visits.
     /// </summary>
-    [SaveFileElement("SSaiThrowOuts", Order = 1)]
+    [SaveField(1, "SSaiThrowOuts")]
     public IntSerializeIfNotZero TimesKickedOutByFivePebbles { get; set; } = new();
 
     /// <summary>
     /// Looks to the Moon's current state.
     /// </summary>
-    [SaveFileElement("SLaiState", Order = 2)]
+    [SaveField(2, "SLaiState")]
     public LooksToTheMoonState? LooksToTheMoonState { get; set; } = null;
 
     /// <summary>
     /// The guiding overseer's current state.
     /// </summary>
-    [SaveFileElement("playerGuideState", Order = 3)]
+    [SaveField(3, "playerGuideState")]
     public PlayerGuideState PlayerGuideState { get; set; } = new();
 
     /// <summary>
     /// Tracks whenever Hunter successfully delivered the Green Neuron to Looks to the Moon and revived her.
     /// </summary>
-    [SaveFileElement("MOONREVIVED", true, Order = 4)]
+    [SaveField(4, "MOONREVIVED")]
     public bool HasRevivedLooksToTheMoon { get; set; } = false;
 
     /// <summary>
     /// Tracks whenever Hunter visited Five Pebbles while having the Green Neuron.
     /// </summary>
-    [SaveFileElement("PEBBLESHELPED", true, Order = 5)]
+    [SaveField(5, "PEBBLESHELPED")]
     public bool HasFivePebblesSeenGreenNeuron { get; set; } = false;
 
     /// <summary>
     /// Tracks whenever the player visited Five Pebbles via the memory arrays entrance instead of the utility shaft. <para/>
     /// This flag is set specifically if the player enters room SS_D02.
     /// </summary>
-    [SaveFileElement("MEMORYFROLICK", true, Order = 6)]
+    [SaveField(6, "MEMORYFROLICK")]
     public bool HasFrolickedInMemoryArrays { get; set; } = false;
 
     /// <summary>
     /// Tracks the number of cycles passed since first conversation with Five Pebbles. <para/>
     /// Seems to be used for tracking Spearmaster's pearl wound recovery.
     /// </summary>
-    [SaveFileElement("CyclesSinceSSai", Order = 7)]
+    [SaveField(7, "CyclesSinceSSai")]
     public IntSerializeIfNotZero CyclesSinceFirstFivePebblesVisit { get; set; } = new();
 
     /// <summary>
     /// Tracks whenever Rivulet removed the Rarefaction Cell from Five Pebbles's generator.
     /// </summary>
-    [SaveFileElement("ENERGYRAILOFF", true, Order = 8)]
+    [SaveField(8, "ENERGYRAILOFF")]
     public bool HasRemovedRarefactionCell { get; set; } = false;
 
     /// <summary>
@@ -70,57 +70,57 @@ public class MiscWorldSaveData : SaveElementContainer, IRWSerializable<MiscWorld
     /// 2 = Pebbles acknowledged that the cell has been removed on Rivulet's first visit (without them holding the cell) <para/>
     /// 3 = Pebbles saw Rivulet hold the cell on one of the visits, or Pebbles acknowledged that the cell has been removed after being visited again
     /// </summary>
-    [SaveFileElement("EnergySeenState", Order = 9)]
+    [SaveField(9, "EnergySeenState")]
     public IntSerializeIfNotZero RarefactionCellConversationState { get; set; } = new();
 
     /// <summary>
     /// Tracks whenever Rivulet delivered the Rarefaction Cell to Moon's core.
     /// </summary>
-    [SaveFileElement("MOONHEART", true, Order = 10)]
+    [SaveField(10, "MOONHEART")]
     public bool DeliveredRarefactionCellToMoon { get; set; } = false;
 
     /// <summary>
     /// Tracks whenever the player has given Moon the Cloak.
     /// </summary>
-    [SaveFileElement("MOONROBE", true, Order = 11)]
+    [SaveField(11, "MOONROBE")]
     public bool HasGivenMoonTheCloak { get; set; } = false;
 
     /// <summary>
     /// Tracks whenever Moon has encoded Spearmaster's pearl with a new message.
     /// </summary>
-    [SaveFileElement("SMPEARLTAGGED", true, Order = 12)]
+    [SaveField(12, "SMPEARLTAGGED")]
     public bool HasMoonEncodedSpearmasterPearl { get; set; } = false;
 
     /// <summary>
     /// Tracks whenever Five Pebbles has talked about his music pearl.
     /// </summary>
-    [SaveFileElement("HALCYONTALK", true, Order = 13)]
+    [SaveField(13, "HALCYONTALK")]
     public bool HasDiscussedFivePebblesMusicPearl { get; set; } = false;
 
     /// <summary>
     /// Tracks whenever the player has stolen Five Pebbles's music pearl. <para/>
     /// Truly despicable behaviour indeed.
     /// </summary>
-    [SaveFileElement("HALCYONSTOLE", true, Order = 14)]
+    [SaveField(14, "HALCYONSTOLE")]
     public bool HasStolenFivePebblesMusicPearl { get; set; } = false;
 
     /// <summary>
     /// Tracks whenever the player has talked with Five Pebbles after delivering the Rarefaction Cell to Moon.
     /// </summary>
-    [SaveFileElement("PEBRIVPOST", true, Order = 15)]
+    [SaveField(15, "PEBRIVPOST")]
     public bool HasTalkedWithFivePebblesInRivuletPostgame { get; set; } = false;
 
     /// <summary>
     /// Tracks whenever Saint has talked with Five Pebbles and / or Looks to the Moon in Rubicon's final room.
     /// </summary>
-    [SaveFileElement("HRMELT", true, Order = 16)]
+    [SaveField(16, "HRMELT")]
     public bool TalkedWithOraclesInRubicon { get; set; } = false;
 
     /// <summary>
     /// Tracks how many cycles have passed since a Slugpup has spawned. <para/>
     /// This is used to guarantee Slugpup spawns after 25 cycles (5 for Hunter).
     /// </summary>
-    [SaveFileElement("CyclesSinceSlugpup", Order = 17)]
+    [SaveField(17, "CyclesSinceSlugpup")]
     public IntSerializeIfNotZero CyclesSinceLastSlugpupSpawn { get; set; } = new();
 
     public static MiscWorldSaveData Deserialize(string key, string[] values, SerializationContext? context)

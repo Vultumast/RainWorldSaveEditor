@@ -6,7 +6,7 @@ namespace RainWorldSaveAPI;
 // TODO: Document this
 public class PlayerGuideState : SaveElementContainer, IRWSerializable<PlayerGuideState>
 {
-    [SaveFileElement("integersArray", Order = 0)]
+    [SaveField(0, "integersArray")]
     public GenericIntegerArray Integers { get; set; } = new();
 
     public bool PlayerHasVisitedMoon
@@ -52,23 +52,23 @@ public class PlayerGuideState : SaveElementContainer, IRWSerializable<PlayerGuid
     }
 
     // TODO: backwards compatibility
-    [SaveFileElement("itemTypes", ListDelimiter = ",", SerializeIfEmpty = true, Order = 1)]
+    [SaveField(1, "itemTypes", ListDelimiter = ",", SerializeIfEmpty = true)]
     public List<string> FoodItemsLearned { get; set; } = [];
 
     // TODO: backwards compatibility
-    [SaveFileElement("creatureTypes", ListDelimiter = ",", SerializeIfEmpty = true, Order = 2)]
+    [SaveField(2, "creatureTypes", ListDelimiter = ",", SerializeIfEmpty = true)]
     public List<string> CreatureTypesWarnedAbout { get; set; } = [];
 
-    [SaveFileElement("likesPlayer", Order = 3)]
+    [SaveField(3, "likesPlayer")]
     public float PlayerReputation { get; set; } = 0;
 
-    [SaveFileElement("directionHandHolding", Order = 4)]
+    [SaveField(4, "directionHandHolding")]
     public float HandHolding { get; set; } = 0;
 
-    [SaveFileElement("imagesShown", ListDelimiter = ".", Order = 5)]
+    [SaveField(5, "imagesShown", ListDelimiter = ".")]
     public List<string> ImagesShown { get; set; } = [];
 
-    [SaveFileElement("forcedDirsGiven", ListDelimiter = ".", Order = 6)]
+    [SaveField(6, "forcedDirsGiven", ListDelimiter = ".")]
     public List<string> ForcedDirectionsGiven { get; set; } = [];
 
     public static PlayerGuideState Deserialize(string key, string[] values, SerializationContext? context)

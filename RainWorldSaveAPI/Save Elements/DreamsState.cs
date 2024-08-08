@@ -6,7 +6,7 @@ namespace RainWorldSaveAPI.SaveElements;
 // TODO: Document fields
 public class DreamsState : SaveElementContainer, IRWSerializable<DreamsState>
 {
-    [SaveFileElement("integersArray", Order = 0)]
+    [SaveField(0, "integersArray")]
     public GenericIntegerArray Integers { get; set; } = new();
 
     public int CyclesSinceLastDream

@@ -32,23 +32,26 @@ public class Echos : IRWSerializable<Echos>
         // TODO: This has a backwards compatible format that needs to be added
         var ghost = new Echos();
 
-        foreach (var ghostData in values[0].Split(",", StringSplitOptions.RemoveEmptyEntries))
+        if (values.Length > 0)
         {
-            string[] parts = ghostData.Split(":", 2);
+            foreach (var ghostData in values[0].Split(",", StringSplitOptions.RemoveEmptyEntries))
+            {
+                string[] parts = ghostData.Split(":", 2);
 
-            if (parts.Length != 2)
-            {
-                ghost.UnrecognizedStates.Add(ghostData);
-            }
-            else
-            {
-                try
-                {
-                    ghost.EchoStates[parts[0]] = (EchoState)int.Parse(parts[1], NumberStyles.Any, CultureInfo.InvariantCulture);
-                }
-                catch (ArgumentException)
+                if (parts.Length != 2)
                 {
                     ghost.UnrecognizedStates.Add(ghostData);
+                }
+                else
+                {
+                    try
+                    {
+                        ghost.EchoStates[parts[0]] = (EchoState)int.Parse(parts[1], NumberStyles.Any, CultureInfo.InvariantCulture);
+                    }
+                    catch (ArgumentException)
+                    {
+                        ghost.UnrecognizedStates.Add(ghostData);
+                    }
                 }
             }
         }

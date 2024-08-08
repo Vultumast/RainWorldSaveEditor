@@ -331,7 +331,9 @@ public partial class MainForm : Form
         }
         else
         {
-            Logger.Info($"{comparisonName} difference is at {i} (Line {originalLine}, Col {originalCol}) | {j} (Line {parsedLine}, Col {parsedCol})");
+            var originalPct = (i - originalStart) * 100f / (originalEnd - originalStart);
+            var parsedPct = (j - parsedStart) * 100f / (parsedEnd - parsedStart);
+            Logger.Info($"{comparisonName} first difference is at {originalPct}% (Line {originalLine}, Col {originalCol}) | {parsedPct}% (Line {parsedLine}, Col {parsedCol})");
         }
     }
 
