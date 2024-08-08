@@ -52,11 +52,11 @@ public class PlayerGuideState : SaveElementContainer, IRWSerializable<PlayerGuid
     }
 
     // TODO: backwards compatibility
-    [SaveFileElement("itemTypes", ListDelimiter = ",", Order = 1)]
+    [SaveFileElement("itemTypes", ListDelimiter = ",", SerializeIfEmpty = true, Order = 1)]
     public List<string> FoodItemsLearned { get; set; } = [];
 
     // TODO: backwards compatibility
-    [SaveFileElement("creatureTypes", ListDelimiter = ",", Order = 2)]
+    [SaveFileElement("creatureTypes", ListDelimiter = ",", SerializeIfEmpty = true, Order = 2)]
     public List<string> CreatureTypesWarnedAbout { get; set; } = [];
 
     [SaveFileElement("likesPlayer", Order = 3)]
@@ -88,5 +88,11 @@ public class PlayerGuideState : SaveElementContainer, IRWSerializable<PlayerGuid
         ];
 
         return true;
+    }
+
+    protected override void DeserializeUnrecognizedField(string key, string[] values)
+    {
+        if (key.Trim() != "" && values.Length >= 1)
+            UnrecognizedFields.Add((key, values));
     }
 }

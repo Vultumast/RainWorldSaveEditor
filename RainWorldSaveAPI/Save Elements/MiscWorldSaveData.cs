@@ -141,4 +141,10 @@ public class MiscWorldSaveData : SaveElementContainer, IRWSerializable<MiscWorld
 
         return true;
     }
+
+    protected override void DeserializeUnrecognizedField(string key, string[] values)
+    {
+        if (key.Trim() != "")
+            UnrecognizedFields.Add((key, values));
+    }
 }

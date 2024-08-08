@@ -55,6 +55,30 @@ public abstract class SaveElementContainer
         }
     }
 
+    protected virtual void DeserializeUnrecognizedField(string key, string[] values)
+    {
+        UnrecognizedFields.Add((key, values));
+    }
+
+    protected virtual void SerializeUnrecognizedField(string key, string[] values, string entryDelimiter, string valueDelimiter, StringBuilder builder)
+    {
+        builder.Append(key);
+
+        if (values.Length > 0)
+            builder.Append(valueDelimiter);
+
+        for (int i = 0; i < values.Length - 1; i++)
+        {
+            builder.Append(values[i]);
+            builder.Append(valueDelimiter);
+        }
+
+        if (values.Length > 0)
+            builder.Append(values[^1]);
+
+        builder.Append(entryDelimiter);
+    }
+
     private static void CheckInit(Type containerType)
     {
         if (SerializationData.ContainsKey(containerType))
@@ -96,11 +120,6 @@ public abstract class SaveElementContainer
 
         if (ordersSet.Count != distinct.Count)
             Logger.Warn($"{ordersSet.Count - distinct.Count} Order properties for container {containerType} are duplicate!");
-    }
-
-    private void HandleUnrecognizedField(string key, string[] values)
-    {
-        UnrecognizedFields.Add((key, values));
     }
 
     public string SerializeFields(string valueDelimiter, string entryDelimiter)
@@ -152,30 +171,30 @@ public abstract class SaveElementContainer
 
         foreach ((var key, var values) in UnrecognizedFields)
         {
-            builder.Append(key);
-            builder.Append(valueDelimiter);
-
-
-            for (int i = 0; i < values.Length - 1; i++)
-            {
-                builder.Append(values[i]);
-                builder.Append(valueDelimiter);
-            }
-
-            if (values.Length > 0)
-                builder.Append(values[^1]);
-
-            builder.Append(entryDelimiter);
+            SerializeUnrecognizedField(key, values, entryDelimiter, valueDelimiter, builder);
         }
 
         return builder.ToString();
     }
 
-    private static IEnumerable<(string Key, string[] Values)> GetFields(string data, string valueDelimiter, string entryDelimiter)
+    private IEnumerable<(string Key, string[] Values)> GetFields(string data, string valueDelimiter, string entryDelimiter)
     {
-        string[] entries = data.Split(entryDelimiter, StringSplitOptions.RemoveEmptyEntries);
+        string[] entries = data.Split(entryDelimiter);
 
-        foreach (var entry in entries)
+        int count = 0;
+
+        foreach (var entry in entries.Where(string.IsNullOrEmpty))
+        {
+            DeserializeUnrecognizedField(entry, []);
+            count++;
+        }
+
+        if (count > 0)
+        {
+            Logger.Info($"Add {count} empty fields in ${GetType()} as unrecognized values.");
+        }
+
+        foreach (var entry in entries.Where(x => !string.IsNullOrEmpty(x)))
         {
             string[] fields = entry.Split(valueDelimiter);
 
@@ -203,7 +222,11 @@ public abstract class SaveElementContainer
     {
         // Check multilists for any keys that prefix this key
         // If there is such an element, use that type
-        var prefix = SerializationData[GetType()].FirstOrDefault(x => IsMultiList(x.Value.Prop.PropertyType) && key.StartsWith(x.Value.Metadata.Name));
+        // If there are multiple prefixes that match, use the longest
+        var prefix = SerializationData[GetType()]
+            .Where(x => IsMultiList(x.Value.Prop.PropertyType))
+            .OrderByDescending(x => x.Value.Metadata.Name.Length)
+            .FirstOrDefault(x => key.StartsWith(x.Value.Metadata.Name));
 
         if (prefix.Key != null)
         {
@@ -233,19 +256,15 @@ public abstract class SaveElementContainer
             if (elementData == null)
             {
                 Logger.Warn($"{GetType()}: {key} doesn't have serialization data. Adding to unknown fields.");
-                HandleUnrecognizedField(key, values);
+                DeserializeUnrecognizedField(key, values);
                 continue;
             }
 
-            if (requireUnique)
+            if (requireUnique && !keysEncountered.Add(key))
             {
-                if (keysEncountered.Contains(key))
-                {
-                    Logger.Warn($"{GetType()}: {key} has already been deserialized from another field. Adding to unknown fields");
-                    HandleUnrecognizedField(key, values);
-                    continue;
-                }
-                else keysEncountered.Add(key);
+                Logger.Warn($"{GetType()}: Duplicate {key} found. Adding to unknown fields");
+                DeserializeUnrecognizedField(key, values);
+                continue;
             }
 
             var data = elementData.Value;
@@ -254,7 +273,7 @@ public abstract class SaveElementContainer
             if (deserializer == null)
             {
                 Logger.Warn($"{GetType()} => {data.Prop.Name} does not have a deserializer. Adding to unknown fields.");
-                HandleUnrecognizedField(key, values);
+                DeserializeUnrecognizedField(key, values);
                 continue;
             }
 
@@ -266,7 +285,7 @@ public abstract class SaveElementContainer
             {
                 Logger.Error($"{GetType()} => {data.Prop.Name} deserialized threw an exception during call. Adding to unknown fields.");
                 Logger.Error(e.ToString());
-                HandleUnrecognizedField(key, values);
+                DeserializeUnrecognizedField(key, values);
                 continue;
             }
         }

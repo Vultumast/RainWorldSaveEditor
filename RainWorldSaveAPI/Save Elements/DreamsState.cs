@@ -81,4 +81,10 @@ public class DreamsState : SaveElementContainer, IRWSerializable<DreamsState>
 
         return true;
     }
+
+    protected override void DeserializeUnrecognizedField(string key, string[] values)
+    {
+        if (key.Trim() != "" && values.Length >= 1)
+            UnrecognizedFields.Add((key, values));
+    }
 }

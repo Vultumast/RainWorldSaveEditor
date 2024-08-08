@@ -186,6 +186,11 @@ public partial class MainForm : Form
             return;
         }
 
+        File.Delete("original.txt");
+        File.Delete("parsed.txt");
+        File.Delete("original_indented.txt");
+        File.Delete("parsed_indented.txt");
+
         WriteComparisons(saveData, _save.Write());
         UpdateTitle();
     }
@@ -194,29 +199,129 @@ public partial class MainForm : Form
     {
         File.WriteAllText("original.txt", original);
         File.WriteAllText("parsed.txt", parsed);
-        File.WriteAllText("original_indented.txt", Format(original));
-        File.WriteAllText("parsed_indented.txt", Format(parsed));
+        string originalText = Format(original);
+        string parsedText = Format(parsed);
 
-        int line = 1;
-        int col = 1;
+        File.WriteAllText("original_indented.txt", originalText);
+        File.WriteAllText("parsed_indented.txt", parsedText);
 
-        for (int i = 32; i < Math.Max(original.Length, parsed.Length); i++)
+        CompareSections(originalText, parsedText, "SAV STATE NUMBER\r\n<svB>\r\nWhite", "<progDivA>", "Survivor savefile");
+        CompareSections(originalText, parsedText, "SAV STATE NUMBER\r\n<svB>\r\nRed", "<progDivA>", "Hunter savefile");
+        CompareSections(originalText, parsedText, "SAV STATE NUMBER\r\n<svB>\r\nYellow", "<progDivA>", "Monk savefile");
+        CompareSections(originalText, parsedText, "SAV STATE NUMBER\r\n<svB>\r\nGourmand", "<progDivA>", "Gourmand savefile");
+        CompareSections(originalText, parsedText, "SAV STATE NUMBER\r\n<svB>\r\nArtificer", "<progDivA>", "Artificer savefile");
+        CompareSections(originalText, parsedText, "SAV STATE NUMBER\r\n<svB>\r\nSpear", "<progDivA>", "Spearmaster savefile");
+        CompareSections(originalText, parsedText, "SAV STATE NUMBER\r\n<svB>\r\nRivulet", "<progDivA>", "Rivulet savefile");
+        CompareSections(originalText, parsedText, "SAV STATE NUMBER\r\n<svB>\r\nSaint", "<progDivA>", "Saint savefile");
+        CompareSections(originalText, parsedText, "SAV STATE NUMBER\r\n<svB>\r\nInv", "<progDivA>", "Inv savefile");
+    }
+
+    private static void CompareSections(string original, string parsed, string start, string end, string comparisonName)
+    {
+        int originalStart = original.IndexOf(start);
+        int parsedStart = parsed.IndexOf(start);
+
+        if (originalStart == -1 || parsedStart == -1 )
         {
-            if (i >= parsed.Length || i >= original.Length || original[i] != parsed[i])
-            {
-                Logger.Info($"First difference is at {i} (line {line}, col {col})");
-                break;
-            }
+            Logger.Warn("Failed to do comparison.");
+            return;
+        }
 
-            if (original[i] == '<' || original[i] == '>')
+        int originalEnd = original.IndexOf(end, originalStart);
+        int parsedEnd = parsed.IndexOf(end, parsedStart);
+
+        if (originalEnd == -1 || parsedEnd == -1)
+        {
+            Logger.Warn("Failed to do comparison.");
+            return;
+        }
+
+        int maxLength = Math.Max(original.Length, parsed.Length);
+
+        int originalLine = 1;
+        int originalCol = 1;
+
+        int parsedLine = 1;
+        int parsedCol = 1;
+
+        bool mismatchFound = false;
+
+        int i = 0, j = 0;
+
+        while (i < originalStart)
+        {
+            if (original[i] == '\n')
             {
-                line++;
-                col = 1;
+                originalLine++;
+                originalCol = 1;
             }
             else
             {
-                col++;
+                originalCol++;
             }
+
+            i++;
+        }
+
+        while (j < parsedStart)
+        {
+            if (parsed[j] == '\n')
+            {
+                parsedLine++;
+                parsedCol = 1;
+            }
+            else
+            {
+                parsedCol++;
+            }
+
+            j++;
+        }
+
+        for (i = originalStart, j = parsedStart; i < maxLength && j < maxLength; i++, j++)
+        {
+            if (i == originalEnd || j == parsedEnd)
+            {
+                break;
+            }
+
+            if (original[i] != parsed[j])
+            {
+                mismatchFound = true;
+                break;
+            }
+
+            if (original[i] == '\n')
+            {
+                originalLine++;
+                originalCol = 1;
+            }
+            else
+            {
+                originalCol++;
+            }
+
+            if (parsed[j] == '\n')
+            {
+                parsedLine++;
+                parsedCol = 1;
+            }
+            else
+            {
+                parsedCol++;
+            }
+        }
+
+        if (!(i == originalEnd && j == parsedEnd))
+            mismatchFound = true;
+
+        if (!mismatchFound)
+        {
+            Logger.Info($"Comparison for {comparisonName} didn't yield any differences.");
+        }
+        else
+        {
+            Logger.Info($"{comparisonName} difference is at {i} (Line {originalLine}, Col {originalCol}) | {j} (Line {parsedLine}, Col {parsedCol})");
         }
     }
 
@@ -226,7 +331,7 @@ public partial class MainForm : Form
 
         for (int i = 0; i < original.Length; i++)
         {
-            if (original[i] == '<')
+            if (original[i] == '<' && i > 0 && original[i - 1] != '>')
                 result.AppendLine();
 
             result.Append(original[i]);

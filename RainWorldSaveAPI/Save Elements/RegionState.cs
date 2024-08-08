@@ -33,7 +33,7 @@ public class RegionState : SaveElementContainer, IRWSerializable<RegionState>
     public List<string> ConsumedItems { get; set; } = [];
 
     // TODO backwards compatibility
-    [SaveFileElement("ROOMSVISITED", ListDelimiter = ",", Order = 8)]
+    [SaveFileElement("ROOMSVISITED", ListDelimiter = ",", SerializeIfEmpty = true, Order = 8)]
     public List<string> RoomsVisited { get; set; } = [];
 
     public static RegionState Deserialize(string key, string[] values, SerializationContext? context)
@@ -53,5 +53,11 @@ public class RegionState : SaveElementContainer, IRWSerializable<RegionState>
         ];
 
         return true;
+    }
+
+    protected override void DeserializeUnrecognizedField(string key, string[] values)
+    {
+        if (key.Trim() != "" && values.Length >= 1)
+            UnrecognizedFields.Add((key, [values[0]]));
     }
 }

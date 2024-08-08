@@ -270,4 +270,19 @@ public class SaveState : SaveElementContainer, IRWSerializable<SaveState>
 
         return true;
     }
+
+    protected override void DeserializeUnrecognizedField(string key, string[] values)
+    {
+        if (key.Trim() != "")
+        {
+            if (values.Length >= 1)
+            {
+                UnrecognizedFields.Add((key, [values[0]]));
+            }
+            else
+            {
+                UnrecognizedFields.Add((key, []));
+            }
+        }
+    }
 }

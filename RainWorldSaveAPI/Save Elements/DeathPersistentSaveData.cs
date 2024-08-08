@@ -1,4 +1,5 @@
 ﻿using System.Diagnostics.CodeAnalysis;
+using System.Text;
 using RainWorldSaveAPI.Base;
 using RainWorldSaveAPI.Save_Elements;
 
@@ -96,7 +97,7 @@ public class DeathPersistentSaveData : SaveElementContainer, IRWSerializable<Dea
     /// This causes food-related consumables and bats to replenish at a faster rate.
     /// </summary>
     [SaveFileElement("FOODREPBONUS", Order = 14)]
-    public int FoodReplenishBonus { get; set; } = 0;
+    public IntSerializeIfNotZero FoodReplenishBonus { get; set; } = new();
 
     /// <summary>
     /// Death persistent data specific world version. <para/>
@@ -242,5 +243,11 @@ public class DeathPersistentSaveData : SaveElementContainer, IRWSerializable<Dea
         ];
 
         return true;
+    }
+
+    protected override void DeserializeUnrecognizedField(string key, string[] values)
+    {
+        if (key.Trim() != "")
+            UnrecognizedFields.Add((key, values));
     }
 }

@@ -158,4 +158,10 @@ public class LooksToTheMoonState : SaveElementContainer, IRWSerializable<LooksTo
 
         return true;
     }
+
+    protected override void DeserializeUnrecognizedField(string key, string[] values)
+    {
+        if (key.Trim() != "")
+            UnrecognizedFields.Add((key, values));
+    }
 }
