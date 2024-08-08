@@ -151,7 +151,7 @@ partial class MainForm
         // 
         openToolStripMenuItem1.DropDownItems.AddRange(new ToolStripItem[] { openFile1ToolStripMenuItem, openFile2ToolStripMenuItem, openFile3ToolStripMenuItem, toolStripSeparator3, openFileToolStripMenuItem });
         openToolStripMenuItem1.Name = "openToolStripMenuItem1";
-        openToolStripMenuItem1.Size = new Size(123, 22);
+        openToolStripMenuItem1.Size = new Size(180, 22);
         openToolStripMenuItem1.Text = "Open";
         // 
         // openFile1ToolStripMenuItem
@@ -194,19 +194,20 @@ partial class MainForm
         // toolStripSeparator2
         // 
         toolStripSeparator2.Name = "toolStripSeparator2";
-        toolStripSeparator2.Size = new Size(120, 6);
+        toolStripSeparator2.Size = new Size(177, 6);
         // 
         // saveToolStripMenuItem1
         // 
         saveToolStripMenuItem1.Name = "saveToolStripMenuItem1";
-        saveToolStripMenuItem1.Size = new Size(123, 22);
+        saveToolStripMenuItem1.Size = new Size(180, 22);
         saveToolStripMenuItem1.Text = "Save";
         // 
         // saveAsToolStripMenuItem1
         // 
         saveAsToolStripMenuItem1.Name = "saveAsToolStripMenuItem1";
-        saveAsToolStripMenuItem1.Size = new Size(123, 22);
+        saveAsToolStripMenuItem1.Size = new Size(180, 22);
         saveAsToolStripMenuItem1.Text = "Save As...";
+        saveAsToolStripMenuItem1.Click += saveAsToolStripMenuItem1_Click;
         // 
         // slugcatsToolStripMenuItem
         // 
@@ -219,31 +220,31 @@ partial class MainForm
         // vanillaSlugcatsToolStripMenuItem
         // 
         vanillaSlugcatsToolStripMenuItem.Name = "vanillaSlugcatsToolStripMenuItem";
-        vanillaSlugcatsToolStripMenuItem.Size = new Size(180, 22);
+        vanillaSlugcatsToolStripMenuItem.Size = new Size(119, 22);
         vanillaSlugcatsToolStripMenuItem.Text = "Vanilla";
         // 
         // dlcSlugcatsToolStripMenuItem
         // 
         dlcSlugcatsToolStripMenuItem.Name = "dlcSlugcatsToolStripMenuItem";
-        dlcSlugcatsToolStripMenuItem.Size = new Size(180, 22);
+        dlcSlugcatsToolStripMenuItem.Size = new Size(119, 22);
         dlcSlugcatsToolStripMenuItem.Text = "DLC";
         // 
         // moddedSlugcatsToolStripMenuItem
         // 
         moddedSlugcatsToolStripMenuItem.Name = "moddedSlugcatsToolStripMenuItem";
-        moddedSlugcatsToolStripMenuItem.Size = new Size(180, 22);
+        moddedSlugcatsToolStripMenuItem.Size = new Size(119, 22);
         moddedSlugcatsToolStripMenuItem.Text = "Modded";
         // 
         // toolStripSeparator4
         // 
         toolStripSeparator4.Name = "toolStripSeparator4";
-        toolStripSeparator4.Size = new Size(177, 6);
+        toolStripSeparator4.Size = new Size(116, 6);
         // 
         // exportToolStripMenuItem
         // 
         exportToolStripMenuItem.Enabled = false;
         exportToolStripMenuItem.Name = "exportToolStripMenuItem";
-        exportToolStripMenuItem.Size = new Size(180, 22);
+        exportToolStripMenuItem.Size = new Size(119, 22);
         exportToolStripMenuItem.Text = "Export...";
         exportToolStripMenuItem.ToolTipText = "Export current slugcat slot";
         exportToolStripMenuItem.Click += exportToolStripMenuItem_Click;
@@ -252,7 +253,7 @@ partial class MainForm
         // 
         importToolStripMenuItem.Enabled = false;
         importToolStripMenuItem.Name = "importToolStripMenuItem";
-        importToolStripMenuItem.Size = new Size(180, 22);
+        importToolStripMenuItem.Size = new Size(119, 22);
         importToolStripMenuItem.Text = "Import...";
         importToolStripMenuItem.ToolTipText = "Import a file to overwrite a slugcat slot";
         importToolStripMenuItem.Click += importToolStripMenuItem_Click;

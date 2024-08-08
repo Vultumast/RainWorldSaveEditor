@@ -195,6 +195,16 @@ public partial class MainForm : Form
         UpdateTitle();
     }
 
+    void WriteSaveData(string filepath)
+    {
+        var table = new System.Collections.Hashtable();
+        table["save"] = _save.Write();
+        table["save__Backup"] = table["save"];
+        using var fs = new FileStream(filepath, FileMode.Create, FileAccess.Write);
+        HashtableSerializer.Write(fs, table);
+        fs.Close();
+    }
+
     private static void WriteComparisons(string original, string parsed)
     {
         File.WriteAllText("original.txt", original);
@@ -221,7 +231,7 @@ public partial class MainForm : Form
         int originalStart = original.IndexOf(start);
         int parsedStart = parsed.IndexOf(start);
 
-        if (originalStart == -1 || parsedStart == -1 )
+        if (originalStart == -1 || parsedStart == -1)
         {
             Logger.Warn("Failed to do comparison.");
             return;
@@ -466,4 +476,15 @@ public partial class MainForm : Form
 
     }
     #endregion
+
+    private void saveAsToolStripMenuItem1_Click(object sender, EventArgs e)
+    {
+        using var dialog = new SaveFileDialog();
+
+        if (dialog.ShowDialog() != DialogResult.OK)
+            return;
+
+        Logger.Info($"Writing save file {dialog.FileName}");
+        WriteSaveData(dialog.FileName);
+    }
 }
