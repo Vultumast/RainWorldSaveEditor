@@ -45,13 +45,13 @@ public class SaveState : SaveElementContainer, IRWSerializable<SaveState>
     /// Location of the current shelter.
     /// </summary>
     [SaveField(5, "DENPOS")]
-    public string DenPosition { get; set; } = "???";
+    public string DenPosition { get; set; } = DefaultDen;
 
     /// <summary>
     /// Location of the last shelter visited that is available in the base (vanilla) game.
     /// </summary>
     [SaveField(6, "LASTVDENPOS")]
-    public string LastVanillaDen { get; set; } = "???";
+    public string LastVanillaDen { get; set; } = DefaultDen;
 
     /// <summary>
     /// Number of cycles passed.
@@ -104,7 +104,9 @@ public class SaveState : SaveElementContainer, IRWSerializable<SaveState>
     [SaveField(14, "COMMUNITIES")]
     public CreatureCommunities Communities { get; set; } = new();
 
-    // TODO Document this
+    /// <summary>
+    /// Tracks the state of each region, including objects and entities present.
+    /// </summary>
     [SaveField(15, "REGIONSTATE")]
     public MultiList<RegionState> RegionStates { get; private set; } = [];
 
@@ -112,8 +114,8 @@ public class SaveState : SaveElementContainer, IRWSerializable<SaveState>
     /// <summary>
     /// Contains serialized strings of swallowed items
     /// </summary>
-    [SaveField(16, "SWALLOWEDITEMS")]
-    public RawValues SwallowedItems { get; set; } = new();
+    [SaveField(16, "SWALLOWEDITEMS", ListDelimiter = "", SerializeIfEmpty = false)]
+    public List<AbstractObjectOrCreature> SwallowedItems { get; set; } = new();
 
     /// <summary>
     /// Contains serialized strings of swallowed items and creatures that were not recognized by the game. <para/>
@@ -126,8 +128,8 @@ public class SaveState : SaveElementContainer, IRWSerializable<SaveState>
     /// <summary>
     /// Contains serialized strings of grabbed items and creatures <para/>
     /// </summary>
-    [SaveField(18, "PLAYERGRASPS")]
-    public RawValues PlayerGrasps { get; set; } = new();
+    [SaveField(18, "PLAYERGRASPS", ListDelimiter = "")]
+    public List<AbstractObjectOrCreature> PlayerGrasps { get; set; } = new();
 
     /// <summary>
     /// Contains serialized strings of grabbed items and creatures that were not recognized by the game. <para/>
@@ -280,4 +282,9 @@ public class SaveState : SaveElementContainer, IRWSerializable<SaveState>
             }
         }
     }
+
+    /// <summary>
+    /// This is the Outskirts shelter that's closest to Industrial Complex's Karma Gate. <para/>
+    /// </summary>
+    private const string DefaultDen = "SU_S04";
 }

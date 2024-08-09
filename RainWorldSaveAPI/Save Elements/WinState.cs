@@ -155,7 +155,7 @@ public class GourmandFoodQuestTracker : EndgameTracker
         return [
             ID,
             Consumed ? "1" : "0",
-            string.Join(".", Progress)
+            string.Concat(Progress.Select(x => $"{x}."))
         ];
     }
 }

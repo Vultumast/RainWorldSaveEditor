@@ -15,7 +15,8 @@ public class SaveFieldAttribute(int order, string name) : Attribute
     public string Name { get; } = name;
 
     /// <summary>
-    /// For lists, defines the delimiter to use for elements. Ignored if <see cref="IsRepeatableKey"/> is set.
+    /// For lists, defines the delimiter to use for elements.
+    /// If set to <see cref="string.Empty"/>, the value delimiter will be used instead.
     /// </summary>
     public string? ListDelimiter { get; init; } = null;
 

@@ -387,15 +387,16 @@ public static class Serializers
         var getter = prop.GetGetMethod(true) ?? throw new InvalidOperationException("Expected property to have a getter.");
 
         var listDelimiter = prop.GetCustomAttribute<SaveFieldAttribute>()?.ListDelimiter ?? throw new ArgumentException("Expected list delimiter to be defined for serializable list.");
-        
+        bool useValuesDirectly = listDelimiter == "";
+
         return (container, key, values) =>
         {
             var list = getter.Invoke(container, []) as T ?? throw new InvalidOperationException($"{prop.DeclaringType} => {prop.Name} expected to return {typeof(T)} instead of null or other type.");
 
-            if (values.Length != 1)
-                throw new ArgumentException($"{prop.DeclaringType} => {prop.Name}: expected exactly one value for serializable list of type {typeof(T)}.");
+            if (!useValuesDirectly && values.Length != 1)
+                throw new ArgumentException($"{prop.DeclaringType} => {prop.Name}: expected exactly one value for serializable list of type {typeof(T)} with list delimiter {listDelimiter}.");
 
-            foreach (var value in values[0].Split(listDelimiter, StringSplitOptions.RemoveEmptyEntries))
+            foreach (var value in useValuesDirectly ? values : values[0].Split(listDelimiter, StringSplitOptions.RemoveEmptyEntries))
             {
                 list.Add(U.Deserialize(key, [value], null));
             }
@@ -412,6 +413,7 @@ public static class Serializers
         var getter = prop.GetGetMethod(true) ?? throw new InvalidOperationException("Expected property to have a getter.");
 
         var listDelimiter = prop.GetCustomAttribute<SaveFieldAttribute>()?.ListDelimiter ?? throw new ArgumentException("Expected list delimiter to be defined for serializable list.");
+        bool useValuesDirectly = listDelimiter == "";
         var trailingListDelimiter = prop.GetCustomAttribute<SaveFieldAttribute>()?.TrailingListDelimiter ?? throw new ArgumentException("Expected trailing delimiter to be defined for serializable list.");
         var serializeListIfEmpty = prop.GetCustomAttribute<SaveFieldAttribute>()?.SerializeIfEmpty ?? throw new ArgumentException("Expected attribute for list.");
 
@@ -426,25 +428,48 @@ public static class Serializers
                 return;
             }
 
-            string combined = "";
             int count = 0;
 
-            foreach (var element in list)
+            if (useValuesDirectly)
             {
-                element.Serialize(out _, out var elementValues, null);
+                keys = [null];
+                values = [new string[list.Count]];
 
-                if (elementValues.Length == 0)
-                    throw new InvalidOperationException($"{typeof(T)} encountered a {typeof(U)} element that serialized to zero values!");
+                foreach (var element in list)
+                {
+                    element.Serialize(out _, out var elementValues, null);
 
-                if (elementValues.Length > 2)
-                    throw new InvalidOperationException($"{typeof(T)} encountered a {typeof(U)} element that serialized to more than one value!");
+                    if (elementValues.Length == 0)
+                        throw new InvalidOperationException($"{typeof(T)} encountered a {typeof(U)} element that serialized to zero values!");
 
-                count++;
-                combined += elementValues[0] + (trailingListDelimiter || count < list.Count ? listDelimiter : "");
+                    if (elementValues.Length > 2)
+                        throw new InvalidOperationException($"{typeof(T)} encountered a {typeof(U)} element that serialized to more than one value!");
+
+                    values[0][count] = elementValues[0];
+                    count++;
+                }
             }
+            else
+            {
+                string combined = "";
 
-            keys = [null];
-            values = [[combined]];
+                foreach (var element in list)
+                {
+                    element.Serialize(out _, out var elementValues, null);
+
+                    if (elementValues.Length == 0)
+                        throw new InvalidOperationException($"{typeof(T)} encountered a {typeof(U)} element that serialized to zero values!");
+
+                    if (elementValues.Length > 2)
+                        throw new InvalidOperationException($"{typeof(T)} encountered a {typeof(U)} element that serialized to more than one value!");
+
+                    count++;
+                    combined += elementValues[0] + (trailingListDelimiter || count < list.Count ? listDelimiter : "");
+                }
+
+                keys = [null];
+                values = [[combined]];
+            }
         };
     }
 
@@ -458,15 +483,16 @@ public static class Serializers
         var getter = prop.GetGetMethod(true) ?? throw new InvalidOperationException("Expected property to have a getter.");
 
         var listDelimiter = prop.GetCustomAttribute<SaveFieldAttribute>()?.ListDelimiter ?? throw new ArgumentException("Expected list delimiter to be defined for serializable list.");
-        
+        bool useValuesDirectly = listDelimiter == "";
+
         return (container, key, values) =>
         {
             var list = getter.Invoke(container, []) as T ?? throw new InvalidOperationException($"{prop.DeclaringType} => {prop.Name} expected to return {typeof(T)} instead of null or other type.");
 
-            if (values.Length != 1)
-                throw new ArgumentException($"{prop.DeclaringType} => {prop.Name}: expected exactly one value for serializable list of type {typeof(T)}.");
+            if (!useValuesDirectly && values.Length != 1)
+                throw new ArgumentException($"{prop.DeclaringType} => {prop.Name}: expected exactly one value for serializable list of type {typeof(T)} and list delimiter {listDelimiter}.");
 
-            foreach (var value in values[0].Split(listDelimiter, StringSplitOptions.RemoveEmptyEntries))
+            foreach (var value in useValuesDirectly ? values : values[0].Split(listDelimiter, StringSplitOptions.RemoveEmptyEntries))
             {
                 list.Add(U.Parse(value, null));
             }
@@ -488,6 +514,7 @@ public static class Serializers
         var getter = prop.GetGetMethod(true) ?? throw new InvalidOperationException("Expected property to have a getter.");
 
         var listDelimiter = prop.GetCustomAttribute<SaveFieldAttribute>()?.ListDelimiter ?? throw new ArgumentException("Expected list delimiter to be defined for serializable list.");
+        bool useValuesDirectly = listDelimiter == "";
         var trailingListDelimiter = prop.GetCustomAttribute<SaveFieldAttribute>()?.TrailingListDelimiter ?? throw new ArgumentException("Expected trailing delimiter to be defined for serializable list.");
         var serializeListIfEmpty = prop.GetCustomAttribute<SaveFieldAttribute>()?.SerializeIfEmpty ?? throw new ArgumentException("Expected attribute for list.");
 
@@ -502,19 +529,35 @@ public static class Serializers
                 return;
             }
 
-            string combined = "";
             int count = 0;
 
-            foreach (var element in list)
+            if (useValuesDirectly)
             {
-                var value = element.ToString();
+                keys = [null];
+                values = [new string[list.Count]];
 
-                count++;
-                combined += value + (trailingListDelimiter || count < list.Count ? listDelimiter : "");
+                foreach (var element in list)
+                {
+                    var value = element.ToString() ?? throw new InvalidOperationException("ToString returned null.");
+
+                    values[0][count] = value;
+                    count++;
+                }
             }
+            else
+            {
+                string combined = "";
+                foreach (var element in list)
+                {
+                    var value = element.ToString() ?? throw new InvalidOperationException("ToString returned null.");
 
-            keys = [null];
-            values = [[combined]];
+                    count++;
+                    combined += value + (trailingListDelimiter || count < list.Count ? listDelimiter : "");
+                }
+
+                keys = [null];
+                values = [[combined]];
+            }
         };
     }
 
