@@ -41,7 +41,17 @@ namespace RainWorldSaveEditor
 
             var slugcatFiles = Directory.GetFiles("Resources\\Slugcat\\Info", "*.json", SearchOption.AllDirectories);
             foreach (var slugcatFile in slugcatFiles)
-                list.Add(JsonSerializer.Deserialize<SlugcatInfo>(File.ReadAllText(slugcatFile)));
+            {
+                var data = JsonSerializer.Deserialize<SlugcatInfo>(File.ReadAllText(slugcatFile));
+
+                if (data == null)
+                {
+                    Logger.Warn($"Deserialization of {slugcatFile} returned null, skipping...");
+                    continue;
+                }
+
+                list.Add(data);
+            }
 
             SlugcatInfos = list.ToArray();
 

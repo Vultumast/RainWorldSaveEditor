@@ -2,10 +2,11 @@
 using RainWorldSaveAPI.SaveElements;
 using System.Globalization;
 using System.Runtime.CompilerServices;
+using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace RainWorldSaveAPI;
 
-public class AbstractObject
+public class ObjectData
 {
     public string EntityID { get; set; } = "";
     public string ObjectType { get; set; } = "";
@@ -14,7 +15,7 @@ public class AbstractObject
     public List<string> State { get; set; } = [];
 }
 
-public class AbstractCreature
+public class CreatureData
 {
     public string EntityID { get; set; } = "";
     public string EntityType { get; set; } = "";
@@ -24,9 +25,81 @@ public class AbstractCreature
     public List<string> State { get; set; } = [];
 }
 
+public class AbstractObject : IRWSerializable<AbstractObject>
+{
+    public ObjectData Object { get; set; } = new();
+
+    public static AbstractObject Deserialize(string key, string[] values, SerializationContext? context)
+    {
+        var data = new AbstractObject();
+
+        string[] parts = values[0].Split("<oA>");
+
+        data.Object = new()
+        {
+            EntityID = parts[0],
+            ObjectType = parts[1],
+            Position = WorldCoordinate.Parse(parts[2], null),
+            State = new(parts.Length >= 3 ? parts[3..] : [])
+        };
+
+        return data;
+    }
+
+    public bool Serialize(out string? key, out string[] values, SerializationContext? context)
+    {
+        key = null;
+        values = [
+            $"{Object.EntityID}<oA>" +
+            $"{Object.ObjectType}<oA>" +
+            $"{Object.Position}" +
+            $"{string.Concat(Object.State.Select(x => $"<oA>{x}"))}"
+        ];
+
+        return true;
+    }
+}
+
+public class AbstractCreature : IRWSerializable<AbstractCreature>
+{
+    public CreatureData Creature { get; set; } = new();
+
+    public static AbstractCreature Deserialize(string key, string[] values, SerializationContext? context)
+    {
+        var data = new AbstractCreature();
+
+        string[] parts = values[0].Split("<cA>");
+        string[] args = parts[2].Split('.');
+
+        data.Creature = new()
+        {
+            EntityType = parts[0],
+            EntityID = parts[1],
+            Room = args[0],
+            AbstractNode = int.Parse(args[1], NumberStyles.Any, CultureInfo.InvariantCulture),
+            State = new(parts[3].Split("<cB>"))
+        };
+
+        return data;
+    }
+
+    public bool Serialize(out string? key, out string[] values, SerializationContext? context)
+    {
+        key = null;
+        values = [
+            $"{Creature.EntityType}<cA>" +
+            $"{Creature.EntityID}<cA>" +
+            $"{Creature.Room}.{Creature.AbstractNode}<cA>" +
+            $"{string.Join("<cB>", Creature.State)}"
+        ];
+
+        return true;
+    }
+}
+
 public class AbstractObjectOrCreature : IRWSerializable<AbstractObjectOrCreature>
 {
-    public AbstractObject? Object
+    public ObjectData? Object
     {
         get => _object;
         set
@@ -35,9 +108,9 @@ public class AbstractObjectOrCreature : IRWSerializable<AbstractObjectOrCreature
             _creature = null;
         }
     }
-    private AbstractObject? _object;
+    private ObjectData? _object = new();
 
-    public AbstractCreature? Creature
+    public CreatureData? Creature
     {
         get => _creature;
         set
@@ -46,7 +119,7 @@ public class AbstractObjectOrCreature : IRWSerializable<AbstractObjectOrCreature
             _creature = value;
         }
     }
-    private AbstractCreature? _creature;
+    private CreatureData? _creature;
 
     public static AbstractObjectOrCreature Deserialize(string key, string[] values, SerializationContext? context)
     {
@@ -56,29 +129,13 @@ public class AbstractObjectOrCreature : IRWSerializable<AbstractObjectOrCreature
 
         if (value.Contains("<oA>"))
         {
-            string[] parts = values[0].Split("<oA>");
-
-            data.Object = new()
-            {
-                EntityID = parts[0],
-                ObjectType = parts[1],
-                Position = WorldCoordinate.Parse(parts[2], null),
-                State = new(parts.Length >= 3 ? parts[3..] : [])
-            };
+            var obj = AbstractObject.Deserialize(key, values, context);
+            data.Object = obj.Object;
         }
         else if (value.Contains("<cA>"))
         {
-            string[] parts = values[0].Split("<cA>");
-            string[] args = parts[2].Split('.');
-
-            data.Creature = new()
-            {
-                EntityType = parts[0],
-                EntityID = parts[1],
-                Room = args[0],
-                AbstractNode = int.Parse(args[1], NumberStyles.Any, CultureInfo.InvariantCulture),
-                State = new(parts[3].Split("<cB>"))
-            };
+            var obj = AbstractCreature.Deserialize(key, values, context);
+            data.Creature = obj.Creature;
         }
         else throw new InvalidOperationException("Couldn't determine the type of AbstractObjectOrCreature");
 
@@ -89,26 +146,14 @@ public class AbstractObjectOrCreature : IRWSerializable<AbstractObjectOrCreature
     {
         if (Object != null)
         {
-            key = null;
-            values = [
-                $"{Object.EntityID}<oA>" +
-                $"{Object.ObjectType}<oA>" +
-                $"{Object.Position}" +
-                $"{string.Concat(Object.State.Select(x => $"<oA>{x}"))}"
-            ];
+            var obj = new AbstractObject() { Object = Object };
+            return obj.Serialize(out key, out values, context);
         }
         else if (Creature != null)
         {
-            key = null;
-            values = [
-                $"{Creature.EntityType}<cA>" +
-                $"{Creature.EntityID}<cA>" +
-                $"{Creature.Room}.{Creature.AbstractNode}<cA>" +
-                $"{string.Join("<cB>", Creature.State)}"
-            ];
+            var obj = new AbstractCreature() { Creature = Creature };
+            return obj.Serialize(out key, out values, context);
         }
         else throw new InvalidOperationException("Couldn't determine the type of AbstractObjectOrCreature");
-
-        return true;
     }
 }

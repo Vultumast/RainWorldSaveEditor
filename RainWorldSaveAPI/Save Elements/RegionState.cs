@@ -15,23 +15,23 @@ public class RegionState : SaveElementContainer, IRWSerializable<RegionState>
 
     // TODO backwards compatibility
     [SaveField(2, "SWARMROOMS", ListDelimiter = ",", SerializeIfEmpty = true)]
-    public List<string> SwarmRooms { get; set; } = [];
+    public List<SwarmRoomCounter> SwarmRooms { get; set; } = [];
 
     // TODO backwards compatibility
     [SaveField(3, "LINEAGES", ListDelimiter = ",")]
     public List<LineageCounter> Lineages { get; set; } = [];
 
     [SaveField(4, "OBJECTS", ListDelimiter = "<rgC>", TrailingListDelimiter = true)]
-    public List<string> Objects { get; set; } = [];
+    public List<AbstractObject> Objects { get; set; } = [];
 
     [SaveField(5, "POPULATION", ListDelimiter = "<rgC>", TrailingListDelimiter = true)]
-    public List<string> Population { get; set; } = [];
+    public List<AbstractCreature> Population { get; set; } = [];
 
     [SaveField(6, "STICKS", ListDelimiter = "<rgC>", TrailingListDelimiter = true)]
-    public List<string> SavedSticks { get; set; } = [];
+    public List<Stick> SavedSticks { get; set; } = [];
 
     [SaveField(7, "CONSUMEDITEMS", ListDelimiter = "<rgC>")]
-    public List<string> ConsumedItems { get; set; } = [];
+    public List<ConsumedItem> ConsumedItems { get; set; } = [];
 
     // TODO backwards compatibility
     [SaveField(8, "ROOMSVISITED", ListDelimiter = ",", SerializeIfEmpty = true)]
