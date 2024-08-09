@@ -1,13 +1,15 @@
 ﻿using RainWorldSaveAPI.Base;
+using RainWorldSaveAPI.Save_Elements;
 using System.Diagnostics;
 using System.Diagnostics.CodeAnalysis;
+using System.Diagnostics.Metrics;
 using System.Globalization;
 
 namespace RainWorldSaveAPI.SaveElements;
 
 // TODO: Check if this is the only format for world coordinates that is used
 [DebuggerDisplay("Room = {RoomName} | Pos = {X}, {Y} | AbstractNode = {AbstractNode}")]
-public class WorldCoordinate : IRWSerializable<WorldCoordinate>
+public class WorldCoordinate : IParsable<WorldCoordinate>
 {
     public string RoomName { get; set; } = "???";
 
@@ -17,10 +19,10 @@ public class WorldCoordinate : IRWSerializable<WorldCoordinate>
 
     public int AbstractNode { get; set; }
 
-    public static WorldCoordinate Deserialize(string key, string[] values, SerializationContext? context)
+    public static WorldCoordinate Parse(string s, IFormatProvider? provider)
     {
         // TODO handle less / more than 4 values
-        string[] coordValues = values[0].Split('.');
+        string[] coordValues = s.Split('.');
 
         return new()
         {
@@ -31,13 +33,28 @@ public class WorldCoordinate : IRWSerializable<WorldCoordinate>
         };
     }
 
-    public bool Serialize(out string? key, out string[] values, SerializationContext? context)
+    public static bool TryParse([NotNullWhen(true)] string? s, IFormatProvider? provider, [MaybeNullWhen(false)] out WorldCoordinate result)
     {
-        key = null;
-        values = [
-            $"{RoomName}.{X}.{Y}.{AbstractNode}"
-        ];
+        if (s == null)
+        {
+            result = default;
+            return false;
+        }
 
-        return true;
+        try
+        {
+            result = Parse(s, provider);
+            return true;
+        }
+        catch
+        {
+            result = default;
+            return false;
+        }
+    }
+
+    public override string ToString()
+    {
+        return $"{RoomName}.{X}.{Y}.{AbstractNode}";
     }
 }

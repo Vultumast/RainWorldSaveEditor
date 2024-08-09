@@ -1,4 +1,5 @@
 ﻿using RainWorldSaveAPI.Base;
+using RainWorldSaveAPI.Save_Elements;
 using System.Diagnostics.CodeAnalysis;
 using static System.Runtime.InteropServices.JavaScript.JSType;
 
@@ -18,7 +19,7 @@ public class RegionState : SaveElementContainer, IRWSerializable<RegionState>
 
     // TODO backwards compatibility
     [SaveField(3, "LINEAGES", ListDelimiter = ",")]
-    public List<string> Lineages { get; set; } = [];
+    public List<LineageCounter> Lineages { get; set; } = [];
 
     [SaveField(4, "OBJECTS", ListDelimiter = "<rgC>", TrailingListDelimiter = true)]
     public List<string> Objects { get; set; } = [];

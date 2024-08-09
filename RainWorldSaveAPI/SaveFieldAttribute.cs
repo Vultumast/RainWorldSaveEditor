@@ -31,7 +31,8 @@ public class SaveFieldAttribute(int order, string name) : Attribute
     public bool TrailingValueDelimiter { get; init; } = false;
 
     /// <summary>
-    /// If false, lists and raw values will be skipped from serialization if they have no elements at all.
+    /// If false, lists and raw values will be skipped from serialization if they have no elements at all. <para/>
+    /// The default value is false.
     /// </summary>
     public bool SerializeIfEmpty { get; init; } = false;
 }

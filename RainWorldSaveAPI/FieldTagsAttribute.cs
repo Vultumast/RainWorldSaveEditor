@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace RainWorldSaveAPI;
 
-public enum FieldTags
+public enum Tag
 {
     /// <summary>
     /// Field is used only if "More Slugcats Expansion" mod is enabled.
@@ -20,7 +20,7 @@ public enum FieldTags
 }
 
 [AttributeUsage(AttributeTargets.Property, AllowMultiple = true)]
-public class FieldTagAttribute(params FieldTags[] tags) : Attribute
+public class FieldTagsAttribute(params Tag[] tags) : Attribute
 {
-    public FieldTags[] Tags { get; } = tags;
+    public Tag[] Tags { get; } = tags;
 }

@@ -44,8 +44,6 @@ public class CreatureCommunities : SaveElementContainer, IRWSerializable<Creatur
 
     public static CreatureCommunities Deserialize(string key, string[] values, SerializationContext? context)
     {
-        // This has two ways of parsing, maybe due to backwards compatibility?
-
         CreatureCommunities data = new CreatureCommunities();
 
         if (!values[0].Contains("<ccA>") && values[0].Contains("<coA>"))
@@ -65,6 +63,7 @@ public class CreatureCommunities : SaveElementContainer, IRWSerializable<Creatur
         }
         else
         {
+            // TODO
             throw new InvalidOperationException("The save file's creature communities format is not supported yet.");
         }
 

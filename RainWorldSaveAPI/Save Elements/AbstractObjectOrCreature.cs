@@ -62,7 +62,7 @@ public class AbstractObjectOrCreature : IRWSerializable<AbstractObjectOrCreature
             {
                 EntityID = parts[0],
                 ObjectType = parts[1],
-                Position = WorldCoordinate.Deserialize("", [parts[2]], null),
+                Position = WorldCoordinate.Parse(parts[2], null),
                 State = new(parts.Length >= 3 ? parts[3..] : [])
             };
         }
@@ -89,13 +89,11 @@ public class AbstractObjectOrCreature : IRWSerializable<AbstractObjectOrCreature
     {
         if (Object != null)
         {
-            Object.Position.Serialize(out _, out var posValues, null);
-
             key = null;
             values = [
                 $"{Object.EntityID}<oA>" +
                 $"{Object.ObjectType}<oA>" +
-                $"{posValues[0]}" +
+                $"{Object.Position}" +
                 $"{string.Concat(Object.State.Select(x => $"<oA>{x}"))}"
             ];
         }

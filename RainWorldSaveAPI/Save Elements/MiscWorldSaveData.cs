@@ -139,7 +139,7 @@ public class MiscWorldSaveData : SaveElementContainer, IRWSerializable<MiscWorld
             SerializeFields("<mwB>", "<mwA>")
         ];
 
-        return true;
+        return values[0] != ""; // Seems to be skipped if there's no information.
     }
 
     protected override void DeserializeUnrecognizedField(string key, string[] values)

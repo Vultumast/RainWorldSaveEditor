@@ -12,7 +12,7 @@ public class SaveState : SaveElementContainer, IRWSerializable<SaveState>
     /// The internal name of the slugcat campaign.
     /// </summary>
     [SaveField(0, "SAV STATE NUMBER")]
-    public string SaveStateNumber { get; set; } = "???";
+    public string SaveStateNumber { get; set; } = "White";
 
     /// <summary>
     /// Random seed generated on save creation. <para/>
@@ -114,29 +114,29 @@ public class SaveState : SaveElementContainer, IRWSerializable<SaveState>
     /// <summary>
     /// Contains serialized strings of swallowed items
     /// </summary>
-    [SaveField(16, "SWALLOWEDITEMS", ListDelimiter = "", SerializeIfEmpty = false)]
-    public List<AbstractObjectOrCreature> SwallowedItems { get; set; } = new();
+    [SaveField(16, "SWALLOWEDITEMS", ListDelimiter = "")]
+    public List<AbstractObjectOrCreature> SwallowedItems { get; set; } = [];
 
     /// <summary>
     /// Contains serialized strings of swallowed items and creatures that were not recognized by the game. <para/>
     /// The game tries to parse them again on each save load.
     /// </summary>
-    [SaveField(17, "UNRECOGNIZEDSWALLOWED")]
-    public RawValues UnrecognizedSwallowedItems { get; set; } = new();
+    [SaveField(17, "UNRECOGNIZEDSWALLOWED", ListDelimiter = "")]
+    public List<string> UnrecognizedSwallowedItems { get; set; } = [];
 
     // TODO: Implement grab deserialization
     /// <summary>
     /// Contains serialized strings of grabbed items and creatures <para/>
     /// </summary>
     [SaveField(18, "PLAYERGRASPS", ListDelimiter = "")]
-    public List<AbstractObjectOrCreature> PlayerGrasps { get; set; } = new();
+    public List<AbstractObjectOrCreature> PlayerGrasps { get; set; } = [];
 
     /// <summary>
     /// Contains serialized strings of grabbed items and creatures that were not recognized by the game. <para/>
     /// The game tries to parse them again on each save load.
     /// </summary>
-    [SaveField(19, "UNRECOGNIZEDPLAYERGRASPS")]
-    public RawValues UnrecognizedPlayerGrasps { get; set; } = new();
+    [SaveField(19, "UNRECOGNIZEDPLAYERGRASPS", ListDelimiter = "")]
+    public List<string> UnrecognizedPlayerGrasps { get; set; } = [];
 
     /// <summary>
     /// Contains data that persists across player deaths.
@@ -199,18 +199,21 @@ public class SaveState : SaveElementContainer, IRWSerializable<SaveState>
     /// Tracks whenever the player has a Citizen Drone following it. <para/>
     /// This is used for the Artificer campaign.
     /// </summary>
+    [FieldTags(Tag.MSC)]
     [SaveField(29, "HASROBO")]
     public bool HasCitizenDrone { get; set; } = false;
 
     /// <summary>
     /// Tracks whenever the player is wearing Moon's cloak.
     /// </summary>
+    [FieldTags(Tag.MSC)]
     [SaveField(30, "CLOAK")]
     public bool IsWearingCloak { get; set; } = false;
 
     /// <summary>
     /// Tracks whenever Saint has reached max Karma cap and has seen the related karma dream.
     /// </summary>
+    [FieldTags(Tag.MSC)]
     [SaveField(31, "KARMADREAM")]
     public bool KarmaDream { get; set; } = false;
 
@@ -220,6 +223,7 @@ public class SaveState : SaveElementContainer, IRWSerializable<SaveState>
     /// 1 = Max allowed number of pups guaranteed to spawn next cycle
     /// 2 = Chance based pup spawns
     /// </summary>
+    [FieldTags(Tag.MSC)]
     [SaveField(32, "FORCEPUPS")]
     public int ForcePupsNextCycle { get; set; } = 0;
 
@@ -228,24 +232,28 @@ public class SaveState : SaveElementContainer, IRWSerializable<SaveState>
     /// List used for tracking persistent objects, and resspawning them if they are lost. <para/>
     /// This works only if the Remix option is set.
     /// </summary>
+    [FieldTags(Tag.MMF)]
     [SaveField(33, "OBJECTTRACKERS", ListDelimiter = "<svC>")]
     public List<string> ObjectTrackers { get; private set; } = [];
 
     /// <summary>
     /// Saved objects and critters in the world.
     /// </summary>
-    [SaveField(34, "OBJECTS", ListDelimiter = "<svC>", SerializeIfEmpty = false)]
+    [FieldTags(Tag.MMF)]
+    [SaveField(34, "OBJECTS", ListDelimiter = "<svC>")]
     public List<string> Objects { get; private set; } = [];
 
     /// <summary>
     /// Saved friendly creatures.
     /// </summary>
+    [FieldTags(Tag.MMF)]
     [SaveField(35, "FRIENDS", ListDelimiter = "<svC>")]
     public List<string> Friends { get; private set; } = [];
 
     /// <summary>
     /// Tracks the list of slugcat encounters for Gourmand in the Outer Expanse.
     /// </summary>
+    [FieldTags(Tag.MMF)]
     [SaveField(36, "OEENCOUNTERS", ListDelimiter = "<svC>")]
     public List<string> OuterExpanseEncounters { get; private set; } = [];
 
