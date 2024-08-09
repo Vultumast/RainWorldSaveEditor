@@ -70,6 +70,7 @@ public partial class MainForm : Form
             }
         }
 
+        Text = $"Rain World Save Editor (Beta) - {Assembly.GetExecutingAssembly().GetName().Version!.ToString()}";
 
         if (userProfileToolStripMenuItem.DropDownItems.Count != 0)
         {
@@ -77,10 +78,6 @@ public partial class MainForm : Form
             item.Checked = true;
             settings.RainWorldSaveDirectory = $"{item.Tag!.ToString()!}\\{Utils.RainworldSaveDirectoryPostFix}";
         }
-        
-        
-
-        Logger.Warn(Environment.GetFolderPath(Environment.SpecialFolder.UserProfile));
 
         for (var i = 0; i < SlugcatInfo.SlugcatInfos.Length; i++)
         {

@@ -15,7 +15,7 @@
     <Version>$(VersionPrefix)</Version>
     <PackageReadmeFile>README.md</PackageReadmeFile>
     <NeutralLanguage>en</NeutralLanguage>
-    <AssemblyVersion>1.0.0.0</AssemblyVersion>
+    <AssemblyVersion>0.0.2.*</AssemblyVersion>
     <FileVersion>1.0.0.0</FileVersion>
     <ApplicationIcon>Resources\editoricon.ico</ApplicationIcon>
   </PropertyGroup>
