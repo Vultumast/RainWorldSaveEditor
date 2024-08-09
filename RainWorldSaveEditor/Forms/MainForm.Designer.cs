@@ -35,8 +35,7 @@ partial class MainForm
         openToolStripMenuItem = new ToolStripMenuItem();
         openRainWorldSaveDirectoryToolStripMenuItem = new ToolStripMenuItem();
         rainworldExecutableDirectoryToolStripMenuItem = new ToolStripMenuItem();
-        saveToolStripMenuItem = new ToolStripMenuItem();
-        saveAsToolStripMenuItem = new ToolStripMenuItem();
+        userProfileToolStripMenuItem = new ToolStripMenuItem();
         toolStripSeparator1 = new ToolStripSeparator();
         closeAndLaunchGameToolStripMenuItem = new ToolStripMenuItem();
         closeToolStripMenuItem = new ToolStripMenuItem();
@@ -78,7 +77,7 @@ partial class MainForm
         // 
         // fileToolStripMenuItem
         // 
-        fileToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { openToolStripMenuItem, saveToolStripMenuItem, saveAsToolStripMenuItem, toolStripSeparator1, closeAndLaunchGameToolStripMenuItem, closeToolStripMenuItem });
+        fileToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { openToolStripMenuItem, userProfileToolStripMenuItem, toolStripSeparator1, closeAndLaunchGameToolStripMenuItem, closeToolStripMenuItem });
         fileToolStripMenuItem.Name = "fileToolStripMenuItem";
         fileToolStripMenuItem.Size = new Size(37, 20);
         fileToolStripMenuItem.Text = "File";
@@ -106,19 +105,11 @@ partial class MainForm
         rainworldExecutableDirectoryToolStripMenuItem.ToolTipText = "Open the Rain World Executable directory";
         rainworldExecutableDirectoryToolStripMenuItem.Click += rainworldExecutableDirectoryToolStripMenuItem_Click;
         // 
-        // saveToolStripMenuItem
+        // userProfileToolStripMenuItem
         // 
-        saveToolStripMenuItem.Name = "saveToolStripMenuItem";
-        saveToolStripMenuItem.ShortcutKeys = Keys.Control | Keys.S;
-        saveToolStripMenuItem.Size = new Size(202, 22);
-        saveToolStripMenuItem.Text = "Save";
-        // 
-        // saveAsToolStripMenuItem
-        // 
-        saveAsToolStripMenuItem.Name = "saveAsToolStripMenuItem";
-        saveAsToolStripMenuItem.ShortcutKeys = Keys.Control | Keys.Shift | Keys.S;
-        saveAsToolStripMenuItem.Size = new Size(202, 22);
-        saveAsToolStripMenuItem.Text = "Save As...";
+        userProfileToolStripMenuItem.Name = "userProfileToolStripMenuItem";
+        userProfileToolStripMenuItem.Size = new Size(202, 22);
+        userProfileToolStripMenuItem.Text = "User Profile";
         // 
         // toolStripSeparator1
         // 
@@ -151,7 +142,7 @@ partial class MainForm
         // 
         openToolStripMenuItem1.DropDownItems.AddRange(new ToolStripItem[] { openFile1ToolStripMenuItem, openFile2ToolStripMenuItem, openFile3ToolStripMenuItem, toolStripSeparator3, openFileToolStripMenuItem });
         openToolStripMenuItem1.Name = "openToolStripMenuItem1";
-        openToolStripMenuItem1.Size = new Size(180, 22);
+        openToolStripMenuItem1.Size = new Size(123, 22);
         openToolStripMenuItem1.Text = "Open";
         // 
         // openFile1ToolStripMenuItem
@@ -194,18 +185,18 @@ partial class MainForm
         // toolStripSeparator2
         // 
         toolStripSeparator2.Name = "toolStripSeparator2";
-        toolStripSeparator2.Size = new Size(177, 6);
+        toolStripSeparator2.Size = new Size(120, 6);
         // 
         // saveToolStripMenuItem1
         // 
         saveToolStripMenuItem1.Name = "saveToolStripMenuItem1";
-        saveToolStripMenuItem1.Size = new Size(180, 22);
+        saveToolStripMenuItem1.Size = new Size(123, 22);
         saveToolStripMenuItem1.Text = "Save";
         // 
         // saveAsToolStripMenuItem1
         // 
         saveAsToolStripMenuItem1.Name = "saveAsToolStripMenuItem1";
-        saveAsToolStripMenuItem1.Size = new Size(180, 22);
+        saveAsToolStripMenuItem1.Size = new Size(123, 22);
         saveAsToolStripMenuItem1.Text = "Save As...";
         saveAsToolStripMenuItem1.Click += saveAsToolStripMenuItem1_Click;
         // 
@@ -332,8 +323,6 @@ partial class MainForm
     private ToolStripMenuItem fileToolStripMenuItem;
     private ToolStripMenuItem closeToolStripMenuItem;
     private ToolStripMenuItem openToolStripMenuItem;
-    private ToolStripMenuItem saveToolStripMenuItem;
-    private ToolStripMenuItem saveAsToolStripMenuItem;
     private ToolStripSeparator toolStripSeparator1;
     private ToolStripMenuItem openRainWorldSaveDirectoryToolStripMenuItem;
     private ToolStripMenuItem closeAndLaunchGameToolStripMenuItem;
@@ -361,4 +350,5 @@ partial class MainForm
     private ToolStripSeparator toolStripSeparator4;
     private ToolStripMenuItem exportToolStripMenuItem;
     private ToolStripMenuItem importToolStripMenuItem;
+    private ToolStripMenuItem userProfileToolStripMenuItem;
 }

@@ -56,11 +56,31 @@ public partial class MainForm : Form
             settings.Save();
         }
 
+        List<string> userDirs = [ ];
+        var dirs = Directory.GetDirectories("C:\\Users\\");
 
-        if (!Directory.Exists(settings.RainWorldSaveDirectory))
+        foreach (var dir in dirs)
         {
-            Logger.Warn($"RAIN WORLD DIRECTORY DOESNT EXIST WHAT \"{settings.RainWorldSaveDirectory}\"");
+            if (Directory.Exists(Path.Combine(dir, Utils.RainworldSaveDirectoryPostFix)))
+            {
+                userProfileToolStripMenuItem.DropDownItems.Add(Path.GetFileNameWithoutExtension(dir));
+                var item = userProfileToolStripMenuItem.DropDownItems[userProfileToolStripMenuItem.DropDownItems.Count - 1];
+                item.Click += Item_Click;
+                item.Tag = dir;
+            }
         }
+
+
+        if (userProfileToolStripMenuItem.DropDownItems.Count != 0)
+        {
+            var item = ((ToolStripMenuItem)userProfileToolStripMenuItem.DropDownItems[0]);
+            item.Checked = true;
+            settings.RainWorldSaveDirectory = $"{item.Tag!.ToString()!}\\{Utils.RainworldSaveDirectoryPostFix}";
+        }
+        
+        
+
+        Logger.Warn(Environment.GetFolderPath(Environment.SpecialFolder.UserProfile));
 
         for (var i = 0; i < SlugcatInfo.SlugcatInfos.Length; i++)
         {
@@ -90,6 +110,21 @@ public partial class MainForm : Form
             item.Tag = slugcatInfo;
             item.CheckOnClick = true;
 
+        }
+    }
+
+    private void Item_Click(object? sender, EventArgs e)
+    {
+        foreach (var item in userProfileToolStripMenuItem.DropDownItems)
+        {
+            var tItem = ((ToolStripMenuItem)item);
+            if (sender == item)
+            {
+                tItem.Checked = true;
+                settings.RainWorldSaveDirectory = $"{tItem.Tag!.ToString()!}\\{Utils.RainworldSaveDirectoryPostFix}";
+            }
+            else
+                tItem.Checked = false;
         }
     }
 
