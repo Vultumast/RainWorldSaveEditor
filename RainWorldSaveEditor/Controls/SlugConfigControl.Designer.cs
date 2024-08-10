@@ -136,6 +136,9 @@
             gameVerisonNumericUpDown = new NumericUpDown();
             tabImageList = new ImageList(components);
             commonToolTip = new ToolTip(components);
+            label3 = new Label();
+            numericUpDown2 = new NumericUpDown();
+            label4 = new Label();
             ((System.ComponentModel.ISupportInitialize)cycleNumberNumericUpDown).BeginInit();
             tabControl.SuspendLayout();
             slugcatInfoTabPage.SuspendLayout();
@@ -187,6 +190,7 @@
             ((System.ComponentModel.ISupportInitialize)worldVersionNumericUpDown).BeginInit();
             ((System.ComponentModel.ISupportInitialize)initialGameVersionNumericUpDown).BeginInit();
             ((System.ComponentModel.ISupportInitialize)gameVerisonNumericUpDown).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)numericUpDown2).BeginInit();
             SuspendLayout();
             // 
             // FoodPipControl
@@ -887,6 +891,9 @@
             // iteratorLooksToTheMoonTabPage
             // 
             iteratorLooksToTheMoonTabPage.BackColor = SystemColors.Control;
+            iteratorLooksToTheMoonTabPage.Controls.Add(label4);
+            iteratorLooksToTheMoonTabPage.Controls.Add(numericUpDown2);
+            iteratorLooksToTheMoonTabPage.Controls.Add(label3);
             iteratorLooksToTheMoonTabPage.Controls.Add(numericUpDown1);
             iteratorLooksToTheMoonTabPage.ImageIndex = 1;
             iteratorLooksToTheMoonTabPage.Location = new Point(4, 24);
@@ -898,11 +905,11 @@
             // 
             // numericUpDown1
             // 
-            numericUpDown1.Location = new Point(92, 6);
+            numericUpDown1.Location = new Point(172, 6);
             numericUpDown1.Maximum = new decimal(new int[] { 7, 5, 0, 0 });
             numericUpDown1.Minimum = new decimal(new int[] { int.MinValue, 0, 0, int.MinValue });
             numericUpDown1.Name = "numericUpDown1";
-            numericUpDown1.Size = new Size(193, 23);
+            numericUpDown1.Size = new Size(137, 23);
             numericUpDown1.TabIndex = 11;
             commonToolTip.SetToolTip(numericUpDown1, "The RNG Seed assigned to your save file when you created it");
             // 
@@ -1364,6 +1371,34 @@
             tabImageList.Images.SetKeyName(0, "slugcat_tab_icon.png");
             tabImageList.Images.SetKeyName(1, "echo_tab_icon.png");
             // 
+            // label3
+            // 
+            label3.AutoSize = true;
+            label3.Location = new Point(6, 8);
+            label3.Name = "label3";
+            label3.Size = new Size(104, 15);
+            label3.TabIndex = 14;
+            label3.Text = "Player Encounters:";
+            // 
+            // numericUpDown2
+            // 
+            numericUpDown2.Location = new Point(172, 35);
+            numericUpDown2.Maximum = new decimal(new int[] { 7, 5, 0, 0 });
+            numericUpDown2.Minimum = new decimal(new int[] { int.MinValue, 0, 0, int.MinValue });
+            numericUpDown2.Name = "numericUpDown2";
+            numericUpDown2.Size = new Size(137, 23);
+            numericUpDown2.TabIndex = 15;
+            commonToolTip.SetToolTip(numericUpDown2, "The RNG Seed assigned to your save file when you created it");
+            // 
+            // label4
+            // 
+            label4.AutoSize = true;
+            label4.Location = new Point(6, 37);
+            label4.Name = "label4";
+            label4.Size = new Size(160, 15);
+            label4.TabIndex = 16;
+            label4.Text = "Player Encounters with Mark:";
+            // 
             // SlugConfigControl
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -1410,6 +1445,7 @@
             ((System.ComponentModel.ISupportInitialize)pebblesThrownOutCountNumericUpDown).EndInit();
             ((System.ComponentModel.ISupportInitialize)pebblesConversationCountNumericUpDown).EndInit();
             iteratorLooksToTheMoonTabPage.ResumeLayout(false);
+            iteratorLooksToTheMoonTabPage.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)numericUpDown1).EndInit();
             communitiesTabPage.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)communityRegionRepDataGridView).EndInit();
@@ -1435,6 +1471,7 @@
             ((System.ComponentModel.ISupportInitialize)worldVersionNumericUpDown).EndInit();
             ((System.ComponentModel.ISupportInitialize)initialGameVersionNumericUpDown).EndInit();
             ((System.ComponentModel.ISupportInitialize)gameVerisonNumericUpDown).EndInit();
+            ((System.ComponentModel.ISupportInitialize)numericUpDown2).EndInit();
             ResumeLayout(false);
         }
 
@@ -1545,5 +1582,8 @@
         private GroupBox groupBox2;
         private Label playTimeLabel;
         private NumericUpDown playTimeNumericUpDown;
+        private Label label4;
+        private NumericUpDown numericUpDown2;
+        private Label label3;
     }
 }
