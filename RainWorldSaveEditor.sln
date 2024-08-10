@@ -10,7 +10,9 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Documentation", "Documentat
 		Documentation\ModSaveData.md = Documentation\ModSaveData.md
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RainWorldSaveAPI", "RainWorldSaveAPI\RainWorldSaveAPI.csproj", "{08B56913-43A6-4B69-A91E-FB69ECC25B56}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RainWorldSaveAPI", "RainWorldSaveAPI\RainWorldSaveAPI.csproj", "{08B56913-43A6-4B69-A91E-FB69ECC25B56}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SerializationTest", "SerializationTest\SerializationTest.csproj", "{83892D31-BC82-45A3-A6E0-D1AAC6D461B3}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -26,6 +28,10 @@ Global
 		{08B56913-43A6-4B69-A91E-FB69ECC25B56}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{08B56913-43A6-4B69-A91E-FB69ECC25B56}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{08B56913-43A6-4B69-A91E-FB69ECC25B56}.Release|Any CPU.Build.0 = Release|Any CPU
+		{83892D31-BC82-45A3-A6E0-D1AAC6D461B3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{83892D31-BC82-45A3-A6E0-D1AAC6D461B3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{83892D31-BC82-45A3-A6E0-D1AAC6D461B3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{83892D31-BC82-45A3-A6E0-D1AAC6D461B3}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

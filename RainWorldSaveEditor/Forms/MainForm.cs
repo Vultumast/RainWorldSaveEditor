@@ -73,8 +73,6 @@ public partial class MainForm : Form
         var table = HashtableSerializer.Read(fs);
         fs.Close();
 
-        // HashtableSerializer.Write(File.OpenWrite("TestFiles/savsaved.xml"), table);
-
         if (table["save"] is string saveData)
         {
             _save.Read(saveData);
@@ -85,15 +83,9 @@ public partial class MainForm : Form
             return;
         }
 
-        File.Delete("original.txt");
-        File.Delete("parsed.txt");
-        File.Delete("original_indented.txt");
-        File.Delete("parsed_indented.txt");
-
         saveToolStripMenuItem.Enabled = true;
         saveAsToolStripMenuItem.Enabled = true;
 
-        WriteComparisons(saveData, _save.Write());
         UpdateTitle();
     }
 
@@ -303,158 +295,6 @@ public partial class MainForm : Form
         Logger.Info($"Finished updating state info for \"{_saveState.SaveStateNumber}\"");
     }
 
-
-    private static void WriteComparisons(string original, string parsed)
-    {
-        File.WriteAllText("original.txt", original);
-        File.WriteAllText("parsed.txt", parsed);
-        string originalText = Format(original);
-        string parsedText = Format(parsed);
-
-        File.WriteAllText("original_indented.txt", originalText);
-        File.WriteAllText("parsed_indented.txt", parsedText);
-
-        CompareSections(originalText, parsedText, "SAV STATE NUMBER\r\n<svB>\r\nWhite", "<progDivA>", "Survivor savefile");
-        CompareSections(originalText, parsedText, "SAV STATE NUMBER\r\n<svB>\r\nRed", "<progDivA>", "Hunter savefile");
-        CompareSections(originalText, parsedText, "SAV STATE NUMBER\r\n<svB>\r\nYellow", "<progDivA>", "Monk savefile");
-        CompareSections(originalText, parsedText, "SAV STATE NUMBER\r\n<svB>\r\nGourmand", "<progDivA>", "Gourmand savefile");
-        CompareSections(originalText, parsedText, "SAV STATE NUMBER\r\n<svB>\r\nArtificer", "<progDivA>", "Artificer savefile");
-        CompareSections(originalText, parsedText, "SAV STATE NUMBER\r\n<svB>\r\nSpear", "<progDivA>", "Spearmaster savefile");
-        CompareSections(originalText, parsedText, "SAV STATE NUMBER\r\n<svB>\r\nRivulet", "<progDivA>", "Rivulet savefile");
-        CompareSections(originalText, parsedText, "SAV STATE NUMBER\r\n<svB>\r\nSaint", "<progDivA>", "Saint savefile");
-        CompareSections(originalText, parsedText, "SAV STATE NUMBER\r\n<svB>\r\nInv", "<progDivA>", "Inv savefile");
-    }
-
-    private static void CompareSections(string original, string parsed, string start, string end, string comparisonName)
-    {
-        int originalStart = original.IndexOf(start);
-        int parsedStart = parsed.IndexOf(start);
-
-        if (originalStart == -1 || parsedStart == -1)
-        {
-            Logger.Warn("Failed to do comparison.");
-            return;
-        }
-
-        int originalEnd = original.IndexOf(end, originalStart);
-        int parsedEnd = parsed.IndexOf(end, parsedStart);
-
-        if (originalEnd == -1 || parsedEnd == -1)
-        {
-            Logger.Warn("Failed to do comparison.");
-            return;
-        }
-
-        int maxLength = Math.Max(original.Length, parsed.Length);
-
-        int originalLine = 1;
-        int originalCol = 1;
-
-        int parsedLine = 1;
-        int parsedCol = 1;
-
-        bool mismatchFound = false;
-
-        int i = 0, j = 0;
-
-        while (i < originalStart)
-        {
-            if (original[i] == '\n')
-            {
-                originalLine++;
-                originalCol = 1;
-            }
-            else
-            {
-                originalCol++;
-            }
-
-            i++;
-        }
-
-        while (j < parsedStart)
-        {
-            if (parsed[j] == '\n')
-            {
-                parsedLine++;
-                parsedCol = 1;
-            }
-            else
-            {
-                parsedCol++;
-            }
-
-            j++;
-        }
-
-        for (i = originalStart, j = parsedStart; i < maxLength && j < maxLength; i++, j++)
-        {
-            if (i == originalEnd || j == parsedEnd)
-            {
-                break;
-            }
-
-            if (original[i] != parsed[j])
-            {
-                mismatchFound = true;
-                break;
-            }
-
-            if (original[i] == '\n')
-            {
-                originalLine++;
-                originalCol = 1;
-            }
-            else
-            {
-                originalCol++;
-            }
-
-            if (parsed[j] == '\n')
-            {
-                parsedLine++;
-                parsedCol = 1;
-            }
-            else
-            {
-                parsedCol++;
-            }
-        }
-
-        if (!(i == originalEnd && j == parsedEnd))
-            mismatchFound = true;
-
-        if (!mismatchFound)
-        {
-            Logger.Info($"Comparison for {comparisonName} didn't yield any differences.");
-        }
-        else
-        {
-            var originalPct = (i - originalStart) * 100f / (originalEnd - originalStart);
-            var parsedPct = (j - parsedStart) * 100f / (parsedEnd - parsedStart);
-            Logger.Info($"{comparisonName} first difference is at {originalPct}% (Line {originalLine}, Col {originalCol}) | {parsedPct}% (Line {parsedLine}, Col {parsedCol})");
-        }
-    }
-
-    private static string Format(string original)
-    {
-        StringBuilder result = new();
-
-        for (int i = 0; i < original.Length; i++)
-        {
-            if (original[i] == '<' && i > 0 && original[i - 1] != '>')
-                result.AppendLine();
-
-            result.Append(original[i]);
-
-            if (original[i] == '>')
-                result.AppendLine();
-        }
-
-        return result.ToString();
-    }
-
-
     #region Menustrip
 
     private void openRainWorldSaveDirectoryToolStripMenuItem_Click(object sender, EventArgs e)
@@ -582,8 +422,4 @@ public partial class MainForm : Form
 
     }
     #endregion
-
-
-
-
 }

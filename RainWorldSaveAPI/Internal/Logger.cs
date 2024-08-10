@@ -26,6 +26,11 @@ public static class Logger
     /// </summary>
     public static StreamWriter LogStreamWriter = null!;
 
+    /// <summary>
+    /// Whenever logging to console is enabled or not.
+    /// </summary>
+    public static bool LogToConsole { get; set; } = true;
+
     internal static void Info(string message) => WriteLine(LogReportType.Info, message);
     internal static void Warn(string message) => WriteLine(LogReportType.Warn, message);
     internal static void Error(string message) => WriteLine(LogReportType.Error, message);
@@ -51,17 +56,20 @@ public static class Logger
 
         LogStreamWriter?.Write(header + message);
 
-        Console.ForegroundColor = reportType switch
+        if (LogToConsole)
         {
-            LogReportType.Info => ConsoleColor.Gray,
-            LogReportType.Warn => ConsoleColor.Yellow,
-            LogReportType.Error => ConsoleColor.Red,
-            LogReportType.Debug => ConsoleColor.Blue,
-            LogReportType.Trace => ConsoleColor.White,
-            _ => Console.ForegroundColor,
-        };
-        Console.Write(header);
-        Console.ForegroundColor = ConsoleColor.Gray;
-        Console.WriteLine(message);
+            Console.ForegroundColor = reportType switch
+            {
+                LogReportType.Info => ConsoleColor.Gray,
+                LogReportType.Warn => ConsoleColor.Yellow,
+                LogReportType.Error => ConsoleColor.Red,
+                LogReportType.Debug => ConsoleColor.Blue,
+                LogReportType.Trace => ConsoleColor.White,
+                _ => Console.ForegroundColor,
+            };
+            Console.Write(header);
+            Console.ForegroundColor = ConsoleColor.Gray;
+            Console.WriteLine(message);
+        }
     }
 }

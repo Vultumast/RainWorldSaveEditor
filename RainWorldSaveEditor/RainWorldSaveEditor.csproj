@@ -40,7 +40,6 @@
 
   <ItemGroup>
     <Folder Include="Resources\Worldstate Info\" />
-    <Folder Include="TestFiles\" />
   </ItemGroup>
 
   <ItemGroup>
@@ -217,9 +216,6 @@
     </None>
     <None Update="Resources\UI\Food UI\Food_pip_full.png">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-    </None>
-    <None Update="TestFiles\sav.xml">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
   </ItemGroup>
 
