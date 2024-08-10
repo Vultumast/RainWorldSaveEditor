@@ -1,5 +1,18 @@
 ﻿namespace RainWorldSaveAPI;
 
+public enum MultiListMode
+{
+    /// <summary>
+    /// Adds fields to the multilist if the keys are prefixed by the field name.
+    /// </summary>
+    Prefix,
+
+    /// <summary>
+    /// Adds fields to the multilist if the keys contain the field name as a substring.
+    /// </summary>
+    Substring
+}
+
 [AttributeUsage(AttributeTargets.Property, AllowMultiple = false)]
 public class SaveFieldAttribute(int order, string name) : Attribute
 {
@@ -35,5 +48,10 @@ public class SaveFieldAttribute(int order, string name) : Attribute
     /// The default value is false.
     /// </summary>
     public bool SerializeIfEmpty { get; init; } = false;
+
+    /// <summary>
+    /// Controls the behaviour of multilist deserialization.
+    /// </summary>
+    public MultiListMode MultiListMode { get; init; } = MultiListMode.Prefix;
 }
 

@@ -284,6 +284,14 @@ public class MiscProgressionData : SaveElementContainer, IRWSerializable<MiscPro
     [SaveField(26, "MENUREGION", ListDelimiter = "<mpdC>")]
     public string? MenuRegion { get; set; } = null;
 
+    [FieldTags(Tag.SlugBase)]
+    [SaveField(1000, "_SlugBaseSaveData_", MultiListMode = MultiListMode.Substring)]
+    public MultiList<SlugBaseData> SlugBaseData { get; set; } = [];
+
+    [FieldTags(Tag.SlugBase)]
+    [SaveField(1001, "_SlugBaseInternal_", MultiListMode = MultiListMode.Substring)]
+    public MultiList<SlugBaseData> SlugBaseInternalData { get; set; } = [];
+
     public static MiscProgressionData Deserialize(string key, string[] values, SerializationContext? context)
     {
         MiscProgressionData data = new();

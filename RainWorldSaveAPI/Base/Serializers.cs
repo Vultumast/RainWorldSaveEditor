@@ -142,7 +142,7 @@ public static class Serializers
         {
             var list = getter.Invoke(container, []) as T ?? throw new InvalidOperationException($"{prop.DeclaringType} => {prop.Name} expected to return {typeof(T)} instead of null or other type.");
 
-            list.Add(U.Deserialize(key, values, null));
+            list.Add(U.Deserialize(key, values, new(prop.GetCustomAttribute<SaveFieldAttribute>(), prop)));
         };
     }
 
@@ -186,7 +186,7 @@ public static class Serializers
 
             foreach (var element in list)
             {
-                if (!element.Serialize(out keys[count], out values[count], new(prop.GetCustomAttribute<SaveFieldAttribute>(), null)))
+                if (!element.Serialize(out keys[count], out values[count], new(prop.GetCustomAttribute<SaveFieldAttribute>(), prop)))
                     throw new InvalidOperationException("Failed to serialize.");
 
                 count++;
@@ -398,7 +398,7 @@ public static class Serializers
 
             foreach (var value in useValuesDirectly ? values : values[0].Split(listDelimiter, StringSplitOptions.RemoveEmptyEntries))
             {
-                list.Add(U.Deserialize(key, [value], null));
+                list.Add(U.Deserialize(key, [value], new(prop.GetCustomAttribute<SaveFieldAttribute>(), prop)));
             }
         };
     }
@@ -433,11 +433,11 @@ public static class Serializers
             if (useValuesDirectly)
             {
                 keys = [null];
-                values = [new string[list.Count]];
+                values = [new string[list.Count + (trailingListDelimiter ? 1 : 0)]];
 
                 foreach (var element in list)
                 {
-                    element.Serialize(out _, out var elementValues, null);
+                    element.Serialize(out _, out var elementValues, new(prop.GetCustomAttribute<SaveFieldAttribute>(), prop));
 
                     if (elementValues.Length == 0)
                         throw new InvalidOperationException($"{typeof(T)} encountered a {typeof(U)} element that serialized to zero values!");
@@ -448,6 +448,9 @@ public static class Serializers
                     values[0][count] = elementValues[0];
                     count++;
                 }
+
+                if (trailingListDelimiter)
+                    values[0][count++] = ""; // TODO this is not a clean way to do it
             }
             else
             {
@@ -455,7 +458,7 @@ public static class Serializers
 
                 foreach (var element in list)
                 {
-                    element.Serialize(out _, out var elementValues, null);
+                    element.Serialize(out _, out var elementValues, new(prop.GetCustomAttribute<SaveFieldAttribute>(), prop));
 
                     if (elementValues.Length == 0)
                         throw new InvalidOperationException($"{typeof(T)} encountered a {typeof(U)} element that serialized to zero values!");
@@ -534,7 +537,7 @@ public static class Serializers
             if (useValuesDirectly)
             {
                 keys = [null];
-                values = [new string[list.Count]];
+                values = [new string[list.Count + (trailingListDelimiter ? 1 : 0)]];
 
                 foreach (var element in list)
                 {
@@ -543,6 +546,9 @@ public static class Serializers
                     values[0][count] = value;
                     count++;
                 }
+
+                if (trailingListDelimiter)
+                    values[0][count++] = ""; // TODO this is not a clean way to do it
             }
             else
             {

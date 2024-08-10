@@ -44,16 +44,16 @@ public class DeathPersistentSaveData : SaveElementContainer, IRWSerializable<Dea
     public int KarmaCap { get; set; } = 0;
 
     /// <summary>
-    /// Position of Karma Flower created upon player death.
-    /// </summary>
-    [SaveField(5, "FLOWERPOS")]
-    public WorldCoordinate? KarmaFlowerPosition { get; set; }
-
-    /// <summary>
     /// Whenever the slugcat currently has the mark of communication.
     /// </summary>
-    [SaveField(6, "HASTHEMARK")]
+    [SaveField(5, "HASTHEMARK")]
     public bool HasMarkOfCommunication { get; set; } = false;
+
+    /// <summary>
+    /// Position of Karma Flower created upon player death.
+    /// </summary>
+    [SaveField(6, "FLOWERPOS")]
+    public WorldCoordinate? KarmaFlowerPosition { get; set; }
 
     /// <summary>
     /// Current state of echoes in the world. <para/>

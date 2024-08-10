@@ -218,20 +218,31 @@ public abstract class SaveElementContainer
         return t.IsGenericType && t.GetGenericTypeDefinition() == typeof(MultiList<>);
     }
 
+    private static bool IsMatchingMultilistField(string key, FieldSerializationData data)
+    {
+        if (data.Metadata.MultiListMode == MultiListMode.Prefix && key.StartsWith(data.Metadata.Name))
+            return true;
+
+        if (data.Metadata.MultiListMode == MultiListMode.Substring && key.Contains(data.Metadata.Name))
+            return true;
+
+        return false;
+    }
+
     private FieldSerializationData? GetDataFromKey(string key, out bool requireUnique)
     {
         // Check multilists for any keys that prefix this key
         // If there is such an element, use that type
         // If there are multiple prefixes that match, use the longest
-        var prefix = SerializationData[GetType()]
+        var multilistData = SerializationData[GetType()]
             .Where(x => IsMultiList(x.Value.Prop.PropertyType))
             .OrderByDescending(x => x.Value.Metadata.Name.Length)
-            .FirstOrDefault(x => key.StartsWith(x.Value.Metadata.Name));
+            .FirstOrDefault(x => IsMatchingMultilistField(key, x.Value));
 
-        if (prefix.Key != null)
+        if (multilistData.Key != null)
         {
             requireUnique = false;
-            return prefix.Value;
+            return multilistData.Value;
         }
         
         // Otherwise just grab exact matches
@@ -247,7 +258,7 @@ public abstract class SaveElementContainer
 
     public void DeserializeFields(string serializedData, string valueDelimiter, string entryDelimiter)
     {
-        var keysEncountered = new HashSet<string>();
+        var keysEncountered = new Dictionary<string, int>();
 
         foreach ((var key, var values) in GetFields(serializedData, valueDelimiter, entryDelimiter))
         {
@@ -255,14 +266,14 @@ public abstract class SaveElementContainer
 
             if (elementData == null)
             {
-                Logger.Warn($"{GetType()}: {key} doesn't have serialization data. Adding to unknown fields.");
+                Logger.Warn($"{GetType()}: {LimitString(key)} doesn't have serialization data. Adding to unknown fields.");
                 DeserializeUnrecognizedField(key, values);
                 continue;
             }
 
-            if (requireUnique && !keysEncountered.Add(key))
+            if (requireUnique && !keysEncountered.TryAdd(key, 1))
             {
-                Logger.Warn($"{GetType()}: Duplicate {key} found. Adding to unknown fields");
+                keysEncountered[key]++;
                 DeserializeUnrecognizedField(key, values);
                 continue;
             }
@@ -288,6 +299,12 @@ public abstract class SaveElementContainer
                 DeserializeUnrecognizedField(key, values);
                 continue;
             }
+        }
+
+        foreach (var (key, times) in keysEncountered)
+        {
+            if (times > 1)
+                Logger.Warn($"{GetType()}: Found {times - 1} duplicate {LimitString(key)} keys. Adding to unknown fields");
         }
     }
 

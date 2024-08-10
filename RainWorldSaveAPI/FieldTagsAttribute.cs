@@ -17,6 +17,11 @@ public enum Tag
     /// Field is used only if "Rain World Remix" (MMF) mod is enabled.
     /// </summary>
     MMF,
+
+    /// <summary>
+    /// Modded field that is used by SlugBase mod.
+    /// </summary>
+    SlugBase
 }
 
 [AttributeUsage(AttributeTargets.Property, AllowMultiple = true)]

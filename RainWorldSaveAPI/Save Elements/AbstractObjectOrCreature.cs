@@ -137,6 +137,16 @@ public class AbstractObjectOrCreature : IRWSerializable<AbstractObjectOrCreature
             var obj = AbstractCreature.Deserialize(key, values, context);
             data.Creature = obj.Creature;
         }
+        else if (value == "0")
+        {
+            // TODO This is not a clean way to handle this
+
+            if (context?.Metadata == null || !(context.Metadata.Name == "SWALLOWEDITEMS" || context.Metadata.Name == "SAINTSTOMACH"))
+                Logger.Warn("Encountered an abstract object or creature that was set to \"0\" that was not a SWALLOWEDITEMS or SAINTSTOMACH item!");
+
+            data.Creature = null;
+            data.Object = null;
+        }
         else throw new InvalidOperationException("Couldn't determine the type of AbstractObjectOrCreature");
 
         return data;
@@ -144,6 +154,18 @@ public class AbstractObjectOrCreature : IRWSerializable<AbstractObjectOrCreature
 
     public bool Serialize(out string? key, out string[] values, SerializationContext? context)
     {
+        if (Object == null && Creature == null)
+        {
+            // TODO This is not a clean way to handle this
+
+            if (context?.Metadata == null || !(context.Metadata.Name == "SWALLOWEDITEMS" || context.Metadata.Name == "SAINTSTOMACH"))
+                Logger.Warn("Encountered an abstract object or creature that was set to \"0\" that was not a SWALLOWEDITEMS or SAINTSTOMACH item!");
+
+            key = null;
+            values = ["0"];
+            return true;
+        }
+
         if (Object != null)
         {
             var obj = new AbstractObject() { Object = Object };

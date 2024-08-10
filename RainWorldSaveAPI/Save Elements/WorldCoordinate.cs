@@ -21,8 +21,11 @@ public class WorldCoordinate : IParsable<WorldCoordinate>
 
     public static WorldCoordinate Parse(string s, IFormatProvider? provider)
     {
-        // TODO handle less / more than 4 values
-        string[] coordValues = s.Split('.');
+        // TODO handle less / more than 5 values
+        Span<string> coordValues = s.Split('.');
+
+        if (coordValues.Length == 5 && coordValues[0] == "INV")
+            coordValues = coordValues[1..]; // INV usually marks that the room is unknown for whatever reason
 
         return new()
         {

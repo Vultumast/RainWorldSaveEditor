@@ -240,21 +240,21 @@ public class SaveState : SaveElementContainer, IRWSerializable<SaveState>
     /// Saved objects and critters in the world.
     /// </summary>
     [FieldTags(Tag.MMF)]
-    [SaveField(34, "OBJECTS", ListDelimiter = "<svC>")]
+    [SaveField(34, "OBJECTS", ListDelimiter = "<svC>", TrailingListDelimiter = true)]
     public List<string> Objects { get; private set; } = [];
 
     /// <summary>
     /// Saved friendly creatures.
     /// </summary>
     [FieldTags(Tag.MMF)]
-    [SaveField(35, "FRIENDS", ListDelimiter = "<svC>")]
+    [SaveField(35, "FRIENDS", ListDelimiter = "<svC>", TrailingListDelimiter = true)]
     public List<string> Friends { get; private set; } = [];
 
     /// <summary>
     /// Tracks the list of slugcat encounters for Gourmand in the Outer Expanse.
     /// </summary>
     [FieldTags(Tag.MMF)]
-    [SaveField(36, "OEENCOUNTERS", ListDelimiter = "<svC>")]
+    [SaveField(36, "OEENCOUNTERS", ListDelimiter = "<svC>", TrailingListDelimiter = true)]
     public List<string> OuterExpanseEncounters { get; private set; } = [];
 
     public static SaveState Deserialize(string key, string[] values, SerializationContext? context)
