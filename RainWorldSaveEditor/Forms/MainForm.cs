@@ -4,6 +4,7 @@ using System.Text.Json;
 using RainWorldSaveAPI;
 using System.Reflection;
 using System.Text;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.Window;
 
 namespace RainWorldSaveEditor;
 
@@ -16,11 +17,11 @@ public partial class MainForm : Form
     SaveState _saveState = null!;
 
 
+
     #region Properties
-    public bool UsingExternalSave
-    {
-        get => false;
-    }
+    public string ExternalSaveLocation { get; private set; } = string.Empty;
+    public bool UsingExternalSave => ExternalSaveLocation != string.Empty;
+
     public int SaveID
     {
         get
@@ -141,6 +142,7 @@ public partial class MainForm : Form
             Text = targetName;
     }
     #endregion
+
     public MainForm()
     {
         InitializeComponent();
@@ -483,6 +485,9 @@ public partial class MainForm : Form
         openFile2ToolStripMenuItem.Checked = true;
         openFile3ToolStripMenuItem.Checked = false;
         openFileToolStripMenuItem.Checked = false;
+
+        ExternalSaveLocation = string.Empty;
+
         LoadSaveData($"{settings.RainWorldSaveDirectory}\\sav2");
     }
 
@@ -492,6 +497,9 @@ public partial class MainForm : Form
         openFile2ToolStripMenuItem.Checked = false;
         openFile3ToolStripMenuItem.Checked = true;
         openFileToolStripMenuItem.Checked = false;
+
+        ExternalSaveLocation = string.Empty;
+
         LoadSaveData($"{settings.RainWorldSaveDirectory}\\sav3");
     }
 
@@ -507,6 +515,8 @@ public partial class MainForm : Form
         openFile3ToolStripMenuItem.Checked = false;
         openFileToolStripMenuItem.Checked = true;
 
+
+        ExternalSaveLocation = dialog.FileName;
         Logger.Info($"Opening save file {dialog.FileName}");
         LoadSaveData(dialog.FileName);
     }
