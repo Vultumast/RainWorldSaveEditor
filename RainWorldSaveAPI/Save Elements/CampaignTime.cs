@@ -1,5 +1,4 @@
-﻿using System.Diagnostics.CodeAnalysis;
-using System.Diagnostics;
+﻿using System.Diagnostics;
 using System.Globalization;
 using RainWorldSaveAPI.Base;
 

@@ -1,5 +1,4 @@
 ﻿using RainWorldSaveAPI.Base;
-using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
 
 namespace RainWorldSaveAPI;

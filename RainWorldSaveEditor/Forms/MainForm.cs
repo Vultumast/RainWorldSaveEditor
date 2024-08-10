@@ -1,15 +1,9 @@
-using RainWorldSaveEditor.Editor_Classes;
 using RainWorldSaveEditor.Forms;
 using System.Diagnostics;
 using System.Text.Json;
 using RainWorldSaveAPI;
-using RainWorldSaveAPI.SaveElements;
 using System.Reflection;
-using System.Globalization;
-using System.Resources;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 using System.Text;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement.Window;
 
 namespace RainWorldSaveEditor;
 

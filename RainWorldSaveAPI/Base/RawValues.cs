@@ -1,10 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿namespace RainWorldSaveAPI.Base;
 
-namespace RainWorldSaveAPI.Base;
 public class RawValues : IRWSerializable<RawValues>
 {
     public string[] Values { get; set; } = [];

@@ -1,6 +1,5 @@
 ﻿using RainWorldSaveAPI.Base;
 using RainWorldSaveAPI.Save_Elements;
-using System.Diagnostics.CodeAnalysis;
 
 namespace RainWorldSaveAPI;
 

@@ -1,9 +1,8 @@
-﻿using System.Diagnostics.CodeAnalysis;
-using System.Text;
-using RainWorldSaveAPI.Base;
+﻿using RainWorldSaveAPI.Base;
 using RainWorldSaveAPI.Save_Elements;
 
 namespace RainWorldSaveAPI.SaveElements;
+
 public class DeathPersistentSaveData : SaveElementContainer, IRWSerializable<DeathPersistentSaveData>
 {
     /// <summary>

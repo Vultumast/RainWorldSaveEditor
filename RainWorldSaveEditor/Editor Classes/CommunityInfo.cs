@@ -1,11 +1,4 @@
-﻿using RainWorldSaveAPI.SaveElements;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace RainWorldSaveEditor;
+﻿namespace RainWorldSaveEditor;
 
 public class CommunityInfo(string communityID, string name, string iconPath)
 {

@@ -1,8 +1,6 @@
 ﻿using RainWorldSaveAPI.Base;
 using RainWorldSaveAPI.SaveElements;
 using System.Globalization;
-using System.Runtime.CompilerServices;
-using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace RainWorldSaveAPI;
 
