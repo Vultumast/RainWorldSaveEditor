@@ -20,6 +20,127 @@ public partial class MainForm : Form
     RainWorldSave _save = null!;
     SaveState _saveState = null!;
 
+
+    #region Properties
+    public bool UsingExternalSave
+    {
+        get => false;
+    }
+    public int SaveID
+    {
+        get
+        {
+            if (openFile1ToolStripMenuItem.Checked)
+                return 1;
+            if (openFile2ToolStripMenuItem.Checked)
+                return 2;
+            if (openFile3ToolStripMenuItem.Checked)
+                return 3;
+
+            return -1;
+        }
+    }
+    #endregion
+
+    #region Private Methods
+    void ClearSlugcatCheckStates()
+    {
+        foreach (ToolStripMenuItem item in vanillaSlugcatsToolStripMenuItem.DropDownItems)
+            item.Checked = false;
+
+        foreach (ToolStripMenuItem item in dlcSlugcatsToolStripMenuItem.DropDownItems)
+            item.Checked = false;
+
+        foreach (ToolStripMenuItem item in moddedSlugcatsToolStripMenuItem.DropDownItems)
+            item.Checked = false;
+    }
+
+    void SetDefaultState()
+    {
+        openFile1ToolStripMenuItem.Enabled = File.Exists(Path.Combine(settings.RainWorldSaveDirectory, "sav"));
+        openFile2ToolStripMenuItem.Enabled = File.Exists(Path.Combine(settings.RainWorldSaveDirectory, "sav2"));
+        openFile3ToolStripMenuItem.Enabled = File.Exists(Path.Combine(settings.RainWorldSaveDirectory, "sav3"));
+
+        openFile1ToolStripMenuItem.Checked = false;
+        openFile2ToolStripMenuItem.Checked = false;
+        openFile3ToolStripMenuItem.Checked = false;
+    }
+
+
+    void LoadSaveData(string filepath)
+    {
+        UnloadSave();
+        _save = new();
+        slugcatsToolStripMenuItem.Enabled = true;
+
+        using var fs = File.OpenRead(filepath);
+        var table = HashtableSerializer.Read(fs);
+        fs.Close();
+
+        // HashtableSerializer.Write(File.OpenWrite("TestFiles/savsaved.xml"), table);
+
+        if (table["save"] is string saveData)
+        {
+            _save.Read(saveData);
+        }
+        else
+        {
+            Logger.Warn("Save data not found.");
+            return;
+        }
+
+        File.Delete("original.txt");
+        File.Delete("parsed.txt");
+        File.Delete("original_indented.txt");
+        File.Delete("parsed_indented.txt");
+
+        WriteComparisons(saveData, _save.Write());
+        UpdateTitle();
+    }
+
+    void WriteSaveData(string filepath)
+    {
+        var table = new System.Collections.Hashtable();
+        table["save"] = _save.Write();
+        table["save__Backup"] = table["save"];
+        using var fs = new FileStream(filepath, FileMode.Create, FileAccess.Write);
+        HashtableSerializer.Write(fs, table);
+        fs.Close();
+    }
+
+    void UnloadSave()
+    {
+        _save = null!;
+        _slugcatInfo = null!;
+        _saveState = null!;
+        slugcatsToolStripMenuItem.Enabled = false;
+        slugConfigControl.SetupFromState(null!);
+        slugConfigControl.FoodPipControl.FilledPips = 0;
+        slugConfigControl.FoodPipControl.PipBarIndex = 4;
+        slugConfigControl.FoodPipControl.PipCount = 7;
+        ClearSlugcatCheckStates();
+        UpdateTitle();
+    }
+
+    void UpdateTitle()
+    {
+        var targetName = $"Rain World Save Editor (Beta) - {Assembly.GetExecutingAssembly().GetName().Version!.ToString()}"; ;
+
+        if (_save is not null)
+        {
+            if (UsingExternalSave)
+                targetName += " - External Save";
+            else
+                targetName += " - Save " + SaveID;
+        }
+
+        if (_slugcatInfo is not null)
+            targetName += $" : {_slugcatInfo.Name}";
+
+        if (Text != targetName)
+            Text = targetName;
+    }
+    #endregion
     public MainForm()
     {
         InitializeComponent();
@@ -77,6 +198,14 @@ public partial class MainForm : Form
             var item = ((ToolStripMenuItem)userProfileToolStripMenuItem.DropDownItems[0]);
             item.Checked = true;
             settings.RainWorldSaveDirectory = $"{item.Tag!.ToString()!}\\{Utils.RainworldSaveDirectoryPostFix}";
+        }
+
+        if (userProfileToolStripMenuItem.DropDownItems.Count == 0)
+        {
+            if (MessageBox.Show("todo: this lol", "Unable to find Rain World Save Files", MessageBoxButtons.OK, MessageBoxIcon.Error) == DialogResult.OK)
+            {
+
+            }
         }
 
         for (var i = 0; i < SlugcatInfo.SlugcatInfos.Length; i++)
@@ -172,70 +301,6 @@ public partial class MainForm : Form
         Logger.Info($"Finished updating state info for \"{_saveState.SaveStateNumber}\"");
     }
 
-    void ClearSlugcatCheckStates()
-    {
-        foreach (ToolStripMenuItem item in vanillaSlugcatsToolStripMenuItem.DropDownItems)
-            item.Checked = false;
-
-        foreach (ToolStripMenuItem item in dlcSlugcatsToolStripMenuItem.DropDownItems)
-            item.Checked = false;
-
-        foreach (ToolStripMenuItem item in moddedSlugcatsToolStripMenuItem.DropDownItems)
-            item.Checked = false;
-    }
-
-    void SetDefaultState()
-    {
-        openFile1ToolStripMenuItem.Enabled = File.Exists(Path.Combine(settings.RainWorldSaveDirectory, "sav"));
-        openFile2ToolStripMenuItem.Enabled = File.Exists(Path.Combine(settings.RainWorldSaveDirectory, "sav2"));
-        openFile3ToolStripMenuItem.Enabled = File.Exists(Path.Combine(settings.RainWorldSaveDirectory, "sav3"));
-
-        openFile1ToolStripMenuItem.Checked = false;
-        openFile2ToolStripMenuItem.Checked = false;
-        openFile3ToolStripMenuItem.Checked = false;
-    }
-
-
-    void LoadSaveData(string filepath)
-    {
-        UnloadSave();
-        _save = new();
-        slugcatsToolStripMenuItem.Enabled = true;
-
-        using var fs = File.OpenRead(filepath);
-        var table = HashtableSerializer.Read(fs);
-        fs.Close();
-
-        // HashtableSerializer.Write(File.OpenWrite("TestFiles/savsaved.xml"), table);
-
-        if (table["save"] is string saveData)
-        {
-            _save.Read(saveData);
-        }
-        else
-        {
-            Logger.Warn("Save data not found.");
-            return;
-        }
-
-        File.Delete("original.txt");
-        File.Delete("parsed.txt");
-        File.Delete("original_indented.txt");
-        File.Delete("parsed_indented.txt");
-
-        WriteComparisons(saveData, _save.Write());
-        UpdateTitle();
-    }
-
-    void WriteSaveData(string filepath)
-    {
-        var table = new System.Collections.Hashtable();
-        table["save"] = _save.Write();
-        table["save__Backup"] = table["save"];
-        using var fs = new FileStream(filepath, FileMode.Create, FileAccess.Write);
-        HashtableSerializer.Write(fs, table);
-        fs.Close();
-    }
 
     private static void WriteComparisons(string original, string parsed)
     {
@@ -387,33 +452,6 @@ public partial class MainForm : Form
         return result.ToString();
     }
 
-    void UnloadSave()
-    {
-        _save = null!;
-        _slugcatInfo = null!;
-        _saveState = null!;
-        slugcatsToolStripMenuItem.Enabled = false;
-        slugConfigControl.SetupFromState(null!);
-        slugConfigControl.FoodPipControl.FilledPips = 0;
-        slugConfigControl.FoodPipControl.PipBarIndex = 4;
-        slugConfigControl.FoodPipControl.PipCount = 7;
-        ClearSlugcatCheckStates();
-        UpdateTitle();
-    }
-
-    void UpdateTitle()
-    {
-        var targetName = "Rain World Save Editor";
-
-
-        if (_slugcatInfo is not null)
-            targetName = $"Rain World Save Editor - {_slugcatInfo.Name}";
-        else
-            targetName = $"Rain World Save Editor";
-
-        if (Text != targetName)
-            Text = targetName;
-    }
 
     #region Menustrip
 
