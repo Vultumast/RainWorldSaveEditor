@@ -47,8 +47,8 @@ partial class MainForm
         toolStripSeparator3 = new ToolStripSeparator();
         openFileToolStripMenuItem = new ToolStripMenuItem();
         toolStripSeparator2 = new ToolStripSeparator();
-        saveToolStripMenuItem1 = new ToolStripMenuItem();
-        saveAsToolStripMenuItem1 = new ToolStripMenuItem();
+        saveToolStripMenuItem = new ToolStripMenuItem();
+        saveAsToolStripMenuItem = new ToolStripMenuItem();
         slugcatsToolStripMenuItem = new ToolStripMenuItem();
         vanillaSlugcatsToolStripMenuItem = new ToolStripMenuItem();
         dlcSlugcatsToolStripMenuItem = new ToolStripMenuItem();
@@ -133,7 +133,7 @@ partial class MainForm
         // 
         // saveSlotToolStripMenuItem
         // 
-        saveSlotToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { openToolStripMenuItem1, toolStripSeparator2, saveToolStripMenuItem1, saveAsToolStripMenuItem1 });
+        saveSlotToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { openToolStripMenuItem1, toolStripSeparator2, saveToolStripMenuItem, saveAsToolStripMenuItem });
         saveSlotToolStripMenuItem.Name = "saveSlotToolStripMenuItem";
         saveSlotToolStripMenuItem.Size = new Size(66, 20);
         saveSlotToolStripMenuItem.Text = "Save Slot";
@@ -142,13 +142,13 @@ partial class MainForm
         // 
         openToolStripMenuItem1.DropDownItems.AddRange(new ToolStripItem[] { openFile1ToolStripMenuItem, openFile2ToolStripMenuItem, openFile3ToolStripMenuItem, toolStripSeparator3, openFileToolStripMenuItem });
         openToolStripMenuItem1.Name = "openToolStripMenuItem1";
-        openToolStripMenuItem1.Size = new Size(123, 22);
+        openToolStripMenuItem1.Size = new Size(180, 22);
         openToolStripMenuItem1.Text = "Open";
         // 
         // openFile1ToolStripMenuItem
         // 
         openFile1ToolStripMenuItem.Name = "openFile1ToolStripMenuItem";
-        openFile1ToolStripMenuItem.Size = new Size(133, 22);
+        openFile1ToolStripMenuItem.Size = new Size(180, 22);
         openFile1ToolStripMenuItem.Text = "File 1";
         openFile1ToolStripMenuItem.ToolTipText = "Switch to Save File 1";
         openFile1ToolStripMenuItem.Click += openFile1ToolStripMenuItem_Click;
@@ -156,7 +156,7 @@ partial class MainForm
         // openFile2ToolStripMenuItem
         // 
         openFile2ToolStripMenuItem.Name = "openFile2ToolStripMenuItem";
-        openFile2ToolStripMenuItem.Size = new Size(133, 22);
+        openFile2ToolStripMenuItem.Size = new Size(180, 22);
         openFile2ToolStripMenuItem.Text = "File 2";
         openFile2ToolStripMenuItem.ToolTipText = "Switch to Save File 2";
         openFile2ToolStripMenuItem.Click += openFile2ToolStripMenuItem_Click;
@@ -164,7 +164,7 @@ partial class MainForm
         // openFile3ToolStripMenuItem
         // 
         openFile3ToolStripMenuItem.Name = "openFile3ToolStripMenuItem";
-        openFile3ToolStripMenuItem.Size = new Size(133, 22);
+        openFile3ToolStripMenuItem.Size = new Size(180, 22);
         openFile3ToolStripMenuItem.Text = "File 3";
         openFile3ToolStripMenuItem.ToolTipText = "Switch to Save File 3";
         openFile3ToolStripMenuItem.Click += openFile3ToolStripMenuItem_Click;
@@ -172,12 +172,12 @@ partial class MainForm
         // toolStripSeparator3
         // 
         toolStripSeparator3.Name = "toolStripSeparator3";
-        toolStripSeparator3.Size = new Size(130, 6);
+        toolStripSeparator3.Size = new Size(177, 6);
         // 
         // openFileToolStripMenuItem
         // 
         openFileToolStripMenuItem.Name = "openFileToolStripMenuItem";
-        openFileToolStripMenuItem.Size = new Size(133, 22);
+        openFileToolStripMenuItem.Size = new Size(180, 22);
         openFileToolStripMenuItem.Text = "Open File...";
         openFileToolStripMenuItem.ToolTipText = "Open an external Save File";
         openFileToolStripMenuItem.Click += openFileToolStripMenuItem_Click;
@@ -185,20 +185,23 @@ partial class MainForm
         // toolStripSeparator2
         // 
         toolStripSeparator2.Name = "toolStripSeparator2";
-        toolStripSeparator2.Size = new Size(120, 6);
+        toolStripSeparator2.Size = new Size(177, 6);
         // 
-        // saveToolStripMenuItem1
+        // saveToolStripMenuItem
         // 
-        saveToolStripMenuItem1.Name = "saveToolStripMenuItem1";
-        saveToolStripMenuItem1.Size = new Size(123, 22);
-        saveToolStripMenuItem1.Text = "Save";
+        saveToolStripMenuItem.Enabled = false;
+        saveToolStripMenuItem.Name = "saveToolStripMenuItem";
+        saveToolStripMenuItem.Size = new Size(180, 22);
+        saveToolStripMenuItem.Text = "Save";
+        saveToolStripMenuItem.Click += saveToolStripMenuItem_Click;
         // 
-        // saveAsToolStripMenuItem1
+        // saveAsToolStripMenuItem
         // 
-        saveAsToolStripMenuItem1.Name = "saveAsToolStripMenuItem1";
-        saveAsToolStripMenuItem1.Size = new Size(123, 22);
-        saveAsToolStripMenuItem1.Text = "Save As...";
-        saveAsToolStripMenuItem1.Click += saveAsToolStripMenuItem1_Click;
+        saveAsToolStripMenuItem.Enabled = false;
+        saveAsToolStripMenuItem.Name = "saveAsToolStripMenuItem";
+        saveAsToolStripMenuItem.Size = new Size(180, 22);
+        saveAsToolStripMenuItem.Text = "Save As...";
+        saveAsToolStripMenuItem.Click += saveAsToolStripMenuItem_Click;
         // 
         // slugcatsToolStripMenuItem
         // 
@@ -334,8 +337,8 @@ partial class MainForm
     private ToolStripSeparator toolStripSeparator3;
     private ToolStripMenuItem openFileToolStripMenuItem;
     private ToolStripSeparator toolStripSeparator2;
-    private ToolStripMenuItem saveToolStripMenuItem1;
-    private ToolStripMenuItem saveAsToolStripMenuItem1;
+    private ToolStripMenuItem saveToolStripMenuItem;
+    private ToolStripMenuItem saveAsToolStripMenuItem;
     private ImageList slugcatIconImageList;
     private ToolStripMenuItem aboutToolStripMenuItem;
     private ToolStripMenuItem toggleConsoleToolStripMenuItem;

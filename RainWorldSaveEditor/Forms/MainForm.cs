@@ -9,6 +9,7 @@ using System.Globalization;
 using System.Resources;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 using System.Text;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.Window;
 
 namespace RainWorldSaveEditor;
 
@@ -94,6 +95,9 @@ public partial class MainForm : Form
         File.Delete("original_indented.txt");
         File.Delete("parsed_indented.txt");
 
+        saveToolStripMenuItem.Enabled = true;
+        saveAsToolStripMenuItem.Enabled = true;
+
         WriteComparisons(saveData, _save.Write());
         UpdateTitle();
     }
@@ -118,6 +122,8 @@ public partial class MainForm : Form
         slugConfigControl.FoodPipControl.FilledPips = 0;
         slugConfigControl.FoodPipControl.PipBarIndex = 4;
         slugConfigControl.FoodPipControl.PipCount = 7;
+        saveToolStripMenuItem.Enabled = false;
+        saveAsToolStripMenuItem.Enabled = false;
         ClearSlugcatCheckStates();
         UpdateTitle();
     }
@@ -177,7 +183,7 @@ public partial class MainForm : Form
             settings.Save();
         }
 
-        List<string> userDirs = [ ];
+        List<string> userDirs = [];
         var dirs = Directory.GetDirectories("C:\\Users\\");
 
         foreach (var dir in dirs)
@@ -517,6 +523,30 @@ public partial class MainForm : Form
         this.Close();
     }
 
+    private void saveToolStripMenuItem_Click(object sender, EventArgs e)
+    {
+        string filepath = settings.RainWorldSaveDirectory + "\\sav" + (SaveID == 1 ? string.Empty : SaveID.ToString());
+
+        Logger.Info($"Writing save file {filepath}");
+
+
+        if (UsingExternalSave)
+        {
+            throw new NotImplementedException();
+        }
+        else
+            WriteSaveData(filepath);
+    }
+    private void saveAsToolStripMenuItem_Click(object sender, EventArgs e)
+    {
+        using var dialog = new SaveFileDialog();
+
+        if (dialog.ShowDialog() != DialogResult.OK)
+            return;
+
+        Logger.Info($"Writing save file {dialog.FileName}");
+        WriteSaveData(dialog.FileName);
+    }
 
     private void aboutToolStripMenuItem_Click(object sender, EventArgs e)
     {
@@ -549,14 +579,7 @@ public partial class MainForm : Form
     }
     #endregion
 
-    private void saveAsToolStripMenuItem1_Click(object sender, EventArgs e)
-    {
-        using var dialog = new SaveFileDialog();
 
-        if (dialog.ShowDialog() != DialogResult.OK)
-            return;
 
-        Logger.Info($"Writing save file {dialog.FileName}");
-        WriteSaveData(dialog.FileName);
-    }
+
 }
