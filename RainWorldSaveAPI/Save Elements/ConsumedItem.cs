@@ -21,18 +21,29 @@ public class ConsumedItem : IRWSerializable<ConsumedItem>
     /// </summary>
     public int WaitCycles { get; set; } = 0;
 
+    /// <summary>
+    /// Set by the game if the consumed item's room wasn't recognized by the game. <para/>
+    /// Seems to be mostly a save debug feature, since the room is always rechecked when loading.
+    /// </summary>
+    public bool WasMarkedAsInvalid { get; set; } = false; // Leave this on false in the editor
+
     public static ConsumedItem Deserialize(string key, string[] values, SerializationContext? context)
     {
         Span<string> fields = values[0].Split(".", StringSplitOptions.RemoveEmptyEntries);
+        bool wasMarkedAsInvalid = false;
 
         if (fields.Length == 4 && fields[0] == "INV")
+        {
             fields = fields[1..]; // INV usually marks that the room is unknown for whatever reason
+            wasMarkedAsInvalid = true;
+        }
 
         var item = new ConsumedItem
         {
             Room = fields[0],
             PlacedObjectIndex = int.Parse(fields[1], NumberStyles.Any, CultureInfo.InvariantCulture),
-            WaitCycles = int.Parse(fields[2], NumberStyles.Any, CultureInfo.InvariantCulture)
+            WaitCycles = int.Parse(fields[2], NumberStyles.Any, CultureInfo.InvariantCulture),
+            WasMarkedAsInvalid = wasMarkedAsInvalid
         };
 
         return item;
@@ -42,7 +53,7 @@ public class ConsumedItem : IRWSerializable<ConsumedItem>
     {
         key = null;
         values = [
-            $"{Room}.{PlacedObjectIndex}.{WaitCycles}"
+            $"{(WasMarkedAsInvalid ? "INV." : "")}{Room}.{PlacedObjectIndex}.{WaitCycles}"
         ];
 
         return true;
