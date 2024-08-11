@@ -49,4 +49,13 @@ public static class Utils
         }
     }
 
+
+    public static void CreateDirectoryIfNotExist(string path)
+    {
+        if (!Directory.Exists(path))
+        {
+            Logger.Info($"Directory did not exist: \"{path}\" so it will be created.");
+            Directory.CreateDirectory(path);
+        }
+    }
 }

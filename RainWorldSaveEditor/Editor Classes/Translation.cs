@@ -2,8 +2,9 @@
 {
     public static class Translation
     {
-        public const string SavePath = "Resources\\modded_region_names.json";
-
+        public const string TranslationPath = "Resources\\Translation";
+        public const string ModdedRegionNamesPath = "Resources\\Translation\\modded_region_names.json";
+        public const string PearlNamesPath = "Resources\\Translation\\pearl.json";
         public static Dictionary<string, string> RegionNames { get; private set; } = new()
         {
             // Base game
@@ -131,6 +132,29 @@
 
         };
 
+        public static Dictionary<string, string> PearlNames { get; private set; } = new()
+        {
+            { "Misc", "Misc" },
+            { "Misc2", "Misc2" },
+            { "CC", "Chimney Canopy Pearl" },
+            { "SI_west", "SI_west" },
+            { "SI_top", "SI_top" },
+            { "LF_west", "LF_west" },
+            { "LF_bottom", "LF_bottom" },
+            { "HI", "HI" },
+            { "SH", "Shaded Citadel Pearl" },
+            { "DS", "Drainage System Pearl" },
+            { "SB_filtration", "SB_filtration" },
+            { "SB_ravine", "SB_ravine" },
+            { "GW", "Garbage Wastes Pearl" },
+            { "SL_bridge", "SL_bridge" },
+            { "SL_moon", "Looks To The Moon Pearl" },
+            { "SU", "Outskirts Pearl" },
+            { "UW", "UW" },
+            { "SL_chimney", "SL_chimney" },
+            { "Red_stomach", "Red_stomach" },
+        };
+
         public static string GetRegionName(string internalname)
         {
             if (internalname == "EVERY" || internalname == "ALL")
@@ -147,47 +171,79 @@
             return $"Unknown Region: \"{internalname}\"";
         }
 
-        public static void Read()
+        private static void CreateDirectoriesIfNotPresent()
         {
-            Logger.Info($"Reading translation information...");
-            Logger.ReadAttempt(SavePath);
-            if (!File.Exists(SavePath))
+            Utils.CreateDirectoryIfNotExist("Resources");
+            Utils.CreateDirectoryIfNotExist(TranslationPath);
+        }
+
+        private static Dictionary<string, string> ReadDictionary(string path, string name)
+        {
+            Dictionary<string, string> retValue = [];
+
+            if (!File.Exists(path))
             {
-                Logger.Info($"Unable to find \"{SavePath}\" so a new one is being made.");
+                Logger.Info($"Unable to find \"{path}\" so a new one is being made.");
                 Write();
-                return;
+                return null!;
             }
             try
             {
-                ModRegionNames = System.Text.Json.JsonSerializer.Deserialize<Dictionary<string, string>>(File.ReadAllText(SavePath))!;
-                Logger.Info($"Found {ModRegionNames.Count} Modded Region Names");
+                retValue = System.Text.Json.JsonSerializer.Deserialize<Dictionary<string, string>>(File.ReadAllText(path))!;
+                Logger.Info($"Found {retValue.Count} {name}");
+            }
+            catch (Exception ex)
+            {
+                Logger.Exception(ex);
+                return null!;
+            }
+
+            return retValue;
+        }
+
+        private static void WriteDictionary(string path, Dictionary<string, string> dictionary)
+        {
+            Logger.WriteAttempt(path);
+            try
+            {
+                File.WriteAllText(path, System.Text.Json.JsonSerializer.Serialize(dictionary, Utils.JSONSerializerOptions));
             }
             catch (Exception ex)
             {
                 Logger.Exception(ex);
                 return;
             }
+        }
 
+        public static void Read()
+        {
+            Logger.Info($"Reading translation information...");
+
+            CreateDirectoriesIfNotPresent();
+
+            ModRegionNames = ReadDictionary(ModdedRegionNamesPath, "Modded Region Names");
+            PearlNames = ReadDictionary(PearlNamesPath, "Pearl Names");
 
             if (ModRegionNames is null)
             {
-                Logger.Warn($"ModRegionNames was null, this may be from an error in deserializing \"{SavePath}\"");
+                Logger.Warn($"ModRegionNames was null, this may be from an error in deserializing \"{ModdedRegionNamesPath}\"");
                 ModRegionNames = [];
             }
+            if (PearlNames is null)
+            {
+                Logger.Warn($"PearlNames was null, this may be from an error in deserializing \"{PearlNamesPath}\"");
+                PearlNames = [];
+            }
+
             Logger.Info($"Finished reading translation information");
         }
         public static void Write()
         {
-            Logger.WriteAttempt(SavePath);
-            try
-            {
-                File.WriteAllText(SavePath, System.Text.Json.JsonSerializer.Serialize(ModRegionNames, Utils.JSONSerializerOptions));
-            }
-            catch (Exception ex)
-            {
-                Logger.Exception(ex);
-                return;
-            }
+            CreateDirectoriesIfNotPresent();
+
+            WriteDictionary(ModdedRegionNamesPath, ModRegionNames);
+            WriteDictionary(PearlNamesPath, PearlNames);
+
             Logger.Success();
         }
     }
