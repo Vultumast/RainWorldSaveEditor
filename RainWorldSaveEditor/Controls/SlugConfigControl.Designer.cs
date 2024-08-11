@@ -92,7 +92,24 @@
             pebblesConversationCountNumericUpDown = new NumericUpDown();
             fivePebblesConversationCountLabel = new Label();
             iteratorLooksToTheMoonTabPage = new TabPage();
-            numericUpDown1 = new NumericUpDown();
+            groupBox6 = new GroupBox();
+            label9 = new Label();
+            label8 = new Label();
+            moonChatLogBNumericUpDown = new NumericUpDown();
+            moonChatLogANumericUpDown = new NumericUpDown();
+            groupBox5 = new GroupBox();
+            moonPlayerEncountersNumericUpDown = new NumericUpDown();
+            moonPlayerEncountersMarkNumericUpDown = new NumericUpDown();
+            label4 = new Label();
+            label3 = new Label();
+            groupBox4 = new GroupBox();
+            moonWarnedPlayerCheckBox = new CheckBox();
+            neuronNeuronsGivenNumericUpDown = new NumericUpDown();
+            label7 = new Label();
+            label6 = new Label();
+            neuronNeuronConvoCountNumericUpDown = new NumericUpDown();
+            neuronNeuronCountNumericUpDown = new NumericUpDown();
+            label5 = new Label();
             iteratorTabImageList = new ImageList(components);
             communitiesTabPage = new TabPage();
             communityRegionRepDataGridView = new DataGridView();
@@ -136,23 +153,6 @@
             gameVerisonNumericUpDown = new NumericUpDown();
             tabImageList = new ImageList(components);
             commonToolTip = new ToolTip(components);
-            label3 = new Label();
-            numericUpDown2 = new NumericUpDown();
-            label4 = new Label();
-            label5 = new Label();
-            numericUpDown3 = new NumericUpDown();
-            groupBox4 = new GroupBox();
-            numericUpDown4 = new NumericUpDown();
-            label6 = new Label();
-            groupBox5 = new GroupBox();
-            label7 = new Label();
-            numericUpDown5 = new NumericUpDown();
-            checkBox1 = new CheckBox();
-            groupBox6 = new GroupBox();
-            numericUpDown6 = new NumericUpDown();
-            numericUpDown7 = new NumericUpDown();
-            label8 = new Label();
-            label9 = new Label();
             ((System.ComponentModel.ISupportInitialize)cycleNumberNumericUpDown).BeginInit();
             tabControl.SuspendLayout();
             slugcatInfoTabPage.SuspendLayout();
@@ -183,7 +183,16 @@
             ((System.ComponentModel.ISupportInitialize)pebblesThrownOutCountNumericUpDown).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pebblesConversationCountNumericUpDown).BeginInit();
             iteratorLooksToTheMoonTabPage.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)numericUpDown1).BeginInit();
+            groupBox6.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)moonChatLogBNumericUpDown).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)moonChatLogANumericUpDown).BeginInit();
+            groupBox5.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)moonPlayerEncountersNumericUpDown).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)moonPlayerEncountersMarkNumericUpDown).BeginInit();
+            groupBox4.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)neuronNeuronsGivenNumericUpDown).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)neuronNeuronConvoCountNumericUpDown).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)neuronNeuronCountNumericUpDown).BeginInit();
             communitiesTabPage.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)communityRegionRepDataGridView).BeginInit();
             persistentInfoTabPage.SuspendLayout();
@@ -204,15 +213,6 @@
             ((System.ComponentModel.ISupportInitialize)worldVersionNumericUpDown).BeginInit();
             ((System.ComponentModel.ISupportInitialize)initialGameVersionNumericUpDown).BeginInit();
             ((System.ComponentModel.ISupportInitialize)gameVerisonNumericUpDown).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)numericUpDown2).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)numericUpDown3).BeginInit();
-            groupBox4.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)numericUpDown4).BeginInit();
-            groupBox5.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)numericUpDown5).BeginInit();
-            groupBox6.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)numericUpDown6).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)numericUpDown7).BeginInit();
             SuspendLayout();
             // 
             // FoodPipControl
@@ -924,15 +924,199 @@
             iteratorLooksToTheMoonTabPage.TabIndex = 1;
             iteratorLooksToTheMoonTabPage.Text = "Looks To The Moon";
             // 
-            // numericUpDown1
+            // groupBox6
             // 
-            numericUpDown1.Location = new Point(95, 22);
-            numericUpDown1.Maximum = new decimal(new int[] { 7, 5, 0, 0 });
-            numericUpDown1.Minimum = new decimal(new int[] { int.MinValue, 0, 0, int.MinValue });
-            numericUpDown1.Name = "numericUpDown1";
-            numericUpDown1.Size = new Size(99, 23);
-            numericUpDown1.TabIndex = 11;
-            commonToolTip.SetToolTip(numericUpDown1, "How many interactions does the player have with Looks To The Moon without the mark of communication?");
+            groupBox6.Controls.Add(label9);
+            groupBox6.Controls.Add(label8);
+            groupBox6.Controls.Add(moonChatLogBNumericUpDown);
+            groupBox6.Controls.Add(moonChatLogANumericUpDown);
+            groupBox6.Location = new Point(18, 252);
+            groupBox6.Name = "groupBox6";
+            groupBox6.Size = new Size(200, 100);
+            groupBox6.TabIndex = 21;
+            groupBox6.TabStop = false;
+            groupBox6.Text = "Unused";
+            // 
+            // label9
+            // 
+            label9.AutoSize = true;
+            label9.Location = new Point(6, 53);
+            label9.Name = "label9";
+            label9.Size = new Size(68, 15);
+            label9.TabIndex = 23;
+            label9.Text = "Chat Log B:";
+            // 
+            // label8
+            // 
+            label8.AutoSize = true;
+            label8.Location = new Point(6, 24);
+            label8.Name = "label8";
+            label8.Size = new Size(69, 15);
+            label8.TabIndex = 22;
+            label8.Text = "Chat Log A:";
+            // 
+            // moonChatLogBNumericUpDown
+            // 
+            moonChatLogBNumericUpDown.Location = new Point(81, 51);
+            moonChatLogBNumericUpDown.Maximum = new decimal(new int[] { 7, 5, 0, 0 });
+            moonChatLogBNumericUpDown.Minimum = new decimal(new int[] { int.MinValue, 0, 0, int.MinValue });
+            moonChatLogBNumericUpDown.Name = "moonChatLogBNumericUpDown";
+            moonChatLogBNumericUpDown.Size = new Size(113, 23);
+            moonChatLogBNumericUpDown.TabIndex = 23;
+            commonToolTip.SetToolTip(moonChatLogBNumericUpDown, "How many total neuron flies has Looks To The Moon been given?");
+            moonChatLogBNumericUpDown.ValueChanged += moonChatLogBNumericUpDown_ValueChanged;
+            // 
+            // moonChatLogANumericUpDown
+            // 
+            moonChatLogANumericUpDown.Location = new Point(81, 22);
+            moonChatLogANumericUpDown.Maximum = new decimal(new int[] { 7, 5, 0, 0 });
+            moonChatLogANumericUpDown.Minimum = new decimal(new int[] { int.MinValue, 0, 0, int.MinValue });
+            moonChatLogANumericUpDown.Name = "moonChatLogANumericUpDown";
+            moonChatLogANumericUpDown.Size = new Size(113, 23);
+            moonChatLogANumericUpDown.TabIndex = 22;
+            commonToolTip.SetToolTip(moonChatLogANumericUpDown, "How many total neuron flies has Looks To The Moon been given?");
+            moonChatLogANumericUpDown.ValueChanged += moonChatLogANumericUpDown_ValueChanged;
+            // 
+            // groupBox5
+            // 
+            groupBox5.Controls.Add(moonPlayerEncountersNumericUpDown);
+            groupBox5.Controls.Add(moonPlayerEncountersMarkNumericUpDown);
+            groupBox5.Controls.Add(label4);
+            groupBox5.Controls.Add(label3);
+            groupBox5.Location = new Point(18, 6);
+            groupBox5.Name = "groupBox5";
+            groupBox5.Size = new Size(200, 100);
+            groupBox5.TabIndex = 20;
+            groupBox5.TabStop = false;
+            groupBox5.Text = "Player Encounters";
+            // 
+            // moonPlayerEncountersNumericUpDown
+            // 
+            moonPlayerEncountersNumericUpDown.Location = new Point(95, 22);
+            moonPlayerEncountersNumericUpDown.Maximum = new decimal(new int[] { 7, 5, 0, 0 });
+            moonPlayerEncountersNumericUpDown.Minimum = new decimal(new int[] { int.MinValue, 0, 0, int.MinValue });
+            moonPlayerEncountersNumericUpDown.Name = "moonPlayerEncountersNumericUpDown";
+            moonPlayerEncountersNumericUpDown.Size = new Size(99, 23);
+            moonPlayerEncountersNumericUpDown.TabIndex = 11;
+            commonToolTip.SetToolTip(moonPlayerEncountersNumericUpDown, "How many interactions does the player have with Looks To The Moon without the mark of communication?");
+            moonPlayerEncountersNumericUpDown.ValueChanged += moonPlayerEncountersNumericUpDown_ValueChanged;
+            // 
+            // moonPlayerEncountersMarkNumericUpDown
+            // 
+            moonPlayerEncountersMarkNumericUpDown.Location = new Point(95, 51);
+            moonPlayerEncountersMarkNumericUpDown.Maximum = new decimal(new int[] { 7, 5, 0, 0 });
+            moonPlayerEncountersMarkNumericUpDown.Minimum = new decimal(new int[] { int.MinValue, 0, 0, int.MinValue });
+            moonPlayerEncountersMarkNumericUpDown.Name = "moonPlayerEncountersMarkNumericUpDown";
+            moonPlayerEncountersMarkNumericUpDown.Size = new Size(99, 23);
+            moonPlayerEncountersMarkNumericUpDown.TabIndex = 15;
+            commonToolTip.SetToolTip(moonPlayerEncountersMarkNumericUpDown, "How many interactions does the player have with Looks To The Moon with the mark of communication?");
+            moonPlayerEncountersMarkNumericUpDown.ValueChanged += moonPlayerEncountersMarkNumericUpDown_ValueChanged;
+            // 
+            // label4
+            // 
+            label4.AutoSize = true;
+            label4.Location = new Point(6, 53);
+            label4.Name = "label4";
+            label4.Size = new Size(65, 15);
+            label4.TabIndex = 16;
+            label4.Text = "With Mark:";
+            // 
+            // label3
+            // 
+            label3.AutoSize = true;
+            label3.Location = new Point(6, 24);
+            label3.Name = "label3";
+            label3.Size = new Size(83, 15);
+            label3.TabIndex = 14;
+            label3.Text = "Without Mark:";
+            // 
+            // groupBox4
+            // 
+            groupBox4.Controls.Add(moonWarnedPlayerCheckBox);
+            groupBox4.Controls.Add(neuronNeuronsGivenNumericUpDown);
+            groupBox4.Controls.Add(label7);
+            groupBox4.Controls.Add(label6);
+            groupBox4.Controls.Add(neuronNeuronConvoCountNumericUpDown);
+            groupBox4.Controls.Add(neuronNeuronCountNumericUpDown);
+            groupBox4.Controls.Add(label5);
+            groupBox4.Location = new Point(18, 112);
+            groupBox4.Name = "groupBox4";
+            groupBox4.Size = new Size(200, 134);
+            groupBox4.TabIndex = 19;
+            groupBox4.TabStop = false;
+            groupBox4.Text = "Neuron Flies";
+            // 
+            // moonWarnedPlayerCheckBox
+            // 
+            moonWarnedPlayerCheckBox.AutoSize = true;
+            moonWarnedPlayerCheckBox.Location = new Point(8, 109);
+            moonWarnedPlayerCheckBox.Name = "moonWarnedPlayerCheckBox";
+            moonWarnedPlayerCheckBox.Size = new Size(102, 19);
+            moonWarnedPlayerCheckBox.TabIndex = 21;
+            moonWarnedPlayerCheckBox.Text = "Warned Player";
+            commonToolTip.SetToolTip(moonWarnedPlayerCheckBox, "Has Looks To The Moon warned the player to not eat her neuron flies?");
+            moonWarnedPlayerCheckBox.UseVisualStyleBackColor = true;
+            moonWarnedPlayerCheckBox.CheckedChanged += moonWarnedPlayerCheckBox_CheckedChanged;
+            // 
+            // neuronNeuronsGivenNumericUpDown
+            // 
+            neuronNeuronsGivenNumericUpDown.Location = new Point(103, 80);
+            neuronNeuronsGivenNumericUpDown.Maximum = new decimal(new int[] { 7, 5, 0, 0 });
+            neuronNeuronsGivenNumericUpDown.Minimum = new decimal(new int[] { int.MinValue, 0, 0, int.MinValue });
+            neuronNeuronsGivenNumericUpDown.Name = "neuronNeuronsGivenNumericUpDown";
+            neuronNeuronsGivenNumericUpDown.Size = new Size(91, 23);
+            neuronNeuronsGivenNumericUpDown.TabIndex = 21;
+            commonToolTip.SetToolTip(neuronNeuronsGivenNumericUpDown, "How many total neuron flies has Looks To The Moon been given?");
+            neuronNeuronsGivenNumericUpDown.ValueChanged += neuronNeuronsGivenNumericUpDown_ValueChanged;
+            // 
+            // label7
+            // 
+            label7.AutoSize = true;
+            label7.Location = new Point(8, 82);
+            label7.Name = "label7";
+            label7.Size = new Size(68, 15);
+            label7.TabIndex = 21;
+            label7.Text = "Total Given:";
+            // 
+            // label6
+            // 
+            label6.AutoSize = true;
+            label6.Location = new Point(6, 53);
+            label6.Name = "label6";
+            label6.Size = new Size(91, 15);
+            label6.TabIndex = 20;
+            label6.Text = "Convo Counter:";
+            // 
+            // neuronNeuronConvoCountNumericUpDown
+            // 
+            neuronNeuronConvoCountNumericUpDown.Location = new Point(103, 51);
+            neuronNeuronConvoCountNumericUpDown.Maximum = new decimal(new int[] { 7, 5, 0, 0 });
+            neuronNeuronConvoCountNumericUpDown.Minimum = new decimal(new int[] { int.MinValue, 0, 0, int.MinValue });
+            neuronNeuronConvoCountNumericUpDown.Name = "neuronNeuronConvoCountNumericUpDown";
+            neuronNeuronConvoCountNumericUpDown.Size = new Size(91, 23);
+            neuronNeuronConvoCountNumericUpDown.TabIndex = 20;
+            commonToolTip.SetToolTip(neuronNeuronConvoCountNumericUpDown, "How many times has Looks To The Moon acknowledged a neuron fly gift?");
+            neuronNeuronConvoCountNumericUpDown.ValueChanged += neuronNeuronConvoCountNumericUpDown_ValueChanged;
+            // 
+            // neuronNeuronCountNumericUpDown
+            // 
+            neuronNeuronCountNumericUpDown.Location = new Point(103, 22);
+            neuronNeuronCountNumericUpDown.Maximum = new decimal(new int[] { 7, 5, 0, 0 });
+            neuronNeuronCountNumericUpDown.Minimum = new decimal(new int[] { int.MinValue, 0, 0, int.MinValue });
+            neuronNeuronCountNumericUpDown.Name = "neuronNeuronCountNumericUpDown";
+            neuronNeuronCountNumericUpDown.Size = new Size(91, 23);
+            neuronNeuronCountNumericUpDown.TabIndex = 17;
+            commonToolTip.SetToolTip(neuronNeuronCountNumericUpDown, "How many neuron flies does Looks To The Moon have?");
+            neuronNeuronCountNumericUpDown.ValueChanged += neuronNeuronCountNumericUpDown_ValueChanged;
+            // 
+            // label5
+            // 
+            label5.AutoSize = true;
+            label5.Location = new Point(8, 24);
+            label5.Name = "label5";
+            label5.Size = new Size(43, 15);
+            label5.TabIndex = 18;
+            label5.Text = "Count:";
             // 
             // iteratorTabImageList
             // 
@@ -1392,182 +1576,6 @@
             tabImageList.Images.SetKeyName(0, "slugcat_tab_icon.png");
             tabImageList.Images.SetKeyName(1, "echo_tab_icon.png");
             // 
-            // label3
-            // 
-            label3.AutoSize = true;
-            label3.Location = new Point(6, 24);
-            label3.Name = "label3";
-            label3.Size = new Size(83, 15);
-            label3.TabIndex = 14;
-            label3.Text = "Without Mark:";
-            // 
-            // numericUpDown2
-            // 
-            numericUpDown2.Location = new Point(95, 51);
-            numericUpDown2.Maximum = new decimal(new int[] { 7, 5, 0, 0 });
-            numericUpDown2.Minimum = new decimal(new int[] { int.MinValue, 0, 0, int.MinValue });
-            numericUpDown2.Name = "numericUpDown2";
-            numericUpDown2.Size = new Size(99, 23);
-            numericUpDown2.TabIndex = 15;
-            commonToolTip.SetToolTip(numericUpDown2, "How many interactions does the player have with Looks To The Moon with the mark of communication?");
-            // 
-            // label4
-            // 
-            label4.AutoSize = true;
-            label4.Location = new Point(6, 53);
-            label4.Name = "label4";
-            label4.Size = new Size(65, 15);
-            label4.TabIndex = 16;
-            label4.Text = "With Mark:";
-            // 
-            // label5
-            // 
-            label5.AutoSize = true;
-            label5.Location = new Point(8, 24);
-            label5.Name = "label5";
-            label5.Size = new Size(43, 15);
-            label5.TabIndex = 18;
-            label5.Text = "Count:";
-            // 
-            // numericUpDown3
-            // 
-            numericUpDown3.Location = new Point(103, 22);
-            numericUpDown3.Maximum = new decimal(new int[] { 7, 5, 0, 0 });
-            numericUpDown3.Minimum = new decimal(new int[] { int.MinValue, 0, 0, int.MinValue });
-            numericUpDown3.Name = "numericUpDown3";
-            numericUpDown3.Size = new Size(91, 23);
-            numericUpDown3.TabIndex = 17;
-            commonToolTip.SetToolTip(numericUpDown3, "How many neuron flies does Looks To The Moon have?");
-            // 
-            // groupBox4
-            // 
-            groupBox4.Controls.Add(checkBox1);
-            groupBox4.Controls.Add(numericUpDown5);
-            groupBox4.Controls.Add(label7);
-            groupBox4.Controls.Add(label6);
-            groupBox4.Controls.Add(numericUpDown4);
-            groupBox4.Controls.Add(numericUpDown3);
-            groupBox4.Controls.Add(label5);
-            groupBox4.Location = new Point(18, 112);
-            groupBox4.Name = "groupBox4";
-            groupBox4.Size = new Size(200, 134);
-            groupBox4.TabIndex = 19;
-            groupBox4.TabStop = false;
-            groupBox4.Text = "Neuron Flies";
-            // 
-            // numericUpDown4
-            // 
-            numericUpDown4.Location = new Point(103, 51);
-            numericUpDown4.Maximum = new decimal(new int[] { 7, 5, 0, 0 });
-            numericUpDown4.Minimum = new decimal(new int[] { int.MinValue, 0, 0, int.MinValue });
-            numericUpDown4.Name = "numericUpDown4";
-            numericUpDown4.Size = new Size(91, 23);
-            numericUpDown4.TabIndex = 20;
-            commonToolTip.SetToolTip(numericUpDown4, "How many times has Looks To The Moon acknowledged a neuron fly gift?");
-            // 
-            // label6
-            // 
-            label6.AutoSize = true;
-            label6.Location = new Point(6, 53);
-            label6.Name = "label6";
-            label6.Size = new Size(91, 15);
-            label6.TabIndex = 20;
-            label6.Text = "Convo Counter:";
-            // 
-            // groupBox5
-            // 
-            groupBox5.Controls.Add(numericUpDown1);
-            groupBox5.Controls.Add(numericUpDown2);
-            groupBox5.Controls.Add(label4);
-            groupBox5.Controls.Add(label3);
-            groupBox5.Location = new Point(18, 6);
-            groupBox5.Name = "groupBox5";
-            groupBox5.Size = new Size(200, 100);
-            groupBox5.TabIndex = 20;
-            groupBox5.TabStop = false;
-            groupBox5.Text = "Player Encounters";
-            // 
-            // label7
-            // 
-            label7.AutoSize = true;
-            label7.Location = new Point(8, 82);
-            label7.Name = "label7";
-            label7.Size = new Size(68, 15);
-            label7.TabIndex = 21;
-            label7.Text = "Total Given:";
-            // 
-            // numericUpDown5
-            // 
-            numericUpDown5.Location = new Point(103, 80);
-            numericUpDown5.Maximum = new decimal(new int[] { 7, 5, 0, 0 });
-            numericUpDown5.Minimum = new decimal(new int[] { int.MinValue, 0, 0, int.MinValue });
-            numericUpDown5.Name = "numericUpDown5";
-            numericUpDown5.Size = new Size(91, 23);
-            numericUpDown5.TabIndex = 21;
-            commonToolTip.SetToolTip(numericUpDown5, "How many total neuron flies has Looks To The Moon been given?");
-            // 
-            // checkBox1
-            // 
-            checkBox1.AutoSize = true;
-            checkBox1.Location = new Point(8, 109);
-            checkBox1.Name = "checkBox1";
-            checkBox1.Size = new Size(102, 19);
-            checkBox1.TabIndex = 21;
-            checkBox1.Text = "Warned Player";
-            commonToolTip.SetToolTip(checkBox1, "Has Looks To The Moon warned the player to not eat her neuron flies?");
-            checkBox1.UseVisualStyleBackColor = true;
-            // 
-            // groupBox6
-            // 
-            groupBox6.Controls.Add(label9);
-            groupBox6.Controls.Add(label8);
-            groupBox6.Controls.Add(numericUpDown7);
-            groupBox6.Controls.Add(numericUpDown6);
-            groupBox6.Location = new Point(18, 252);
-            groupBox6.Name = "groupBox6";
-            groupBox6.Size = new Size(200, 100);
-            groupBox6.TabIndex = 21;
-            groupBox6.TabStop = false;
-            groupBox6.Text = "Unused";
-            // 
-            // numericUpDown6
-            // 
-            numericUpDown6.Location = new Point(81, 22);
-            numericUpDown6.Maximum = new decimal(new int[] { 7, 5, 0, 0 });
-            numericUpDown6.Minimum = new decimal(new int[] { int.MinValue, 0, 0, int.MinValue });
-            numericUpDown6.Name = "numericUpDown6";
-            numericUpDown6.Size = new Size(113, 23);
-            numericUpDown6.TabIndex = 22;
-            commonToolTip.SetToolTip(numericUpDown6, "How many total neuron flies has Looks To The Moon been given?");
-            // 
-            // numericUpDown7
-            // 
-            numericUpDown7.Location = new Point(81, 51);
-            numericUpDown7.Maximum = new decimal(new int[] { 7, 5, 0, 0 });
-            numericUpDown7.Minimum = new decimal(new int[] { int.MinValue, 0, 0, int.MinValue });
-            numericUpDown7.Name = "numericUpDown7";
-            numericUpDown7.Size = new Size(113, 23);
-            numericUpDown7.TabIndex = 23;
-            commonToolTip.SetToolTip(numericUpDown7, "How many total neuron flies has Looks To The Moon been given?");
-            // 
-            // label8
-            // 
-            label8.AutoSize = true;
-            label8.Location = new Point(6, 24);
-            label8.Name = "label8";
-            label8.Size = new Size(69, 15);
-            label8.TabIndex = 22;
-            label8.Text = "Chat Log A:";
-            // 
-            // label9
-            // 
-            label9.AutoSize = true;
-            label9.Location = new Point(6, 53);
-            label9.Name = "label9";
-            label9.Size = new Size(68, 15);
-            label9.TabIndex = 23;
-            label9.Text = "Chat Log B:";
-            // 
             // SlugConfigControl
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -1614,7 +1622,19 @@
             ((System.ComponentModel.ISupportInitialize)pebblesThrownOutCountNumericUpDown).EndInit();
             ((System.ComponentModel.ISupportInitialize)pebblesConversationCountNumericUpDown).EndInit();
             iteratorLooksToTheMoonTabPage.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)numericUpDown1).EndInit();
+            groupBox6.ResumeLayout(false);
+            groupBox6.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)moonChatLogBNumericUpDown).EndInit();
+            ((System.ComponentModel.ISupportInitialize)moonChatLogANumericUpDown).EndInit();
+            groupBox5.ResumeLayout(false);
+            groupBox5.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)moonPlayerEncountersNumericUpDown).EndInit();
+            ((System.ComponentModel.ISupportInitialize)moonPlayerEncountersMarkNumericUpDown).EndInit();
+            groupBox4.ResumeLayout(false);
+            groupBox4.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)neuronNeuronsGivenNumericUpDown).EndInit();
+            ((System.ComponentModel.ISupportInitialize)neuronNeuronConvoCountNumericUpDown).EndInit();
+            ((System.ComponentModel.ISupportInitialize)neuronNeuronCountNumericUpDown).EndInit();
             communitiesTabPage.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)communityRegionRepDataGridView).EndInit();
             persistentInfoTabPage.ResumeLayout(false);
@@ -1639,18 +1659,6 @@
             ((System.ComponentModel.ISupportInitialize)worldVersionNumericUpDown).EndInit();
             ((System.ComponentModel.ISupportInitialize)initialGameVersionNumericUpDown).EndInit();
             ((System.ComponentModel.ISupportInitialize)gameVerisonNumericUpDown).EndInit();
-            ((System.ComponentModel.ISupportInitialize)numericUpDown2).EndInit();
-            ((System.ComponentModel.ISupportInitialize)numericUpDown3).EndInit();
-            groupBox4.ResumeLayout(false);
-            groupBox4.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)numericUpDown4).EndInit();
-            groupBox5.ResumeLayout(false);
-            groupBox5.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)numericUpDown5).EndInit();
-            groupBox6.ResumeLayout(false);
-            groupBox6.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)numericUpDown6).EndInit();
-            ((System.ComponentModel.ISupportInitialize)numericUpDown7).EndInit();
             ResumeLayout(false);
         }
 
@@ -1756,27 +1764,27 @@
         private TabControl tabControl1;
         private TabPage iteratorFivePebblesTabPage;
         private TabPage iteratorLooksToTheMoonTabPage;
-        private NumericUpDown numericUpDown1;
+        private NumericUpDown moonPlayerEncountersNumericUpDown;
         private GroupBox groupBox3;
         private GroupBox groupBox2;
         private Label playTimeLabel;
         private NumericUpDown playTimeNumericUpDown;
         private Label label4;
-        private NumericUpDown numericUpDown2;
+        private NumericUpDown moonPlayerEncountersMarkNumericUpDown;
         private Label label3;
         private GroupBox groupBox5;
         private GroupBox groupBox4;
-        private NumericUpDown numericUpDown5;
+        private NumericUpDown neuronNeuronsGivenNumericUpDown;
         private Label label7;
         private Label label6;
-        private NumericUpDown numericUpDown4;
-        private NumericUpDown numericUpDown3;
+        private NumericUpDown neuronNeuronConvoCountNumericUpDown;
+        private NumericUpDown neuronNeuronCountNumericUpDown;
         private Label label5;
-        private CheckBox checkBox1;
+        private CheckBox moonWarnedPlayerCheckBox;
         private GroupBox groupBox6;
         private Label label9;
         private Label label8;
-        private NumericUpDown numericUpDown7;
-        private NumericUpDown numericUpDown6;
+        private NumericUpDown moonChatLogBNumericUpDown;
+        private NumericUpDown moonChatLogANumericUpDown;
     }
 }

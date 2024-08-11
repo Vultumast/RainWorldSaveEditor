@@ -626,7 +626,7 @@ public partial class SlugConfigControl : UserControl
     {
         var t = TimeSpan.FromSeconds((double)playTimeNumericUpDown.Value);
 
-        playTimeLabel.Text = string.Format("Playtime: {0:D5}:d{1:D2}h:{2:D2}m:{3:D2}s", t.Days,  t.Hours, t.Minutes, t.Seconds);
+        playTimeLabel.Text = string.Format("Playtime: {0:D5}:d{1:D2}h:{2:D2}m:{3:D2}s", t.Days, t.Hours, t.Minutes, t.Seconds);
 
         if (SaveState is not null)
             SaveState.TotalTimeInSeconds = (int)playTimeNumericUpDown.Value;
@@ -689,18 +689,33 @@ public partial class SlugConfigControl : UserControl
     {
         if (state is not null)
         {
-            pebblesConversationCountNumericUpDown.Value = state.MiscWorldSaveData.TimesTalkedWithFivePebbles.Value;
-            pebblesThrownOutCountNumericUpDown.Value = state.MiscWorldSaveData.TimesKickedOutByFivePebbles.Value;
-            frolickedInMemoryArraysCheckBox.Checked = state.MiscWorldSaveData.HasFrolickedInMemoryArrays;
+            var miscData = state.MiscWorldSaveData;
 
-            pebblesFirstVisitCountNumericUpDown.Value = state.MiscWorldSaveData.CyclesSinceFirstFivePebblesVisit.Value;
+            pebblesConversationCountNumericUpDown.Value = miscData.TimesTalkedWithFivePebbles.Value;
+            pebblesThrownOutCountNumericUpDown.Value = miscData.TimesKickedOutByFivePebbles.Value;
+            frolickedInMemoryArraysCheckBox.Checked = miscData.HasFrolickedInMemoryArrays;
 
-            pebblesRivuletPostGameTalkCheckBox.Checked = state.MiscWorldSaveData.HasTalkedWithFivePebblesInRivuletPostgame;
-            musicPearlStolenCheckBox.Checked = state.MiscWorldSaveData.HasStolenFivePebblesMusicPearl;
-            cellRemovedCheckBox.Checked = state.MiscWorldSaveData.HasRemovedRarefactionCell;
+            pebblesFirstVisitCountNumericUpDown.Value = miscData.CyclesSinceFirstFivePebblesVisit.Value;
+
+            pebblesRivuletPostGameTalkCheckBox.Checked = miscData.HasTalkedWithFivePebblesInRivuletPostgame;
+            musicPearlStolenCheckBox.Checked = miscData.HasStolenFivePebblesMusicPearl;
+            cellRemovedCheckBox.Checked = miscData.HasRemovedRarefactionCell;
             pebblesAscendedCheckBox.Checked = state.DeathPersistentSaveData.IsPebblesAscendedBySaint;
 
-            FivePebblesRarefactionCellConversationState = state.MiscWorldSaveData.RarefactionCellConversationState.Value;
+            FivePebblesRarefactionCellConversationState = miscData.RarefactionCellConversationState.Value;
+
+            var moonState = miscData.LooksToTheMoonState!;
+
+            moonPlayerEncountersNumericUpDown.Value = moonState.PlayerEncounters;
+            moonPlayerEncountersMarkNumericUpDown.Value = moonState.PlayerEncountersWithMark;
+
+            neuronNeuronCountNumericUpDown.Value = moonState.NeuronsLeft;
+            neuronNeuronConvoCountNumericUpDown.Value = moonState.NeuronGiftConversationCounter;
+            neuronNeuronsGivenNumericUpDown.Value = moonState.TotalNeuronsGiven;
+            moonWarnedPlayerCheckBox.Checked = moonState.HasToldPlayerNotToEatNeurons;
+
+            moonChatLogANumericUpDown.Value = moonState.ChatLogA;
+            moonChatLogBNumericUpDown.Value = moonState.ChatLogB;
         }
         else
         {
@@ -716,9 +731,23 @@ public partial class SlugConfigControl : UserControl
             pebblesAscendedCheckBox.Checked = false;
 
             FivePebblesRarefactionCellConversationState = 0;
+
+
+            moonPlayerEncountersNumericUpDown.Value = 0;
+            moonPlayerEncountersMarkNumericUpDown.Value = 0;
+
+            neuronNeuronCountNumericUpDown.Value = 0;
+            neuronNeuronConvoCountNumericUpDown.Value = 0;
+            neuronNeuronsGivenNumericUpDown.Value = 0;
+            moonWarnedPlayerCheckBox.Checked = false;
+
+            moonChatLogANumericUpDown.Value = 0;
+            moonChatLogBNumericUpDown.Value = 0;
         }
 
     }
+
+    #region Five Pebbles
     private void fivePebblesConversationCountNumericUpDown_ValueChanged(object sender, EventArgs e)
     {
         if (SaveState is not null)
@@ -805,8 +834,8 @@ public partial class SlugConfigControl : UserControl
 
         if (SaveState is not null)
             SaveState.MiscWorldSaveData.HasStolenFivePebblesMusicPearl = musicPearlStolenCheckBox.Checked;
-
     }
+
     private void cellRemovedCheckBox_CheckedChanged(object sender, EventArgs e)
     {
         if (SaveState is not null)
@@ -820,6 +849,67 @@ public partial class SlugConfigControl : UserControl
     }
     #endregion
 
+    #region Looks To The Moon
+    private void moonPlayerEncountersNumericUpDown_ValueChanged(object sender, EventArgs e)
+    {
+        if (SaveState is null)
+            return;
+        SaveState.MiscWorldSaveData.LooksToTheMoonState!.PlayerEncounters = (int)((NumericUpDown)sender).Value;
+    }
+
+    private void moonPlayerEncountersMarkNumericUpDown_ValueChanged(object sender, EventArgs e)
+    {
+        if (SaveState is null)
+            return;
+        SaveState.MiscWorldSaveData.LooksToTheMoonState!.PlayerEncountersWithMark = (int)((NumericUpDown)sender).Value;
+    }
+
+    private void neuronNeuronCountNumericUpDown_ValueChanged(object sender, EventArgs e)
+    {
+        if (SaveState is null)
+            return;
+        SaveState.MiscWorldSaveData.LooksToTheMoonState!.NeuronsLeft = (int)((NumericUpDown)sender).Value;
+    }
+
+    private void neuronNeuronConvoCountNumericUpDown_ValueChanged(object sender, EventArgs e)
+    {
+        if (SaveState is null)
+            return;
+        SaveState.MiscWorldSaveData.LooksToTheMoonState!.NeuronGiftConversationCounter = (int)((NumericUpDown)sender).Value;
+    }
+
+    private void neuronNeuronsGivenNumericUpDown_ValueChanged(object sender, EventArgs e)
+    {
+        if (SaveState is null)
+            return;
+        SaveState.MiscWorldSaveData.LooksToTheMoonState!.TotalNeuronsGiven = (int)((NumericUpDown)sender).Value;
+    }
+
+    private void moonWarnedPlayerCheckBox_CheckedChanged(object sender, EventArgs e)
+    {
+        if (SaveState is null)
+            return;
+        SaveState.MiscWorldSaveData.LooksToTheMoonState!.HasToldPlayerNotToEatNeurons = ((CheckBox)sender).Checked;
+    }
+
+    private void moonChatLogANumericUpDown_ValueChanged(object sender, EventArgs e)
+    {
+        if (SaveState is null)
+            return;
+        SaveState.MiscWorldSaveData.LooksToTheMoonState!.ChatLogA = (int)((NumericUpDown)sender).Value;
+    }
+
+    private void moonChatLogBNumericUpDown_ValueChanged(object sender, EventArgs e)
+    {
+        if (SaveState is null)
+            return;
+        SaveState.MiscWorldSaveData.LooksToTheMoonState!.ChatLogB = (int)((NumericUpDown)sender).Value;
+    }
+    #endregion
+    #endregion
+
+
+
 
 
 
@@ -832,5 +922,4 @@ public partial class SlugConfigControl : UserControl
     {
 
     }
-
 }
