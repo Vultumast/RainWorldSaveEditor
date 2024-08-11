@@ -1,4 +1,5 @@
 ﻿using RainWorldSaveAPI;
+using System.Diagnostics;
 using System.Text;
 using System.Text.RegularExpressions;
 
@@ -15,12 +16,10 @@ internal static partial class Program
     const string LoadPath = "saves";
     const string WritePath = "results";
 
+    static Stopwatch Stopwatch { get; } = new();
+
     static void Main(string[] args)
     {
-        using var apiLoggerStream = new StreamWriter(File.OpenWrite("apilog.txt"));
-        Logger.LogStreamWriter = apiLoggerStream;
-        Logger.LogToConsole = false;
-
         Directory.CreateDirectory(LoadPath);
         Directory.CreateDirectory(WritePath);
 
@@ -34,10 +33,12 @@ internal static partial class Program
             return;
         }
 
+        Stopwatch.Start();
         foreach (var file in files.Select(Path.GetFileName).Where(x => x != null).Cast<string>())
         {
             RunSerializationTest(file);
         }
+        Stopwatch.Stop();
     }
 
     private static void RunSerializationTest(string file)
@@ -51,6 +52,10 @@ internal static partial class Program
 
             Directory.CreateDirectory(resultsPath);
 
+            using var apiLoggerStream = new StreamWriter(File.Open(Path.Combine(resultsPath, "apilog.txt"), FileMode.Create));
+            Logger.LogStreamWriter = apiLoggerStream;
+            Logger.LogToConsole = false;
+
             GetSaveOriginalAndParsed(inputPath, out var original, out var parsed);
             WriteComparisons(resultsPath, original, parsed);
         }
@@ -63,6 +68,8 @@ internal static partial class Program
 
     private static void GetSaveOriginalAndParsed(string path, out string original, out string parsed)
     {
+        var startTime = Stopwatch.Elapsed;
+
         using var fs = File.OpenRead(path);
 
         var table = HashtableSerializer.Read(fs);
@@ -72,10 +79,17 @@ internal static partial class Program
             throw new InvalidOperationException("Expected save hashtable to have a \"save\" field.");
 
         save.Read(saveData);
+
+        var readTime = Stopwatch.Elapsed;
+
         var serializedData = save.Write();
+
+        var writeTime = Stopwatch.Elapsed;
 
         original = saveData;
         parsed = serializedData;
+
+        Console.WriteLine($"Time taken - read: {(readTime - startTime).Milliseconds}ms, write: {(writeTime - readTime).Milliseconds}ms.");
     }
 
     [GeneratedRegex("SAV STATE NUMBER(?:\r|\n|\r\n)<svB>(?:\r|\n|\r\n)([^<\r\n]*)(?:\r|\n|\r\n)<svA>")]

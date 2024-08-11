@@ -54,7 +54,7 @@ public static class Logger
             _ => "[????]"
         };
 
-        LogStreamWriter?.Write(header + message);
+        LogStreamWriter?.WriteLine(header + message);
 
         if (LogToConsole)
         {
