@@ -39,6 +39,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Folder Include="Resources\Pearl\" />
     <Folder Include="Resources\Worldstate Info\" />
   </ItemGroup>
 

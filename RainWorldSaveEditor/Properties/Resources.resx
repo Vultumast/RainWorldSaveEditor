@@ -256,8 +256,98 @@
   <data name="Neuron_Fly" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\UI\Iterator Icons\Neuron_Fly.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="pearl_music" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\UI\Pearls\pearl_music.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="Pearl_CC" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\UI\Pearls\CC.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Pearl_DM" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\UI\Pearls\DM.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Pearl_DS" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\UI\Pearls\DS.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Pearl_GW" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\UI\Pearls\GW.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Pearl_HI" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\UI\Pearls\HI.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Pearl_LC" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\UI\Pearls\LC.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Pearl_LC_second" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\UI\Pearls\LC_second.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Pearl_LF_bottom" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\UI\Pearls\LF_bottom.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Pearl_LF_west" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\UI\Pearls\LF_west.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Pearl_misc" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\UI\Pearls\misc.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Pearl_MS" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\UI\Pearls\MS.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Pearl_OE" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\UI\Pearls\OE.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Pearl_Red_stomach" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\UI\Pearls\Red_stomach.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Pearl_Rivulet_stomach" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\UI\Pearls\Rivulet_stomach.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Pearl_RM" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\UI\Pearls\RM.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Pearl_SB_filtration" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\UI\Pearls\SB_filtration.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Pearl_SB_ravine" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\UI\Pearls\SB_ravine.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Pearl_SH" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\UI\Pearls\SH.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Pearl_SI_chat3" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\UI\Pearls\SI_chat3.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Pearl_SI_chat4" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\UI\Pearls\SI_chat4.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Pearl_SI_chat5" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\UI\Pearls\SI_chat5.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Pearl_SI_top" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\UI\Pearls\SI_top.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Pearl_SI_west" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\UI\Pearls\SI_west.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Pearl_SL_bridge" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\UI\Pearls\SL_bridge.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Pearl_SL_chimney" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\UI\Pearls\SL_chimney.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Pearl_SL_moon" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\UI\Pearls\SL_moon.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Pearl_Spearmasterpearl" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\UI\Pearls\Spearmasterpearl.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Pearl_SU" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\UI\Pearls\SU.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Pearl_SU_filt" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\UI\Pearls\SU_filt.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Pearl_UW" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\UI\Pearls\UW.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Pearl_VS" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\UI\Pearls\VS.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="rarefaction_cell_icon" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\UI\Iterator Icons\rarefaction_cell_icon.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>

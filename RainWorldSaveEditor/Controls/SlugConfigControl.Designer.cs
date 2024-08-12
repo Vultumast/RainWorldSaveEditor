@@ -654,7 +654,7 @@
             // 
             // musicPearlStolenPictureBox
             // 
-            musicPearlStolenPictureBox.BackgroundImage = Properties.Resources.pearl_music;
+            musicPearlStolenPictureBox.BackgroundImage = Properties.Resources.Pearl_RM;
             musicPearlStolenPictureBox.BackgroundImageLayout = ImageLayout.Center;
             musicPearlStolenPictureBox.Location = new Point(216, 51);
             musicPearlStolenPictureBox.Name = "musicPearlStolenPictureBox";
