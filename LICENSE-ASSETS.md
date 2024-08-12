@@ -93,8 +93,36 @@ Assets marked with the license "Rain World" are the intellectual property of the
 # RainWorldSaveEditor/Resources/UI/Pearl
 | Name | Description | License | Source |
 | ---- | ----------- | ------- | ------ |
-| pearl_music.png | Music Pearl Icon | Rain World | [Rain World Miraheze Wiki](https://static.miraheze.org/rainworldwiki/7/7d/Pearl_RM.png) |
-| pearl_generic.png | Generic White Pearl Icon | Rain World |[Rain World Miraheze Wiki](https://static.miraheze.org/rainworldwiki/0/09/Pearl_Misc.png) |
+| SL_moon.png          | Shoreline Looks To The Moon Pearl Icon   | Rain World | [Rain World Miraheze Wiki](https://static.miraheze.org/rainworldwiki/2/22/Pearl_SL_moon.png)          |
+| SL_bridge.png        | Shoreline Bride Pearl Icon               | Rain World | [Rain World Miraheze Wiki](https://static.miraheze.org/rainworldwiki/0/05/Pearl_SL_bridge.png)        |
+| SL_chimney.png       | Shoreline Chimney Pearl Icon             | Rain World | [Rain World Miraheze Wiki](https://static.miraheze.org/rainworldwiki/4/40/Pearl_SL_chimney.png)       |
+| SI_west.png          | Sky Islands West Pearl Icon              | Rain World | [Rain World Miraheze Wiki](https://static.miraheze.org/rainworldwiki/d/d3/Pearl_SI_west.png)          |
+| SI_top.png           | Sky Islands Top Pearl Icon               | Rain World | [Rain World Miraheze Wiki](https://static.miraheze.org/rainworldwiki/a/ab/Pearl_SI_top.png)           |
+| SI_chat3.png         | Sky Islands "Chat 3" Pearl Icon          | Rain World | [Rain World Miraheze Wiki](https://static.miraheze.org/rainworldwiki/a/ac/Pearl_SI_chat3.png)         |
+| SI_chat4.png         | Sky Islands "Chat 4" Pearl Icon          | Rain World | [Rain World Miraheze Wiki](https://static.miraheze.org/rainworldwiki/2/2a/Pearl_SI_chat4.png)         |
+| SI_chat5.png         | Sky Islands "Chat 5" Pearl Icon          | Rain World | [Rain World Miraheze Wiki](https://static.miraheze.org/rainworldwiki/3/3d/Pearl_SI_chat5.png)         |
+| SB_ravine.png        | Subterranean Ravine Pearl Icon           | Rain World | [Rain World Miraheze Wiki](https://static.miraheze.org/rainworldwiki/b/b9/Pearl_SB_ravine.png)        |
+| SU.png               | Outskirts Pearl Icon                     | Rain World | [Rain World Miraheze Wiki](https://static.miraheze.org/rainworldwiki/7/72/Pearl_SU.png)               |
+| HI.png               | Industrial Complex Pearl Icon            | Rain World | [Rain World Miraheze Wiki](https://static.miraheze.org/rainworldwiki/f/fe/Pearl_HI.png)               |
+| GW.png               | Garbage Wastes Pearl Icon                | Rain World | [Rain World Miraheze Wiki](https://static.miraheze.org/rainworldwiki/9/91/Pearl_GW.png)               |
+| MS.png               | Submerged Superstructure Pearl Icon      | Rain World | [Rain World Miraheze Wiki](https://static.miraheze.org/rainworldwiki/d/da/Pearl_MS.png)               |
+| DS.png               | Drainage System Pearl Icon               | Rain World | [Rain World Miraheze Wiki](https://static.miraheze.org/rainworldwiki/e/ee/Pearl_DS.png)               |
+| SH.png               | Shaded Citadel Pearl Icon                | Rain World | [Rain World Miraheze Wiki](https://static.miraheze.org/rainworldwiki/f/fb/Pearl_SH.png)               |
+| CC.png               | Chimney Canopy Pearl Icon                | Rain World | [Rain World Miraheze Wiki](https://static.miraheze.org/rainworldwiki/c/c2/Pearl_CC.png)               |
+| VS.png               | Pipeyard Pearl Icon                      | Rain World | [Rain World Miraheze Wiki](https://static.miraheze.org/rainworldwiki/2/28/Pearl_VS.png)               |
+| UW.png               | The Exterior Pearl Icon                  | Rain World | [Rain World Miraheze Wiki](https://static.miraheze.org/rainworldwiki/8/80/Pearl_UW.png)               |
+| LF_west.png          | Farm Arrays West Pearl Icon              | Rain World | [Rain World Miraheze Wiki](https://static.miraheze.org/rainworldwiki/a/a7/Pearl_LF_west.png)          |
+| LF_bottom.png        | Farm Arrays Botton Pearl Icon            | Rain World | [Rain World Miraheze Wiki](https://static.miraheze.org/rainworldwiki/0/0f/Pearl_LF_bottom.png)        |
+| SB_filtration.png    | Subterranean-Filtration System Pearl Icon| Rain World | [Rain World Miraheze Wiki](https://static.miraheze.org/rainworldwiki/c/c9/Pearl_SB_filtration.png)    |
+| SU_filt.png          | Outskirts-Filtration System Pearl Icon   | Rain World | [Rain World Miraheze Wiki](https://static.miraheze.org/rainworldwiki/0/00/Pearl_SU_filt.png)          |
+| OE.png               | Outer Expanse Pearl Icon                 | Rain World | [Rain World Miraheze Wiki](https://static.miraheze.org/rainworldwiki/7/76/Pearl_OE.png)               |
+| LC.png               | Metropolis Pearl Icon                    | Rain World | [Rain World Miraheze Wiki](https://static.miraheze.org/rainworldwiki/7/73/Pearl_LC.png)               |
+| LC_second.png        | Metropolis Second Pearl Icon             | Rain World | [Rain World Miraheze Wiki](https://static.miraheze.org/rainworldwiki/c/cb/Pearl_LC_second.png)        |
+| RM.png               | The Rot Pearl Icon                       | Rain World | [Rain World Miraheze Wiki](https://static.miraheze.org/rainworldwiki/7/7d/Pearl_RM.png)               |
+| Red_stomach.png      | Hunter's Stomach Pearl Icon              | Rain World | [Rain World Miraheze Wiki](https://static.miraheze.org/rainworldwiki/7/74/Pearl_Red_stomach.png)      |
+| DM.png               | Looks To The Moon (Region) Pearl Icon    | Rain World | [Rain World Miraheze Wiki](https://static.miraheze.org/rainworldwiki/2/25/Pearl_DM.png)               |
+| Spearmasterpearl.png | Spearmaster's Pearl Icon                 | Rain World | [Rain World Miraheze Wiki](https://static.miraheze.org/rainworldwiki/1/1b/Pearl_Spearmasterpearl.png) |
+| Rivulet_stomach.png  | Rivulet's Stomach Pearl Icon             | Rain World | [Rain World Miraheze Wiki](https://static.miraheze.org/rainworldwiki/d/d4/Pearl_Rivulet_stomach.png)  |
 
 # RainWorldSaveEditor/Resources/UI/Slugcat
 | Name | Description | License | Source |
@@ -104,6 +132,7 @@ Assets marked with the license "Rain World" are the intellectual property of the
 | slugcat_dead.png   | Dead Survivor Icon    | Rain World                        | [Rain World Miraheze Wiki](https://rainworld.miraheze.org/wiki/Category:Slugcat_icons#/media/File:Survivor_dead_icon.png) |
 | artifcer_drone.png | Sofanthiel Icon       | Saneko                            | N/A                                                                                                                       |
 | missing_slugcat.png | Missing Slugcat Icon | Vultumast (MIT)                   | N/A                                                                                                                       |
+
 # RainWorldSaveEditor/Resources/UI/Tab Icons
 | Name | Description | License | Source |
 | ---- | ----------- | ------- | ------ |
