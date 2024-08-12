@@ -753,9 +753,8 @@ public partial class SlugConfigControl : UserControl
                 moonChatLogBNumericUpDown.Value = LooksToTheMoonState.ChatLogB;
 
                 foreach (var pearl in LooksToTheMoonState.DataPearlsRead)
-                {
-                    moonReadPearlsListBox.Items.Add(pearl);
-                }
+                    moonReadPearlsListBox.Items.Add(Translation.GetPearlName(pearl));
+                
             }
             else
             {

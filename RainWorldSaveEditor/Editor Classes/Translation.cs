@@ -168,22 +168,30 @@
             { "Rivulet_stomach"      , "Rivulet's Stomach Pearl Icon"              }
         };
 
-        public static string GetRegionName(string internalname)
+        public static string GetRegionName(string internalName)
         {
-            if (internalname == "EVERY" || internalname == "ALL")
-                return internalname;
+            if (internalName == "EVERY" || internalName == "ALL")
+                return internalName;
 
             string value;
 
-            if (RegionNames.TryGetValue(internalname, out value!))
+            if (RegionNames.TryGetValue(internalName, out value!))
                 return value;
 
-            if (ModRegionNames.TryGetValue(internalname, out value!))
+            if (ModRegionNames.TryGetValue(internalName, out value!))
                 return value;
 
-            return $"Unknown Region: \"{internalname}\"";
+            return $"Unknown Region: \"{internalName}\"";
         }
 
+        public static string GetPearlName(string internalName)
+        {
+            string value = string.Empty;
+            if (PearlNames.TryGetValue(internalName, out value))
+                return value;
+
+            return $"Unknown Pearl \"{internalName}\"";
+        }
         private static void CreateDirectoriesIfNotPresent()
         {
             Utils.CreateDirectoryIfNotExist("Resources");
