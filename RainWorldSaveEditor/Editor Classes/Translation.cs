@@ -134,38 +134,38 @@
 
         public static Dictionary<string, string> PearlNames { get; private set; } = new()
         {
-            { "Misc"                 , "Generic White Pearl"                       },
-            { "Misc2"                , "Generic Pink Pearl"                        },
-            { "SL_moon"              , "Shoreline Looks To The Moon Pearl Icon"    },
-            { "SL_bridge"            , "Shoreline Bride Pearl Icon"                },
-            { "SL_chimney"           , "Shoreline Chimney Pearl Icon"              },
-            { "SI_west"              , "Sky Islands West Pearl Icon"               },
-            { "SI_top"               , "Sky Islands Top Pearl Icon"                },
-            { "SI_chat3"             , "Sky Islands \"Chat 3\" Pearl Icon"         },
-            { "SI_chat4"             , "Sky Islands \"Chat 4\" Pearl Icon"         },
-            { "SI_chat5"             , "Sky Islands \"Chat 5\" Pearl Icon"         },
-            { "SB_ravine"            , "Subterranean Ravine Pearl Icon"            },
-            { "SU"                   , "Outskirts Pearl Icon"                      },
-            { "HI"                   , "Industrial Complex Pearl Icon"             },
-            { "GW"                   , "Garbage Wastes Pearl Icon"                 },
-            { "MS"                   , "Submerged Superstructure Pearl Icon"       },
-            { "DS"                   , "Drainage System Pearl Icon"                },
-            { "SH"                   , "Shaded Citadel Pearl Icon"                 },
-            { "CC"                   , "Chimney Canopy Pearl Icon"                 },
-            { "VS"                   , "Pipeyard Pearl Icon"                       },
-            { "UW"                   , "The Exterior Pearl Icon"                   },
-            { "LF_west"              , "Farm Arrays West Pearl Icon"               },
-            { "LF_bottom"            , "Farm Arrays Botton Pearl Icon"             },
-            { "SB_filtration"        , "Subterranean-Filtration System Pearl Icon" },
-            { "SU_filt"              , "Outskirts-Filtration System Pearl Icon"    },
-            { "OE"                   , "Outer Expanse Pearl Icon"                  },
-            { "LC"                   , "Metropolis Pearl Icon"                     },
-            { "LC_second"            , "Metropolis Second Pearl Icon"              },
-            { "RM"                   , "The Rot Pearl Icon"                        },
-            { "Red_stomach"          , "Hunter's Stomach Pearl Icon"               },
-            { "DM"                   , "Looks To The Moon (Region) Pearl Icon"     },
-            { "Spearmasterpearl"     , "Spearmaster's Pearl Icon"                  },
-            { "Rivulet_stomach"      , "Rivulet's Stomach Pearl Icon"              }
+            { "Misc"                 , "Generic White Pearl"                  },
+            { "Misc2"                , "Generic Pink Pearl"                   },
+            { "SL_moon"              , "Shoreline Looks To The Moon Pearl"    },
+            { "SL_bridge"            , "Shoreline Bride Pearl"                },
+            { "SL_chimney"           , "Shoreline Chimney Pearl"              },
+            { "SI_west"              , "Sky Islands West Pearl"               },
+            { "SI_top"               , "Sky Islands Top Pearl"                },
+            { "SI_chat3"             , "Sky Islands \"Chat 3\" Pearl"         },
+            { "SI_chat4"             , "Sky Islands \"Chat 4\" Pearl"         },
+            { "SI_chat5"             , "Sky Islands \"Chat 5\" Pearl"         },
+            { "SB_ravine"            , "Subterranean Ravine Pearl"            },
+            { "SU"                   , "Outskirts Pearl"                      },
+            { "HI"                   , "Industrial Complex Pearl"             },
+            { "GW"                   , "Garbage Wastes Pearl"                 },
+            { "MS"                   , "Submerged Superstructure Pearl"       },
+            { "DS"                   , "Drainage System Pearl"                },
+            { "SH"                   , "Shaded Citadel Pearl"                 },
+            { "CC"                   , "Chimney Canopy Pearl"                 },
+            { "VS"                   , "Pipeyard Pearl"                       },
+            { "UW"                   , "The Exterior Pearl"                   },
+            { "LF_west"              , "Farm Arrays West Pearl"               },
+            { "LF_bottom"            , "Farm Arrays Botton Pearl"             },
+            { "SB_filtration"        , "Subterranean-Filtration System Pearl" },
+            { "SU_filt"              , "Outskirts-Filtration System Pearl"    },
+            { "OE"                   , "Outer Expanse Pearl"                  },
+            { "LC"                   , "Metropolis Pearl"                     },
+            { "LC_second"            , "Metropolis Second Pearl"              },
+            { "RM"                   , "The Rot Pearl"                        },
+            { "Red_stomach"          , "Hunter's Stomach Pearl"               },
+            { "DM"                   , "Looks To The Moon (Region)"           },
+            { "Spearmasterpearl"     , "Spearmaster's Pearl"                  },
+            { "Rivulet_stomach"      , "Rivulet's Stomach Pearl"              }
         };
 
         public static string GetRegionName(string internalName)
@@ -187,7 +187,7 @@
         public static string GetPearlName(string internalName)
         {
             string value = string.Empty;
-            if (PearlNames.TryGetValue(internalName, out value))
+            if (PearlNames.TryGetValue(internalName, out value!))
                 return value;
 
             return $"Unknown Pearl \"{internalName}\"";
