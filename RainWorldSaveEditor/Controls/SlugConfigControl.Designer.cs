@@ -153,6 +153,7 @@
             gameVerisonNumericUpDown = new NumericUpDown();
             tabImageList = new ImageList(components);
             commonToolTip = new ToolTip(components);
+            moonReadPearlsListBox = new ListBox();
             ((System.ComponentModel.ISupportInitialize)cycleNumberNumericUpDown).BeginInit();
             tabControl.SuspendLayout();
             slugcatInfoTabPage.SuspendLayout();
@@ -913,6 +914,7 @@
             // iteratorLooksToTheMoonTabPage
             // 
             iteratorLooksToTheMoonTabPage.BackColor = SystemColors.Control;
+            iteratorLooksToTheMoonTabPage.Controls.Add(moonReadPearlsListBox);
             iteratorLooksToTheMoonTabPage.Controls.Add(groupBox6);
             iteratorLooksToTheMoonTabPage.Controls.Add(groupBox5);
             iteratorLooksToTheMoonTabPage.Controls.Add(groupBox4);
@@ -1576,6 +1578,15 @@
             tabImageList.Images.SetKeyName(0, "slugcat_tab_icon.png");
             tabImageList.Images.SetKeyName(1, "echo_tab_icon.png");
             // 
+            // moonReadPearlsListBox
+            // 
+            moonReadPearlsListBox.FormattingEnabled = true;
+            moonReadPearlsListBox.ItemHeight = 15;
+            moonReadPearlsListBox.Location = new Point(290, 30);
+            moonReadPearlsListBox.Name = "moonReadPearlsListBox";
+            moonReadPearlsListBox.Size = new Size(212, 139);
+            moonReadPearlsListBox.TabIndex = 22;
+            // 
             // SlugConfigControl
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -1786,5 +1797,6 @@
         private Label label8;
         private NumericUpDown moonChatLogBNumericUpDown;
         private NumericUpDown moonChatLogANumericUpDown;
+        private ListBox moonReadPearlsListBox;
     }
 }

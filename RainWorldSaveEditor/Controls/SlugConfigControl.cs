@@ -39,10 +39,10 @@ public partial class SlugConfigControl : UserControl
         SaveState = state!;
         SetupSlugCatInfoTabPageFromState(state!);
         SetupEchoTabPageFromState(state!);
-        LoadIteratorTabPage(state!);
+        LoadIteratorTabPage();
         SetupCommunitiesTabPage(state!);
         SetupPersistentDataInfoTabPageFromState(state!);
-        SetupAdvancedInfoTabPage(state!);
+        SetupAdvancedInfoTabPage();
     }
 
 
@@ -642,14 +642,14 @@ public partial class SlugConfigControl : UserControl
     #endregion
 
     #region Advanced
-    private void SetupAdvancedInfoTabPage(SaveState state)
+    private void SetupAdvancedInfoTabPage()
     {
-        if (state is not null)
+        if (SaveState is not null)
         {
-            gameVerisonNumericUpDown.Value = state.GameVersion;
-            initialGameVersionNumericUpDown.Value = state.InitialGameVersion;
+            gameVerisonNumericUpDown.Value = SaveState.GameVersion;
+            initialGameVersionNumericUpDown.Value = SaveState.InitialGameVersion;
 
-            worldVersionNumericUpDown.Value = state.WorldVersion;
+            worldVersionNumericUpDown.Value = SaveState.WorldVersion;
         }
         else
         {
@@ -658,33 +658,32 @@ public partial class SlugConfigControl : UserControl
 
             worldVersionNumericUpDown.Value = 0;
         }
-
     }
 
     private void gameVerisonNumericUpDown_ValueChanged(object sender, EventArgs e)
     {
-        if (SaveState is not null)
-            SaveState.GameVersion = (int)gameVerisonNumericUpDown.Value;
+        if (SaveState is null)
+            return;
+        SaveState.GameVersion = (int)gameVerisonNumericUpDown.Value;
     }
 
     private void initialGameVersionNumericUpDown_ValueChanged(object sender, EventArgs e)
     {
-        if (SaveState is not null)
-            SaveState.InitialGameVersion = (int)initialGameVersionNumericUpDown.Value;
+        if (SaveState is null)
+            return;
+        SaveState.InitialGameVersion = (int)initialGameVersionNumericUpDown.Value;
     }
 
     private void worldVersionNumericUpDown_ValueChanged(object sender, EventArgs e)
     {
-        if (SaveState is not null)
-            SaveState.WorldVersion = (int)worldVersionNumericUpDown.Value;
+        if (SaveState is null)
+            return;
+        SaveState.WorldVersion = (int)worldVersionNumericUpDown.Value;
     }
     #endregion
 
 
     #region Iterator
-
-
-
 
     private void InitIteratorTabPage()
     {
@@ -738,6 +737,8 @@ public partial class SlugConfigControl : UserControl
 
         void SetupLooksToTheMoonTabPage()
         {
+            moonReadPearlsListBox.Items.Clear();
+
             if (LooksToTheMoonState is not null)
             {
                 moonPlayerEncountersNumericUpDown.Value = LooksToTheMoonState.PlayerEncounters;
@@ -750,6 +751,11 @@ public partial class SlugConfigControl : UserControl
 
                 moonChatLogANumericUpDown.Value = LooksToTheMoonState.ChatLogA;
                 moonChatLogBNumericUpDown.Value = LooksToTheMoonState.ChatLogB;
+
+                foreach (var pearl in LooksToTheMoonState.DataPearlsRead)
+                {
+                    moonReadPearlsListBox.Items.Add(pearl);
+                }
             }
             else
             {
