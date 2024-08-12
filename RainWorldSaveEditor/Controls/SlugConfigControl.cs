@@ -22,7 +22,7 @@ public partial class SlugConfigControl : UserControl
     public DeathPersistentSaveData DeathPersistentSaveData => SaveState?.DeathPersistentSaveData!;
     public MiscWorldSaveData MiscWorldSaveData => SaveState?.MiscWorldSaveData!;
 
-    public LooksToTheMoonState LooksToTheMoonState => MiscWorldSaveData.LooksToTheMoonState!;
+    public LooksToTheMoonState LooksToTheMoonState => MiscWorldSaveData?.LooksToTheMoonState!;
 
     private void SlugConfigControl_Load(object sender, EventArgs e)
     {
