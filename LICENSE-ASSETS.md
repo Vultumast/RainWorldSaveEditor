@@ -20,11 +20,6 @@ Assets marked with the license "Rain World" are the intellectual property of the
 | scavenger_community_icon.png   | Scavenger Community Icon    | Rain World (Edited by Vultumast) | [Rain World Miraheze Wiki](https://static.miraheze.org/rainworldwiki/8/8d/Scavenger_icon.png)                  |
 | squidcada_community_icon.png   | Squidcada Community Icon    | Rain World (Edited by Vultumast) | [Rain World Miraheze Wiki](https://rainworld.miraheze.org/wiki/Squidcada#/media/File:Black_Squidcada_icon.png) |
 
-# RainWorldSaveEditor/Resources/Pearl
-| Name | Description | License | Source |
-| ---- | ----------- | ------- | ------ |
-| pearl.png | Generic White Pearl Icon | Rain World |[Rain World Miraheze Wiki](https://static.miraheze.org/rainworldwiki/0/09/Pearl_Misc.png) |
-
 # RainWorldSaveEditor/Resources/Slugcat/Icons
 | Name | Description | License | Source |
 | ---- | ----------- | ------- | ------ |
@@ -99,6 +94,7 @@ Assets marked with the license "Rain World" are the intellectual property of the
 | Name | Description | License | Source |
 | ---- | ----------- | ------- | ------ |
 | pearl_music.png | Music Pearl Icon | Rain World | [Rain World Miraheze Wiki](https://static.miraheze.org/rainworldwiki/7/7d/Pearl_RM.png) |
+| pearl_generic.png | Generic White Pearl Icon | Rain World |[Rain World Miraheze Wiki](https://static.miraheze.org/rainworldwiki/0/09/Pearl_Misc.png) |
 
 # RainWorldSaveEditor/Resources/UI/Slugcat
 | Name | Description | License | Source |
