@@ -62,13 +62,14 @@ partial class MainForm
         statusStrip1 = new StatusStrip();
         MoreInfoToolStripStatusLabel = new ToolStripStatusLabel();
         slugConfigControl = new Controls.SlugConfigControl();
+        explorerToolStripMenuItem = new ToolStripMenuItem();
         menuStrip1.SuspendLayout();
         statusStrip1.SuspendLayout();
         SuspendLayout();
         // 
         // menuStrip1
         // 
-        menuStrip1.Items.AddRange(new ToolStripItem[] { fileToolStripMenuItem, saveSlotToolStripMenuItem, slugcatsToolStripMenuItem, aboutToolStripMenuItem, toggleConsoleToolStripMenuItem });
+        menuStrip1.Items.AddRange(new ToolStripItem[] { fileToolStripMenuItem, saveSlotToolStripMenuItem, slugcatsToolStripMenuItem, aboutToolStripMenuItem, toggleConsoleToolStripMenuItem, explorerToolStripMenuItem });
         menuStrip1.Location = new Point(0, 0);
         menuStrip1.Name = "menuStrip1";
         menuStrip1.Size = new Size(800, 24);
@@ -142,13 +143,13 @@ partial class MainForm
         // 
         openToolStripMenuItem1.DropDownItems.AddRange(new ToolStripItem[] { openFile1ToolStripMenuItem, openFile2ToolStripMenuItem, openFile3ToolStripMenuItem, toolStripSeparator3, openFileToolStripMenuItem });
         openToolStripMenuItem1.Name = "openToolStripMenuItem1";
-        openToolStripMenuItem1.Size = new Size(180, 22);
+        openToolStripMenuItem1.Size = new Size(123, 22);
         openToolStripMenuItem1.Text = "Open";
         // 
         // openFile1ToolStripMenuItem
         // 
         openFile1ToolStripMenuItem.Name = "openFile1ToolStripMenuItem";
-        openFile1ToolStripMenuItem.Size = new Size(180, 22);
+        openFile1ToolStripMenuItem.Size = new Size(133, 22);
         openFile1ToolStripMenuItem.Text = "File 1";
         openFile1ToolStripMenuItem.ToolTipText = "Switch to Save File 1";
         openFile1ToolStripMenuItem.Click += openFile1ToolStripMenuItem_Click;
@@ -156,7 +157,7 @@ partial class MainForm
         // openFile2ToolStripMenuItem
         // 
         openFile2ToolStripMenuItem.Name = "openFile2ToolStripMenuItem";
-        openFile2ToolStripMenuItem.Size = new Size(180, 22);
+        openFile2ToolStripMenuItem.Size = new Size(133, 22);
         openFile2ToolStripMenuItem.Text = "File 2";
         openFile2ToolStripMenuItem.ToolTipText = "Switch to Save File 2";
         openFile2ToolStripMenuItem.Click += openFile2ToolStripMenuItem_Click;
@@ -164,7 +165,7 @@ partial class MainForm
         // openFile3ToolStripMenuItem
         // 
         openFile3ToolStripMenuItem.Name = "openFile3ToolStripMenuItem";
-        openFile3ToolStripMenuItem.Size = new Size(180, 22);
+        openFile3ToolStripMenuItem.Size = new Size(133, 22);
         openFile3ToolStripMenuItem.Text = "File 3";
         openFile3ToolStripMenuItem.ToolTipText = "Switch to Save File 3";
         openFile3ToolStripMenuItem.Click += openFile3ToolStripMenuItem_Click;
@@ -172,12 +173,12 @@ partial class MainForm
         // toolStripSeparator3
         // 
         toolStripSeparator3.Name = "toolStripSeparator3";
-        toolStripSeparator3.Size = new Size(177, 6);
+        toolStripSeparator3.Size = new Size(130, 6);
         // 
         // openFileToolStripMenuItem
         // 
         openFileToolStripMenuItem.Name = "openFileToolStripMenuItem";
-        openFileToolStripMenuItem.Size = new Size(180, 22);
+        openFileToolStripMenuItem.Size = new Size(133, 22);
         openFileToolStripMenuItem.Text = "Open File...";
         openFileToolStripMenuItem.ToolTipText = "Open an external Save File";
         openFileToolStripMenuItem.Click += openFileToolStripMenuItem_Click;
@@ -185,13 +186,13 @@ partial class MainForm
         // toolStripSeparator2
         // 
         toolStripSeparator2.Name = "toolStripSeparator2";
-        toolStripSeparator2.Size = new Size(177, 6);
+        toolStripSeparator2.Size = new Size(120, 6);
         // 
         // saveToolStripMenuItem
         // 
         saveToolStripMenuItem.Enabled = false;
         saveToolStripMenuItem.Name = "saveToolStripMenuItem";
-        saveToolStripMenuItem.Size = new Size(180, 22);
+        saveToolStripMenuItem.Size = new Size(123, 22);
         saveToolStripMenuItem.Text = "Save";
         saveToolStripMenuItem.Click += saveToolStripMenuItem_Click;
         // 
@@ -199,7 +200,7 @@ partial class MainForm
         // 
         saveAsToolStripMenuItem.Enabled = false;
         saveAsToolStripMenuItem.Name = "saveAsToolStripMenuItem";
-        saveAsToolStripMenuItem.Size = new Size(180, 22);
+        saveAsToolStripMenuItem.Size = new Size(123, 22);
         saveAsToolStripMenuItem.Text = "Save As...";
         saveAsToolStripMenuItem.Click += saveAsToolStripMenuItem_Click;
         // 
@@ -299,6 +300,13 @@ partial class MainForm
         slugConfigControl.Size = new Size(800, 404);
         slugConfigControl.TabIndex = 3;
         // 
+        // explorerToolStripMenuItem
+        // 
+        explorerToolStripMenuItem.Name = "explorerToolStripMenuItem";
+        explorerToolStripMenuItem.Size = new Size(62, 20);
+        explorerToolStripMenuItem.Text = "Explorer";
+        explorerToolStripMenuItem.Click += explorerToolStripMenuItem_Click;
+        // 
         // MainForm
         // 
         AutoScaleDimensions = new SizeF(7F, 15F);
@@ -354,4 +362,5 @@ partial class MainForm
     private ToolStripMenuItem exportToolStripMenuItem;
     private ToolStripMenuItem importToolStripMenuItem;
     private ToolStripMenuItem userProfileToolStripMenuItem;
+    private ToolStripMenuItem explorerToolStripMenuItem;
 }

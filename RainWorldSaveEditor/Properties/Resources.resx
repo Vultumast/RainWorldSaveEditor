@@ -118,8 +118,14 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="Add_16x" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\UI\Add_16x.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="artificer_drone" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\UI\Slugcat\artificer_drone.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Cancel_16x" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\UI\Cancel_16x.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="CommunityInfo_Garbageworm" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Creature Community\Info\garbageworm.json;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
@@ -351,6 +357,15 @@
   </data>
   <data name="rarefaction_cell_icon" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\UI\Iterator Icons\rarefaction_cell_icon.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="SaveExplorer_BooleanData_16x" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\UI\SaveEditor\BooleanData_16x.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="SaveExplorer_Integer_16x" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\UI\SaveEditor\Integer_16x.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="SaveExplorer_String_16x" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\UI\SaveEditor\String_16x.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="shelter_icon" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\UI\shelter_icon.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>

@@ -63,9 +63,29 @@ namespace RainWorldSaveEditor.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap Add_16x {
+            get {
+                object obj = ResourceManager.GetObject("Add_16x", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap artificer_drone {
             get {
                 object obj = ResourceManager.GetObject("artificer_drone", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Cancel_16x {
+            get {
+                object obj = ResourceManager.GetObject("Cancel_16x", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -836,6 +856,36 @@ namespace RainWorldSaveEditor.Properties {
         internal static System.Drawing.Bitmap rarefaction_cell_icon {
             get {
                 object obj = ResourceManager.GetObject("rarefaction_cell_icon", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap SaveExplorer_BooleanData_16x {
+            get {
+                object obj = ResourceManager.GetObject("SaveExplorer_BooleanData_16x", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap SaveExplorer_Integer_16x {
+            get {
+                object obj = ResourceManager.GetObject("SaveExplorer_Integer_16x", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap SaveExplorer_String_16x {
+            get {
+                object obj = ResourceManager.GetObject("SaveExplorer_String_16x", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

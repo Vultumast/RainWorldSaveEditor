@@ -422,4 +422,13 @@ public partial class MainForm : Form
 
     }
     #endregion
+
+    private void explorerToolStripMenuItem_Click(object sender, EventArgs e)
+    {
+        using SaveExplorer form = new();
+
+        form.Save = _save;
+
+        form.ShowDialog();
+    }
 }
