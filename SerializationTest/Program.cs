@@ -16,34 +16,83 @@ internal static partial class Program
     const string LoadPath = "saves";
     const string WritePath = "results";
 
+    const string LoadPathExpedition = "saves_exp";
+    const string WritePathExpedition = "results_exp";
+
     static Stopwatch Stopwatch { get; } = new();
 
     static void Main(string[] args)
     {
         Directory.CreateDirectory(LoadPath);
         Directory.CreateDirectory(WritePath);
+        Directory.CreateDirectory(LoadPathExpedition);
+        Directory.CreateDirectory(WritePathExpedition);
 
-        var files = Directory.GetFiles(LoadPath);
+        var saveFiles = Directory.GetFiles(LoadPath);
 
-        Console.WriteLine($"Found {files.Length} files under \"{LoadPath}\".");
-
-        if (files.Length == 0)
+        if (saveFiles.Length == 0)
         {
             Console.WriteLine($"No saves found, put the saves you want to test under \"{LoadPath}\".");
-            return;
+        }
+        else
+        {
+            Console.WriteLine($"Found {saveFiles.Length} save files under \"{LoadPath}\".");
+
+            Stopwatch.Start();
+            foreach (var file in saveFiles.Select(Path.GetFileName).Where(x => x != null).Cast<string>())
+            {
+                RunRWSaveSerializationTest(file);
+            }
+            Stopwatch.Stop();
         }
 
-        Stopwatch.Start();
-        foreach (var file in files.Select(Path.GetFileName).Where(x => x != null).Cast<string>())
+        var expeditionFiles = Directory.GetFiles(LoadPathExpedition);
+
+        if (expeditionFiles.Length == 0)
         {
-            RunSerializationTest(file);
+            Console.WriteLine($"No expedition files found, put the saves you want to test under \"{LoadPathExpedition}\".");
         }
-        Stopwatch.Stop();
+        else
+        {
+            Console.WriteLine($"Found {expeditionFiles.Length} expedition files under \"{LoadPathExpedition}\".");
+
+            Stopwatch.Start();
+            foreach (var file in expeditionFiles.Select(Path.GetFileName).Where(x => x != null).Cast<string>())
+            {
+                RunRWExpeditionSerializationTest(file);
+            }
+            Stopwatch.Stop();
+        }
     }
 
-    private static void RunSerializationTest(string file)
+    private static void RunRWExpeditionSerializationTest(string file)
     {
-        Console.WriteLine($"Checking file {file}...");
+        Console.WriteLine($"Checking expedition file {file}...");
+
+        try
+        {
+            var inputPath = Path.Combine(LoadPathExpedition, file);
+            var resultsPath = Path.Combine(WritePathExpedition, file);
+
+            Directory.CreateDirectory(resultsPath);
+
+            using var apiLoggerStream = new StreamWriter(File.Open(Path.Combine(resultsPath, "apilog.txt"), FileMode.Create));
+            Logger.LogStreamWriter = apiLoggerStream;
+            Logger.LogToConsole = false;
+
+            GetExpeditionOriginalAndParsed(inputPath, out var original, out var parsed);
+            WriteExpeditionComparisons(resultsPath, original, parsed);
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine($"Encountered an exception while checking file {file}!");
+            Console.WriteLine($"{e}");
+        }
+    }
+
+    private static void RunRWSaveSerializationTest(string file)
+    {
+        Console.WriteLine($"Checking save file {file}...");
 
         try
         {
@@ -57,13 +106,55 @@ internal static partial class Program
             Logger.LogToConsole = false;
 
             GetSaveOriginalAndParsed(inputPath, out var original, out var parsed);
-            WriteComparisons(resultsPath, original, parsed);
+            WriteSaveComparisons(resultsPath, original, parsed);
         }
         catch (Exception e)
         {
             Console.WriteLine($"Encountered an exception while checking file {file}!");
             Console.WriteLine($"{e}");
         }
+    }
+
+    private static void GetExpeditionOriginalAndParsed(string path, out string original, out string parsed)
+    {
+        var startTime = Stopwatch.Elapsed;
+
+        using var fs = File.OpenRead(path);
+
+        var table = HashtableSerializer.Read(fs);
+        var save = new ExpeditionCoreSave();
+
+        if (table["core"] is not string saveData)
+            throw new InvalidOperationException("Expected expedition hashtable to have a \"core\" field.");
+
+        save.Read(saveData);
+
+        var readTime = Stopwatch.Elapsed;
+
+        var serializedData = save.Write();
+
+        var writeTime = Stopwatch.Elapsed;
+
+        original = saveData;
+        parsed = serializedData;
+
+        Console.WriteLine($"Time taken - read: {(readTime - startTime).Milliseconds}ms, write: {(writeTime - readTime).Milliseconds}ms.");
+    }
+
+    private static void WriteExpeditionComparisons(string resultsPath, string original, string parsed)
+    {
+        File.WriteAllText(Path.Combine(resultsPath, "original.txt"), original);
+        File.WriteAllText(Path.Combine(resultsPath, "parsed.txt"), parsed);
+
+        string originalText = Format(original);
+        string parsedText = Format(parsed);
+
+        File.WriteAllText(Path.Combine(resultsPath, "original_indented.txt"), originalText);
+        File.WriteAllText(Path.Combine(resultsPath, "parsed_indented.txt"), parsedText);
+
+        using StreamWriter writer = new StreamWriter(File.Open(Path.Combine(resultsPath, "stats.txt"), FileMode.Create));
+
+        CompareSections(originalText, parsedText, originalText[0..10], originalText[^10..^0], $"Expedition save data", writer);
     }
 
     private static void GetSaveOriginalAndParsed(string path, out string original, out string parsed)
@@ -95,7 +186,7 @@ internal static partial class Program
     [GeneratedRegex("SAV STATE NUMBER(?:\r|\n|\r\n)<svB>(?:\r|\n|\r\n)([^<\r\n]*)(?:\r|\n|\r\n)<svA>")]
     private static partial Regex SaveStateSectionRegex();
 
-    private static void WriteComparisons(string resultsPath, string original, string parsed)
+    private static void WriteSaveComparisons(string resultsPath, string original, string parsed)
     {
         File.WriteAllText(Path.Combine(resultsPath, "original.txt"), original);
         File.WriteAllText(Path.Combine(resultsPath, "parsed.txt"), parsed);
