@@ -3,13 +3,11 @@ using RainWorldSaveEditor.Editor_Classes;
 namespace RainWorldSaveEditor;
 struct LockInfo
 {
-    public LockInfo(ulong id64, ulong id3, string name)
+    public LockInfo(ulong id64, ulong id3)
     {
         ID64 = id64;
         ID3 = id3;
-        Name = name;
     }
-    public string Name;
     public ulong ID64;
     public ulong ID3;
 }
@@ -17,15 +15,15 @@ struct LockInfo
 internal static class Program
 {
     static LockInfo[] lockList =
-    {
-            new LockInfo(76561198452960140, 492694412, "Ray"), // Ray
-			new LockInfo(76561199524109180, 1563843452, "Cato"), // Cato
-			new LockInfo(76561198359604077, 399338349, "Jas"), // Jas
-			new LockInfo(76561198324455426, 364189698, "Lux"), // Lux
-			new LockInfo(76561198251907980, 291642252, "Mae"), // Mae
-			new LockInfo(76561198142589722, 182323994, "Nei"), // Nei
-			new LockInfo(76561198861589814, 901324086, "Catle"), // Catle
-			new LockInfo(76561199097603288, 1137337560, "Batcatz"), // Batcatz
+        {
+            new LockInfo(76561198452960140, 492694412), // Ray
+			new LockInfo(76561199524109180, 1563843452), // Cato
+			new LockInfo(76561198359604077, 399338349), // Jas
+			new LockInfo(76561198324455426, 364189698), // Lux
+			new LockInfo(76561198251907980, 291642252), // Mae
+			new LockInfo(76561198142589722, 182323994), // Nei
+			new LockInfo(76561198016695077, 56429349), // Bird
+			new LockInfo(76561199097603288, 1137337560) // Batcatz
 		};
 
     /// <summary>
@@ -60,10 +58,10 @@ internal static class Program
             if (exit)
             {
                 MessageBox.Show(
-                    $"{lockInfo.Name}, you are not authorized to use my works. In any shape or form.\n" +
-                    $"The program will now exit.", $"Hello {lockInfo.Name}");
+                    $"You are not authorized to use my works. In any shape or form.\n" +
+                    $"The program will now exit.", $"Hello");
                 return;
-            }    
+            }
         }
 
         Application.ThreadException += Application_ThreadException;

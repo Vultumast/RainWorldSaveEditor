@@ -42,8 +42,27 @@ public partial class SaveExplorer : Form
             if (prop.PropertyType.IsGenericType)
                 isMultiList = prop.PropertyType.GetGenericTypeDefinition() == typeof(MultiList<>);
 
+            if (isMultiList)
+            {
+                dynamic prop22 = prop.GetValue(target, null)!;
+                var node = parentNode.Nodes.Add(prop.Name);
+                var prop2 = target.GetType().GetProperty(prop.Name);
+                var aa = prop2.GetValue(target, null);
+                node.Tag = new SaveExplorerNodeTag(node, aa, prop, false);
 
-            if (prop.PropertyType.IsSubclassOf(typeof(SaveElementContainer)) || isMultiList)
+                node.ContextMenuStrip = nodeContextMenuStrip;
+
+                for (var i = 0; i < prop22.Count; i++)
+                {
+                    Console.WriteLine(prop22.GetType());
+                    if (prop22[i].GetType() == typeof(SaveState))
+                        node.Nodes.Add(prop22[i].SaveStateNumber);
+
+                    // if (aa is not null)
+                    //    AddEntriesToTreeNode(aa, node);
+                }
+            }
+            else if (prop.PropertyType.IsSubclassOf(typeof(SaveElementContainer)) || isMultiList)
             {
                 var node = parentNode.Nodes.Add(prop.Name);
 
@@ -61,6 +80,9 @@ public partial class SaveExplorer : Form
 
         }
     }
+
+
+
     private void nodeContextMenuStrip_Opening(object sender, CancelEventArgs e)
     {
         Console.WriteLine(sender);
