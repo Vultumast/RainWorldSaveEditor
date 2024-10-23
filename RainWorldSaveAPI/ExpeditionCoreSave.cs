@@ -172,7 +172,7 @@ public class ExpeditionCoreSave
                             Slugcat = slugcatName,
                             Data = arg
                         };
-                        AddOrUpdate(Unlocks, entry, x => x.Slugcat == slugcatName);
+                        Unlocks.Add(entry);
                     }
                 }
                 else if (section == "CHALLENGES")
@@ -189,7 +189,7 @@ public class ExpeditionCoreSave
                         Type = type,
                         Data = data
                     };
-                    AddOrUpdate(ChallengeEntries, entry, x => x.Slugcat == slugcatName);
+                    ChallengeEntries.Add(entry);
                 }
                 else if (section == "MISSION")
                 {
@@ -197,23 +197,27 @@ public class ExpeditionCoreSave
                     string slugcatName = args[0];
                     string activeMissions = args[1];
 
-                    var entry = new ActiveMissionEntry
+                    if (!ActiveMissionEntries.Any(x => x.Slugcat == slugcatName))
                     {
-                        Slugcat = slugcatName,
-                        Data = activeMissions
-                    };
-                    AddOrUpdate(ActiveMissionEntries, entry, x => x.Slugcat == slugcatName);
+                        var entry = new ActiveMissionEntry
+                        {
+                            Slugcat = slugcatName,
+                            Data = activeMissions
+                        };
+                        ActiveMissionEntries.Add(entry);
+                    }
                 }
                 else if (section == "TIMES")
                 {
                     string[] args = part.Split('#');
                     string mission = args[0];
                     int time = int.Parse(args[1]);
-                    MissionBestTimes.Add(new()
+                    var entry = new MissionBestTime()
                     {
                         Mission = mission,
                         Time = time
-                    });
+                    };
+                    AddOrUpdate(MissionBestTimes, entry, x => x.Mission == mission);
                 }
                 else if (section == "CONTENT")
                 {

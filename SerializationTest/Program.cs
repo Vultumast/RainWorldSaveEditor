@@ -62,6 +62,14 @@ internal static partial class Program
                 RunRWExpeditionSerializationTest(file);
             }
             Stopwatch.Stop();
+
+            Console.WriteLine("Open output folder? Y/n: ");
+
+            if (char.ToLower(Console.ReadKey(true).KeyChar) == 'y')
+            {
+                Console.WriteLine("Opening folder...");
+                Process.Start("explorer.exe", Directory.GetCurrentDirectory());
+            }
         }
     }
 
