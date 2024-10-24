@@ -45,6 +45,11 @@ partial class MainForm
         openFile2ToolStripMenuItem = new ToolStripMenuItem();
         openFile3ToolStripMenuItem = new ToolStripMenuItem();
         toolStripSeparator3 = new ToolStripSeparator();
+        openExpeditionToolStripMenuItem = new ToolStripMenuItem();
+        openExpeditionFile1ToolStripMenuItem = new ToolStripMenuItem();
+        openExpeditionFile2ToolStripMenuItem = new ToolStripMenuItem();
+        openExpeditionFile3ToolStripMenuItem = new ToolStripMenuItem();
+        toolStripSeparator5 = new ToolStripSeparator();
         openFileToolStripMenuItem = new ToolStripMenuItem();
         toolStripSeparator2 = new ToolStripSeparator();
         saveToolStripMenuItem = new ToolStripMenuItem();
@@ -140,14 +145,14 @@ partial class MainForm
         // 
         // saveSlotToolStripMenuItem
         // 
-        saveSlotToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { openToolStripMenuItem1, toolStripSeparator2, saveToolStripMenuItem, saveAsToolStripMenuItem });
+        saveSlotToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { openToolStripMenuItem1, openExpeditionToolStripMenuItem, openFileToolStripMenuItem, toolStripSeparator2, saveToolStripMenuItem, saveAsToolStripMenuItem });
         saveSlotToolStripMenuItem.Name = "saveSlotToolStripMenuItem";
         saveSlotToolStripMenuItem.Size = new Size(66, 20);
         saveSlotToolStripMenuItem.Text = "Save Slot";
         // 
         // openToolStripMenuItem1
         // 
-        openToolStripMenuItem1.DropDownItems.AddRange(new ToolStripItem[] { openFile1ToolStripMenuItem, openFile2ToolStripMenuItem, openFile3ToolStripMenuItem, toolStripSeparator3, openFileToolStripMenuItem });
+        openToolStripMenuItem1.DropDownItems.AddRange(new ToolStripItem[] { openFile1ToolStripMenuItem, openFile2ToolStripMenuItem, openFile3ToolStripMenuItem, toolStripSeparator3 });
         openToolStripMenuItem1.Name = "openToolStripMenuItem1";
         openToolStripMenuItem1.Size = new Size(180, 22);
         openToolStripMenuItem1.Text = "Open";
@@ -155,7 +160,7 @@ partial class MainForm
         // openFile1ToolStripMenuItem
         // 
         openFile1ToolStripMenuItem.Name = "openFile1ToolStripMenuItem";
-        openFile1ToolStripMenuItem.Size = new Size(133, 22);
+        openFile1ToolStripMenuItem.Size = new Size(180, 22);
         openFile1ToolStripMenuItem.Text = "File 1";
         openFile1ToolStripMenuItem.ToolTipText = "Switch to Save File 1";
         openFile1ToolStripMenuItem.Click += openFile1ToolStripMenuItem_Click;
@@ -163,7 +168,7 @@ partial class MainForm
         // openFile2ToolStripMenuItem
         // 
         openFile2ToolStripMenuItem.Name = "openFile2ToolStripMenuItem";
-        openFile2ToolStripMenuItem.Size = new Size(133, 22);
+        openFile2ToolStripMenuItem.Size = new Size(180, 22);
         openFile2ToolStripMenuItem.Text = "File 2";
         openFile2ToolStripMenuItem.ToolTipText = "Switch to Save File 2";
         openFile2ToolStripMenuItem.Click += openFile2ToolStripMenuItem_Click;
@@ -171,7 +176,7 @@ partial class MainForm
         // openFile3ToolStripMenuItem
         // 
         openFile3ToolStripMenuItem.Name = "openFile3ToolStripMenuItem";
-        openFile3ToolStripMenuItem.Size = new Size(133, 22);
+        openFile3ToolStripMenuItem.Size = new Size(180, 22);
         openFile3ToolStripMenuItem.Text = "File 3";
         openFile3ToolStripMenuItem.ToolTipText = "Switch to Save File 3";
         openFile3ToolStripMenuItem.Click += openFile3ToolStripMenuItem_Click;
@@ -179,12 +184,48 @@ partial class MainForm
         // toolStripSeparator3
         // 
         toolStripSeparator3.Name = "toolStripSeparator3";
-        toolStripSeparator3.Size = new Size(130, 6);
+        toolStripSeparator3.Size = new Size(177, 6);
+        // 
+        // openExpeditionToolStripMenuItem
+        // 
+        openExpeditionToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { openExpeditionFile1ToolStripMenuItem, openExpeditionFile2ToolStripMenuItem, openExpeditionFile3ToolStripMenuItem, toolStripSeparator5 });
+        openExpeditionToolStripMenuItem.Name = "openExpeditionToolStripMenuItem";
+        openExpeditionToolStripMenuItem.Size = new Size(180, 22);
+        openExpeditionToolStripMenuItem.Text = "Open Expedition";
+        // 
+        // openExpeditionFile1ToolStripMenuItem
+        // 
+        openExpeditionFile1ToolStripMenuItem.Name = "openExpeditionFile1ToolStripMenuItem";
+        openExpeditionFile1ToolStripMenuItem.Size = new Size(180, 22);
+        openExpeditionFile1ToolStripMenuItem.Text = "Expedition File 1";
+        openExpeditionFile1ToolStripMenuItem.ToolTipText = "Switch to Expedition Save File 1";
+        openExpeditionFile1ToolStripMenuItem.Click += openExpeditionFile1ToolStripMenuItem_Click;
+        // 
+        // openExpeditionFile2ToolStripMenuItem
+        // 
+        openExpeditionFile2ToolStripMenuItem.Name = "openExpeditionFile2ToolStripMenuItem";
+        openExpeditionFile2ToolStripMenuItem.Size = new Size(180, 22);
+        openExpeditionFile2ToolStripMenuItem.Text = "Expedition File 2";
+        openExpeditionFile2ToolStripMenuItem.ToolTipText = "Switch to Expedition Save File 2";
+        openExpeditionFile2ToolStripMenuItem.Click += openExpeditionFile2ToolStripMenuItem_Click;
+        // 
+        // openExpeditionFile3ToolStripMenuItem
+        // 
+        openExpeditionFile3ToolStripMenuItem.Name = "openExpeditionFile3ToolStripMenuItem";
+        openExpeditionFile3ToolStripMenuItem.Size = new Size(180, 22);
+        openExpeditionFile3ToolStripMenuItem.Text = "Expedition File 3";
+        openExpeditionFile3ToolStripMenuItem.ToolTipText = "Switch to Expedition Save File 3";
+        openExpeditionFile3ToolStripMenuItem.Click += openExpeditionFile3ToolStripMenuItem_Click;
+        // 
+        // toolStripSeparator5
+        // 
+        toolStripSeparator5.Name = "toolStripSeparator5";
+        toolStripSeparator5.Size = new Size(177, 6);
         // 
         // openFileToolStripMenuItem
         // 
         openFileToolStripMenuItem.Name = "openFileToolStripMenuItem";
-        openFileToolStripMenuItem.Size = new Size(133, 22);
+        openFileToolStripMenuItem.Size = new Size(180, 22);
         openFileToolStripMenuItem.Text = "Open File...";
         openFileToolStripMenuItem.ToolTipText = "Open an external Save File";
         openFileToolStripMenuItem.Click += openFileToolStripMenuItem_Click;
@@ -221,31 +262,31 @@ partial class MainForm
         // vanillaSlugcatsToolStripMenuItem
         // 
         vanillaSlugcatsToolStripMenuItem.Name = "vanillaSlugcatsToolStripMenuItem";
-        vanillaSlugcatsToolStripMenuItem.Size = new Size(180, 22);
+        vanillaSlugcatsToolStripMenuItem.Size = new Size(119, 22);
         vanillaSlugcatsToolStripMenuItem.Text = "Vanilla";
         // 
         // dlcSlugcatsToolStripMenuItem
         // 
         dlcSlugcatsToolStripMenuItem.Name = "dlcSlugcatsToolStripMenuItem";
-        dlcSlugcatsToolStripMenuItem.Size = new Size(180, 22);
+        dlcSlugcatsToolStripMenuItem.Size = new Size(119, 22);
         dlcSlugcatsToolStripMenuItem.Text = "DLC";
         // 
         // moddedSlugcatsToolStripMenuItem
         // 
         moddedSlugcatsToolStripMenuItem.Name = "moddedSlugcatsToolStripMenuItem";
-        moddedSlugcatsToolStripMenuItem.Size = new Size(180, 22);
+        moddedSlugcatsToolStripMenuItem.Size = new Size(119, 22);
         moddedSlugcatsToolStripMenuItem.Text = "Modded";
         // 
         // toolStripSeparator4
         // 
         toolStripSeparator4.Name = "toolStripSeparator4";
-        toolStripSeparator4.Size = new Size(177, 6);
+        toolStripSeparator4.Size = new Size(116, 6);
         // 
         // exportToolStripMenuItem
         // 
         exportToolStripMenuItem.Enabled = false;
         exportToolStripMenuItem.Name = "exportToolStripMenuItem";
-        exportToolStripMenuItem.Size = new Size(180, 22);
+        exportToolStripMenuItem.Size = new Size(119, 22);
         exportToolStripMenuItem.Text = "Export...";
         exportToolStripMenuItem.ToolTipText = "Export current slugcat slot";
         exportToolStripMenuItem.Click += exportToolStripMenuItem_Click;
@@ -254,7 +295,7 @@ partial class MainForm
         // 
         importToolStripMenuItem.Enabled = false;
         importToolStripMenuItem.Name = "importToolStripMenuItem";
-        importToolStripMenuItem.Size = new Size(180, 22);
+        importToolStripMenuItem.Size = new Size(119, 22);
         importToolStripMenuItem.Text = "Import...";
         importToolStripMenuItem.ToolTipText = "Import a file to overwrite a slugcat slot";
         importToolStripMenuItem.Click += importToolStripMenuItem_Click;
@@ -329,7 +370,7 @@ partial class MainForm
         tabPage2.Location = new Point(4, 24);
         tabPage2.Name = "tabPage2";
         tabPage2.Padding = new Padding(3);
-        tabPage2.Size = new Size(792, 398);
+        tabPage2.Size = new Size(192, 72);
         tabPage2.TabIndex = 1;
         tabPage2.Text = "VanillaMaps";
         tabPage2.UseVisualStyleBackColor = true;
@@ -339,7 +380,7 @@ partial class MainForm
         tabPage3.Location = new Point(4, 24);
         tabPage3.Name = "tabPage3";
         tabPage3.Padding = new Padding(3);
-        tabPage3.Size = new Size(484, 312);
+        tabPage3.Size = new Size(192, 72);
         tabPage3.TabIndex = 2;
         tabPage3.Text = "VanillaMapUpdates";
         tabPage3.UseVisualStyleBackColor = true;
@@ -349,7 +390,7 @@ partial class MainForm
         tabPage4.Location = new Point(4, 24);
         tabPage4.Name = "tabPage4";
         tabPage4.Padding = new Padding(3);
-        tabPage4.Size = new Size(484, 312);
+        tabPage4.Size = new Size(192, 72);
         tabPage4.TabIndex = 3;
         tabPage4.Text = "Modded Maps";
         tabPage4.UseVisualStyleBackColor = true;
@@ -359,7 +400,7 @@ partial class MainForm
         tabPage5.Location = new Point(4, 24);
         tabPage5.Name = "tabPage5";
         tabPage5.Padding = new Padding(3);
-        tabPage5.Size = new Size(792, 398);
+        tabPage5.Size = new Size(192, 72);
         tabPage5.TabIndex = 4;
         tabPage5.Text = "Modded Map Updates";
         tabPage5.UseVisualStyleBackColor = true;
@@ -369,7 +410,7 @@ partial class MainForm
         tabPage6.Location = new Point(4, 24);
         tabPage6.Name = "tabPage6";
         tabPage6.Padding = new Padding(3);
-        tabPage6.Size = new Size(792, 398);
+        tabPage6.Size = new Size(192, 72);
         tabPage6.TabIndex = 5;
         tabPage6.Text = "Misc Progression Data";
         tabPage6.UseVisualStyleBackColor = true;
@@ -409,7 +450,6 @@ partial class MainForm
     private ToolStripMenuItem openFile2ToolStripMenuItem;
     private ToolStripMenuItem openFile3ToolStripMenuItem;
     private ToolStripSeparator toolStripSeparator3;
-    private ToolStripMenuItem openFileToolStripMenuItem;
     private ToolStripSeparator toolStripSeparator2;
     private ToolStripMenuItem saveToolStripMenuItem;
     private ToolStripMenuItem saveAsToolStripMenuItem;
@@ -434,4 +474,10 @@ partial class MainForm
     private TabPage tabPage4;
     private TabPage tabPage5;
     private TabPage tabPage6;
+    private ToolStripMenuItem openExpeditionToolStripMenuItem;
+    private ToolStripMenuItem openExpeditionFile1ToolStripMenuItem;
+    private ToolStripMenuItem openExpeditionFile2ToolStripMenuItem;
+    private ToolStripMenuItem openExpeditionFile3ToolStripMenuItem;
+    private ToolStripSeparator toolStripSeparator5;
+    private ToolStripMenuItem openFileToolStripMenuItem;
 }

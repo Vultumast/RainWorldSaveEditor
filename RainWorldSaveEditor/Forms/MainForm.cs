@@ -10,6 +10,13 @@ namespace RainWorldSaveEditor;
 
 public partial class MainForm : Form
 {
+    public enum SaveTypes
+    {
+        MainSave,
+        ExpeditionSave,
+        Arbitrary
+    }
+
     Settings settings = new();
 
     SlugcatInfo _slugcatInfo = null!;
@@ -26,16 +33,49 @@ public partial class MainForm : Form
     {
         get
         {
-            if (openFile1ToolStripMenuItem.Checked)
+            if (openFile1ToolStripMenuItem.Checked || openExpeditionFile1ToolStripMenuItem.Checked)
                 return 1;
-            if (openFile2ToolStripMenuItem.Checked)
+            if (openFile2ToolStripMenuItem.Checked || openExpeditionFile2ToolStripMenuItem.Checked)
                 return 2;
-            if (openFile3ToolStripMenuItem.Checked)
+            if (openFile3ToolStripMenuItem.Checked || openExpeditionFile3ToolStripMenuItem.Checked)
                 return 3;
 
             return -1;
         }
     }
+
+    public SaveTypes SaveType
+    {
+        get
+        {
+            if (openFile1ToolStripMenuItem.Checked || openFile2ToolStripMenuItem.Checked || openFile3ToolStripMenuItem.Checked)
+                return SaveTypes.MainSave;
+
+            if (openExpeditionFile1ToolStripMenuItem.Checked || openExpeditionFile2ToolStripMenuItem.Checked || openExpeditionFile3ToolStripMenuItem.Checked)
+                return SaveTypes.ExpeditionSave;
+
+            return SaveTypes.Arbitrary;
+        }
+    }
+
+    public string SaveLocation
+    {
+        get
+        {
+            if (SaveType == SaveTypes.Arbitrary)
+                return ExternalSaveLocation;
+
+            else if (SaveType == SaveTypes.MainSave)
+                return SaveID switch
+                {
+                    1 => $"{settings.RainWorldSaveDirectory}\\sav",
+                    _ => $"{settings.RainWorldSaveDirectory}\\sav{SaveID}"
+                };
+
+            else return $"{settings.RainWorldSaveDirectory}\\exp{SaveID}";
+        }
+    }
+
     #endregion
 
     #region Private Methods
@@ -60,12 +100,21 @@ public partial class MainForm : Form
         openFile1ToolStripMenuItem.Checked = false;
         openFile2ToolStripMenuItem.Checked = false;
         openFile3ToolStripMenuItem.Checked = false;
+
+        openExpeditionFile1ToolStripMenuItem.Enabled = File.Exists(Path.Combine(settings.RainWorldSaveDirectory, "exp1"));
+        openExpeditionFile2ToolStripMenuItem.Enabled = File.Exists(Path.Combine(settings.RainWorldSaveDirectory, "exp2"));
+        openExpeditionFile3ToolStripMenuItem.Enabled = File.Exists(Path.Combine(settings.RainWorldSaveDirectory, "exp3"));
+
+        openExpeditionFile1ToolStripMenuItem.Checked = false;
+        openExpeditionFile2ToolStripMenuItem.Checked = false;
+        openExpeditionFile3ToolStripMenuItem.Checked = false;
     }
 
 
     void LoadSaveData(string filepath)
     {
         UnloadSave();
+        Logger.Info($"Reading save file \"{filepath}\"");
         _save = new();
         slugcatsToolStripMenuItem.Enabled = true;
 
@@ -309,38 +358,58 @@ public partial class MainForm : Form
 
     }
 
-    private void openFile1ToolStripMenuItem_Click(object sender, EventArgs e)
+    private void ClearLoadedFile()
     {
-        openFile1ToolStripMenuItem.Checked = true;
+        openFile1ToolStripMenuItem.Checked = false;
         openFile2ToolStripMenuItem.Checked = false;
         openFile3ToolStripMenuItem.Checked = false;
+        openExpeditionFile1ToolStripMenuItem.Checked = false;
+        openExpeditionFile2ToolStripMenuItem.Checked = false;
+        openExpeditionFile3ToolStripMenuItem.Checked = false;
         openFileToolStripMenuItem.Checked = false;
-        LoadSaveData($"{settings.RainWorldSaveDirectory}\\sav");
+        ExternalSaveLocation = string.Empty;
+    }
 
+    private void openFile1ToolStripMenuItem_Click(object sender, EventArgs e)
+    {
+        ClearLoadedFile();
+        openFile1ToolStripMenuItem.Checked = true;
+        LoadSaveData(SaveLocation);
     }
 
     private void openFile2ToolStripMenuItem_Click(object sender, EventArgs e)
     {
-        openFile1ToolStripMenuItem.Checked = false;
+        ClearLoadedFile();
         openFile2ToolStripMenuItem.Checked = true;
-        openFile3ToolStripMenuItem.Checked = false;
-        openFileToolStripMenuItem.Checked = false;
-
-        ExternalSaveLocation = string.Empty;
-
-        LoadSaveData($"{settings.RainWorldSaveDirectory}\\sav2");
+        LoadSaveData(SaveLocation);
     }
 
     private void openFile3ToolStripMenuItem_Click(object sender, EventArgs e)
     {
-        openFile1ToolStripMenuItem.Checked = false;
-        openFile2ToolStripMenuItem.Checked = false;
+        ClearLoadedFile();
         openFile3ToolStripMenuItem.Checked = true;
-        openFileToolStripMenuItem.Checked = false;
+        LoadSaveData(SaveLocation);
+    }
 
-        ExternalSaveLocation = string.Empty;
+    private void openExpeditionFile1ToolStripMenuItem_Click(object sender, EventArgs e)
+    {
+        ClearLoadedFile();
+        openExpeditionFile1ToolStripMenuItem.Checked = true;
+        LoadSaveData(SaveLocation);
+    }
 
-        LoadSaveData($"{settings.RainWorldSaveDirectory}\\sav3");
+    private void openExpeditionFile2ToolStripMenuItem_Click(object sender, EventArgs e)
+    {
+        ClearLoadedFile();
+        openExpeditionFile2ToolStripMenuItem.Checked = true;
+        LoadSaveData(SaveLocation);
+    }
+
+    private void openExpeditionFile3ToolStripMenuItem_Click(object sender, EventArgs e)
+    {
+        ClearLoadedFile();
+        openExpeditionFile3ToolStripMenuItem.Checked = true;
+        LoadSaveData(SaveLocation);
     }
 
     private void openFileToolStripMenuItem_Click(object sender, EventArgs e)
@@ -350,12 +419,8 @@ public partial class MainForm : Form
         if (dialog.ShowDialog() != DialogResult.OK)
             return;
 
-        openFile1ToolStripMenuItem.Checked = false;
-        openFile2ToolStripMenuItem.Checked = false;
-        openFile3ToolStripMenuItem.Checked = false;
+        ClearLoadedFile();
         openFileToolStripMenuItem.Checked = true;
-
-
         ExternalSaveLocation = dialog.FileName;
         Logger.Info($"Opening save file {dialog.FileName}");
         LoadSaveData(dialog.FileName);
@@ -369,17 +434,11 @@ public partial class MainForm : Form
 
     private void saveToolStripMenuItem_Click(object sender, EventArgs e)
     {
-        string filepath = settings.RainWorldSaveDirectory + "\\sav" + (SaveID == 1 ? string.Empty : SaveID.ToString());
+        string filepath = SaveLocation;
 
         Logger.Info($"Writing save file {filepath}");
 
-
-        if (UsingExternalSave)
-        {
-            throw new NotImplementedException();
-        }
-        else
-            WriteSaveData(filepath);
+        WriteSaveData(SaveLocation);
     }
     private void saveAsToolStripMenuItem_Click(object sender, EventArgs e)
     {
@@ -390,6 +449,10 @@ public partial class MainForm : Form
 
         Logger.Info($"Writing save file {dialog.FileName}");
         WriteSaveData(dialog.FileName);
+
+        ClearLoadedFile();
+        openFileToolStripMenuItem.Checked = true;
+        ExternalSaveLocation = dialog.FileName;
     }
 
     private void aboutToolStripMenuItem_Click(object sender, EventArgs e)
