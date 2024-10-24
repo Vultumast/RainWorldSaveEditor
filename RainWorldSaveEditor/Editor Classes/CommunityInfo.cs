@@ -42,7 +42,7 @@ public class CommunityInfo(string communityID, string name, string iconPath)
         }
 
         foreach (var info in list)
-            Communities.Add(info.Name, info);
+            Communities[info.Name] = info;
 
         Logger.Info("Finished Reading Creature Community Info");
     }

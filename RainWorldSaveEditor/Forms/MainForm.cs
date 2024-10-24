@@ -185,7 +185,7 @@ public partial class MainForm : Form
             }
         }
 
-        Text = $"Rain World Save Editor (Beta) - {Assembly.GetExecutingAssembly().GetName().Version!.ToString()}";
+        UpdateTitle();
 
         if (userProfileToolStripMenuItem.DropDownItems.Count != 0)
         {
