@@ -64,7 +64,6 @@ partial class SaveTypeSelectForm
         button2.Anchor = AnchorStyles.None;
         button2.AutoSize = true;
         button2.AutoSizeMode = AutoSizeMode.GrowAndShrink;
-        button2.Enabled = false;
         button2.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
         button2.Location = new Point(253, 392);
         button2.Name = "button2";
@@ -72,6 +71,7 @@ partial class SaveTypeSelectForm
         button2.TabIndex = 8;
         button2.Text = "Edit Expedition Unlocks";
         button2.UseVisualStyleBackColor = true;
+        button2.Click += button2_Click;
         // 
         // pictureBox1
         // 

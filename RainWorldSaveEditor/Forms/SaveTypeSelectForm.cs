@@ -43,6 +43,18 @@ public partial class SaveTypeSelectForm : Form
         Hide();
     }
 
+    private void button2_Click(object sender, EventArgs e)
+    {
+        var frm = new ExpeditionCoreSaveForm
+        {
+            Location = Location,
+            StartPosition = FormStartPosition.Manual
+        };
+        frm.FormClosing += OnChildFormClose;
+        frm.Show();
+        Hide();
+    }
+
     private void OnChildFormClose(object? sender, FormClosingEventArgs e)
     {
         Location = (sender as Form)!.Location;

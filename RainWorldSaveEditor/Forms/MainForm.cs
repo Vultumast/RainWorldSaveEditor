@@ -23,8 +23,6 @@ public partial class MainForm : Form
     RainWorldSave _save = null!;
     SaveState _saveState = null!;
 
-
-
     #region Properties
     public string ExternalSaveLocation { get; private set; } = string.Empty;
     public bool UsingExternalSave => ExternalSaveLocation != string.Empty;
@@ -166,7 +164,7 @@ public partial class MainForm : Form
 
     void UpdateTitle()
     {
-        var targetName = $"Rain World Save Editor (Beta) - {Assembly.GetExecutingAssembly().GetName().Version!.ToString()}"; ;
+        var targetName = $"Rain World Save Editor (Beta) - {Assembly.GetExecutingAssembly().GetName().Version}";
 
         if (_save is not null)
         {
@@ -440,6 +438,7 @@ public partial class MainForm : Form
 
         WriteSaveData(SaveLocation);
     }
+
     private void saveAsToolStripMenuItem_Click(object sender, EventArgs e)
     {
         using var dialog = new SaveFileDialog();

@@ -282,7 +282,7 @@ public class ExpeditionCoreSave
             }
             else if (part.StartsWith("CHALLENGETYPES:"))
             {
-                string[] challenges = part["CHALLENGETYPES:".Length..].Split("<>");
+                string[] challenges = part["CHALLENGETYPES:".Length..].Split("<>", StringSplitOptions.RemoveEmptyEntries);
 
                 foreach (var challenge in challenges)
                 {
@@ -296,7 +296,7 @@ public class ExpeditionCoreSave
             }
             else if (part.StartsWith("SLUGWINS:"))
             {
-                string[] slugwins = part["SLUGWINS:".Length..].Split("<>");
+                string[] slugwins = part["SLUGWINS:".Length..].Split("<>", StringSplitOptions.RemoveEmptyEntries);
 
                 foreach (var slugwin in slugwins)
                 {
@@ -314,7 +314,7 @@ public class ExpeditionCoreSave
             }
             else if (part.StartsWith("UNLOCKS:"))
             {
-                string[] unlocks = part["UNLOCKS:".Length..].Split("<>");
+                string[] unlocks = part["UNLOCKS:".Length..].Split("<>", StringSplitOptions.RemoveEmptyEntries);
 
                 foreach (var unlock in unlocks)
                 {
@@ -323,7 +323,7 @@ public class ExpeditionCoreSave
             }
             else if (part.StartsWith("NEWSONGS:"))
             {
-                string[] newsongs = part["NEWSONGS:".Length..].Split("<>");
+                string[] newsongs = part["NEWSONGS:".Length..].Split("<>", StringSplitOptions.RemoveEmptyEntries);
 
                 foreach (var newsong in newsongs)
                 {
@@ -332,7 +332,7 @@ public class ExpeditionCoreSave
             }
             else if (part.StartsWith("QUESTS:"))
             {
-                string[] quests = part["QUESTS:".Length..].Split("<>");
+                string[] quests = part["QUESTS:".Length..].Split("<>", StringSplitOptions.RemoveEmptyEntries);
 
                 foreach (var quest in quests)
                 {
@@ -341,7 +341,7 @@ public class ExpeditionCoreSave
             }
             else if (part.StartsWith("MISSIONS:"))
             {
-                string[] missions = part["MISSIONS:".Length..].Split("<>");
+                string[] missions = part["MISSIONS:".Length..].Split("<>", StringSplitOptions.RemoveEmptyEntries);
 
                 foreach (var mission in missions)
                 {
@@ -350,7 +350,7 @@ public class ExpeditionCoreSave
             }
             else if (part.StartsWith("INTS:"))
             {
-                Integers.AddRange(part["INTS:".Length..].Split(",").Select(int.Parse));
+                Integers.AddRange(part["INTS:".Length..].Split(",", StringSplitOptions.RemoveEmptyEntries).Select(int.Parse));
             }
             else
             {
