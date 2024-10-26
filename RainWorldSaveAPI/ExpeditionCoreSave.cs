@@ -7,6 +7,18 @@ using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace RainWorldSaveAPI;
 
+public struct ChallengeType
+{
+    public string Type { get; set; }
+    public int Count { get; set; }
+}
+
+public struct MissionBestTime
+{
+    public string Mission { get; set; }
+    public int Time { get; set; }
+}
+
 public struct ChallengeEntry
 {
     public string Slugcat { get; set; }
@@ -32,18 +44,6 @@ public struct ActiveMissionEntry
     public string Data { get; set; }
 }
 
-public struct ChallengeType
-{
-    public string Type { get; set; }
-    public int Count { get; set; }
-}
-
-public struct MissionBestTime
-{
-    public string Mission { get; set; }
-    public int Time { get; set; }
-}
-
 public struct RequiredModsEntry
 {
     public string Slugcat { get; set; }
@@ -58,8 +58,6 @@ public struct WinEntry
 
 public class ExpeditionCoreSave
 {
-    public string Data { get; set; } = "";
-
     public int SaveSlot { get; set; } = 0;
     public int Level { get; set; } = 0;
     public int PerkLimit { get; set; } = 0;
@@ -79,6 +77,7 @@ public class ExpeditionCoreSave
     public List<int> Integers { get; set; } = [];
     public List<MissionBestTime> MissionBestTimes { get; set; } = [];
 
+    // Slugcat specific?
     public List<ChallengeEntry> ChallengeEntries { get; set; } = [];
     public List<UnlockEntry> Unlocks { get; set; } = [];
     public List<PassageEntry> Passages { get; set; } = [];

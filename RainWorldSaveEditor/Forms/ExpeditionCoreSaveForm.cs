@@ -79,6 +79,7 @@ public partial class ExpeditionCoreSaveForm : Form
 
         saveToolStripMenuItem.Enabled = true;
         saveAsToolStripMenuItem.Enabled = true;
+        SetupFromSave(_save);
     }
 
     void WriteSaveData(string filepath)
@@ -224,5 +225,75 @@ public partial class ExpeditionCoreSaveForm : Form
             else
                 tItem.Checked = false;
         }
+    }
+
+    private void SetupFromSave(ExpeditionCoreSave save)
+    {
+        saveSlotNumericUpDown.Value = save?.SaveSlot ?? 0;
+        levelNumericUpDown.Value = save?.Level ?? 0;
+        perkLimitNumericUpDown.Value = save?.PerkLimit ?? 0;
+        pointsNumericUpDown.Value = save?.Points ?? 0;
+        totalPointsNumericUpDown.Value = save?.TotalPoints ?? 0;
+        totalChallengesNumericUpDown.Value = save?.TotalChallenges ?? 0;
+        totalHiddenChallengesNumericUpDown.Value = save?.TotalHiddenChallenges ?? 0;
+        winsNumericUpDown.Value = save?.Wins ?? 0;
+        selectedSlugcatTextBox.Text = save?.Slugcat ?? "White";
+        selectedMenuSongTextBox.Text = save?.MenuSong ?? "";
+        viewedManualCheckBox.Checked = save?.HasViewedManual ?? false;
+    }
+
+    private void saveSlotNumericUpDown_ValueChanged(object sender, EventArgs e)
+    {
+        _save.SaveSlot = (int)saveSlotNumericUpDown.Value;
+    }
+
+    private void levelNumericUpDown_ValueChanged(object sender, EventArgs e)
+    {
+        _save.Level = (int)levelNumericUpDown.Value;
+    }
+
+    private void perkLimitNumericUpDown_ValueChanged(object sender, EventArgs e)
+    {
+        _save.PerkLimit = (int)perkLimitNumericUpDown.Value;
+    }
+
+    private void pointsNumericUpDown_ValueChanged(object sender, EventArgs e)
+    {
+        _save.Points = (int)pointsNumericUpDown.Value;
+    }
+
+    private void totalPointsNumericUpDown_ValueChanged(object sender, EventArgs e)
+    {
+        _save.TotalPoints = (int)totalPointsNumericUpDown.Value;
+    }
+
+    private void totalChallengesNumericUpDown_ValueChanged(object sender, EventArgs e)
+    {
+        _save.TotalChallenges = (int)totalChallengesNumericUpDown.Value;
+    }
+
+    private void totalHiddenChallengesNumericUpDown_ValueChanged(object sender, EventArgs e)
+    {
+        _save.TotalHiddenChallenges = (int)totalHiddenChallengesNumericUpDown.Value;
+    }
+
+    private void winsNumericUpDown_ValueChanged(object sender, EventArgs e)
+    {
+        _save.Wins = (int)winsNumericUpDown.Value;
+    }
+
+    private void selectedSlugcatTextBox_TextChanged(object sender, EventArgs e)
+    {
+        _save.Slugcat = selectedSlugcatTextBox.Text;
+    }
+
+    private void selectedMenuSongTextBox_TextChanged(object sender, EventArgs e)
+    {
+        _save.MenuSong = selectedMenuSongTextBox.Text;
+    }
+
+    private void viewedManualCheckBox_CheckedChanged(object sender, EventArgs e)
+    {
+        _save.HasViewedManual = viewedManualCheckBox.Checked;
     }
 }

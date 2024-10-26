@@ -92,6 +92,7 @@
             pebblesConversationCountNumericUpDown = new NumericUpDown();
             fivePebblesConversationCountLabel = new Label();
             iteratorLooksToTheMoonTabPage = new TabPage();
+            moonReadPearlsListBox = new ListBox();
             groupBox6 = new GroupBox();
             label9 = new Label();
             label8 = new Label();
@@ -153,7 +154,6 @@
             gameVerisonNumericUpDown = new NumericUpDown();
             tabImageList = new ImageList(components);
             commonToolTip = new ToolTip(components);
-            moonReadPearlsListBox = new ListBox();
             ((System.ComponentModel.ISupportInitialize)cycleNumberNumericUpDown).BeginInit();
             tabControl.SuspendLayout();
             slugcatInfoTabPage.SuspendLayout();
@@ -926,6 +926,15 @@
             iteratorLooksToTheMoonTabPage.TabIndex = 1;
             iteratorLooksToTheMoonTabPage.Text = "Looks To The Moon";
             // 
+            // moonReadPearlsListBox
+            // 
+            moonReadPearlsListBox.FormattingEnabled = true;
+            moonReadPearlsListBox.ItemHeight = 15;
+            moonReadPearlsListBox.Location = new Point(290, 30);
+            moonReadPearlsListBox.Name = "moonReadPearlsListBox";
+            moonReadPearlsListBox.Size = new Size(212, 139);
+            moonReadPearlsListBox.TabIndex = 22;
+            // 
             // groupBox6
             // 
             groupBox6.Controls.Add(label9);
@@ -1577,15 +1586,6 @@
             tabImageList.TransparentColor = Color.Transparent;
             tabImageList.Images.SetKeyName(0, "slugcat_tab_icon.png");
             tabImageList.Images.SetKeyName(1, "echo_tab_icon.png");
-            // 
-            // moonReadPearlsListBox
-            // 
-            moonReadPearlsListBox.FormattingEnabled = true;
-            moonReadPearlsListBox.ItemHeight = 15;
-            moonReadPearlsListBox.Location = new Point(290, 30);
-            moonReadPearlsListBox.Name = "moonReadPearlsListBox";
-            moonReadPearlsListBox.Size = new Size(212, 139);
-            moonReadPearlsListBox.TabIndex = 22;
             // 
             // SlugConfigControl
             // 
