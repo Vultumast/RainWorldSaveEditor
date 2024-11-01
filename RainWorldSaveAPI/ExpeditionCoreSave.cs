@@ -56,6 +56,14 @@ public struct WinEntry
     public int Wins { get; set; }
 }
 
+public enum RainbowAuraState
+{
+    SpotNotReached = 0,
+    SpotReached = 1,
+    /// <summary> This value only makes sense if every other slugcat's spot has been found. </summary>
+    AuraActive = 2
+}
+
 public class ExpeditionCoreSave
 {
     public int SaveSlot { get; set; } = 0;
@@ -76,6 +84,57 @@ public class ExpeditionCoreSave
     public List<string> Missions { get; set; } = [];
     public List<int> Integers { get; set; } = [];
     public List<MissionBestTime> MissionBestTimes { get; set; } = [];
+
+    public static RainbowAuraState SanitizeRainbowState(int rainbowState)
+    {
+        return rainbowState switch
+        {
+            <= 0 => RainbowAuraState.SpotNotReached,
+            1 => RainbowAuraState.SpotReached,
+            >= 2 => RainbowAuraState.AuraActive
+        };
+    }
+
+    public static int SanitizeRainbowState(RainbowAuraState rainbowState)
+    {
+        return rainbowState switch
+        {
+            <= RainbowAuraState.SpotNotReached => 0,
+            RainbowAuraState.SpotReached => 1,
+            >= RainbowAuraState.AuraActive => 2
+        };
+    }
+
+    public static int GetSlugcatIndex(string slugcat)
+    {
+        return slugcat switch
+        {
+            "White" => 0,
+            "Yellow" => 1,
+            "Red" => 2,
+            "Artificer" => 3,
+            "Gourmand" => 4,
+            "Spear" => 5,
+            "Rivulet" => 6,
+            "Saint" => 7,
+            _ => -1
+        };
+    }
+
+    public RainbowAuraState GetRainbowAuraState(string slugcat)
+    {
+        int index = GetSlugcatIndex(slugcat);
+
+        return index != -1 ? SanitizeRainbowState(Integers[index]) : RainbowAuraState.SpotNotReached;
+    }
+
+    public void SetRainbowAuraState(string slugcat, RainbowAuraState state)
+    {
+        int index = GetSlugcatIndex(slugcat);
+
+        if (index != -1)
+            Integers[index] = SanitizeRainbowState(state);
+    }
 
     // Slugcat specific?
     public List<ChallengeEntry> ChallengeEntries { get; set; } = [];
@@ -104,7 +163,7 @@ public class ExpeditionCoreSave
         string[] parts = saveString.Split("<expC>");
 
         string? section = null;
-        
+
         foreach (var part in parts)
         {
             if (section == null && part.StartsWith('[') && part.EndsWith(']'))
@@ -394,7 +453,7 @@ public class ExpeditionCoreSave
         // Challenges
 
         list.Add($"[CHALLENGES]");
-        
+
         foreach (var data in ChallengeEntries)
         {
             list.Add($"{data.Slugcat}#{data.Type}~{data.Data}");

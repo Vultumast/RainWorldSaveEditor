@@ -6,10 +6,12 @@ using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Reflection;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using static RainWorldSaveEditor.MainForm;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace RainWorldSaveEditor.Forms;
 public partial class ExpeditionCoreSaveForm : Form
@@ -17,6 +19,7 @@ public partial class ExpeditionCoreSaveForm : Form
     public ExpeditionCoreSaveForm()
     {
         InitializeComponent();
+        UnloadSave();
     }
 
     public string ExternalSaveLocation { get; private set; } = string.Empty;
@@ -55,6 +58,7 @@ public partial class ExpeditionCoreSaveForm : Form
         _save = null!;
         saveToolStripMenuItem.Enabled = false;
         saveAsToolStripMenuItem.Enabled = false;
+        expeditionSaveTabControl.Enabled = false;
     }
 
     void LoadSaveData(string filepath)
@@ -79,6 +83,7 @@ public partial class ExpeditionCoreSaveForm : Form
 
         saveToolStripMenuItem.Enabled = true;
         saveAsToolStripMenuItem.Enabled = true;
+        expeditionSaveTabControl.Enabled = true;
         SetupFromSave(_save);
     }
 
@@ -212,6 +217,38 @@ public partial class ExpeditionCoreSaveForm : Form
             Text = targetName;
     }
 
+    private void UpdateRainbowAuraState(List<int> integers)
+    {
+        var canActivateRainbow = integers.All(x => x >= (int)RainbowAuraState.SpotReached);
+
+        survivorEggDoneCheckBox.Checked = integers[0] >= (int)RainbowAuraState.SpotReached;
+        monkEggDoneCheckBox.Checked = integers[1] >= (int)RainbowAuraState.SpotReached;
+        hunterEggDoneCheckBox.Checked = integers[2] >= (int)RainbowAuraState.SpotReached;
+        artificerEggDoneCheckBox.Checked = integers[3] >= (int)RainbowAuraState.SpotReached;
+        gourmandEggDoneCheckBox.Checked = integers[4] >= (int)RainbowAuraState.SpotReached;
+        spearmasterEggDoneCheckBox.Checked = integers[5] >= (int)RainbowAuraState.SpotReached;
+        rivuletEggDoneCheckBox.Checked = integers[6] >= (int)RainbowAuraState.SpotReached;
+        saintEggDoneCheckBox.Checked = integers[7] >= (int)RainbowAuraState.SpotReached;
+
+        survivorEggActiveCheckBox.Checked = canActivateRainbow && integers[0] >= (int)RainbowAuraState.AuraActive;
+        monkEggActiveCheckBox.Checked = canActivateRainbow && integers[1] >= (int)RainbowAuraState.AuraActive;
+        hunterEggActiveCheckBox.Checked = canActivateRainbow && integers[2] >= (int)RainbowAuraState.AuraActive;
+        artificerEggActiveCheckBox.Checked = canActivateRainbow && integers[3] >= (int)RainbowAuraState.AuraActive;
+        gourmandEggActiveCheckBox.Checked = canActivateRainbow && integers[4] >= (int)RainbowAuraState.AuraActive;
+        spearmasterEggActiveCheckBox.Checked = canActivateRainbow && integers[5] >= (int)RainbowAuraState.AuraActive;
+        rivuletEggActiveCheckBox.Checked = canActivateRainbow && integers[6] >= (int)RainbowAuraState.AuraActive;
+        saintEggActiveCheckBox.Checked = canActivateRainbow && integers[7] >= (int)RainbowAuraState.AuraActive;
+
+        survivorEggActiveCheckBox.Enabled = canActivateRainbow;
+        monkEggActiveCheckBox.Enabled = canActivateRainbow;
+        hunterEggActiveCheckBox.Enabled = canActivateRainbow;
+        artificerEggActiveCheckBox.Enabled = canActivateRainbow;
+        gourmandEggActiveCheckBox.Enabled = canActivateRainbow;
+        spearmasterEggActiveCheckBox.Enabled = canActivateRainbow;
+        rivuletEggActiveCheckBox.Enabled = canActivateRainbow;
+        saintEggActiveCheckBox.Enabled = canActivateRainbow;
+    }
+
     private void Item_Click(object? sender, EventArgs e)
     {
         foreach (var item in userProfileToolStripMenuItem.DropDownItems)
@@ -227,7 +264,7 @@ public partial class ExpeditionCoreSaveForm : Form
         }
     }
 
-    private void SetupFromSave(ExpeditionCoreSave save)
+    private void SetupFromSave(ExpeditionCoreSave? save)
     {
         saveSlotNumericUpDown.Value = save?.SaveSlot ?? 0;
         levelNumericUpDown.Value = save?.Level ?? 0;
@@ -240,6 +277,53 @@ public partial class ExpeditionCoreSaveForm : Form
         selectedSlugcatTextBox.Text = save?.Slugcat ?? "White";
         selectedMenuSongTextBox.Text = save?.MenuSong ?? "";
         viewedManualCheckBox.Checked = save?.HasViewedManual ?? false;
+
+        unlocksDataGridView.Rows.Clear();
+        foreach (var item in save?.Unlockables ?? [])
+        {
+            unlocksDataGridView.Rows.Add([item]);
+        }
+
+        songsDataGridView.Rows.Clear();
+        foreach (var item in save?.NewSongs ?? [])
+        {
+            songsDataGridView.Rows.Add([item]);
+        }
+
+        completedQuestsDataGridView.Rows.Clear();
+        foreach (var item in save?.Quests ?? [])
+        {
+            completedQuestsDataGridView.Rows.Add([item]);
+        }
+
+        completedMissionsDataGridView.Rows.Clear();
+        foreach (var item in save?.Missions ?? [])
+        {
+            completedMissionsDataGridView.Rows.Add([item]);
+        }
+
+        missionBestTimesDataGridView.Rows.Clear();
+        foreach (var item in save?.MissionBestTimes ?? [])
+        {
+            missionBestTimesDataGridView.Rows.Add([item.Mission, item.Time.ToString()]);
+        }
+
+        challengesDataGridView.Rows.Clear();
+        foreach (var item in save?.ChallengeTypes ?? [])
+        {
+            challengesDataGridView.Rows.Add([item.Type, item.Count.ToString()]);
+        }
+
+        // Sanitize egg state
+        var integers = save?.Integers ?? new int[8].ToList();
+        var canActivateRainbow = integers.All(x => x >= (int)RainbowAuraState.SpotReached);
+        for (int i = 0; i < integers.Count; i++)
+        {
+            if (integers[i] >= (int)RainbowAuraState.AuraActive && !canActivateRainbow)
+                integers[i] = (int)RainbowAuraState.SpotReached;
+        }
+
+        UpdateRainbowAuraState(integers);
     }
 
     private void saveSlotNumericUpDown_ValueChanged(object sender, EventArgs e)
@@ -295,5 +379,101 @@ public partial class ExpeditionCoreSaveForm : Form
     private void viewedManualCheckBox_CheckedChanged(object sender, EventArgs e)
     {
         _save.HasViewedManual = viewedManualCheckBox.Checked;
+    }
+
+    private void UpdateReachedRainbowAuraIndex(object sender, int index)
+    {
+        if (((CheckBox)sender).Checked)
+            _save.Integers[index] = (int)RainbowAuraState.SpotReached;
+        else _save.Integers[index] = (int)RainbowAuraState.SpotNotReached;
+        UpdateRainbowAuraState(_save.Integers);
+    }
+
+    private void UpdateActiveRainbowAuraIndex(object sender, int index)
+    {
+        if (((CheckBox)sender).Checked)
+            _save.Integers[index] = (int)RainbowAuraState.AuraActive;
+        else _save.Integers[index] = _save.Integers[index] == (int)RainbowAuraState.AuraActive ? (int)RainbowAuraState.SpotReached : _save.Integers[index];
+        UpdateRainbowAuraState(_save.Integers);
+    }
+
+    private void survivorEggDoneCheckBox_CheckedChanged(object sender, EventArgs e)
+    {
+        UpdateReachedRainbowAuraIndex(sender, 0);
+    }
+
+    private void survivorEggActiveCheckBox_CheckedChanged(object sender, EventArgs e)
+    {
+        UpdateActiveRainbowAuraIndex(sender, 0);
+    }
+
+    private void monkEggDoneCheckBox_CheckedChanged(object sender, EventArgs e)
+    {
+        UpdateReachedRainbowAuraIndex(sender, 1);
+    }
+
+    private void monkEggActiveCheckBox_CheckedChanged(object sender, EventArgs e)
+    {
+        UpdateActiveRainbowAuraIndex(sender, 1);
+    }
+
+    private void hunterEggDoneCheckBox_CheckedChanged(object sender, EventArgs e)
+    {
+        UpdateReachedRainbowAuraIndex(sender, 2);
+    }
+
+    private void hunterEggActiveCheckBox_CheckedChanged(object sender, EventArgs e)
+    {
+        UpdateActiveRainbowAuraIndex(sender, 2);
+    }
+
+    private void artificerEggDoneCheckBox_CheckedChanged(object sender, EventArgs e)
+    {
+        UpdateReachedRainbowAuraIndex(sender, 3);
+    }
+
+    private void artificerEggActiveCheckBox_CheckedChanged(object sender, EventArgs e)
+    {
+        UpdateActiveRainbowAuraIndex(sender, 3);
+    }
+
+    private void gourmandEggDoneCheckBox_CheckedChanged(object sender, EventArgs e)
+    {
+        UpdateReachedRainbowAuraIndex(sender, 4);
+    }
+
+    private void gourmandEggActiveCheckBox_CheckedChanged(object sender, EventArgs e)
+    {
+        UpdateActiveRainbowAuraIndex(sender, 4);
+    }
+
+    private void spearmasterEggDoneCheckBox_CheckedChanged(object sender, EventArgs e)
+    {
+        UpdateReachedRainbowAuraIndex(sender, 5);
+    }
+
+    private void spearmasterEggActiveCheckBox_CheckedChanged(object sender, EventArgs e)
+    {
+        UpdateActiveRainbowAuraIndex(sender, 5);
+    }
+
+    private void rivuletEggDoneCheckBox_CheckedChanged(object sender, EventArgs e)
+    {
+        UpdateReachedRainbowAuraIndex(sender, 6);
+    }
+
+    private void rivuletEggActiveCheckBox_CheckedChanged(object sender, EventArgs e)
+    {
+        UpdateActiveRainbowAuraIndex(sender, 6);
+    }
+
+    private void saintEggDoneCheckBox_CheckedChanged(object sender, EventArgs e)
+    {
+        UpdateReachedRainbowAuraIndex(sender, 7);
+    }
+
+    private void saintEggActiveCheckBox_CheckedChanged(object sender, EventArgs e)
+    {
+        UpdateActiveRainbowAuraIndex(sender, 7);
     }
 }

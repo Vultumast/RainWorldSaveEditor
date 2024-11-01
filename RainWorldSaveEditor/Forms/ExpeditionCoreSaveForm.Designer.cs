@@ -45,40 +45,96 @@ partial class ExpeditionCoreSaveForm
         saveAsToolStripMenuItem = new ToolStripMenuItem();
         aboutToolStripMenuItem = new ToolStripMenuItem();
         expeditionSaveTabControl = new TabControl();
-        tabPage1 = new TabPage();
-        viewedManualCheckBox = new CheckBox();
-        viewedManualLabel = new Label();
-        selectedMenuSongTextBox = new TextBox();
+        expeditionGeneralFieldsTabPage = new TabPage();
+        rainbowAuraGroupBox = new GroupBox();
+        doneActiveRightLabel = new Label();
+        doneActiveLeftLabel = new Label();
+        saintEggActiveCheckBox = new CheckBox();
+        saintEggDoneCheckBox = new CheckBox();
+        saintEggLabel = new Label();
+        spearmasterEggActiveCheckBox = new CheckBox();
+        spearmasterEggDoneCheckBox = new CheckBox();
+        spearmasterEggLabel = new Label();
+        rivuletEggActiveCheckBox = new CheckBox();
+        rivuletEggDoneCheckBox = new CheckBox();
+        rivuletEggLabel = new Label();
+        gourmandEggActiveCheckBox = new CheckBox();
+        gourmandEggDoneCheckBox = new CheckBox();
+        gourmandEggLabel = new Label();
+        artificerEggActiveCheckBox = new CheckBox();
+        artificerEggDoneCheckBox = new CheckBox();
+        artificerEggLabel = new Label();
+        monkEggActiveCheckBox = new CheckBox();
+        monkEggDoneCheckBox = new CheckBox();
+        monkEggLabel = new Label();
+        hunterEggActiveCheckBox = new CheckBox();
+        hunterEggDoneCheckBox = new CheckBox();
+        hunterEggLabel = new Label();
+        survivorEggActiveCheckBox = new CheckBox();
+        survivorEggDoneCheckBox = new CheckBox();
+        survivorEggLabel = new Label();
+        miscInfoGroupBox = new GroupBox();
         selectedMenuSongLabel = new Label();
-        selectedSlugcatTextBox = new TextBox();
         selectedSlugcatLabel = new Label();
-        winsLabel = new Label();
-        winsNumericUpDown = new NumericUpDown();
-        totalHiddenChallengesLabel = new Label();
-        totalHiddenChallengesNumericUpDown = new NumericUpDown();
+        selectedSlugcatTextBox = new TextBox();
+        viewedManualCheckBox = new CheckBox();
+        selectedMenuSongTextBox = new TextBox();
+        viewedManualLabel = new Label();
+        totalsGroupBox = new GroupBox();
         totalChallengesLabel = new Label();
-        totalChallengesNumericUpDown = new NumericUpDown();
-        totalPointsLabel = new Label();
         totalPointsNumericUpDown = new NumericUpDown();
-        pointsNumericUpDown = new NumericUpDown();
-        pointsLabel = new Label();
-        perkLimitNumericUpDown = new NumericUpDown();
-        levelNumericUpDown = new NumericUpDown();
-        saveSlotNumericUpDown = new NumericUpDown();
-        perkLimitLabel = new Label();
-        levelLabel = new Label();
+        totalPointsLabel = new Label();
+        totalChallengesNumericUpDown = new NumericUpDown();
+        totalHiddenChallengesNumericUpDown = new NumericUpDown();
+        totalHiddenChallengesLabel = new Label();
+        winsNumericUpDown = new NumericUpDown();
+        winsLabel = new Label();
+        baseInfoGroupBox = new GroupBox();
         saveSlotLabel = new Label();
+        levelLabel = new Label();
+        perkLimitLabel = new Label();
+        saveSlotNumericUpDown = new NumericUpDown();
+        levelNumericUpDown = new NumericUpDown();
+        perkLimitNumericUpDown = new NumericUpDown();
+        pointsLabel = new Label();
+        pointsNumericUpDown = new NumericUpDown();
+        expeditionUnlocksAndStatsTabPage = new TabPage();
+        songsDataGridView = new DataGridView();
+        song = new DataGridViewTextBoxColumn();
+        unlocksDataGridView = new DataGridView();
+        unlock = new DataGridViewTextBoxColumn();
+        completedQuestsDataGridView = new DataGridView();
+        completedQuest = new DataGridViewTextBoxColumn();
+        completedMissionsDataGridView = new DataGridView();
+        completedMission = new DataGridViewTextBoxColumn();
+        challengesDataGridView = new DataGridView();
+        challenge = new DataGridViewTextBoxColumn();
+        count = new DataGridViewTextBoxColumn();
+        missionBestTimesDataGridView = new DataGridView();
+        Mission = new DataGridViewTextBoxColumn();
+        Time = new DataGridViewTextBoxColumn();
         menuStrip1.SuspendLayout();
         expeditionSaveTabControl.SuspendLayout();
-        tabPage1.SuspendLayout();
-        ((System.ComponentModel.ISupportInitialize)winsNumericUpDown).BeginInit();
-        ((System.ComponentModel.ISupportInitialize)totalHiddenChallengesNumericUpDown).BeginInit();
-        ((System.ComponentModel.ISupportInitialize)totalChallengesNumericUpDown).BeginInit();
+        expeditionGeneralFieldsTabPage.SuspendLayout();
+        rainbowAuraGroupBox.SuspendLayout();
+        miscInfoGroupBox.SuspendLayout();
+        totalsGroupBox.SuspendLayout();
         ((System.ComponentModel.ISupportInitialize)totalPointsNumericUpDown).BeginInit();
-        ((System.ComponentModel.ISupportInitialize)pointsNumericUpDown).BeginInit();
-        ((System.ComponentModel.ISupportInitialize)perkLimitNumericUpDown).BeginInit();
-        ((System.ComponentModel.ISupportInitialize)levelNumericUpDown).BeginInit();
+        ((System.ComponentModel.ISupportInitialize)totalChallengesNumericUpDown).BeginInit();
+        ((System.ComponentModel.ISupportInitialize)totalHiddenChallengesNumericUpDown).BeginInit();
+        ((System.ComponentModel.ISupportInitialize)winsNumericUpDown).BeginInit();
+        baseInfoGroupBox.SuspendLayout();
         ((System.ComponentModel.ISupportInitialize)saveSlotNumericUpDown).BeginInit();
+        ((System.ComponentModel.ISupportInitialize)levelNumericUpDown).BeginInit();
+        ((System.ComponentModel.ISupportInitialize)perkLimitNumericUpDown).BeginInit();
+        ((System.ComponentModel.ISupportInitialize)pointsNumericUpDown).BeginInit();
+        expeditionUnlocksAndStatsTabPage.SuspendLayout();
+        ((System.ComponentModel.ISupportInitialize)songsDataGridView).BeginInit();
+        ((System.ComponentModel.ISupportInitialize)unlocksDataGridView).BeginInit();
+        ((System.ComponentModel.ISupportInitialize)completedQuestsDataGridView).BeginInit();
+        ((System.ComponentModel.ISupportInitialize)completedMissionsDataGridView).BeginInit();
+        ((System.ComponentModel.ISupportInitialize)challengesDataGridView).BeginInit();
+        ((System.ComponentModel.ISupportInitialize)missionBestTimesDataGridView).BeginInit();
         SuspendLayout();
         // 
         // menuStrip1
@@ -195,7 +251,8 @@ partial class ExpeditionCoreSaveForm
         // 
         // expeditionSaveTabControl
         // 
-        expeditionSaveTabControl.Controls.Add(tabPage1);
+        expeditionSaveTabControl.Controls.Add(expeditionGeneralFieldsTabPage);
+        expeditionSaveTabControl.Controls.Add(expeditionUnlocksAndStatsTabPage);
         expeditionSaveTabControl.Dock = DockStyle.Fill;
         expeditionSaveTabControl.Location = new Point(0, 24);
         expeditionSaveTabControl.Name = "expeditionSaveTabControl";
@@ -203,203 +260,518 @@ partial class ExpeditionCoreSaveForm
         expeditionSaveTabControl.Size = new Size(800, 426);
         expeditionSaveTabControl.TabIndex = 1;
         // 
-        // tabPage1
+        // expeditionGeneralFieldsTabPage
         // 
-        tabPage1.Controls.Add(viewedManualCheckBox);
-        tabPage1.Controls.Add(viewedManualLabel);
-        tabPage1.Controls.Add(selectedMenuSongTextBox);
-        tabPage1.Controls.Add(selectedMenuSongLabel);
-        tabPage1.Controls.Add(selectedSlugcatTextBox);
-        tabPage1.Controls.Add(selectedSlugcatLabel);
-        tabPage1.Controls.Add(winsLabel);
-        tabPage1.Controls.Add(winsNumericUpDown);
-        tabPage1.Controls.Add(totalHiddenChallengesLabel);
-        tabPage1.Controls.Add(totalHiddenChallengesNumericUpDown);
-        tabPage1.Controls.Add(totalChallengesLabel);
-        tabPage1.Controls.Add(totalChallengesNumericUpDown);
-        tabPage1.Controls.Add(totalPointsLabel);
-        tabPage1.Controls.Add(totalPointsNumericUpDown);
-        tabPage1.Controls.Add(pointsNumericUpDown);
-        tabPage1.Controls.Add(pointsLabel);
-        tabPage1.Controls.Add(perkLimitNumericUpDown);
-        tabPage1.Controls.Add(levelNumericUpDown);
-        tabPage1.Controls.Add(saveSlotNumericUpDown);
-        tabPage1.Controls.Add(perkLimitLabel);
-        tabPage1.Controls.Add(levelLabel);
-        tabPage1.Controls.Add(saveSlotLabel);
-        tabPage1.Location = new Point(4, 24);
-        tabPage1.Name = "tabPage1";
-        tabPage1.Padding = new Padding(3);
-        tabPage1.Size = new Size(792, 398);
-        tabPage1.TabIndex = 0;
-        tabPage1.Text = "General Fields";
-        tabPage1.UseVisualStyleBackColor = true;
+        expeditionGeneralFieldsTabPage.Controls.Add(rainbowAuraGroupBox);
+        expeditionGeneralFieldsTabPage.Controls.Add(miscInfoGroupBox);
+        expeditionGeneralFieldsTabPage.Controls.Add(totalsGroupBox);
+        expeditionGeneralFieldsTabPage.Controls.Add(baseInfoGroupBox);
+        expeditionGeneralFieldsTabPage.Location = new Point(4, 24);
+        expeditionGeneralFieldsTabPage.Name = "expeditionGeneralFieldsTabPage";
+        expeditionGeneralFieldsTabPage.Padding = new Padding(3);
+        expeditionGeneralFieldsTabPage.Size = new Size(792, 398);
+        expeditionGeneralFieldsTabPage.TabIndex = 0;
+        expeditionGeneralFieldsTabPage.Text = "General Fields";
+        expeditionGeneralFieldsTabPage.UseVisualStyleBackColor = true;
+        // 
+        // rainbowAuraGroupBox
+        // 
+        rainbowAuraGroupBox.Controls.Add(doneActiveRightLabel);
+        rainbowAuraGroupBox.Controls.Add(doneActiveLeftLabel);
+        rainbowAuraGroupBox.Controls.Add(saintEggActiveCheckBox);
+        rainbowAuraGroupBox.Controls.Add(saintEggDoneCheckBox);
+        rainbowAuraGroupBox.Controls.Add(saintEggLabel);
+        rainbowAuraGroupBox.Controls.Add(spearmasterEggActiveCheckBox);
+        rainbowAuraGroupBox.Controls.Add(spearmasterEggDoneCheckBox);
+        rainbowAuraGroupBox.Controls.Add(spearmasterEggLabel);
+        rainbowAuraGroupBox.Controls.Add(rivuletEggActiveCheckBox);
+        rainbowAuraGroupBox.Controls.Add(rivuletEggDoneCheckBox);
+        rainbowAuraGroupBox.Controls.Add(rivuletEggLabel);
+        rainbowAuraGroupBox.Controls.Add(gourmandEggActiveCheckBox);
+        rainbowAuraGroupBox.Controls.Add(gourmandEggDoneCheckBox);
+        rainbowAuraGroupBox.Controls.Add(gourmandEggLabel);
+        rainbowAuraGroupBox.Controls.Add(artificerEggActiveCheckBox);
+        rainbowAuraGroupBox.Controls.Add(artificerEggDoneCheckBox);
+        rainbowAuraGroupBox.Controls.Add(artificerEggLabel);
+        rainbowAuraGroupBox.Controls.Add(monkEggActiveCheckBox);
+        rainbowAuraGroupBox.Controls.Add(monkEggDoneCheckBox);
+        rainbowAuraGroupBox.Controls.Add(monkEggLabel);
+        rainbowAuraGroupBox.Controls.Add(hunterEggActiveCheckBox);
+        rainbowAuraGroupBox.Controls.Add(hunterEggDoneCheckBox);
+        rainbowAuraGroupBox.Controls.Add(hunterEggLabel);
+        rainbowAuraGroupBox.Controls.Add(survivorEggActiveCheckBox);
+        rainbowAuraGroupBox.Controls.Add(survivorEggDoneCheckBox);
+        rainbowAuraGroupBox.Controls.Add(survivorEggLabel);
+        rainbowAuraGroupBox.Location = new Point(176, 204);
+        rainbowAuraGroupBox.Name = "rainbowAuraGroupBox";
+        rainbowAuraGroupBox.Size = new Size(411, 165);
+        rainbowAuraGroupBox.TabIndex = 28;
+        rainbowAuraGroupBox.TabStop = false;
+        rainbowAuraGroupBox.Text = "Rainbow Aura / Eggspedition";
+        // 
+        // doneActiveRightLabel
+        // 
+        doneActiveRightLabel.AutoSize = true;
+        doneActiveRightLabel.Location = new Point(297, 39);
+        doneActiveRightLabel.Name = "doneActiveRightLabel";
+        doneActiveRightLabel.Size = new Size(77, 15);
+        doneActiveRightLabel.TabIndex = 52;
+        doneActiveRightLabel.Text = "Done | Active";
+        // 
+        // doneActiveLeftLabel
+        // 
+        doneActiveLeftLabel.AutoSize = true;
+        doneActiveLeftLabel.Location = new Point(120, 39);
+        doneActiveLeftLabel.Name = "doneActiveLeftLabel";
+        doneActiveLeftLabel.Size = new Size(77, 15);
+        doneActiveLeftLabel.TabIndex = 49;
+        doneActiveLeftLabel.Text = "Done | Active";
+        // 
+        // saintEggActiveCheckBox
+        // 
+        saintEggActiveCheckBox.AutoSize = true;
+        saintEggActiveCheckBox.Enabled = false;
+        saintEggActiveCheckBox.Location = new Point(336, 122);
+        saintEggActiveCheckBox.Name = "saintEggActiveCheckBox";
+        saintEggActiveCheckBox.Size = new Size(15, 14);
+        saintEggActiveCheckBox.TabIndex = 48;
+        saintEggActiveCheckBox.UseVisualStyleBackColor = true;
+        saintEggActiveCheckBox.CheckedChanged += saintEggActiveCheckBox_CheckedChanged;
+        // 
+        // saintEggDoneCheckBox
+        // 
+        saintEggDoneCheckBox.AutoSize = true;
+        saintEggDoneCheckBox.Location = new Point(315, 122);
+        saintEggDoneCheckBox.Name = "saintEggDoneCheckBox";
+        saintEggDoneCheckBox.Size = new Size(15, 14);
+        saintEggDoneCheckBox.TabIndex = 47;
+        saintEggDoneCheckBox.UseVisualStyleBackColor = true;
+        saintEggDoneCheckBox.CheckedChanged += saintEggDoneCheckBox_CheckedChanged;
+        // 
+        // saintEggLabel
+        // 
+        saintEggLabel.AutoSize = true;
+        saintEggLabel.Location = new Point(216, 121);
+        saintEggLabel.Name = "saintEggLabel";
+        saintEggLabel.Size = new Size(33, 15);
+        saintEggLabel.TabIndex = 46;
+        saintEggLabel.Text = "Saint";
+        // 
+        // spearmasterEggActiveCheckBox
+        // 
+        spearmasterEggActiveCheckBox.AutoSize = true;
+        spearmasterEggActiveCheckBox.Enabled = false;
+        spearmasterEggActiveCheckBox.Location = new Point(336, 82);
+        spearmasterEggActiveCheckBox.Name = "spearmasterEggActiveCheckBox";
+        spearmasterEggActiveCheckBox.Size = new Size(15, 14);
+        spearmasterEggActiveCheckBox.TabIndex = 45;
+        spearmasterEggActiveCheckBox.UseVisualStyleBackColor = true;
+        spearmasterEggActiveCheckBox.CheckedChanged += spearmasterEggActiveCheckBox_CheckedChanged;
+        // 
+        // spearmasterEggDoneCheckBox
+        // 
+        spearmasterEggDoneCheckBox.AutoSize = true;
+        spearmasterEggDoneCheckBox.Location = new Point(315, 82);
+        spearmasterEggDoneCheckBox.Name = "spearmasterEggDoneCheckBox";
+        spearmasterEggDoneCheckBox.Size = new Size(15, 14);
+        spearmasterEggDoneCheckBox.TabIndex = 44;
+        spearmasterEggDoneCheckBox.UseVisualStyleBackColor = true;
+        spearmasterEggDoneCheckBox.CheckedChanged += spearmasterEggDoneCheckBox_CheckedChanged;
+        // 
+        // spearmasterEggLabel
+        // 
+        spearmasterEggLabel.AutoSize = true;
+        spearmasterEggLabel.Location = new Point(216, 81);
+        spearmasterEggLabel.Name = "spearmasterEggLabel";
+        spearmasterEggLabel.Size = new Size(72, 15);
+        spearmasterEggLabel.TabIndex = 43;
+        spearmasterEggLabel.Text = "Spearmaster";
+        // 
+        // rivuletEggActiveCheckBox
+        // 
+        rivuletEggActiveCheckBox.AutoSize = true;
+        rivuletEggActiveCheckBox.Enabled = false;
+        rivuletEggActiveCheckBox.Location = new Point(336, 102);
+        rivuletEggActiveCheckBox.Name = "rivuletEggActiveCheckBox";
+        rivuletEggActiveCheckBox.Size = new Size(15, 14);
+        rivuletEggActiveCheckBox.TabIndex = 42;
+        rivuletEggActiveCheckBox.UseVisualStyleBackColor = true;
+        rivuletEggActiveCheckBox.CheckedChanged += rivuletEggActiveCheckBox_CheckedChanged;
+        // 
+        // rivuletEggDoneCheckBox
+        // 
+        rivuletEggDoneCheckBox.AutoSize = true;
+        rivuletEggDoneCheckBox.Location = new Point(315, 102);
+        rivuletEggDoneCheckBox.Name = "rivuletEggDoneCheckBox";
+        rivuletEggDoneCheckBox.Size = new Size(15, 14);
+        rivuletEggDoneCheckBox.TabIndex = 41;
+        rivuletEggDoneCheckBox.UseVisualStyleBackColor = true;
+        rivuletEggDoneCheckBox.CheckedChanged += rivuletEggDoneCheckBox_CheckedChanged;
+        // 
+        // rivuletEggLabel
+        // 
+        rivuletEggLabel.AutoSize = true;
+        rivuletEggLabel.Location = new Point(216, 101);
+        rivuletEggLabel.Name = "rivuletEggLabel";
+        rivuletEggLabel.Size = new Size(43, 15);
+        rivuletEggLabel.TabIndex = 40;
+        rivuletEggLabel.Text = "Rivulet";
+        // 
+        // gourmandEggActiveCheckBox
+        // 
+        gourmandEggActiveCheckBox.AutoSize = true;
+        gourmandEggActiveCheckBox.Enabled = false;
+        gourmandEggActiveCheckBox.Location = new Point(336, 62);
+        gourmandEggActiveCheckBox.Name = "gourmandEggActiveCheckBox";
+        gourmandEggActiveCheckBox.Size = new Size(15, 14);
+        gourmandEggActiveCheckBox.TabIndex = 39;
+        gourmandEggActiveCheckBox.UseVisualStyleBackColor = true;
+        gourmandEggActiveCheckBox.CheckedChanged += gourmandEggActiveCheckBox_CheckedChanged;
+        // 
+        // gourmandEggDoneCheckBox
+        // 
+        gourmandEggDoneCheckBox.AutoSize = true;
+        gourmandEggDoneCheckBox.Location = new Point(315, 62);
+        gourmandEggDoneCheckBox.Name = "gourmandEggDoneCheckBox";
+        gourmandEggDoneCheckBox.Size = new Size(15, 14);
+        gourmandEggDoneCheckBox.TabIndex = 38;
+        gourmandEggDoneCheckBox.UseVisualStyleBackColor = true;
+        gourmandEggDoneCheckBox.CheckedChanged += gourmandEggDoneCheckBox_CheckedChanged;
+        // 
+        // gourmandEggLabel
+        // 
+        gourmandEggLabel.AutoSize = true;
+        gourmandEggLabel.Location = new Point(216, 61);
+        gourmandEggLabel.Name = "gourmandEggLabel";
+        gourmandEggLabel.Size = new Size(64, 15);
+        gourmandEggLabel.TabIndex = 37;
+        gourmandEggLabel.Text = "Gourmand";
+        // 
+        // artificerEggActiveCheckBox
+        // 
+        artificerEggActiveCheckBox.AutoSize = true;
+        artificerEggActiveCheckBox.Enabled = false;
+        artificerEggActiveCheckBox.Location = new Point(159, 122);
+        artificerEggActiveCheckBox.Name = "artificerEggActiveCheckBox";
+        artificerEggActiveCheckBox.Size = new Size(15, 14);
+        artificerEggActiveCheckBox.TabIndex = 36;
+        artificerEggActiveCheckBox.UseVisualStyleBackColor = true;
+        artificerEggActiveCheckBox.CheckedChanged += artificerEggActiveCheckBox_CheckedChanged;
+        // 
+        // artificerEggDoneCheckBox
+        // 
+        artificerEggDoneCheckBox.AutoSize = true;
+        artificerEggDoneCheckBox.Location = new Point(138, 122);
+        artificerEggDoneCheckBox.Name = "artificerEggDoneCheckBox";
+        artificerEggDoneCheckBox.Size = new Size(15, 14);
+        artificerEggDoneCheckBox.TabIndex = 35;
+        artificerEggDoneCheckBox.UseVisualStyleBackColor = true;
+        artificerEggDoneCheckBox.CheckedChanged += artificerEggDoneCheckBox_CheckedChanged;
+        // 
+        // artificerEggLabel
+        // 
+        artificerEggLabel.AutoSize = true;
+        artificerEggLabel.Location = new Point(39, 121);
+        artificerEggLabel.Name = "artificerEggLabel";
+        artificerEggLabel.Size = new Size(49, 15);
+        artificerEggLabel.TabIndex = 34;
+        artificerEggLabel.Text = "Artificer";
+        // 
+        // monkEggActiveCheckBox
+        // 
+        monkEggActiveCheckBox.AutoSize = true;
+        monkEggActiveCheckBox.Enabled = false;
+        monkEggActiveCheckBox.Location = new Point(159, 82);
+        monkEggActiveCheckBox.Name = "monkEggActiveCheckBox";
+        monkEggActiveCheckBox.Size = new Size(15, 14);
+        monkEggActiveCheckBox.TabIndex = 33;
+        monkEggActiveCheckBox.UseVisualStyleBackColor = true;
+        monkEggActiveCheckBox.CheckedChanged += monkEggActiveCheckBox_CheckedChanged;
+        // 
+        // monkEggDoneCheckBox
+        // 
+        monkEggDoneCheckBox.AutoSize = true;
+        monkEggDoneCheckBox.Location = new Point(138, 82);
+        monkEggDoneCheckBox.Name = "monkEggDoneCheckBox";
+        monkEggDoneCheckBox.Size = new Size(15, 14);
+        monkEggDoneCheckBox.TabIndex = 32;
+        monkEggDoneCheckBox.UseVisualStyleBackColor = true;
+        monkEggDoneCheckBox.CheckedChanged += monkEggDoneCheckBox_CheckedChanged;
+        // 
+        // monkEggLabel
+        // 
+        monkEggLabel.AutoSize = true;
+        monkEggLabel.Location = new Point(39, 81);
+        monkEggLabel.Name = "monkEggLabel";
+        monkEggLabel.Size = new Size(38, 15);
+        monkEggLabel.TabIndex = 31;
+        monkEggLabel.Text = "Monk";
+        // 
+        // hunterEggActiveCheckBox
+        // 
+        hunterEggActiveCheckBox.AutoSize = true;
+        hunterEggActiveCheckBox.Enabled = false;
+        hunterEggActiveCheckBox.Location = new Point(159, 102);
+        hunterEggActiveCheckBox.Name = "hunterEggActiveCheckBox";
+        hunterEggActiveCheckBox.Size = new Size(15, 14);
+        hunterEggActiveCheckBox.TabIndex = 30;
+        hunterEggActiveCheckBox.UseVisualStyleBackColor = true;
+        hunterEggActiveCheckBox.CheckedChanged += hunterEggActiveCheckBox_CheckedChanged;
+        // 
+        // hunterEggDoneCheckBox
+        // 
+        hunterEggDoneCheckBox.AutoSize = true;
+        hunterEggDoneCheckBox.Location = new Point(138, 102);
+        hunterEggDoneCheckBox.Name = "hunterEggDoneCheckBox";
+        hunterEggDoneCheckBox.Size = new Size(15, 14);
+        hunterEggDoneCheckBox.TabIndex = 29;
+        hunterEggDoneCheckBox.UseVisualStyleBackColor = true;
+        hunterEggDoneCheckBox.CheckedChanged += hunterEggDoneCheckBox_CheckedChanged;
+        // 
+        // hunterEggLabel
+        // 
+        hunterEggLabel.AutoSize = true;
+        hunterEggLabel.Location = new Point(39, 101);
+        hunterEggLabel.Name = "hunterEggLabel";
+        hunterEggLabel.Size = new Size(44, 15);
+        hunterEggLabel.TabIndex = 28;
+        hunterEggLabel.Text = "Hunter";
+        // 
+        // survivorEggActiveCheckBox
+        // 
+        survivorEggActiveCheckBox.AutoSize = true;
+        survivorEggActiveCheckBox.Enabled = false;
+        survivorEggActiveCheckBox.Location = new Point(159, 62);
+        survivorEggActiveCheckBox.Name = "survivorEggActiveCheckBox";
+        survivorEggActiveCheckBox.Size = new Size(15, 14);
+        survivorEggActiveCheckBox.TabIndex = 27;
+        survivorEggActiveCheckBox.UseVisualStyleBackColor = true;
+        survivorEggActiveCheckBox.CheckedChanged += survivorEggActiveCheckBox_CheckedChanged;
+        // 
+        // survivorEggDoneCheckBox
+        // 
+        survivorEggDoneCheckBox.AutoSize = true;
+        survivorEggDoneCheckBox.Location = new Point(138, 62);
+        survivorEggDoneCheckBox.Name = "survivorEggDoneCheckBox";
+        survivorEggDoneCheckBox.Size = new Size(15, 14);
+        survivorEggDoneCheckBox.TabIndex = 26;
+        survivorEggDoneCheckBox.UseVisualStyleBackColor = true;
+        survivorEggDoneCheckBox.CheckedChanged += survivorEggDoneCheckBox_CheckedChanged;
+        // 
+        // survivorEggLabel
+        // 
+        survivorEggLabel.AutoSize = true;
+        survivorEggLabel.Location = new Point(39, 61);
+        survivorEggLabel.Name = "survivorEggLabel";
+        survivorEggLabel.Size = new Size(50, 15);
+        survivorEggLabel.TabIndex = 25;
+        survivorEggLabel.Text = "Survivor";
+        // 
+        // miscInfoGroupBox
+        // 
+        miscInfoGroupBox.Controls.Add(selectedMenuSongLabel);
+        miscInfoGroupBox.Controls.Add(selectedSlugcatLabel);
+        miscInfoGroupBox.Controls.Add(selectedSlugcatTextBox);
+        miscInfoGroupBox.Controls.Add(viewedManualCheckBox);
+        miscInfoGroupBox.Controls.Add(selectedMenuSongTextBox);
+        miscInfoGroupBox.Controls.Add(viewedManualLabel);
+        miscInfoGroupBox.Location = new Point(535, 17);
+        miscInfoGroupBox.Name = "miscInfoGroupBox";
+        miscInfoGroupBox.Size = new Size(229, 142);
+        miscInfoGroupBox.TabIndex = 27;
+        miscInfoGroupBox.TabStop = false;
+        miscInfoGroupBox.Text = "Miscellaneous";
+        // 
+        // selectedMenuSongLabel
+        // 
+        selectedMenuSongLabel.AutoSize = true;
+        selectedMenuSongLabel.Location = new Point(6, 48);
+        selectedMenuSongLabel.Name = "selectedMenuSongLabel";
+        selectedMenuSongLabel.Size = new Size(34, 15);
+        selectedMenuSongLabel.TabIndex = 21;
+        selectedMenuSongLabel.Text = "Song";
+        // 
+        // selectedSlugcatLabel
+        // 
+        selectedSlugcatLabel.AutoSize = true;
+        selectedSlugcatLabel.Location = new Point(6, 19);
+        selectedSlugcatLabel.Name = "selectedSlugcatLabel";
+        selectedSlugcatLabel.Size = new Size(46, 15);
+        selectedSlugcatLabel.TabIndex = 19;
+        selectedSlugcatLabel.Text = "Slugcat";
+        // 
+        // selectedSlugcatTextBox
+        // 
+        selectedSlugcatTextBox.Location = new Point(118, 16);
+        selectedSlugcatTextBox.Name = "selectedSlugcatTextBox";
+        selectedSlugcatTextBox.Size = new Size(100, 23);
+        selectedSlugcatTextBox.TabIndex = 20;
+        selectedSlugcatTextBox.TextChanged += selectedSlugcatTextBox_TextChanged;
         // 
         // viewedManualCheckBox
         // 
         viewedManualCheckBox.AutoSize = true;
-        viewedManualCheckBox.Location = new Point(151, 342);
+        viewedManualCheckBox.Location = new Point(141, 74);
         viewedManualCheckBox.Name = "viewedManualCheckBox";
         viewedManualCheckBox.Size = new Size(15, 14);
         viewedManualCheckBox.TabIndex = 24;
         viewedManualCheckBox.UseVisualStyleBackColor = true;
         viewedManualCheckBox.CheckedChanged += viewedManualCheckBox_CheckedChanged;
         // 
-        // viewedManualLabel
-        // 
-        viewedManualLabel.AutoSize = true;
-        viewedManualLabel.Location = new Point(16, 341);
-        viewedManualLabel.Name = "viewedManualLabel";
-        viewedManualLabel.Size = new Size(93, 15);
-        viewedManualLabel.TabIndex = 23;
-        viewedManualLabel.Text = "Viewed Manual?";
-        // 
         // selectedMenuSongTextBox
         // 
-        selectedMenuSongTextBox.Location = new Point(151, 294);
+        selectedMenuSongTextBox.Location = new Point(118, 45);
         selectedMenuSongTextBox.Name = "selectedMenuSongTextBox";
         selectedMenuSongTextBox.Size = new Size(100, 23);
         selectedMenuSongTextBox.TabIndex = 22;
         selectedMenuSongTextBox.TextChanged += selectedMenuSongTextBox_TextChanged;
         // 
-        // selectedMenuSongLabel
+        // viewedManualLabel
         // 
-        selectedMenuSongLabel.AutoSize = true;
-        selectedMenuSongLabel.Location = new Point(16, 297);
-        selectedMenuSongLabel.Name = "selectedMenuSongLabel";
-        selectedMenuSongLabel.Size = new Size(115, 15);
-        selectedMenuSongLabel.TabIndex = 21;
-        selectedMenuSongLabel.Text = "Selected Menu Song";
+        viewedManualLabel.AutoSize = true;
+        viewedManualLabel.Location = new Point(6, 73);
+        viewedManualLabel.Name = "viewedManualLabel";
+        viewedManualLabel.Size = new Size(93, 15);
+        viewedManualLabel.TabIndex = 23;
+        viewedManualLabel.Text = "Viewed Manual?";
         // 
-        // selectedSlugcatTextBox
+        // totalsGroupBox
         // 
-        selectedSlugcatTextBox.Location = new Point(151, 265);
-        selectedSlugcatTextBox.Name = "selectedSlugcatTextBox";
-        selectedSlugcatTextBox.Size = new Size(100, 23);
-        selectedSlugcatTextBox.TabIndex = 20;
-        selectedSlugcatTextBox.TextChanged += selectedSlugcatTextBox_TextChanged;
-        // 
-        // selectedSlugcatLabel
-        // 
-        selectedSlugcatLabel.AutoSize = true;
-        selectedSlugcatLabel.Location = new Point(16, 268);
-        selectedSlugcatLabel.Name = "selectedSlugcatLabel";
-        selectedSlugcatLabel.Size = new Size(93, 15);
-        selectedSlugcatLabel.TabIndex = 19;
-        selectedSlugcatLabel.Text = "Selected Slugcat";
-        // 
-        // winsLabel
-        // 
-        winsLabel.AutoSize = true;
-        winsLabel.Location = new Point(15, 217);
-        winsLabel.Name = "winsLabel";
-        winsLabel.Size = new Size(33, 15);
-        winsLabel.TabIndex = 18;
-        winsLabel.Text = "Wins";
-        // 
-        // winsNumericUpDown
-        // 
-        winsNumericUpDown.Location = new Point(174, 215);
-        winsNumericUpDown.Maximum = new decimal(new int[] { 99999999, 0, 0, 0 });
-        winsNumericUpDown.Name = "winsNumericUpDown";
-        winsNumericUpDown.Size = new Size(77, 23);
-        winsNumericUpDown.TabIndex = 17;
-        winsNumericUpDown.ValueChanged += winsNumericUpDown_ValueChanged;
-        // 
-        // totalHiddenChallengesLabel
-        // 
-        totalHiddenChallengesLabel.AutoSize = true;
-        totalHiddenChallengesLabel.Location = new Point(15, 188);
-        totalHiddenChallengesLabel.Name = "totalHiddenChallengesLabel";
-        totalHiddenChallengesLabel.Size = new Size(135, 15);
-        totalHiddenChallengesLabel.TabIndex = 16;
-        totalHiddenChallengesLabel.Text = "Total Hidden Challenges";
-        // 
-        // totalHiddenChallengesNumericUpDown
-        // 
-        totalHiddenChallengesNumericUpDown.Location = new Point(174, 186);
-        totalHiddenChallengesNumericUpDown.Maximum = new decimal(new int[] { 99999999, 0, 0, 0 });
-        totalHiddenChallengesNumericUpDown.Name = "totalHiddenChallengesNumericUpDown";
-        totalHiddenChallengesNumericUpDown.Size = new Size(77, 23);
-        totalHiddenChallengesNumericUpDown.TabIndex = 15;
-        totalHiddenChallengesNumericUpDown.ValueChanged += totalHiddenChallengesNumericUpDown_ValueChanged;
+        totalsGroupBox.Controls.Add(totalChallengesLabel);
+        totalsGroupBox.Controls.Add(totalPointsNumericUpDown);
+        totalsGroupBox.Controls.Add(totalPointsLabel);
+        totalsGroupBox.Controls.Add(totalChallengesNumericUpDown);
+        totalsGroupBox.Controls.Add(totalHiddenChallengesNumericUpDown);
+        totalsGroupBox.Controls.Add(totalHiddenChallengesLabel);
+        totalsGroupBox.Controls.Add(winsNumericUpDown);
+        totalsGroupBox.Controls.Add(winsLabel);
+        totalsGroupBox.Location = new Point(277, 17);
+        totalsGroupBox.Name = "totalsGroupBox";
+        totalsGroupBox.Size = new Size(229, 142);
+        totalsGroupBox.TabIndex = 26;
+        totalsGroupBox.TabStop = false;
+        totalsGroupBox.Text = "Totals";
         // 
         // totalChallengesLabel
         // 
         totalChallengesLabel.AutoSize = true;
-        totalChallengesLabel.Location = new Point(15, 159);
+        totalChallengesLabel.Location = new Point(6, 48);
         totalChallengesLabel.Name = "totalChallengesLabel";
         totalChallengesLabel.Size = new Size(93, 15);
         totalChallengesLabel.TabIndex = 14;
         totalChallengesLabel.Text = "Total Challenges";
         // 
-        // totalChallengesNumericUpDown
-        // 
-        totalChallengesNumericUpDown.Location = new Point(174, 157);
-        totalChallengesNumericUpDown.Maximum = new decimal(new int[] { 99999999, 0, 0, 0 });
-        totalChallengesNumericUpDown.Name = "totalChallengesNumericUpDown";
-        totalChallengesNumericUpDown.Size = new Size(77, 23);
-        totalChallengesNumericUpDown.TabIndex = 13;
-        totalChallengesNumericUpDown.ValueChanged += totalChallengesNumericUpDown_ValueChanged;
-        // 
-        // totalPointsLabel
-        // 
-        totalPointsLabel.AutoSize = true;
-        totalPointsLabel.Location = new Point(15, 130);
-        totalPointsLabel.Name = "totalPointsLabel";
-        totalPointsLabel.Size = new Size(68, 15);
-        totalPointsLabel.TabIndex = 12;
-        totalPointsLabel.Text = "Total Points";
-        // 
         // totalPointsNumericUpDown
         // 
-        totalPointsNumericUpDown.Location = new Point(174, 128);
+        totalPointsNumericUpDown.Location = new Point(142, 17);
         totalPointsNumericUpDown.Maximum = new decimal(new int[] { 99999999, 0, 0, 0 });
         totalPointsNumericUpDown.Name = "totalPointsNumericUpDown";
         totalPointsNumericUpDown.Size = new Size(77, 23);
         totalPointsNumericUpDown.TabIndex = 11;
         totalPointsNumericUpDown.ValueChanged += totalPointsNumericUpDown_ValueChanged;
         // 
-        // pointsNumericUpDown
+        // totalPointsLabel
         // 
-        pointsNumericUpDown.Location = new Point(174, 99);
-        pointsNumericUpDown.Maximum = new decimal(new int[] { 99999999, 0, 0, 0 });
-        pointsNumericUpDown.Name = "pointsNumericUpDown";
-        pointsNumericUpDown.Size = new Size(77, 23);
-        pointsNumericUpDown.TabIndex = 10;
-        pointsNumericUpDown.ValueChanged += pointsNumericUpDown_ValueChanged;
+        totalPointsLabel.AutoSize = true;
+        totalPointsLabel.Location = new Point(6, 19);
+        totalPointsLabel.Name = "totalPointsLabel";
+        totalPointsLabel.Size = new Size(68, 15);
+        totalPointsLabel.TabIndex = 12;
+        totalPointsLabel.Text = "Total Points";
         // 
-        // pointsLabel
+        // totalChallengesNumericUpDown
         // 
-        pointsLabel.AutoSize = true;
-        pointsLabel.Location = new Point(15, 101);
-        pointsLabel.Name = "pointsLabel";
-        pointsLabel.Size = new Size(40, 15);
-        pointsLabel.TabIndex = 9;
-        pointsLabel.Text = "Points";
+        totalChallengesNumericUpDown.Location = new Point(142, 46);
+        totalChallengesNumericUpDown.Maximum = new decimal(new int[] { 99999999, 0, 0, 0 });
+        totalChallengesNumericUpDown.Name = "totalChallengesNumericUpDown";
+        totalChallengesNumericUpDown.Size = new Size(77, 23);
+        totalChallengesNumericUpDown.TabIndex = 13;
+        totalChallengesNumericUpDown.ValueChanged += totalChallengesNumericUpDown_ValueChanged;
         // 
-        // perkLimitNumericUpDown
+        // totalHiddenChallengesNumericUpDown
         // 
-        perkLimitNumericUpDown.Location = new Point(174, 70);
-        perkLimitNumericUpDown.Maximum = new decimal(new int[] { 999999, 0, 0, 0 });
-        perkLimitNumericUpDown.Name = "perkLimitNumericUpDown";
-        perkLimitNumericUpDown.Size = new Size(77, 23);
-        perkLimitNumericUpDown.TabIndex = 8;
-        perkLimitNumericUpDown.ValueChanged += perkLimitNumericUpDown_ValueChanged;
+        totalHiddenChallengesNumericUpDown.Location = new Point(142, 75);
+        totalHiddenChallengesNumericUpDown.Maximum = new decimal(new int[] { 99999999, 0, 0, 0 });
+        totalHiddenChallengesNumericUpDown.Name = "totalHiddenChallengesNumericUpDown";
+        totalHiddenChallengesNumericUpDown.Size = new Size(77, 23);
+        totalHiddenChallengesNumericUpDown.TabIndex = 15;
+        totalHiddenChallengesNumericUpDown.ValueChanged += totalHiddenChallengesNumericUpDown_ValueChanged;
         // 
-        // levelNumericUpDown
+        // totalHiddenChallengesLabel
         // 
-        levelNumericUpDown.Location = new Point(174, 41);
-        levelNumericUpDown.Maximum = new decimal(new int[] { 999999, 0, 0, 0 });
-        levelNumericUpDown.Name = "levelNumericUpDown";
-        levelNumericUpDown.Size = new Size(77, 23);
-        levelNumericUpDown.TabIndex = 7;
-        levelNumericUpDown.ValueChanged += levelNumericUpDown_ValueChanged;
+        totalHiddenChallengesLabel.AutoSize = true;
+        totalHiddenChallengesLabel.Location = new Point(6, 77);
+        totalHiddenChallengesLabel.Name = "totalHiddenChallengesLabel";
+        totalHiddenChallengesLabel.Size = new Size(135, 15);
+        totalHiddenChallengesLabel.TabIndex = 16;
+        totalHiddenChallengesLabel.Text = "Total Hidden Challenges";
+        // 
+        // winsNumericUpDown
+        // 
+        winsNumericUpDown.Location = new Point(142, 104);
+        winsNumericUpDown.Maximum = new decimal(new int[] { 99999999, 0, 0, 0 });
+        winsNumericUpDown.Name = "winsNumericUpDown";
+        winsNumericUpDown.Size = new Size(77, 23);
+        winsNumericUpDown.TabIndex = 17;
+        winsNumericUpDown.ValueChanged += winsNumericUpDown_ValueChanged;
+        // 
+        // winsLabel
+        // 
+        winsLabel.AutoSize = true;
+        winsLabel.Location = new Point(6, 106);
+        winsLabel.Name = "winsLabel";
+        winsLabel.Size = new Size(33, 15);
+        winsLabel.TabIndex = 18;
+        winsLabel.Text = "Wins";
+        // 
+        // baseInfoGroupBox
+        // 
+        baseInfoGroupBox.Controls.Add(saveSlotLabel);
+        baseInfoGroupBox.Controls.Add(levelLabel);
+        baseInfoGroupBox.Controls.Add(perkLimitLabel);
+        baseInfoGroupBox.Controls.Add(saveSlotNumericUpDown);
+        baseInfoGroupBox.Controls.Add(levelNumericUpDown);
+        baseInfoGroupBox.Controls.Add(perkLimitNumericUpDown);
+        baseInfoGroupBox.Controls.Add(pointsLabel);
+        baseInfoGroupBox.Controls.Add(pointsNumericUpDown);
+        baseInfoGroupBox.Location = new Point(21, 17);
+        baseInfoGroupBox.Name = "baseInfoGroupBox";
+        baseInfoGroupBox.Size = new Size(229, 142);
+        baseInfoGroupBox.TabIndex = 25;
+        baseInfoGroupBox.TabStop = false;
+        baseInfoGroupBox.Text = "Base Info";
+        // 
+        // saveSlotLabel
+        // 
+        saveSlotLabel.AutoSize = true;
+        saveSlotLabel.Location = new Point(6, 19);
+        saveSlotLabel.Name = "saveSlotLabel";
+        saveSlotLabel.Size = new Size(54, 15);
+        saveSlotLabel.TabIndex = 0;
+        saveSlotLabel.Text = "Save Slot";
+        // 
+        // levelLabel
+        // 
+        levelLabel.AutoSize = true;
+        levelLabel.Location = new Point(6, 48);
+        levelLabel.Name = "levelLabel";
+        levelLabel.Size = new Size(34, 15);
+        levelLabel.TabIndex = 2;
+        levelLabel.Text = "Level";
+        // 
+        // perkLimitLabel
+        // 
+        perkLimitLabel.AutoSize = true;
+        perkLimitLabel.Location = new Point(6, 77);
+        perkLimitLabel.Name = "perkLimitLabel";
+        perkLimitLabel.Size = new Size(60, 15);
+        perkLimitLabel.TabIndex = 5;
+        perkLimitLabel.Text = "Perk Limit";
         // 
         // saveSlotNumericUpDown
         // 
         saveSlotNumericUpDown.Enabled = false;
-        saveSlotNumericUpDown.Location = new Point(174, 12);
+        saveSlotNumericUpDown.Location = new Point(142, 17);
         saveSlotNumericUpDown.Maximum = new decimal(new int[] { 999999, 0, 0, 0 });
         saveSlotNumericUpDown.Minimum = new decimal(new int[] { 1, 0, 0, int.MinValue });
         saveSlotNumericUpDown.Name = "saveSlotNumericUpDown";
@@ -407,32 +779,152 @@ partial class ExpeditionCoreSaveForm
         saveSlotNumericUpDown.TabIndex = 6;
         saveSlotNumericUpDown.ValueChanged += saveSlotNumericUpDown_ValueChanged;
         // 
-        // perkLimitLabel
+        // levelNumericUpDown
         // 
-        perkLimitLabel.AutoSize = true;
-        perkLimitLabel.Location = new Point(15, 72);
-        perkLimitLabel.Name = "perkLimitLabel";
-        perkLimitLabel.Size = new Size(60, 15);
-        perkLimitLabel.TabIndex = 5;
-        perkLimitLabel.Text = "Perk Limit";
+        levelNumericUpDown.Location = new Point(142, 46);
+        levelNumericUpDown.Maximum = new decimal(new int[] { 999999, 0, 0, 0 });
+        levelNumericUpDown.Name = "levelNumericUpDown";
+        levelNumericUpDown.Size = new Size(77, 23);
+        levelNumericUpDown.TabIndex = 7;
+        levelNumericUpDown.ValueChanged += levelNumericUpDown_ValueChanged;
         // 
-        // levelLabel
+        // perkLimitNumericUpDown
         // 
-        levelLabel.AutoSize = true;
-        levelLabel.Location = new Point(15, 43);
-        levelLabel.Name = "levelLabel";
-        levelLabel.Size = new Size(34, 15);
-        levelLabel.TabIndex = 2;
-        levelLabel.Text = "Level";
+        perkLimitNumericUpDown.Location = new Point(142, 75);
+        perkLimitNumericUpDown.Maximum = new decimal(new int[] { 999999, 0, 0, 0 });
+        perkLimitNumericUpDown.Name = "perkLimitNumericUpDown";
+        perkLimitNumericUpDown.Size = new Size(77, 23);
+        perkLimitNumericUpDown.TabIndex = 8;
+        perkLimitNumericUpDown.ValueChanged += perkLimitNumericUpDown_ValueChanged;
         // 
-        // saveSlotLabel
+        // pointsLabel
         // 
-        saveSlotLabel.AutoSize = true;
-        saveSlotLabel.Location = new Point(15, 14);
-        saveSlotLabel.Name = "saveSlotLabel";
-        saveSlotLabel.Size = new Size(54, 15);
-        saveSlotLabel.TabIndex = 0;
-        saveSlotLabel.Text = "Save Slot";
+        pointsLabel.AutoSize = true;
+        pointsLabel.Location = new Point(6, 106);
+        pointsLabel.Name = "pointsLabel";
+        pointsLabel.Size = new Size(40, 15);
+        pointsLabel.TabIndex = 9;
+        pointsLabel.Text = "Points";
+        // 
+        // pointsNumericUpDown
+        // 
+        pointsNumericUpDown.Location = new Point(142, 104);
+        pointsNumericUpDown.Maximum = new decimal(new int[] { 99999999, 0, 0, 0 });
+        pointsNumericUpDown.Name = "pointsNumericUpDown";
+        pointsNumericUpDown.Size = new Size(77, 23);
+        pointsNumericUpDown.TabIndex = 10;
+        pointsNumericUpDown.ValueChanged += pointsNumericUpDown_ValueChanged;
+        // 
+        // expeditionUnlocksAndStatsTabPage
+        // 
+        expeditionUnlocksAndStatsTabPage.Controls.Add(songsDataGridView);
+        expeditionUnlocksAndStatsTabPage.Controls.Add(unlocksDataGridView);
+        expeditionUnlocksAndStatsTabPage.Controls.Add(completedQuestsDataGridView);
+        expeditionUnlocksAndStatsTabPage.Controls.Add(completedMissionsDataGridView);
+        expeditionUnlocksAndStatsTabPage.Controls.Add(challengesDataGridView);
+        expeditionUnlocksAndStatsTabPage.Controls.Add(missionBestTimesDataGridView);
+        expeditionUnlocksAndStatsTabPage.Location = new Point(4, 24);
+        expeditionUnlocksAndStatsTabPage.Name = "expeditionUnlocksAndStatsTabPage";
+        expeditionUnlocksAndStatsTabPage.Padding = new Padding(3);
+        expeditionUnlocksAndStatsTabPage.Size = new Size(792, 398);
+        expeditionUnlocksAndStatsTabPage.TabIndex = 1;
+        expeditionUnlocksAndStatsTabPage.Text = "Unlocks and Stats";
+        expeditionUnlocksAndStatsTabPage.UseVisualStyleBackColor = true;
+        // 
+        // songsDataGridView
+        // 
+        songsDataGridView.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+        songsDataGridView.Columns.AddRange(new DataGridViewColumn[] { song });
+        songsDataGridView.Location = new Point(222, 6);
+        songsDataGridView.Name = "songsDataGridView";
+        songsDataGridView.Size = new Size(208, 184);
+        songsDataGridView.TabIndex = 56;
+        // 
+        // song
+        // 
+        song.HeaderText = "Song";
+        song.Name = "song";
+        // 
+        // unlocksDataGridView
+        // 
+        unlocksDataGridView.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+        unlocksDataGridView.Columns.AddRange(new DataGridViewColumn[] { unlock });
+        unlocksDataGridView.Location = new Point(8, 6);
+        unlocksDataGridView.Name = "unlocksDataGridView";
+        unlocksDataGridView.Size = new Size(208, 184);
+        unlocksDataGridView.TabIndex = 54;
+        // 
+        // unlock
+        // 
+        unlock.HeaderText = "Unlock";
+        unlock.Name = "unlock";
+        // 
+        // completedQuestsDataGridView
+        // 
+        completedQuestsDataGridView.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+        completedQuestsDataGridView.Columns.AddRange(new DataGridViewColumn[] { completedQuest });
+        completedQuestsDataGridView.Location = new Point(222, 208);
+        completedQuestsDataGridView.Name = "completedQuestsDataGridView";
+        completedQuestsDataGridView.Size = new Size(208, 184);
+        completedQuestsDataGridView.TabIndex = 52;
+        // 
+        // completedQuest
+        // 
+        completedQuest.HeaderText = "Completed Quest";
+        completedQuest.Name = "completedQuest";
+        // 
+        // completedMissionsDataGridView
+        // 
+        completedMissionsDataGridView.AccessibleRole = AccessibleRole.TitleBar;
+        completedMissionsDataGridView.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+        completedMissionsDataGridView.Columns.AddRange(new DataGridViewColumn[] { completedMission });
+        completedMissionsDataGridView.Location = new Point(8, 208);
+        completedMissionsDataGridView.Name = "completedMissionsDataGridView";
+        completedMissionsDataGridView.Size = new Size(208, 184);
+        completedMissionsDataGridView.TabIndex = 50;
+        // 
+        // completedMission
+        // 
+        completedMission.HeaderText = "Completed Mission";
+        completedMission.Name = "completedMission";
+        // 
+        // challengesDataGridView
+        // 
+        challengesDataGridView.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+        challengesDataGridView.Columns.AddRange(new DataGridViewColumn[] { challenge, count });
+        challengesDataGridView.Location = new Point(436, 208);
+        challengesDataGridView.Name = "challengesDataGridView";
+        challengesDataGridView.Size = new Size(348, 184);
+        challengesDataGridView.TabIndex = 48;
+        // 
+        // challenge
+        // 
+        challenge.HeaderText = "Challenge";
+        challenge.Name = "challenge";
+        // 
+        // count
+        // 
+        count.HeaderText = "Count";
+        count.Name = "count";
+        // 
+        // missionBestTimesDataGridView
+        // 
+        missionBestTimesDataGridView.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+        missionBestTimesDataGridView.Columns.AddRange(new DataGridViewColumn[] { Mission, Time });
+        missionBestTimesDataGridView.Location = new Point(436, 6);
+        missionBestTimesDataGridView.Name = "missionBestTimesDataGridView";
+        missionBestTimesDataGridView.Size = new Size(348, 184);
+        missionBestTimesDataGridView.TabIndex = 46;
+        // 
+        // Mission
+        // 
+        Mission.HeaderText = "Mission";
+        Mission.Name = "Mission";
+        // 
+        // Time
+        // 
+        Time.HeaderText = "Time";
+        Time.Name = "Time";
         // 
         // ExpeditionCoreSaveForm
         // 
@@ -448,16 +940,30 @@ partial class ExpeditionCoreSaveForm
         menuStrip1.ResumeLayout(false);
         menuStrip1.PerformLayout();
         expeditionSaveTabControl.ResumeLayout(false);
-        tabPage1.ResumeLayout(false);
-        tabPage1.PerformLayout();
-        ((System.ComponentModel.ISupportInitialize)winsNumericUpDown).EndInit();
-        ((System.ComponentModel.ISupportInitialize)totalHiddenChallengesNumericUpDown).EndInit();
-        ((System.ComponentModel.ISupportInitialize)totalChallengesNumericUpDown).EndInit();
+        expeditionGeneralFieldsTabPage.ResumeLayout(false);
+        rainbowAuraGroupBox.ResumeLayout(false);
+        rainbowAuraGroupBox.PerformLayout();
+        miscInfoGroupBox.ResumeLayout(false);
+        miscInfoGroupBox.PerformLayout();
+        totalsGroupBox.ResumeLayout(false);
+        totalsGroupBox.PerformLayout();
         ((System.ComponentModel.ISupportInitialize)totalPointsNumericUpDown).EndInit();
-        ((System.ComponentModel.ISupportInitialize)pointsNumericUpDown).EndInit();
-        ((System.ComponentModel.ISupportInitialize)perkLimitNumericUpDown).EndInit();
-        ((System.ComponentModel.ISupportInitialize)levelNumericUpDown).EndInit();
+        ((System.ComponentModel.ISupportInitialize)totalChallengesNumericUpDown).EndInit();
+        ((System.ComponentModel.ISupportInitialize)totalHiddenChallengesNumericUpDown).EndInit();
+        ((System.ComponentModel.ISupportInitialize)winsNumericUpDown).EndInit();
+        baseInfoGroupBox.ResumeLayout(false);
+        baseInfoGroupBox.PerformLayout();
         ((System.ComponentModel.ISupportInitialize)saveSlotNumericUpDown).EndInit();
+        ((System.ComponentModel.ISupportInitialize)levelNumericUpDown).EndInit();
+        ((System.ComponentModel.ISupportInitialize)perkLimitNumericUpDown).EndInit();
+        ((System.ComponentModel.ISupportInitialize)pointsNumericUpDown).EndInit();
+        expeditionUnlocksAndStatsTabPage.ResumeLayout(false);
+        ((System.ComponentModel.ISupportInitialize)songsDataGridView).EndInit();
+        ((System.ComponentModel.ISupportInitialize)unlocksDataGridView).EndInit();
+        ((System.ComponentModel.ISupportInitialize)completedQuestsDataGridView).EndInit();
+        ((System.ComponentModel.ISupportInitialize)completedMissionsDataGridView).EndInit();
+        ((System.ComponentModel.ISupportInitialize)challengesDataGridView).EndInit();
+        ((System.ComponentModel.ISupportInitialize)missionBestTimesDataGridView).EndInit();
         ResumeLayout(false);
         PerformLayout();
     }
@@ -481,7 +987,7 @@ partial class ExpeditionCoreSaveForm
     private ToolStripMenuItem saveToolStripMenuItem;
     private ToolStripMenuItem saveAsToolStripMenuItem;
     private TabControl expeditionSaveTabControl;
-    private TabPage tabPage1;
+    private TabPage expeditionGeneralFieldsTabPage;
     private Label saveSlotLabel;
     private Label levelLabel;
     private Label perkLimitLabel;
@@ -506,4 +1012,49 @@ partial class ExpeditionCoreSaveForm
     private Label selectedMenuSongLabel;
     private CheckBox viewedManualCheckBox;
     private Label viewedManualLabel;
+    private TabPage expeditionUnlocksAndStatsTabPage;
+    private DataGridView songsDataGridView;
+    private DataGridViewTextBoxColumn song;
+    private DataGridView unlocksDataGridView;
+    private DataGridViewTextBoxColumn unlock;
+    private DataGridView completedQuestsDataGridView;
+    private DataGridViewTextBoxColumn completedQuest;
+    private DataGridView completedMissionsDataGridView;
+    private DataGridView challengesDataGridView;
+    private DataGridViewTextBoxColumn challenge;
+    private DataGridViewTextBoxColumn count;
+    private DataGridView missionBestTimesDataGridView;
+    private DataGridViewTextBoxColumn Mission;
+    private DataGridViewTextBoxColumn Time;
+    private DataGridViewTextBoxColumn completedMission;
+    private GroupBox baseInfoGroupBox;
+    private GroupBox rainbowAuraGroupBox;
+    private CheckBox monkEggActiveCheckBox;
+    private CheckBox monkEggDoneCheckBox;
+    private Label monkEggLabel;
+    private CheckBox hunterEggActiveCheckBox;
+    private CheckBox hunterEggDoneCheckBox;
+    private Label hunterEggLabel;
+    private CheckBox survivorEggActiveCheckBox;
+    private CheckBox survivorEggDoneCheckBox;
+    private Label survivorEggLabel;
+    private GroupBox miscInfoGroupBox;
+    private GroupBox totalsGroupBox;
+    private CheckBox saintEggActiveCheckBox;
+    private CheckBox saintEggDoneCheckBox;
+    private Label saintEggLabel;
+    private CheckBox spearmasterEggActiveCheckBox;
+    private CheckBox spearmasterEggDoneCheckBox;
+    private Label spearmasterEggLabel;
+    private CheckBox rivuletEggActiveCheckBox;
+    private CheckBox rivuletEggDoneCheckBox;
+    private Label rivuletEggLabel;
+    private CheckBox gourmandEggActiveCheckBox;
+    private CheckBox gourmandEggDoneCheckBox;
+    private Label gourmandEggLabel;
+    private CheckBox artificerEggActiveCheckBox;
+    private CheckBox artificerEggDoneCheckBox;
+    private Label artificerEggLabel;
+    private Label doneActiveLeftLabel;
+    private Label doneActiveRightLabel;
 }
