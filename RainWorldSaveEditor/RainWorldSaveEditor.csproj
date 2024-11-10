@@ -39,6 +39,8 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Folder Include="Resources\Expedition Missions\Info\" />
+    <Folder Include="Resources\Expedition Quests\Info\" />
     <Folder Include="Resources\Expedition Unlocks\Icons\" />
     <Folder Include="Resources\Pearl\" />
     <Folder Include="Resources\Worldstate Info\" />

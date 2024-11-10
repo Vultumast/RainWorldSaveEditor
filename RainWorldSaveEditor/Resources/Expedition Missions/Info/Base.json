@@ -1,0 +1,61 @@
+[
+  {
+    "Key": "mis1",
+    "Name": "Birdwatching",
+    "Slugcat": "Red",
+    "Challenges": [ "HuntChallenge~Vulture><3><0><0><0><0", "HuntChallenge~KingVulture><1><0><0><0><0", "VistaChallenge~CC><CC_A10><805><506><0><0><0" ],
+    "Den": "CC_S03"
+  },
+  {
+    "Key": "mis2",
+    "Name": "Guiding Light",
+    "Slugcat": "White",
+    "Challenges": [ "NeuronDeliveryChallenge~1><0><0><0><0", "VistaChallenge~UW><UW_J01><860><1534><0><0><0", "VistaChallenge~HI><HI_D01><1765><655><0><0><0", "VistaChallenge~SL><SL_C04><542><1295><0><0><0" ],
+    "Requirements": [ "bur-blinded" ],
+    "Den": "SS_S04"
+  },
+  {
+    "Key": "mis3",
+    "Name": "Nature's Friend",
+    "Slugcat": "Yellow",
+    "Challenges": [ "AchievementChallenge~Saint><0><0><0", "AchievementChallenge~Friend><0><0><0", "AchievementChallenge~Chieftain><0><0><0" ],
+    "Den": "HI_S03"
+  },
+  {
+    "Key": "mis4",
+    "Name": "Food Tour",
+    "Slugcat": "Gourmand",
+    "Challenges": [ "VistaChallenge~OE><OE_TREETOP><468><1782><0><0><0", "AchievementChallenge~Hunter><0><0><0", "AchievementChallenge~Monk><0><0><0", "VistaChallenge~SL><SL_B04><390><2258><0><0><0" ],
+    "Den": "CC_S06"
+  },
+  {
+    "Key": "mis5",
+    "Name": "Scavenger Hunt",
+    "Slugcat": "Artificer",
+    "Challenges": [ "HuntChallenge~Scavenger><20><0><0><0><0", "HuntChallenge~ScavengerElite><3><0><0><0><0" ],
+    "Den": "LC_A05"
+  },
+  {
+    "Key": "mis6",
+    "Name": "Apex Predator",
+    "Slugcat": "Spear",
+    "Challenges": [ "HuntChallenge~RedLizard><1><0><0><0><0", "HuntChallenge~DaddyLongLegs><1><0><0><0><0", "HuntChallenge~MirosVulture><1><0><0><0><0", "HuntChallenge~RedCentipede><1><0><0><0><0", "GlobalScoreChallenge~0><300><0><0><0" ],
+    "Den": "UW_S03"
+  },
+  {
+    "Key": "mis7",
+    "Name": "Hunter Gatherer",
+    "Slugcat": "Rivulet",
+    "Challenges": [ "ItemHoardChallenge~2><JellyFish><0><0><0", "ItemHoardChallenge~2><FlareBomb><0><0><0", "ItemHoardChallenge~2><PuffBall><0><0><0", "ItemHoardChallenge~2><Mushroom><0><0><0", "ItemHoardChallenge~2><FlyLure><0><0><0" ],
+    "Requirements": [ "bur-pursued" ],
+    "Den": "VS_S06"
+  },
+  {
+    "Key": "mis8",
+    "Name": "Change of Heart",
+    "Slugcat": "Saint",
+    "Challenges": [ "GlobalScoreChallenge~0><200><0><0><0", "AchievementChallenge~Nomad><0><0><0" ],
+    "Requirements": [ "unl-gun" ],
+    "Den": "SI_S04"
+  }
+]

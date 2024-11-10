@@ -21,6 +21,7 @@ public partial class ExpeditionCoreSaveForm : Form
         InitializeComponent();
         UnloadSave();
         ExpeditionUnlockInfo.ReadExpeditionUnlockInfo();
+        ExpeditionMissionInfo.ReadExpeditionMissionInfo();
     }
 
     public string ExternalSaveLocation { get; private set; } = string.Empty;
@@ -290,7 +291,12 @@ public partial class ExpeditionCoreSaveForm : Form
         songsDataGridView.Rows.Clear();
         foreach (var item in save?.NewSongs ?? [])
         {
-            songsDataGridView.Rows.Add([item]);
+            var realName = ExpeditionUnlockInfo.Unlocks.ContainsKey(item) ? ExpeditionUnlockInfo.Unlocks[item].Name : item;
+
+            if (!realName.StartsWith("Music"))
+                realName = item;
+
+            songsDataGridView.Rows.Add([realName]);
         }
 
         completedQuestsDataGridView.Rows.Clear();
@@ -302,13 +308,17 @@ public partial class ExpeditionCoreSaveForm : Form
         completedMissionsDataGridView.Rows.Clear();
         foreach (var item in save?.Missions ?? [])
         {
-            completedMissionsDataGridView.Rows.Add([item]);
+            var realName = ExpeditionMissionInfo.Missions.ContainsKey(item) ? ExpeditionMissionInfo.Missions[item].Name : item;
+
+            completedMissionsDataGridView.Rows.Add([realName]);
         }
 
         missionBestTimesDataGridView.Rows.Clear();
         foreach (var item in save?.MissionBestTimes ?? [])
         {
-            missionBestTimesDataGridView.Rows.Add([item.Mission, item.Time.ToString()]);
+            var realName = ExpeditionMissionInfo.Missions.ContainsKey(item.Mission) ? ExpeditionMissionInfo.Missions[item.Mission].Name : item.Mission;
+
+            missionBestTimesDataGridView.Rows.Add([realName, item.Time.ToString()]);
         }
 
         challengesDataGridView.Rows.Clear();

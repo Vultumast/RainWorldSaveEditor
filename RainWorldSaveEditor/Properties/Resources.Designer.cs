@@ -183,6 +183,16 @@ namespace RainWorldSaveEditor.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Byte[].
         /// </summary>
+        internal static byte[] ExpeditionMissionInfo_Base {
+            get {
+                object obj = ResourceManager.GetObject("ExpeditionMissionInfo_Base", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
         internal static byte[] ExpeditionUnlockInfo_Base {
             get {
                 object obj = ResourceManager.GetObject("ExpeditionUnlockInfo_Base", resourceCulture);

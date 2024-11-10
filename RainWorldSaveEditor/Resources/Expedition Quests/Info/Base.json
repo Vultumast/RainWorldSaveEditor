@@ -1,0 +1,935 @@
+[
+  {
+    "Key": "qst1",
+    "Type": "milestone",
+    "Color": "58d645",
+    "Conditions": [
+      "lvl-3"
+    ],
+    "Reward": [
+      "per-1"
+    ]
+  },
+  {
+    "Key": "qst2",
+    "Type": "expedition",
+    "Color": "a3a3a3",
+    "Conditions": [
+      "cha-1"
+    ],
+    "Reward": [
+      "mus-2",
+      "mus-3"
+    ]
+  },
+  {
+    "Key": "qst3",
+    "Type": "milestone",
+    "Color": "58d645",
+    "Conditions": [
+      "lvl-5"
+    ],
+    "Reward": [
+      "per-1"
+    ]
+  },
+  {
+    "Key": "qst4",
+    "Type": "expedition",
+    "Color": "a3a3a3",
+    "Conditions": [
+      "cha-2"
+    ],
+    "Reward": [
+      "mus-4",
+      "mus-5",
+      "mus-6"
+    ]
+  },
+  {
+    "Key": "qst5",
+    "Type": "milestone",
+    "Color": "58d645",
+    "Conditions": [
+      "lvl-7"
+    ],
+    "Reward": [
+      "per-1"
+    ]
+  },
+  {
+    "Key": "qst6",
+    "Type": "expedition",
+    "Color": "a3a3a3",
+    "Conditions": [
+      "cha-3"
+    ],
+    "Reward": [
+      "mus-7",
+      "mus-8",
+      "mus-9"
+    ]
+  },
+  {
+    "Key": "qst7",
+    "Type": "milestone",
+    "Color": "58d645",
+    "Conditions": [
+      "lvl-10"
+    ],
+    "Reward": [
+      "per-1"
+    ]
+  },
+  {
+    "Key": "qst8",
+    "Type": "expedition",
+    "Color": "a3a3a3",
+    "Conditions": [
+      "points-200"
+    ],
+    "Reward": [
+      "mus-10",
+      "mus-11",
+      "mus-12"
+    ]
+  },
+  {
+    "Key": "qst9",
+    "Type": "milestone",
+    "Color": "58d645",
+    "Conditions": [
+      "lvl-13"
+    ],
+    "Reward": [
+      "per-1"
+    ]
+  },
+  {
+    "Key": "qst10",
+    "Type": "expedition",
+    "Color": "a3a3a3",
+    "Conditions": [
+      "points-250"
+    ],
+    "Reward": [
+      "mus-13",
+      "mus-14",
+      "mus-15"
+    ]
+  },
+  {
+    "Key": "qst11",
+    "Type": "milestone",
+    "Color": "58d645",
+    "Conditions": [
+      "lvl-15"
+    ],
+    "Reward": [
+      "per-1"
+    ]
+  },
+  {
+    "Key": "qst12",
+    "Type": "expedition",
+    "Color": "a3a3a3",
+    "Conditions": [
+      "points-300"
+    ],
+    "Reward": [
+      "mus-16",
+      "mus-17",
+      "mus-18"
+    ]
+  },
+  {
+    "Key": "qst13",
+    "Type": "milestone",
+    "Color": "58d645",
+    "Conditions": [
+      "lvl-20"
+    ],
+    "Reward": [
+      "per-1"
+    ]
+  },
+  {
+    "Key": "qst14",
+    "Type": "expedition",
+    "Color": "a3a3a3",
+    "Conditions": [
+      "hid-1"
+    ],
+    "Reward": [
+      "mus-19",
+      "mus-20",
+      "mus-21"
+    ]
+  },
+  {
+    "Key": "qst15",
+    "Type": "expedition",
+    "Color": "b50707",
+    "Conditions": [
+      "cha-5"
+    ],
+    "Reward": [
+      "bur-blinded"
+    ]
+  },
+  {
+    "Key": "qst16",
+    "Type": "expedition",
+    "Color": "a3a3a3",
+    "Conditions": [
+      "slug-Yellow",
+      "cha-3"
+    ],
+    "Reward": [
+      "mus-22",
+      "mus-23",
+      "mus-24"
+    ]
+  },
+  {
+    "Key": "qst17",
+    "Color": "a3a3a3",
+    "Type": "expedition",
+    "Conditions": [
+      "slug-Yellow",
+      "hid-1"
+    ],
+    "Reward": [
+      "mus-25",
+      "mus-26",
+      "mus-27"
+    ]
+  },
+  {
+    "Key": "qst18",
+    "Color": "05ebbd",
+    "Type": "milestone",
+    "Conditions": [
+      "wins-2"
+    ],
+    "Reward": [
+      "unl-lantern"
+    ]
+  },
+  {
+    "Key": "qst19",
+    "Color": "a3a3a3",
+    "Type": "expedition",
+    "Conditions": [
+      "slug-White",
+      "cha-3"
+    ],
+    "Reward": [
+      "mus-28",
+      "mus-29",
+      "mus-30"
+    ]
+  },
+  {
+    "Key": "qst20",
+    "Color": "a3a3a3",
+    "Type": "expedition",
+    "Conditions": [
+      "slug-White",
+      "hid-1"
+    ],
+    "Reward": [
+      "mus-31",
+      "mus-39"
+    ]
+  },
+  {
+    "Key": "qst21",
+    "Color": "05ebbd",
+    "Type": "expedition",
+    "Conditions": [
+      "ttyp-HuntChallenge-10"
+    ],
+    "Reward": [
+      "unl-bomb"
+    ]
+  },
+  {
+    "Key": "qst22",
+    "Type": "milestone",
+    "Color": "a3a3a3",
+    "Conditions": [
+      "ttyp-EchoChallenge-3"
+    ],
+    "Reward": [
+      "mus-32",
+      "mus-33",
+      "mus-34"
+    ]
+  },
+  {
+    "Key": "qst23",
+    "Type": "milestone",
+    "Color": "a3a3a3",
+    "Conditions": [
+      "ttyp-EchoChallenge-7"
+    ],
+    "Reward": [
+      "mus-35",
+      "mus-36",
+      "mus-37",
+      "mus-38"
+    ]
+  },
+  {
+    "Key": "qst24",
+    "Type": "expedition",
+    "Color": "05ebbd",
+    "Conditions": [
+      "mis-mis1"
+    ],
+    "Reward": [
+      "unl-vulture"
+    ]
+  },
+  {
+    "Key": "qst25",
+    "Type": "milestone",
+    "Color": "a3a3a3",
+    "Conditions": [
+      "tcha-20"
+    ],
+    "Reward": [
+      "mus-40",
+      "mus-41",
+      "mus-42"
+    ]
+  },
+  {
+    "Key": "qst26",
+    "Type": "milestone",
+    "Color": "a3a3a3",
+    "Conditions": [
+      "wins-5"
+    ],
+    "Reward": [
+      "mus-43",
+      "mus-44",
+      "mus-45"
+    ]
+  },
+  {
+    "Key": "qst27",
+    "Type": "expedition",
+    "Color": "05ebbd",
+    "Conditions": [
+      "mis-mis2"
+    ],
+    "Reward": [
+      "unl-glow"
+    ]
+  },
+  {
+    "Key": "qst28",
+    "Type": "expedition",
+    "Color": "a3a3a3",
+    "Conditions": [
+      "slug-Red",
+      "cha-3"
+    ],
+    "Reward": [
+      "mus-46",
+      "mus-47",
+      "mus-48"
+    ]
+  },
+  {
+    "Key": "qst29",
+    "Type": "expedition",
+    "Color": "a3a3a3",
+    "Conditions": [
+      "slug-Red",
+      "hid-1"
+    ],
+    "Reward": [
+      "mus-49",
+      "mus-50",
+      "mus-51"
+    ]
+  },
+  {
+    "Key": "qst30",
+    "Type": "milestone",
+    "Color": "b50707",
+    "Conditions": [
+      "lvl-5",
+      "swins-Red-3"
+    ],
+    "Reward": [
+      "bur-doomed"
+    ]
+  },
+  {
+    "Key": "qst31",
+    "Type": "expedition",
+    "Color": "a3a3a3",
+    "Conditions": [
+      "ttyp-HuntChallenge-15"
+    ],
+    "Reward": [
+      "mus-52",
+      "mus-53",
+      "mus-54"
+    ]
+  },
+  {
+    "Key": "qst32",
+    "Type": "expedition",
+    "Color": "a3a3a3",
+    "Conditions": [
+      "ttyp-HuntChallenge-20"
+    ],
+    "Reward": [
+      "mus-55",
+      "mus-56",
+      "mus-57"
+    ]
+  },
+  {
+    "Key": "qst33",
+    "Type": "milestone",
+    "Color": "05ebbd",
+    "Conditions": [
+      "swins-Red-3"
+    ],
+    "Reward": [
+      "unl-backspear"
+    ]
+  },
+  {
+    "Key": "qst34",
+    "Type": "milestone",
+    "Color": "a3a3a3",
+    "Conditions": [
+      "thid-3"
+    ],
+    "Reward": [
+      "mus-58",
+      "mus-59",
+      "mus-60"
+    ]
+  },
+  {
+    "Key": "qst35",
+    "Type": "milestone",
+    "Color": "a3a3a3",
+    "Conditions": [
+      "thid-6"
+    ],
+    "Reward": [
+      "mus-61",
+      "mus-62",
+      "mus-63"
+    ]
+  },
+  {
+    "Key": "qst36",
+    "Type": "milestone",
+    "Color": "05ebbd",
+    "Conditions": [
+      "swins-Yellow-2",
+      "swins-White-2",
+      "swins-Red-2"
+    ],
+    "Reward": [
+      "unl-passage"
+    ]
+  },
+  {
+    "Key": "qst37",
+    "Type": "expedition",
+    "Color": "a3a3a3",
+    "Conditions": [
+      "points-350"
+    ],
+    "Reward": [
+      "mus-64",
+      "mus-65",
+      "mus-66"
+    ]
+  },
+  {
+    "Key": "qst38",
+    "Type": "expedition",
+    "Color": "a3a3a3",
+    "Conditions": [
+      "points-400"
+    ],
+    "Reward": [
+      "mus-67",
+      "mus-68",
+      "mus-69"
+    ]
+  },
+  {
+    "Key": "qst39",
+    "Type": "milestone",
+    "Color": "05ebbd",
+    "Conditions": [
+      "mis-mis3"
+    ],
+    "Reward": [
+      "unl-karma"
+    ]
+  },
+  {
+    "Key": "qst40",
+    "Type": "expedition",
+    "Color": "a3a3a3",
+    "Conditions": [
+      "qst-10"
+    ],
+    "Reward": [
+      "mus-70",
+      "mus-71",
+      "mus-72"
+    ]
+  },
+  {
+    "Key": "qst41",
+    "Type": "expedition",
+    "Color": "a3a3a3",
+    "Conditions": [
+      "qst-15"
+    ],
+    "Reward": [
+      "mus-73",
+      "mus-74",
+      "mus-75"
+    ]
+  },
+  {
+    "Key": "qst42",
+    "Type": "milestone",
+    "Color": "05ebbd",
+    "Conditions": [
+      "tcha-30"
+    ],
+    "Reward": [
+      "unl-slow"
+    ]
+  },
+  {
+    "Key": "qst43",
+    "Type": "expedition",
+    "Color": "a3a3a3",
+    "Conditions": [
+      "bur-blinded",
+      "cha-3"
+    ],
+    "Reward": [
+      "mus-76",
+      "mus-77",
+      "mus-78"
+    ]
+  },
+  {
+    "Key": "qst44",
+    "Type": "expedition",
+    "Color": "a3a3a3",
+    "Conditions": [
+      "bur-doomed",
+      "cha-3"
+    ],
+    "Reward": [
+      "mus-79",
+      "mus-80",
+      "mus-81"
+    ]
+  },
+  {
+    "Key": "qst45",
+    "Type": "expedition",
+    "Color": "b50707",
+    "Conditions": [
+      "qst-20"
+    ],
+    "Reward": [
+      "bur-hunted"
+    ]
+  },
+  {
+    "Key": "qst46",
+    "Type": "expedition",
+    "Color": "a3a3a3",
+    "Conditions": [
+      "slug-Artificer",
+      "cha-3"
+    ],
+    "Reward": [
+      "mus-82",
+      "mus-83"
+    ]
+  },
+  {
+    "Key": "qst47",
+    "Type": "expedition",
+    "Color": "a3a3a3",
+    "Conditions": [
+      "slug-Artificer",
+      "hid-1"
+    ],
+    "Reward": [
+      "mus-84",
+      "mus-85"
+    ]
+  },
+  {
+    "Key": "qst48",
+    "Type": "milestone",
+    "Color": "05ebbd",
+    "Conditions": [
+      "mis-mis4"
+    ],
+    "Reward": [
+      "unl-crafting"
+    ]
+  },
+  {
+    "Key": "qst49",
+    "Type": "expedition",
+    "Color": "a3a3a3",
+    "Conditions": [
+      "slug-Gourmand",
+      "cha-3"
+    ],
+    "Reward": [
+      "mus-86",
+      "mus-87"
+    ]
+  },
+  {
+    "Key": "qst50",
+    "Type": "expedition",
+    "Color": "a3a3a3",
+    "Conditions": [
+      "slug-Gourmand",
+      "hid-1"
+    ],
+    "Reward": [
+      "mus-88",
+      "mus-89"
+    ]
+  },
+  {
+    "Key": "qst51",
+    "Type": "milestone",
+    "Color": "05ebbd",
+    "Conditions": [
+      "swins-Artificer-2"
+    ],
+    "Reward": [
+      "unl-explosionimmunity"
+    ]
+  },
+  {
+    "Key": "qst52",
+    "Type": "expedition",
+    "Color": "a3a3a3",
+    "Conditions": [
+      "slug-Spear",
+      "cha-3"
+    ],
+    "Reward": [
+      "mus-90",
+      "mus-91"
+    ]
+  },
+  {
+    "Key": "qst53",
+    "Type": "expedition",
+    "Color": "a3a3a3",
+    "Conditions": [
+      "slug-Spear",
+      "hid-1"
+    ],
+    "Reward": [
+      "mus-92",
+      "mus-93"
+    ]
+  },
+  {
+    "Key": "qst54",
+    "Type": "milestone",
+    "Color": "05ebbd",
+    "Conditions": [
+      "lvl-10",
+      "swins-Artificer-4"
+    ],
+    "Reward": [
+      "unl-explosivejump"
+    ]
+  },
+  {
+    "Key": "qst55",
+    "Type": "expedition",
+    "Color": "a3a3a3",
+    "Conditions": [
+      "slug-Rivulet",
+      "cha-3"
+    ],
+    "Reward": [
+      "mus-94",
+      "mus-95"
+    ]
+  },
+  {
+    "Key": "qst56",
+    "Type": "expedition",
+    "Color": "a3a3a3",
+    "Conditions": [
+      "slug-Rivulet",
+      "hid-1"
+    ],
+    "Reward": [
+      "mus-96",
+      "mus-97"
+    ]
+  },
+  {
+    "Key": "qst57",
+    "Type": "milestone",
+    "Color": "05ebbd",
+    "Conditions": [
+      "lvl-5",
+      "swins-Spear-2"
+    ],
+    "Reward": [
+      "unl-dualwield"
+    ]
+  },
+  {
+    "Key": "qst58",
+    "Type": "expedition",
+    "Color": "a3a3a3",
+    "Conditions": [
+      "slug-Saint",
+      "cha-3"
+    ],
+    "Reward": [
+      "mus-114",
+      "mus-115"
+    ]
+  },
+  {
+    "Key": "qst59",
+    "Type": "expedition",
+    "Color": "a3a3a3",
+    "Conditions": [
+      "slug-Saint",
+      "hid-1"
+    ],
+    "Reward": [
+      "mus-116",
+      "mus-117"
+    ]
+  },
+  {
+    "Key": "qst60",
+    "Type": "milestone",
+    "Color": "b50707",
+    "Conditions": [
+      "thid-10"
+    ],
+    "Reward": [
+      "bur-pursued"
+    ]
+  },
+  {
+    "Key": "qst61",
+    "Type": "expedition",
+    "Color": "a3a3a3",
+    "Conditions": [
+      "bur-hunted",
+      "cha-3"
+    ],
+    "Reward": [
+      "mus-102",
+      "mus-103"
+    ]
+  },
+  {
+    "Key": "qst62",
+    "Type": "expedition",
+    "Color": "a3a3a3",
+    "Conditions": [
+      "bur-pursued",
+      "cha-3"
+    ],
+    "Reward": [
+      "mus-104",
+      "mus-105"
+    ]
+  },
+  {
+    "Key": "qst63",
+    "Type": "milestone",
+    "Color": "05ebbd",
+    "Conditions": [
+      "lvl-10",
+      "swins-Rivulet-2"
+    ],
+    "Reward": [
+      "unl-agility"
+    ]
+  },
+  {
+    "Key": "qst64",
+    "Type": "milestone",
+    "Color": "a3a3a3",
+    "Conditions": [
+      "lvl-10",
+      "ttyp-VistaChallenge-10"
+    ],
+    "Reward": [
+      "mus-106",
+      "mus-107"
+    ]
+  },
+  {
+    "Key": "qst65",
+    "Type": "expedition",
+    "Color": "a3a3a3",
+    "Conditions": [
+      "swins-Saint-3"
+    ],
+    "Reward": [
+      "mus-108",
+      "mus-109"
+    ]
+  },
+  {
+    "Key": "qst66",
+    "Type": "expedition",
+    "Color": "05ebbd",
+    "Conditions": [
+      "mis-mis5"
+    ],
+    "Reward": [
+      "unl-electric"
+    ]
+  },
+  {
+    "Key": "qst67",
+    "Type": "milestone",
+    "Color": "a3a3a3",
+    "Conditions": [
+      "tcha-50"
+    ],
+    "Reward": [
+      "mus-110",
+      "mus-111"
+    ]
+  },
+  {
+    "Key": "qst68",
+    "Type": "milestone",
+    "Color": "a3a3a3",
+    "Conditions": [
+      "tcha-100"
+    ],
+    "Reward": [
+      "mus-112",
+      "mus-113"
+    ]
+  },
+  {
+    "Key": "qst69",
+    "Type": "milestone",
+    "Color": "05ebbd",
+    "Conditions": [
+      "mis-mis7"
+    ],
+    "Reward": [
+      "unl-sing"
+    ]
+  },
+  {
+    "Key": "qst70",
+    "Type": "milestone",
+    "Color": "a3a3a3",
+    "Conditions": [
+      "qst-30"
+    ],
+    "Reward": [
+      "mus-98",
+      "mus-99"
+    ]
+  },
+  {
+    "Key": "qst71",
+    "Type": "milestone",
+    "Color": "a3a3a3",
+    "Conditions": [
+      "qst-40"
+    ],
+    "Reward": [
+      "mus-100",
+      "mus-101"
+    ]
+  },
+  {
+    "Key": "qst72",
+    "Type": "expedition",
+    "Color": "05ebbd",
+    "Conditions": [
+      "swins-Gourmand-1",
+      "swins-Artificer-1",
+      "swins-Spear-1",
+      "swins-Rivulet-1",
+      "swins-Saint-1"
+    ],
+    "Reward": [
+      "unl-gun"
+    ]
+  },
+  {
+    "Key": "qst73",
+    "Type": "expedition",
+    "Color": "a3a3a3",
+    "Conditions": [
+      "cha-5",
+      "hid-2",
+      "points-500"
+    ],
+    "Reward": [
+      "mus-118",
+      "mus-119",
+      "mus-120"
+    ]
+  },
+  {
+    "Key": "qst74",
+    "Type": "expedition",
+    "Color": "a3a3a3",
+    "Conditions": [
+      "mis-mis8"
+    ],
+    "Reward": [
+      "mus-121",
+      "mus-122",
+      "mus-123"
+    ]
+  },
+  {
+    "Key": "qst75",
+    "Type": "milestone",
+    "Color": "ff8000",
+    "Conditions": [
+      "qst-74"
+    ],
+    "Reward": [
+      "mus-124"
+    ]
+  }
+]
