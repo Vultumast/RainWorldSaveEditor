@@ -20,6 +20,7 @@ public partial class ExpeditionCoreSaveForm : Form
     {
         InitializeComponent();
         UnloadSave();
+        ExpeditionUnlockInfo.ReadExpeditionUnlockInfo();
     }
 
     public string ExternalSaveLocation { get; private set; } = string.Empty;
@@ -281,7 +282,9 @@ public partial class ExpeditionCoreSaveForm : Form
         unlocksDataGridView.Rows.Clear();
         foreach (var item in save?.Unlockables ?? [])
         {
-            unlocksDataGridView.Rows.Add([item]);
+            var realName = ExpeditionUnlockInfo.Unlocks.ContainsKey(item) ? ExpeditionUnlockInfo.Unlocks[item].Name : item;
+
+            unlocksDataGridView.Rows.Add([realName]);
         }
 
         songsDataGridView.Rows.Clear();

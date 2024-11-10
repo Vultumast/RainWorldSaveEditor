@@ -4,15 +4,16 @@ Assets marked with the license "Rain World" are the intellectual property of the
 
 # RainWorldSaveEditor/Resources
 
-| Name | Description | License | Source |
-| ---- | ----------- | ------- | ------ |
-| missing.png    | Missing Asset Icon | Vultumast (MIT) | N/A |
-| editoricon.ico | Editor Icon        | Saneko          | N/A |
-| editoricon.png | Editor Icon        | Saneko          | N/A |
+| Name           | Description        | License         | Source |
+| -------------- | ------------------ | --------------- | ------ |
+| missing.png    | Missing Asset Icon | Vultumast (MIT) | N/A    |
+| editoricon.ico | Editor Icon        | Saneko          | N/A    |
+| editoricon.png | Editor Icon        | Saneko          | N/A    |
 
 # RainWorldSaveEditor/Resources/Creature Community
-| Name | Description | License | Source |
-| ---- | ----------- | ------- | ------ |
+
+| Name                           | Description                 | License                          | Source                                                                                                         |
+| ------------------------------ | --------------------------- | -------------------------------- | -------------------------------------------------------------------------------------------------------------- |
 | garbageworm_community_icon.png | Garbage Worm Community Icon | Rain World (Edited by Vultumast) | [Rain World Miraheze Wiki](https://rainworld.miraheze.org/wiki/Garbage_Worm#/media/File:Garbage_Worm_icon.png) |
 | jetfish_community_icon.png     | Jetfish Community Icon      | Rain World (Edited by Vultumast) | [Rain World Miraheze Wiki](https://rainworld.miraheze.org/wiki/Jetfish#/media/File:Jetfish_icon.png)           |
 | lizard_community_icon.png      | Lizard Community Icon       | Rain World (Edited by Vultumast) | [Rain World Miraheze Wiki](https://static.miraheze.org/rainworldwiki/1/18/Green_Lizard_icon.png)               |
@@ -21,8 +22,9 @@ Assets marked with the license "Rain World" are the intellectual property of the
 | squidcada_community_icon.png   | Squidcada Community Icon    | Rain World (Edited by Vultumast) | [Rain World Miraheze Wiki](https://rainworld.miraheze.org/wiki/Squidcada#/media/File:Black_Squidcada_icon.png) |
 
 # RainWorldSaveEditor/Resources/Slugcat/Icons
-| Name | Description | License | Source |
-| ---- | ----------- | ------- | ------ |
+
+| Name                | Description          | License         | Source                                                                                             |
+| ------------------- | -------------------- | --------------- | -------------------------------------------------------------------------------------------------- |
 | artificer.png       | Artificer Icon       | Rain World      | [Rain World Miraheze Wiki](https://rainworld.miraheze.org/wiki/File:Artificer_icon_(custom).png)   |
 | gourmand.png        | Gourmand Icon        | Rain World      | [Rain World Miraheze Wiki](https://rainworld.miraheze.org/wiki/File:Gourmand_icon_(custom).png)    |
 | hunter.png          | Hunter Icon          | Rain World      | [Rain World Miraheze Wiki](https://rainworld.miraheze.org/wiki/File:Hunter_icon_(custom).png)      |
@@ -35,22 +37,25 @@ Assets marked with the license "Rain World" are the intellectual property of the
 | watcher.png         | Watcher Icon         | Rain World      | [Rain World Miraheze Wiki](https://rainworld.miraheze.org/wiki/File:Watcher_icon_(custom).png)     |
 
 # RainWorldSaveEditor/Resources/UI
-| Name | Description | License | Source |
-| ---- | ----------- | ------- | ------ |
-| shelter_icon.png | Shelter Icon          | Rain World                        | [Rain World Miraheze Wiki](https://rainworld.miraheze.org/wiki/Rain#/media/File:Shelter_icon.png)                         |
-| console.png      | Console Icon          | Microsoft Visual Studio           | N/A                                                                                                                       |
+
+| Name             | Description           | License                           | Source                                                                                            |
+| ---------------- | --------------------- | --------------------------------- | ------------------------------------------------------------------------------------------------- |
+| shelter_icon.png | Shelter Icon          | Rain World                        | [Rain World Miraheze Wiki](https://rainworld.miraheze.org/wiki/Rain#/media/File:Shelter_icon.png) |
+| console.png      | Console Icon          | Microsoft Visual Studio           | N/A                                                                                               |
 
 # RainWorldSaveEditor/Resources/UI/Food UI
-| Name | Description | License | Source |
-| ---- | ----------- | ------- | ------ |
+
+| Name                   | Description                   | License    | Source                                                                                       |
+| ---------------------- | ----------------------------- | ---------- | -------------------------------------------------------------------------------------------- |
 | Food_line.png          | Food Line UI Element          | Rain World | [Rain World Miraheze Wiki](https://rainworld.miraheze.org/wiki/File:Food_line.png)           |
 | Food_pip_empty.png     | Empty Food Pip UI Element     | Rain World | [Rain World Miraheze Wiki](https://rainworld.miraheze.org/wiki/File:Food_pip_empty.png)      |
 | Food_pip_full.png      | Full Food Pip UI Element      | Rain World | [Rain World Miraheze Wiki](https://rainworld.miraheze.org/wiki/File:Food_pip_full.png)       |
 | Food_pip_full_gray.png | Gray Full Food Pip UI Element | Rain World | [Rain World Miraheze Wiki](https://rainworld.miraheze.org/wiki/File:Food_pip_maybe_full.png) |
 
 # RainWorldSaveEditor/Resources/UI/Iterator Icons
-| Name | Description | License | Source |
-| ---- | ----------- | ------- | ------ |
+
+| Name                       | Description                     | License                          | Source                                                                                                                 |
+| -------------------------- | ------------------------------- | -------------------------------- | ---------------------------------------------------------------------------------------------------------------------- |
 | fivepebblesdeadicon.png    | Ascended Five Pebbles Icon      | Rain World (Edited by Vultumast) | [Rain World Miraheze Wiki](https://static.miraheze.org/rainworldwiki/5/54/Five_Pebbles_icon.png)                       |
 | five_pebbles_icon.png      | Five Pebbles Icon               | Rain World                       | [Rain World Miraheze Wiki](https://static.miraheze.org/rainworldwiki/5/54/Five_Pebbles_icon.png)                       |
 | lookstothemoondeadicon.png | Ascended Looks To The Moon Icon | Rain World (Edited by Vultumast) | [Rain World Miraheze Wiki](https://static.miraheze.org/rainworldwiki/8/80/Looks_to_the_Moon_icon.png)                  |
@@ -60,8 +65,9 @@ Assets marked with the license "Rain World" are the intellectual property of the
 | rarefaction_cell_icon.png  | Mass Rarefaction Cell Icon      | Rain World                       | [Rain World Miraheze Wiki](https://rainworld.miraheze.org/wiki/Rarefaction_Cell#/media/File:Rarefaction_Cell_icon.png) |
 
 # RainWorldSaveEditor/Resources/UI/Karma
-| Name | Description | License | Source |
-| ---- | ----------- | ------- | ------ |
+
+| Name                       | Description               | License    | Source                                                                                                                          |
+| -------------------------- | ------------------------- | ---------- | ------------------------------------------------------------------------------------------------------------------------------- |
 | karma_empty.png            | Karma 0 Icon              | Rain World | [Rain World Miraheze Wiki](https://rainworld.miraheze.org/wiki/Category:Karma_icons#/media/File:Karma_0_icon.png)               |
 | karma_empty_reinforced.png | Karma 0 (Reinforced) Icon | Rain World | [Rain World Miraheze Wiki](https://rainworld.miraheze.org/wiki/Category:Karma_icons#/media/File:Karma_0_icon_(reinforced).png)  |
 | karma00.png                | Karma 0 Icon              | Rain World | [Rain World Miraheze Wiki](https://rainworld.miraheze.org/wiki/Category:Karma_icons#/media/File:Karma_1_icon_(no_circle).png)   |
@@ -86,13 +92,15 @@ Assets marked with the license "Rain World" are the intellectual property of the
 | karmaA0.png                | Karma 10 Icon             | Rain World | [Rain World Miraheze Wiki](https://rainworld.miraheze.org/wiki/Category:Karma_icons#/media/File:Karma_10_icon_(no_circle).png)  |
 
 # RainWorldSaveEditor/Resources/UI/Overseer Icons
-| Name | Description | License | Source |
-| ---- | ----------- | ------- | ------ |
+
+| Name                     | Description          | License    | Source                                                                                                                       |
+| ------------------------ | -------------------- | ---------- | ---------------------------------------------------------------------------------------------------------------------------- |
 | Yellow_Overseer_icon.png | Yellow Oversser Icon | Rain World | [Rain World Miraheze Wiki](https://rainworld.miraheze.org/wiki/Category:Creature_icons#/media/File:Yellow_Overseer_icon.png) |
 
 # RainWorldSaveEditor/Resources/UI/Pearl
-| Name | Description | License | Source |
-| ---- | ----------- | ------- | ------ |
+
+| Name                 | Description                              | License    | Source                                                                                                |
+| -------------------- | ---------------------------------------- | ---------- | ----------------------------------------------------------------------------------------------------- |
 | SL_moon.png          | Shoreline Looks To The Moon Pearl Icon   | Rain World | [Rain World Miraheze Wiki](https://static.miraheze.org/rainworldwiki/2/22/Pearl_SL_moon.png)          |
 | SL_bridge.png        | Shoreline Bride Pearl Icon               | Rain World | [Rain World Miraheze Wiki](https://static.miraheze.org/rainworldwiki/0/05/Pearl_SL_bridge.png)        |
 | SL_chimney.png       | Shoreline Chimney Pearl Icon             | Rain World | [Rain World Miraheze Wiki](https://static.miraheze.org/rainworldwiki/4/40/Pearl_SL_chimney.png)       |
@@ -125,16 +133,18 @@ Assets marked with the license "Rain World" are the intellectual property of the
 | Rivulet_stomach.png  | Rivulet's Stomach Pearl Icon             | Rain World | [Rain World Miraheze Wiki](https://static.miraheze.org/rainworldwiki/d/d4/Pearl_Rivulet_stomach.png)  |
 
 # RainWorldSaveEditor/Resources/UI/Slugcat
-| Name | Description | License | Source |
-| ---- | ----------- | ------- | ------ |
-| hunter_dead.png    | Hunter Long Legs Icon | Rain World (Custom for Miraheze?) | [Rain World Miraheze Wiki](https://static.miraheze.org/rainworldwiki/7/77/Hunter_dead_icon_%28custom%29.png)              |
-| hunter_happy.png   | Happy Hunter Icon     | Rain World (Edited by Vultumast)  | [Rain World Miraheze Wiki](https://rainworld.miraheze.org/wiki/File:Hunter_icon_(custom).png)                             |
-| slugcat_dead.png   | Dead Survivor Icon    | Rain World                        | [Rain World Miraheze Wiki](https://rainworld.miraheze.org/wiki/Category:Slugcat_icons#/media/File:Survivor_dead_icon.png) |
-| artifcer_drone.png | Sofanthiel Icon       | Saneko                            | N/A                                                                                                                       |
-| missing_slugcat.png | Missing Slugcat Icon | Vultumast (MIT)                   | N/A                                                                                                                       |
+
+| Name                | Description           | License                           | Source                                                                                                                    |
+| ------------------- | --------------------- | --------------------------------- | ------------------------------------------------------------------------------------------------------------------------- |
+| hunter_dead.png     | Hunter Long Legs Icon | Rain World (Custom for Miraheze?) | [Rain World Miraheze Wiki](https://static.miraheze.org/rainworldwiki/7/77/Hunter_dead_icon_%28custom%29.png)              |
+| hunter_happy.png    | Happy Hunter Icon     | Rain World (Edited by Vultumast)  | [Rain World Miraheze Wiki](https://rainworld.miraheze.org/wiki/File:Hunter_icon_(custom).png)                             |
+| slugcat_dead.png    | Dead Survivor Icon    | Rain World                        | [Rain World Miraheze Wiki](https://rainworld.miraheze.org/wiki/Category:Slugcat_icons#/media/File:Survivor_dead_icon.png) |
+| artifcer_drone.png  | Sofanthiel Icon       | Saneko                            | N/A                                                                                                                       |
+| missing_slugcat.png | Missing Slugcat Icon  | Vultumast (MIT)                   | N/A                                                                                                                       |
 
 # RainWorldSaveEditor/Resources/UI/Tab Icons
-| Name | Description | License | Source |
-| ---- | ----------- | ------- | ------ |
-| echo_tab_icon.png | Echo Tab Icon | Rain World | [Rain World Miraheze Wiki](https://static.miraheze.org/rainworldwiki/c/c8/Echo_icon.png) |
+
+| Name                 | Description      | License    | Source                                                                                                              |
+| -------------------- | ---------------- | ---------- | ------------------------------------------------------------------------------------------------------------------- |
+| echo_tab_icon.png    | Echo Tab Icon    | Rain World | [Rain World Miraheze Wiki](https://static.miraheze.org/rainworldwiki/c/c8/Echo_icon.png)                            |
 | slugcat_tab_icon.png | Slugcat Tab Icon | Rain World | [Rain World Miraheze Wiki](https://rainworld.miraheze.org/wiki/Category:Slugcat_icons#/media/File:Slugcat_icon.png) |

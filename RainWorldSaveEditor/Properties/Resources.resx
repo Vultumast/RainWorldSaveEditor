@@ -406,4 +406,7 @@
   <data name="Yellow_Overseer_icon" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\UI\Overseer\Yellow_Overseer_icon.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="ExpeditionUnlockInfo_Base" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Expedition Unlocks\Info\Base.json;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
 </root>

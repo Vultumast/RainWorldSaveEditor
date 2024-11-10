@@ -1,0 +1,736 @@
+[
+  {
+    "Id": "per-1",
+    "Name": "Perk Capacity: +1",
+    "Description": ""
+  },
+
+
+
+  {
+    "Id": "unl-glow",
+    "Name": "Perk: Unlock: Neuron Glow",
+    "Description": "Enables a persistent glow around the player"
+  },
+  {
+    "Id": "unl-bomb",
+    "Name": "Perk: Unlock: Scavenger Bomb",
+    "Description": "Start the expedition with a Scavenger Bomb"
+  },
+  {
+    "Id": "unl-lantern",
+    "Name": "Perk: Scavenger Lantern",
+    "Description": "Start the expedition with a Scavenger Lantern"
+  },
+  {
+    "Id": "unl-slow",
+    "Name": "Perk: Slow Time",
+    "Description": "Slow time at will by holding PICK UP and pressing MAP, also temporarily increases movement abilities"
+  },
+  {
+    "Id": "unl-passage",
+    "Name": "Perk: Enable Passages",
+    "Description": "Enables the use of passages during expeditions which can be earned by completing challenges"
+  },
+  {
+    "Id": "unl-backspear",
+    "Name": "Perk: Back Spear",
+    "Description": "Allows the player to stow an additional spear on their back by holding PICK UP"
+  },
+  {
+    "Id": "unl-vulture",
+    "Name": "Perk: Vulture Mask",
+    "Description": "Start the expedition with a Vulture Mask"
+  },
+  {
+    "Id": "unl-karma",
+    "Name": "Perk: Karma Flower",
+    "Description": "Start the expedition with reinforced karma, a Karma Flower will spawn at the site of death"
+  },
+  {
+    "Id": "unl-electric",
+    "Name": "Perk: Electric Spear",
+    "Description": "Start the expedition with an Electric Spear"
+  },
+  {
+    "Id": "unl-dualwield",
+    "Name": "Perk: Spear Dual-Wielding",
+    "Description": "Allows the player to wield a spear in each hand"
+  },
+  {
+    "Id": "unl-sing",
+    "Name": "Perk: Singularity Bomb",
+    "Description": "Start the expedition with a Singularity Bomb"
+  },
+  {
+    "Id": "unl-explosivejump",
+    "Name": "Perk: Explosive Jump",
+    "Description": "Allows the player to jump a second time mid-air by pressing JUMP and PICKUP"
+  },
+  {
+    "Id": "unl-explosionimmunity",
+    "Name": "Perk: Explosion Resistance",
+    "Description": "Makes the player highly resistant to explosions"
+  },
+  {
+    "Id": "unl-crafting",
+    "Name": "Perk: Item Crafting",
+    "Description": "Craft different combinations of items together by holding UP and PICK UP"
+  },
+  {
+    "Id": "unl-agility",
+    "Name": "Perk: High Agility",
+    "Description": "Increases the players movement abilities, granting high speed and jump height"
+  },
+  {
+    "Id": "unl-gun",
+    "Name": "Perk: Joke Rifle",
+    "Description": "Start the expedition with the Joke Rifle"
+  },
+
+
+
+  {
+    "Id": "bur-blinded",
+    "Name": "Burden: Blinded",
+    "Description": "Shrouds the entire world in an endless night, obscuring danger in every shadow. A light source will be vital for survival."
+  },
+  {
+    "Id": "bur-doomed",
+    "Name": "Burden: Doomed",
+    "Description": "Removes the safety net that karma provides, triggering permadeath for any failure. Made only slightly less punishing with the use of the Karma Flower perk."
+  },
+  {
+    "Id": "bur-hunted",
+    "Name": "Burden: Hunted",
+    "Description": "Makes the player public enemy number one. All hostile creatures in the region will know your location at all times, making standing still a bad choice."
+  },
+  {
+    "Id": "bur-pursued",
+    "Name": "Burden: Pursued",
+    "Description": "Something stalks you through the world, endlessly searching for its target. Though not impossible to defeat, it will always return."
+  },
+
+
+
+  {
+    "Id": "mus-1",
+    "Name": "Music: Pictures of the Past",
+    "Description": ""
+  },
+  {
+    "Id": "mus-2",
+    "Name": "Music: Proxima",
+    "Description": ""
+  },
+  {
+    "Id": "mus-3",
+    "Name": "Music: Dustcloud",
+    "Description": ""
+  },
+  {
+    "Id": "mus-4",
+    "Name": "Music: Wormpad",
+    "Description": ""
+  },
+  {
+    "Id": "mus-5",
+    "Name": "Music: Silicon",
+    "Description": ""
+  },
+  {
+    "Id": "mus-6",
+    "Name": "Music: Sparkles",
+    "Description": ""
+  },
+  {
+    "Id": "mus-7",
+    "Name": "Music: Past Echoes",
+    "Description": ""
+  },
+  {
+    "Id": "mus-8",
+    "Name": "Music: Phasing",
+    "Description": ""
+  },
+  {
+    "Id": "mus-9",
+    "Name": "Music: Dark Sus",
+    "Description": ""
+  },
+  {
+    "Id": "mus-10",
+    "Name": "Music: Interest Pad",
+    "Description": ""
+  },
+  {
+    "Id": "mus-11",
+    "Name": "Music: Qanda",
+    "Description": ""
+  },
+  {
+    "Id": "mus-12",
+    "Name": "Music: Digital Sundown",
+    "Description": ""
+  },
+  {
+    "Id": "mus-13",
+    "Name": "Music: Reminiscence",
+    "Description": ""
+  },
+  {
+    "Id": "mus-14",
+    "Name": "Music: Drastic FM",
+    "Description": ""
+  },
+  {
+    "Id": "mus-15",
+    "Name": "Music: Dripping Time",
+    "Description": ""
+  },
+  {
+    "Id": "mus-16",
+    "Name": "Music: Glass Arcs",
+    "Description": ""
+  },
+  {
+    "Id": "mus-17",
+    "Name": "Music: Halcyon Memories",
+    "Description": ""
+  },
+  {
+    "Id": "mus-18",
+    "Name": "Music: Crystalline",
+    "Description": ""
+  },
+  {
+    "Id": "mus-19",
+    "Name": "Music: New Terra",
+    "Description": ""
+  },
+  {
+    "Id": "mus-20",
+    "Name": "Music: They Say",
+    "Description": ""
+  },
+  {
+    "Id": "mus-21",
+    "Name": "Music: Speaking Systems",
+    "Description": ""
+  },
+  {
+    "Id": "mus-22",
+    "Name": "Music: Emotion Thread",
+    "Description": ""
+  },
+  {
+    "Id": "mus-23",
+    "Name": "Music: Demonic Riser",
+    "Description": ""
+  },
+  {
+    "Id": "mus-24",
+    "Name": "Music: Energy Circuit",
+    "Description": ""
+  },
+  {
+    "Id": "mus-25",
+    "Name": "Music: Silent Construct",
+    "Description": ""
+  },
+  {
+    "Id": "mus-26",
+    "Name": "Music: Stargazer",
+    "Description": ""
+  },
+  {
+    "Id": "mus-27",
+    "Name": "Music: Flutter",
+    "Description": ""
+  },
+  {
+    "Id": "mus-28",
+    "Name": "Music: Distance",
+    "Description": ""
+  },
+  {
+    "Id": "mus-29",
+    "Name": "Music: Pulse",
+    "Description": ""
+  },
+  {
+    "Id": "mus-30",
+    "Name": "Music: Deep Light",
+    "Description": ""
+  },
+  {
+    "Id": "mus-31",
+    "Name": "Music: Passages",
+    "Description": ""
+  },
+  {
+    "Id": "mus-32",
+    "Name": "Music: ELSE I",
+    "Description": ""
+  },
+  {
+    "Id": "mus-33",
+    "Name": "Music: ELSE II",
+    "Description": ""
+  },
+  {
+    "Id": "mus-34",
+    "Name": "Music: ELSE III",
+    "Description": ""
+  },
+  {
+    "Id": "mus-35",
+    "Name": "Music: ELSE IV",
+    "Description": ""
+  },
+  {
+    "Id": "mus-36",
+    "Name": "Music: ELSE V",
+    "Description": ""
+  },
+  {
+    "Id": "mus-37",
+    "Name": "Music ELSE VI",
+    "Description": ""
+  },
+  {
+    "Id": "mus-38",
+    "Name": "Music: ELSE VII",
+    "Description": ""
+  },
+  {
+    "Id": "mus-39",
+    "Name": "Music: Cracked Earth",
+    "Description": ""
+  },
+  {
+    "Id": "mus-40",
+    "Name": "Music: Unseen Lands",
+    "Description": ""
+  },
+  {
+    "Id": "mus-41",
+    "Name": "Music: Random Gods",
+    "Description": ""
+  },
+  {
+    "Id": "mus-42",
+    "Name": "Music: Urban Jungle",
+    "Description": ""
+  },
+  {
+    "Id": "mus-43",
+    "Name": "Music: Rooftops",
+    "Description": ""
+  },
+  {
+    "Id": "mus-44",
+    "Name": "Music: Sundown",
+    "Description": ""
+  },
+  {
+    "Id": "mus-45",
+    "Name": "Music: Mud Pits",
+    "Description": ""
+  },
+  {
+    "Id": "mus-46",
+    "Name": "Music: Noisy",
+    "Description": ""
+  },
+  {
+    "Id": "mus-47",
+    "Name": "Music: Action Scene",
+    "Description": ""
+  },
+  {
+    "Id": "mus-48",
+    "Name": "Music: All That's Left",
+    "Description": ""
+  },
+  {
+    "Id": "mus-49",
+    "Name": "Music: Old Growth",
+    "Description": ""
+  },
+  {
+    "Id": "mus-50",
+    "Name": "Music: The Coast",
+    "Description": ""
+  },
+  {
+    "Id": "mus-51",
+    "Name": "Music: The Captain",
+    "Description": ""
+  },
+  {
+    "Id": "mus-52",
+    "Name": "Music: Stone Heads",
+    "Description": ""
+  },
+  {
+    "Id": "mus-53",
+    "Name": "Music: Polybius",
+    "Description": ""
+  },
+  {
+    "Id": "mus-54",
+    "Name": "Music: Black Moonlight",
+    "Description": ""
+  },
+  {
+    "Id": "mus-55",
+    "Name": "Music: Train Tunnels",
+    "Description": ""
+  },
+  {
+    "Id": "mus-56",
+    "Name": "Music: Ferrous Forest",
+    "Description": ""
+  },
+  {
+    "Id": "mus-57",
+    "Name": "Music: Lovely Arps",
+    "Description": ""
+  },
+  {
+    "Id": "mus-58",
+    "Name": "Music: Grey Cloud",
+    "Description": ""
+  },
+  {
+    "Id": "mus-59",
+    "Name": "Music: Weyoun",
+    "Description": ""
+  },
+  {
+    "Id": "mus-60",
+    "Name": "Music: Slaughter",
+    "Description": ""
+  },
+  {
+    "Id": "mus-61",
+    "Name": "Music: Garbage City Shuffle",
+    "Description": ""
+  },
+  {
+    "Id": "mus-62",
+    "Name": "Music: The Wet Moist",
+    "Description": ""
+  },
+  {
+    "Id": "mus-63",
+    "Name": "Music: Lack of Comfort",
+    "Description": ""
+  },
+  {
+    "Id": "mus-64",
+    "Name": "Music: Floes",
+    "Description": ""
+  },
+  {
+    "Id": "mus-65",
+    "Name": "Music: Grumblebum",
+    "Description": ""
+  },
+  {
+    "Id": "mus-66",
+    "Name": "Music: Kayava",
+    "Description": ""
+  },
+  {
+    "Id": "mus-67",
+    "Name": "Music: Kayava",
+    "Description": ""
+  },
+  {
+    "Id": "mus-68",
+    "Name": "Music: Bio Engineering",
+    "Description": ""
+  },
+  {
+    "Id": "mus-69",
+    "Name": "Music: Deep Energy",
+    "Description": ""
+  },
+  {
+    "Id": "mus-70",
+    "Name": "Music: Lonesound",
+    "Description": ""
+  },
+  {
+    "Id": "mus-71",
+    "Name": "Music: Maze of Soil",
+    "Description": ""
+  },
+  {
+    "Id": "mus-72",
+    "Name": "Music: Wind Chimes",
+    "Description": ""
+  },
+  {
+    "Id": "mus-73",
+    "Name": "Music: Nest in Metal",
+    "Description": ""
+  },
+  {
+    "Id": "mus-74",
+    "Name": "Music: Mist Engine",
+    "Description": ""
+  },
+  {
+    "Id": "mus-75",
+    "Name": "Music: Swaying Fronds",
+    "Description": ""
+  },
+  {
+    "Id": "mus-76",
+    "Name": "Music: Garbage Worms",
+    "Description": ""
+  },
+  {
+    "Id": "mus-77",
+    "Name": "Music: Leviathan Cave",
+    "Description": ""
+  },
+  {
+    "Id": "mus-78",
+    "Name": "Music: Raindeer Ride",
+    "Description": ""
+  },
+  {
+    "Id": "mus-79",
+    "Name": "Music: Sky Sprite",
+    "Description": ""
+  },
+  {
+    "Id": "mus-80",
+    "Name": "Music: White Lizard",
+    "Description": ""
+  },
+  {
+    "Id": "mus-81",
+    "Name": "Music: Lantern Mice",
+    "Description": ""
+  },
+  {
+    "Id": "mus-82",
+    "Name": "Music: Lost City",
+    "Description": ""
+  },
+  {
+    "Id": "mus-83",
+    "Name": "Music: Bloom",
+    "Description": ""
+  },
+  {
+    "Id": "mus-84",
+    "Name": "Music: Rain",
+    "Description": ""
+  },
+  {
+    "Id": "mus-85",
+    "Name": "Music: Orange Lizard",
+    "Description": ""
+  },
+  {
+    "Id": "mus-86",
+    "Name": "Music: Wandering Cut",
+    "Description": ""
+  },
+  {
+    "Id": "mus-87",
+    "Name": "Music: Daze",
+    "Description": ""
+  },
+  {
+    "Id": "mus-88",
+    "Name": "Music: Garden",
+    "Description": ""
+  },
+  {
+    "Id": "mus-89",
+    "Name": "Music: Metal Canopy",
+    "Description": ""
+  },
+  {
+    "Id": "mus-90",
+    "Name": "Music: Random Fate",
+    "Description": ""
+  },
+  {
+    "Id": "mus-91",
+    "Name": "Music: Wired",
+    "Description": ""
+  },
+  {
+    "Id": "mus-92",
+    "Name": "Music: Ancient",
+    "Description": ""
+  },
+  {
+    "Id": "mus-93",
+    "Name": "Music: Scapeless Doubt",
+    "Description": ""
+  },
+  {
+    "Id": "mus-94",
+    "Name": "Music: Sparking Pendulum",
+    "Description": ""
+  },
+  {
+    "Id": "mus-95",
+    "Name": "Music: Satellite",
+    "Description": ""
+  },
+  {
+    "Id": "mus-96",
+    "Name": "Music: Flicker",
+    "Description": ""
+  },
+  {
+    "Id": "mus-97",
+    "Name": "Music: Aquaphobia",
+    "Description": ""
+  },
+  {
+    "Id": "mus-98",
+    "Name": "Music: Onto A New Dawn",
+    "Description": ""
+  },
+  {
+    "Id": "mus-99",
+    "Name": "Music: Not Your Rain",
+    "Description": ""
+  },
+  {
+    "Id": "mus-100",
+    "Name": "Music: Fragile",
+    "Description": ""
+  },
+  {
+    "Id": "mus-101",
+    "Name": "Music: Obverse of the Old Wind",
+    "Description": ""
+  },
+  {
+    "Id": "mus-102",
+    "Name": "Music: Overcast",
+    "Description": ""
+  },
+  {
+    "Id": "mus-103",
+    "Name": "Music: Frosted Festival",
+    "Description": ""
+  },
+  {
+    "Id": "mus-104",
+    "Name": "Music: Breathing Hyometer",
+    "Description": ""
+  },
+  {
+    "Id": "mus-105",
+    "Name": "Music: Trusted Component",
+    "Description": ""
+  },
+  {
+    "Id": "mus-106",
+    "Name": "Music: Accidented Condition",
+    "Description": ""
+  },
+  {
+    "Id": "mus-107",
+    "Name": "Music: Chilblain Grace",
+    "Description": ""
+  },
+  {
+    "Id": "mus-108",
+    "Name": "Music: Ascent",
+    "Description": ""
+  },
+  {
+    "Id": "mus-109",
+    "Name": "Music: The Cycle",
+    "Description": ""
+  },
+  {
+    "Id": "mus-110",
+    "Name": "Music: Fading Light",
+    "Description": ""
+  },
+  {
+    "Id": "mus-111",
+    "Name": "Music: Flux",
+    "Description": ""
+  },
+  {
+    "Id": "mus-112",
+    "Name": "Music: Vast Unlife",
+    "Description": ""
+  },
+  {
+    "Id": "mus-113",
+    "Name": "Music: Eyes of Iron",
+    "Description": ""
+  },
+  {
+    "Id": "mus-114",
+    "Name": "Music: Sheer Ice Torrent",
+    "Description": ""
+  },
+  {
+    "Id": "mus-115",
+    "Name": "Music: Veiled Northstar",
+    "Description": ""
+  },
+  {
+    "Id": "mus-116",
+    "Name": "Music: Weathered Steps",
+    "Description": ""
+  },
+  {
+    "Id": "mus-117",
+    "Name": "Music: Reflection of the Moon",
+    "Description": ""
+  },
+  {
+    "Id": "mus-118",
+    "Name": "Music: Fragments",
+    "Description": ""
+  },
+  {
+    "Id": "mus-119",
+    "Name": "Music: Open Skies",
+    "Description": ""
+  },
+  {
+    "Id": "mus-120",
+    "Name": "Music: Frost Reaper",
+    "Description": ""
+  },
+  {
+    "Id": "mus-121",
+    "Name": "Music: ELSE VIII",
+    "Description": ""
+  },
+  {
+    "Id": "mus-122",
+    "Name": "Music: Another Ending",
+    "Description": ""
+  },
+  {
+    "Id": "mus-123",
+    "Name": "Music: Halcyon Memories (Reprise)",
+    "Description": ""
+  },
+  {
+    "Id": "mus-124",
+    "Name": "Music: Reclaiming Entropy",
+    "Description": ""
+  }
+]
