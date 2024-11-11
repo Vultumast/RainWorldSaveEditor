@@ -99,20 +99,32 @@ partial class ExpeditionCoreSaveForm
         pointsLabel = new Label();
         pointsNumericUpDown = new NumericUpDown();
         expeditionUnlocksAndStatsTabPage = new TabPage();
-        songsDataGridView = new DataGridView();
-        song = new DataGridViewTextBoxColumn();
-        unlocksDataGridView = new DataGridView();
-        unlock = new DataGridViewTextBoxColumn();
-        completedQuestsDataGridView = new DataGridView();
-        completedQuest = new DataGridViewTextBoxColumn();
-        completedMissionsDataGridView = new DataGridView();
-        completedMission = new DataGridViewTextBoxColumn();
-        challengesDataGridView = new DataGridView();
-        challenge = new DataGridViewTextBoxColumn();
-        count = new DataGridViewTextBoxColumn();
-        missionBestTimesDataGridView = new DataGridView();
-        Mission = new DataGridViewTextBoxColumn();
-        Time = new DataGridViewTextBoxColumn();
+        challengesEditButton = new Button();
+        challengesRemoveButton = new Button();
+        challengesAddButton = new Button();
+        challengesLabel = new Label();
+        challengesListBox = new ListBox();
+        completedQuestsRemoveButton = new Button();
+        completedQuestsAddButton = new Button();
+        completedQuestsLabel = new Label();
+        completedQuestsListBox = new ListBox();
+        completedMissionsRemoveButton = new Button();
+        completedMissionsAddButton = new Button();
+        completedMissionsLabel = new Label();
+        completedMissionsListBox = new ListBox();
+        missionBestTimesEditButton = new Button();
+        missionBestTimesRemoveButton = new Button();
+        missionBestTimesAddButton = new Button();
+        missionBestTimesLabel = new Label();
+        missionBestTimesListBox = new ListBox();
+        songsRemoveButton = new Button();
+        songsAddButton = new Button();
+        songsLabel = new Label();
+        songsListBox = new ListBox();
+        unlocksRemoveButton = new Button();
+        unlocksAddButton = new Button();
+        unlocksLabel = new Label();
+        unlocksListBox = new ListBox();
         menuStrip1.SuspendLayout();
         expeditionSaveTabControl.SuspendLayout();
         expeditionGeneralFieldsTabPage.SuspendLayout();
@@ -129,12 +141,6 @@ partial class ExpeditionCoreSaveForm
         ((System.ComponentModel.ISupportInitialize)perkLimitNumericUpDown).BeginInit();
         ((System.ComponentModel.ISupportInitialize)pointsNumericUpDown).BeginInit();
         expeditionUnlocksAndStatsTabPage.SuspendLayout();
-        ((System.ComponentModel.ISupportInitialize)songsDataGridView).BeginInit();
-        ((System.ComponentModel.ISupportInitialize)unlocksDataGridView).BeginInit();
-        ((System.ComponentModel.ISupportInitialize)completedQuestsDataGridView).BeginInit();
-        ((System.ComponentModel.ISupportInitialize)completedMissionsDataGridView).BeginInit();
-        ((System.ComponentModel.ISupportInitialize)challengesDataGridView).BeginInit();
-        ((System.ComponentModel.ISupportInitialize)missionBestTimesDataGridView).BeginInit();
         SuspendLayout();
         // 
         // menuStrip1
@@ -817,12 +823,32 @@ partial class ExpeditionCoreSaveForm
         // 
         // expeditionUnlocksAndStatsTabPage
         // 
-        expeditionUnlocksAndStatsTabPage.Controls.Add(songsDataGridView);
-        expeditionUnlocksAndStatsTabPage.Controls.Add(unlocksDataGridView);
-        expeditionUnlocksAndStatsTabPage.Controls.Add(completedQuestsDataGridView);
-        expeditionUnlocksAndStatsTabPage.Controls.Add(completedMissionsDataGridView);
-        expeditionUnlocksAndStatsTabPage.Controls.Add(challengesDataGridView);
-        expeditionUnlocksAndStatsTabPage.Controls.Add(missionBestTimesDataGridView);
+        expeditionUnlocksAndStatsTabPage.Controls.Add(challengesEditButton);
+        expeditionUnlocksAndStatsTabPage.Controls.Add(challengesRemoveButton);
+        expeditionUnlocksAndStatsTabPage.Controls.Add(challengesAddButton);
+        expeditionUnlocksAndStatsTabPage.Controls.Add(challengesLabel);
+        expeditionUnlocksAndStatsTabPage.Controls.Add(challengesListBox);
+        expeditionUnlocksAndStatsTabPage.Controls.Add(completedQuestsRemoveButton);
+        expeditionUnlocksAndStatsTabPage.Controls.Add(completedQuestsAddButton);
+        expeditionUnlocksAndStatsTabPage.Controls.Add(completedQuestsLabel);
+        expeditionUnlocksAndStatsTabPage.Controls.Add(completedQuestsListBox);
+        expeditionUnlocksAndStatsTabPage.Controls.Add(completedMissionsRemoveButton);
+        expeditionUnlocksAndStatsTabPage.Controls.Add(completedMissionsAddButton);
+        expeditionUnlocksAndStatsTabPage.Controls.Add(completedMissionsLabel);
+        expeditionUnlocksAndStatsTabPage.Controls.Add(completedMissionsListBox);
+        expeditionUnlocksAndStatsTabPage.Controls.Add(missionBestTimesEditButton);
+        expeditionUnlocksAndStatsTabPage.Controls.Add(missionBestTimesRemoveButton);
+        expeditionUnlocksAndStatsTabPage.Controls.Add(missionBestTimesAddButton);
+        expeditionUnlocksAndStatsTabPage.Controls.Add(missionBestTimesLabel);
+        expeditionUnlocksAndStatsTabPage.Controls.Add(missionBestTimesListBox);
+        expeditionUnlocksAndStatsTabPage.Controls.Add(songsRemoveButton);
+        expeditionUnlocksAndStatsTabPage.Controls.Add(songsAddButton);
+        expeditionUnlocksAndStatsTabPage.Controls.Add(songsLabel);
+        expeditionUnlocksAndStatsTabPage.Controls.Add(songsListBox);
+        expeditionUnlocksAndStatsTabPage.Controls.Add(unlocksRemoveButton);
+        expeditionUnlocksAndStatsTabPage.Controls.Add(unlocksAddButton);
+        expeditionUnlocksAndStatsTabPage.Controls.Add(unlocksLabel);
+        expeditionUnlocksAndStatsTabPage.Controls.Add(unlocksListBox);
         expeditionUnlocksAndStatsTabPage.Location = new Point(4, 24);
         expeditionUnlocksAndStatsTabPage.Name = "expeditionUnlocksAndStatsTabPage";
         expeditionUnlocksAndStatsTabPage.Padding = new Padding(3);
@@ -831,100 +857,245 @@ partial class ExpeditionCoreSaveForm
         expeditionUnlocksAndStatsTabPage.Text = "Unlocks and Stats";
         expeditionUnlocksAndStatsTabPage.UseVisualStyleBackColor = true;
         // 
-        // songsDataGridView
+        // challengesEditButton
         // 
-        songsDataGridView.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-        songsDataGridView.Columns.AddRange(new DataGridViewColumn[] { song });
-        songsDataGridView.Location = new Point(222, 6);
-        songsDataGridView.Name = "songsDataGridView";
-        songsDataGridView.Size = new Size(208, 184);
-        songsDataGridView.TabIndex = 56;
+        challengesEditButton.Location = new Point(568, 367);
+        challengesEditButton.Name = "challengesEditButton";
+        challengesEditButton.Size = new Size(94, 23);
+        challengesEditButton.TabIndex = 82;
+        challengesEditButton.Text = "Edit Selected...";
+        challengesEditButton.UseVisualStyleBackColor = true;
         // 
-        // song
+        // challengesRemoveButton
         // 
-        song.HeaderText = "Song";
-        song.Name = "song";
+        challengesRemoveButton.Location = new Point(668, 367);
+        challengesRemoveButton.Name = "challengesRemoveButton";
+        challengesRemoveButton.Size = new Size(118, 23);
+        challengesRemoveButton.TabIndex = 81;
+        challengesRemoveButton.Text = "Remove Selected";
+        challengesRemoveButton.UseVisualStyleBackColor = true;
+        challengesRemoveButton.Click += challengesRemoveButton_Click;
         // 
-        // unlocksDataGridView
+        // challengesAddButton
         // 
-        unlocksDataGridView.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-        unlocksDataGridView.Columns.AddRange(new DataGridViewColumn[] { unlock });
-        unlocksDataGridView.Location = new Point(8, 6);
-        unlocksDataGridView.Name = "unlocksDataGridView";
-        unlocksDataGridView.Size = new Size(208, 184);
-        unlocksDataGridView.TabIndex = 54;
+        challengesAddButton.Location = new Point(464, 367);
+        challengesAddButton.Name = "challengesAddButton";
+        challengesAddButton.Size = new Size(98, 23);
+        challengesAddButton.TabIndex = 80;
+        challengesAddButton.Text = "Add New...";
+        challengesAddButton.UseVisualStyleBackColor = true;
         // 
-        // unlock
+        // challengesLabel
         // 
-        unlock.HeaderText = "Unlock";
-        unlock.Name = "unlock";
+        challengesLabel.AutoSize = true;
+        challengesLabel.Location = new Point(464, 204);
+        challengesLabel.Name = "challengesLabel";
+        challengesLabel.Size = new Size(65, 15);
+        challengesLabel.TabIndex = 79;
+        challengesLabel.Text = "Challenges";
         // 
-        // completedQuestsDataGridView
+        // challengesListBox
         // 
-        completedQuestsDataGridView.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-        completedQuestsDataGridView.Columns.AddRange(new DataGridViewColumn[] { completedQuest });
-        completedQuestsDataGridView.Location = new Point(222, 208);
-        completedQuestsDataGridView.Name = "completedQuestsDataGridView";
-        completedQuestsDataGridView.Size = new Size(208, 184);
-        completedQuestsDataGridView.TabIndex = 52;
+        challengesListBox.FormattingEnabled = true;
+        challengesListBox.ItemHeight = 15;
+        challengesListBox.Location = new Point(464, 222);
+        challengesListBox.Name = "challengesListBox";
+        challengesListBox.Size = new Size(320, 139);
+        challengesListBox.TabIndex = 78;
         // 
-        // completedQuest
+        // completedQuestsRemoveButton
         // 
-        completedQuest.HeaderText = "Completed Quest";
-        completedQuest.Name = "completedQuest";
+        completedQuestsRemoveButton.Location = new Point(340, 367);
+        completedQuestsRemoveButton.Name = "completedQuestsRemoveButton";
+        completedQuestsRemoveButton.Size = new Size(118, 23);
+        completedQuestsRemoveButton.TabIndex = 77;
+        completedQuestsRemoveButton.Text = "Remove Selected";
+        completedQuestsRemoveButton.UseVisualStyleBackColor = true;
+        completedQuestsRemoveButton.Click += completedQuestsRemoveButton_Click;
         // 
-        // completedMissionsDataGridView
+        // completedQuestsAddButton
         // 
-        completedMissionsDataGridView.AccessibleRole = AccessibleRole.TitleBar;
-        completedMissionsDataGridView.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-        completedMissionsDataGridView.Columns.AddRange(new DataGridViewColumn[] { completedMission });
-        completedMissionsDataGridView.Location = new Point(8, 208);
-        completedMissionsDataGridView.Name = "completedMissionsDataGridView";
-        completedMissionsDataGridView.Size = new Size(208, 184);
-        completedMissionsDataGridView.TabIndex = 50;
+        completedQuestsAddButton.Location = new Point(236, 367);
+        completedQuestsAddButton.Name = "completedQuestsAddButton";
+        completedQuestsAddButton.Size = new Size(98, 23);
+        completedQuestsAddButton.TabIndex = 76;
+        completedQuestsAddButton.Text = "Add New...";
+        completedQuestsAddButton.UseVisualStyleBackColor = true;
         // 
-        // completedMission
+        // completedQuestsLabel
         // 
-        completedMission.HeaderText = "Completed Mission";
-        completedMission.Name = "completedMission";
+        completedQuestsLabel.AutoSize = true;
+        completedQuestsLabel.Location = new Point(236, 204);
+        completedQuestsLabel.Name = "completedQuestsLabel";
+        completedQuestsLabel.Size = new Size(105, 15);
+        completedQuestsLabel.TabIndex = 75;
+        completedQuestsLabel.Text = "Completed Quests";
         // 
-        // challengesDataGridView
+        // completedQuestsListBox
         // 
-        challengesDataGridView.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-        challengesDataGridView.Columns.AddRange(new DataGridViewColumn[] { challenge, count });
-        challengesDataGridView.Location = new Point(436, 208);
-        challengesDataGridView.Name = "challengesDataGridView";
-        challengesDataGridView.Size = new Size(348, 184);
-        challengesDataGridView.TabIndex = 48;
+        completedQuestsListBox.FormattingEnabled = true;
+        completedQuestsListBox.ItemHeight = 15;
+        completedQuestsListBox.Location = new Point(236, 222);
+        completedQuestsListBox.Name = "completedQuestsListBox";
+        completedQuestsListBox.Size = new Size(222, 139);
+        completedQuestsListBox.TabIndex = 74;
         // 
-        // challenge
+        // completedMissionsRemoveButton
         // 
-        challenge.HeaderText = "Challenge";
-        challenge.Name = "challenge";
+        completedMissionsRemoveButton.Location = new Point(110, 367);
+        completedMissionsRemoveButton.Name = "completedMissionsRemoveButton";
+        completedMissionsRemoveButton.Size = new Size(118, 23);
+        completedMissionsRemoveButton.TabIndex = 73;
+        completedMissionsRemoveButton.Text = "Remove Selected";
+        completedMissionsRemoveButton.UseVisualStyleBackColor = true;
+        completedMissionsRemoveButton.Click += completedMissionsRemoveButton_Click;
         // 
-        // count
+        // completedMissionsAddButton
         // 
-        count.HeaderText = "Count";
-        count.Name = "count";
+        completedMissionsAddButton.Location = new Point(6, 367);
+        completedMissionsAddButton.Name = "completedMissionsAddButton";
+        completedMissionsAddButton.Size = new Size(98, 23);
+        completedMissionsAddButton.TabIndex = 72;
+        completedMissionsAddButton.Text = "Add New...";
+        completedMissionsAddButton.UseVisualStyleBackColor = true;
         // 
-        // missionBestTimesDataGridView
+        // completedMissionsLabel
         // 
-        missionBestTimesDataGridView.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-        missionBestTimesDataGridView.Columns.AddRange(new DataGridViewColumn[] { Mission, Time });
-        missionBestTimesDataGridView.Location = new Point(436, 6);
-        missionBestTimesDataGridView.Name = "missionBestTimesDataGridView";
-        missionBestTimesDataGridView.Size = new Size(348, 184);
-        missionBestTimesDataGridView.TabIndex = 46;
+        completedMissionsLabel.AutoSize = true;
+        completedMissionsLabel.Location = new Point(6, 204);
+        completedMissionsLabel.Name = "completedMissionsLabel";
+        completedMissionsLabel.Size = new Size(115, 15);
+        completedMissionsLabel.TabIndex = 71;
+        completedMissionsLabel.Text = "Completed Missions";
         // 
-        // Mission
+        // completedMissionsListBox
         // 
-        Mission.HeaderText = "Mission";
-        Mission.Name = "Mission";
+        completedMissionsListBox.FormattingEnabled = true;
+        completedMissionsListBox.ItemHeight = 15;
+        completedMissionsListBox.Location = new Point(6, 222);
+        completedMissionsListBox.Name = "completedMissionsListBox";
+        completedMissionsListBox.Size = new Size(222, 139);
+        completedMissionsListBox.TabIndex = 70;
         // 
-        // Time
+        // missionBestTimesEditButton
         // 
-        Time.HeaderText = "Time";
-        Time.Name = "Time";
+        missionBestTimesEditButton.Location = new Point(568, 169);
+        missionBestTimesEditButton.Name = "missionBestTimesEditButton";
+        missionBestTimesEditButton.Size = new Size(94, 23);
+        missionBestTimesEditButton.TabIndex = 69;
+        missionBestTimesEditButton.Text = "Edit Selected...";
+        missionBestTimesEditButton.UseVisualStyleBackColor = true;
+        // 
+        // missionBestTimesRemoveButton
+        // 
+        missionBestTimesRemoveButton.Location = new Point(668, 169);
+        missionBestTimesRemoveButton.Name = "missionBestTimesRemoveButton";
+        missionBestTimesRemoveButton.Size = new Size(118, 23);
+        missionBestTimesRemoveButton.TabIndex = 68;
+        missionBestTimesRemoveButton.Text = "Remove Selected";
+        missionBestTimesRemoveButton.UseVisualStyleBackColor = true;
+        missionBestTimesRemoveButton.Click += missionBestTimesRemoveButton_Click;
+        // 
+        // missionBestTimesAddButton
+        // 
+        missionBestTimesAddButton.Location = new Point(464, 169);
+        missionBestTimesAddButton.Name = "missionBestTimesAddButton";
+        missionBestTimesAddButton.Size = new Size(98, 23);
+        missionBestTimesAddButton.TabIndex = 67;
+        missionBestTimesAddButton.Text = "Add New...";
+        missionBestTimesAddButton.UseVisualStyleBackColor = true;
+        // 
+        // missionBestTimesLabel
+        // 
+        missionBestTimesLabel.AutoSize = true;
+        missionBestTimesLabel.Location = new Point(464, 6);
+        missionBestTimesLabel.Name = "missionBestTimesLabel";
+        missionBestTimesLabel.Size = new Size(107, 15);
+        missionBestTimesLabel.TabIndex = 66;
+        missionBestTimesLabel.Text = "Mission Best Times";
+        // 
+        // missionBestTimesListBox
+        // 
+        missionBestTimesListBox.FormattingEnabled = true;
+        missionBestTimesListBox.ItemHeight = 15;
+        missionBestTimesListBox.Location = new Point(464, 24);
+        missionBestTimesListBox.Name = "missionBestTimesListBox";
+        missionBestTimesListBox.Size = new Size(320, 139);
+        missionBestTimesListBox.TabIndex = 65;
+        // 
+        // songsRemoveButton
+        // 
+        songsRemoveButton.Location = new Point(340, 169);
+        songsRemoveButton.Name = "songsRemoveButton";
+        songsRemoveButton.Size = new Size(118, 23);
+        songsRemoveButton.TabIndex = 64;
+        songsRemoveButton.Text = "Remove Selected";
+        songsRemoveButton.UseVisualStyleBackColor = true;
+        songsRemoveButton.Click += songsRemoveButton_Click;
+        // 
+        // songsAddButton
+        // 
+        songsAddButton.Location = new Point(236, 169);
+        songsAddButton.Name = "songsAddButton";
+        songsAddButton.Size = new Size(98, 23);
+        songsAddButton.TabIndex = 63;
+        songsAddButton.Text = "Add New...";
+        songsAddButton.UseVisualStyleBackColor = true;
+        // 
+        // songsLabel
+        // 
+        songsLabel.AutoSize = true;
+        songsLabel.Location = new Point(236, 6);
+        songsLabel.Name = "songsLabel";
+        songsLabel.Size = new Size(39, 15);
+        songsLabel.TabIndex = 62;
+        songsLabel.Text = "Songs";
+        // 
+        // songsListBox
+        // 
+        songsListBox.FormattingEnabled = true;
+        songsListBox.ItemHeight = 15;
+        songsListBox.Location = new Point(236, 24);
+        songsListBox.Name = "songsListBox";
+        songsListBox.Size = new Size(222, 139);
+        songsListBox.TabIndex = 61;
+        // 
+        // unlocksRemoveButton
+        // 
+        unlocksRemoveButton.Location = new Point(112, 169);
+        unlocksRemoveButton.Name = "unlocksRemoveButton";
+        unlocksRemoveButton.Size = new Size(118, 23);
+        unlocksRemoveButton.TabIndex = 60;
+        unlocksRemoveButton.Text = "Remove Selected";
+        unlocksRemoveButton.UseVisualStyleBackColor = true;
+        unlocksRemoveButton.Click += unlocksRemoveButton_Click;
+        // 
+        // unlocksAddButton
+        // 
+        unlocksAddButton.Location = new Point(8, 169);
+        unlocksAddButton.Name = "unlocksAddButton";
+        unlocksAddButton.Size = new Size(98, 23);
+        unlocksAddButton.TabIndex = 59;
+        unlocksAddButton.Text = "Add New...";
+        unlocksAddButton.UseVisualStyleBackColor = true;
+        // 
+        // unlocksLabel
+        // 
+        unlocksLabel.AutoSize = true;
+        unlocksLabel.Location = new Point(8, 6);
+        unlocksLabel.Name = "unlocksLabel";
+        unlocksLabel.Size = new Size(49, 15);
+        unlocksLabel.TabIndex = 58;
+        unlocksLabel.Text = "Unlocks";
+        // 
+        // unlocksListBox
+        // 
+        unlocksListBox.FormattingEnabled = true;
+        unlocksListBox.ItemHeight = 15;
+        unlocksListBox.Location = new Point(8, 24);
+        unlocksListBox.Name = "unlocksListBox";
+        unlocksListBox.Size = new Size(222, 139);
+        unlocksListBox.TabIndex = 57;
         // 
         // ExpeditionCoreSaveForm
         // 
@@ -958,12 +1129,7 @@ partial class ExpeditionCoreSaveForm
         ((System.ComponentModel.ISupportInitialize)perkLimitNumericUpDown).EndInit();
         ((System.ComponentModel.ISupportInitialize)pointsNumericUpDown).EndInit();
         expeditionUnlocksAndStatsTabPage.ResumeLayout(false);
-        ((System.ComponentModel.ISupportInitialize)songsDataGridView).EndInit();
-        ((System.ComponentModel.ISupportInitialize)unlocksDataGridView).EndInit();
-        ((System.ComponentModel.ISupportInitialize)completedQuestsDataGridView).EndInit();
-        ((System.ComponentModel.ISupportInitialize)completedMissionsDataGridView).EndInit();
-        ((System.ComponentModel.ISupportInitialize)challengesDataGridView).EndInit();
-        ((System.ComponentModel.ISupportInitialize)missionBestTimesDataGridView).EndInit();
+        expeditionUnlocksAndStatsTabPage.PerformLayout();
         ResumeLayout(false);
         PerformLayout();
     }
@@ -1013,20 +1179,9 @@ partial class ExpeditionCoreSaveForm
     private CheckBox viewedManualCheckBox;
     private Label viewedManualLabel;
     private TabPage expeditionUnlocksAndStatsTabPage;
-    private DataGridView songsDataGridView;
-    private DataGridViewTextBoxColumn song;
-    private DataGridView unlocksDataGridView;
-    private DataGridViewTextBoxColumn unlock;
-    private DataGridView completedQuestsDataGridView;
-    private DataGridViewTextBoxColumn completedQuest;
-    private DataGridView completedMissionsDataGridView;
-    private DataGridView challengesDataGridView;
-    private DataGridViewTextBoxColumn challenge;
-    private DataGridViewTextBoxColumn count;
     private DataGridView missionBestTimesDataGridView;
     private DataGridViewTextBoxColumn Mission;
     private DataGridViewTextBoxColumn Time;
-    private DataGridViewTextBoxColumn completedMission;
     private GroupBox baseInfoGroupBox;
     private GroupBox rainbowAuraGroupBox;
     private CheckBox monkEggActiveCheckBox;
@@ -1057,4 +1212,30 @@ partial class ExpeditionCoreSaveForm
     private Label artificerEggLabel;
     private Label doneActiveLeftLabel;
     private Label doneActiveRightLabel;
+    private Button songsRemoveButton;
+    private Button songsAddButton;
+    private Label songsLabel;
+    private ListBox songsListBox;
+    private Button unlocksRemoveButton;
+    private Button unlocksAddButton;
+    private Label unlocksLabel;
+    private ListBox unlocksListBox;
+    private Button missionBestTimesRemoveButton;
+    private Button missionBestTimesAddButton;
+    private Label missionBestTimesLabel;
+    private ListBox missionBestTimesListBox;
+    private Button missionBestTimesEditButton;
+    private Button challengesEditButton;
+    private Button challengesRemoveButton;
+    private Button challengesAddButton;
+    private Label challengesLabel;
+    private ListBox challengesListBox;
+    private Button completedQuestsRemoveButton;
+    private Button completedQuestsAddButton;
+    private Label completedQuestsLabel;
+    private ListBox completedQuestsListBox;
+    private Button completedMissionsRemoveButton;
+    private Button completedMissionsAddButton;
+    private Label completedMissionsLabel;
+    private ListBox completedMissionsListBox;
 }

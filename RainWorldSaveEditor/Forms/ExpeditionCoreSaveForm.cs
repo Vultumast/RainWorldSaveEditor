@@ -280,15 +280,15 @@ public partial class ExpeditionCoreSaveForm : Form
         selectedMenuSongTextBox.Text = save?.MenuSong ?? "";
         viewedManualCheckBox.Checked = save?.HasViewedManual ?? false;
 
-        unlocksDataGridView.Rows.Clear();
+        unlocksListBox.Items.Clear();
         foreach (var item in save?.Unlockables ?? [])
         {
             var realName = ExpeditionUnlockInfo.Unlocks.ContainsKey(item) ? ExpeditionUnlockInfo.Unlocks[item].Name : item;
 
-            unlocksDataGridView.Rows.Add([realName]);
+            unlocksListBox.Items.Add(realName);
         }
 
-        songsDataGridView.Rows.Clear();
+        songsListBox.Items.Clear();
         foreach (var item in save?.NewSongs ?? [])
         {
             var realName = ExpeditionUnlockInfo.Unlocks.ContainsKey(item) ? ExpeditionUnlockInfo.Unlocks[item].Name : item;
@@ -296,35 +296,35 @@ public partial class ExpeditionCoreSaveForm : Form
             if (!realName.StartsWith("Music"))
                 realName = item;
 
-            songsDataGridView.Rows.Add([realName]);
+            songsListBox.Items.Add(realName);
         }
 
-        completedQuestsDataGridView.Rows.Clear();
+        completedQuestsListBox.Items.Clear();
         foreach (var item in save?.Quests ?? [])
         {
-            completedQuestsDataGridView.Rows.Add([item]);
+            completedQuestsListBox.Items.Add($"Quest #{item[3..]}");
         }
 
-        completedMissionsDataGridView.Rows.Clear();
+        completedMissionsListBox.Items.Clear();
         foreach (var item in save?.Missions ?? [])
         {
             var realName = ExpeditionMissionInfo.Missions.ContainsKey(item) ? ExpeditionMissionInfo.Missions[item].Name : item;
 
-            completedMissionsDataGridView.Rows.Add([realName]);
+            completedMissionsListBox.Items.Add(realName);
         }
 
-        missionBestTimesDataGridView.Rows.Clear();
+        missionBestTimesListBox.Items.Clear();
         foreach (var item in save?.MissionBestTimes ?? [])
         {
             var realName = ExpeditionMissionInfo.Missions.ContainsKey(item.Mission) ? ExpeditionMissionInfo.Missions[item.Mission].Name : item.Mission;
 
-            missionBestTimesDataGridView.Rows.Add([realName, item.Time.ToString()]);
+            missionBestTimesListBox.Items.Add($"{realName}: {item.Time}");
         }
 
-        challengesDataGridView.Rows.Clear();
+        challengesListBox.Items.Clear();
         foreach (var item in save?.ChallengeTypes ?? [])
         {
-            challengesDataGridView.Rows.Add([item.Type, item.Count.ToString()]);
+            challengesListBox.Items.Add($"{item.Type}: {item.Count}");
         }
 
         // Sanitize egg state
@@ -488,5 +488,65 @@ public partial class ExpeditionCoreSaveForm : Form
     private void saintEggActiveCheckBox_CheckedChanged(object sender, EventArgs e)
     {
         UpdateActiveRainbowAuraIndex(sender, 7);
+    }
+
+    private void unlocksRemoveButton_Click(object sender, EventArgs e)
+    {
+        var index = unlocksListBox.SelectedIndex;
+        if (index != -1)
+        {
+            unlocksListBox.Items.RemoveAt(index);
+            _save.Unlockables.RemoveAt(index);
+        }
+    }
+
+    private void songsRemoveButton_Click(object sender, EventArgs e)
+    {
+        var index = songsListBox.SelectedIndex;
+        if (index != -1)
+        {
+            songsListBox.Items.RemoveAt(index);
+            _save.NewSongs.RemoveAt(index);
+        }
+    }
+
+    private void missionBestTimesRemoveButton_Click(object sender, EventArgs e)
+    {
+        var index = missionBestTimesListBox.SelectedIndex;
+        if (index != -1)
+        {
+            missionBestTimesListBox.Items.RemoveAt(index);
+            _save.MissionBestTimes.RemoveAt(index);
+        }
+    }
+
+    private void completedMissionsRemoveButton_Click(object sender, EventArgs e)
+    {
+        var index = completedMissionsListBox.SelectedIndex;
+        if (index != -1)
+        {
+            completedMissionsListBox.Items.RemoveAt(index);
+            _save.Missions.RemoveAt(index);
+        }
+    }
+
+    private void completedQuestsRemoveButton_Click(object sender, EventArgs e)
+    {
+        var index = completedQuestsListBox.SelectedIndex;
+        if (index != -1)
+        {
+            completedQuestsListBox.Items.RemoveAt(index);
+            _save.Quests.RemoveAt(index);
+        }
+    }
+
+    private void challengesRemoveButton_Click(object sender, EventArgs e)
+    {
+        var index = challengesListBox.SelectedIndex;
+        if (index != -1)
+        {
+            challengesListBox.Items.RemoveAt(index);
+            _save.ChallengeTypes.RemoveAt(index);
+        }
     }
 }
