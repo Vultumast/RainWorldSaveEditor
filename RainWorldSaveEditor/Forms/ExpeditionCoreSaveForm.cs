@@ -319,7 +319,7 @@ public partial class ExpeditionCoreSaveForm : Form
         {
             var realName = ExpeditionMissionInfo.Missions.ContainsKey(item.Mission) ? ExpeditionMissionInfo.Missions[item.Mission].Name : item.Mission;
 
-            missionBestTimesListBox.Items.Add($"{realName}: {item.Time}");
+            missionBestTimesListBox.Items.Add($"{realName}: {TimeSpan.FromSeconds(item.Time):hh\\:mm\\:ss}");
         }
 
         challengesListBox.Items.Clear();
@@ -645,6 +645,58 @@ public partial class ExpeditionCoreSaveForm : Form
 
             completedQuestsListBox.Items.Add(realName);
             _save.Quests.Add(item);
+        }
+    }
+
+    private void missionBestTimesAddButton_Click(object sender, EventArgs e)
+    {
+        using var dialog = new TimeSpanValueInputForm();
+
+        dialog.AvailableOptions = ExpeditionMissionInfo.Missions.Values
+            .Select(x => new TimeSpanValueInputForm.Option
+            {
+                Value = x.Key,
+                Display = $"{x.Name} ({x.Key})"
+            }).ToList();
+
+        dialog.ShowDialog();
+
+        var item = dialog.SelectedOption;
+        var time = dialog.SelectedTime;
+
+        if (!string.IsNullOrWhiteSpace(item))
+        {
+            var realName = ExpeditionMissionInfo.Missions.ContainsKey(item) ? ExpeditionMissionInfo.Missions[item].Name : item;
+
+            missionBestTimesListBox.Items.Add($"{realName}: {time:hh\\:mm\\:ss}");
+            _save.MissionBestTimes.Add(new MissionBestTime
+            {
+                Mission = item,
+                Time = (int)time.TotalSeconds
+            });
+        }
+    }
+
+    private void challengesAddButton_Click(object sender, EventArgs e)
+    {
+        using var dialog = new IntValueInputForm();
+
+        // TODO: Add options for challenges you can add
+        dialog.AvailableOptions = [];
+
+        dialog.ShowDialog();
+
+        var item = dialog.SelectedOption;
+        var count = dialog.SelectedNumber;
+
+        if (!string.IsNullOrWhiteSpace(item))
+        {
+            challengesListBox.Items.Add($"{item}: {count}");
+            _save.ChallengeTypes.Add(new ChallengeType
+            {
+                Type = item,
+                Count = count
+            });
         }
     }
 }

@@ -1,6 +1,6 @@
 ﻿namespace RainWorldSaveEditor.Forms;
 
-partial class StringValueInputForm
+partial class TimeSpanValueInputForm
 {
     /// <summary>
     /// Required designer variable.
@@ -35,6 +35,8 @@ partial class StringValueInputForm
         addSelectionButton = new Button();
         addCustomButton = new Button();
         cancelButton = new Button();
+        label1 = new Label();
+        timeSpanTextBox = new TextBox();
         SuspendLayout();
         // 
         // selectFromListLabel
@@ -102,11 +104,31 @@ partial class StringValueInputForm
         cancelButton.UseVisualStyleBackColor = true;
         cancelButton.Click += cancelButton_Click;
         // 
-        // StringValueInputForm
+        // label1
+        // 
+        label1.AutoSize = true;
+        label1.Font = new Font("Segoe UI", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
+        label1.Location = new Point(12, 80);
+        label1.Name = "label1";
+        label1.Size = new Size(203, 17);
+        label1.TabIndex = 7;
+        label1.Text = "...and specify the time (hh:mm:ss):";
+        // 
+        // timeSpanTextBox
+        // 
+        timeSpanTextBox.Location = new Point(221, 79);
+        timeSpanTextBox.Name = "timeSpanTextBox";
+        timeSpanTextBox.Size = new Size(179, 23);
+        timeSpanTextBox.TabIndex = 8;
+        timeSpanTextBox.Text = "00:00:00";
+        // 
+        // TimeSpanValueInputForm
         // 
         AutoScaleDimensions = new SizeF(7F, 15F);
         AutoScaleMode = AutoScaleMode.Font;
         ClientSize = new Size(538, 115);
+        Controls.Add(timeSpanTextBox);
+        Controls.Add(label1);
         Controls.Add(cancelButton);
         Controls.Add(addCustomButton);
         Controls.Add(addSelectionButton);
@@ -115,7 +137,7 @@ partial class StringValueInputForm
         Controls.Add(selectCustomLabel);
         Controls.Add(selectFromListLabel);
         FormBorderStyle = FormBorderStyle.FixedDialog;
-        Name = "StringValueInputForm";
+        Name = "TimeSpanValueInputForm";
         Text = "Add a new value";
         Load += StringValueInputForm_Load;
         ResumeLayout(false);
@@ -131,4 +153,6 @@ partial class StringValueInputForm
     private Button addSelectionButton;
     private Button addCustomButton;
     private Button cancelButton;
+    private Label label1;
+    private TextBox timeSpanTextBox;
 }

@@ -66,6 +66,12 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Compile Update="Forms\IntValueInputForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Forms\TimeSpanValueInputForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Update="Properties\Resources.Designer.cs">
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>

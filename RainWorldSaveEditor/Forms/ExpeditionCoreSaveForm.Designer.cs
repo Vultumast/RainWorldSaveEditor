@@ -859,6 +859,7 @@ partial class ExpeditionCoreSaveForm
         // 
         // challengesEditButton
         // 
+        challengesEditButton.Enabled = false;
         challengesEditButton.Location = new Point(568, 367);
         challengesEditButton.Name = "challengesEditButton";
         challengesEditButton.Size = new Size(94, 23);
@@ -884,6 +885,7 @@ partial class ExpeditionCoreSaveForm
         challengesAddButton.TabIndex = 80;
         challengesAddButton.Text = "Add New...";
         challengesAddButton.UseVisualStyleBackColor = true;
+        challengesAddButton.Click += challengesAddButton_Click;
         // 
         // challengesLabel
         // 
@@ -981,6 +983,7 @@ partial class ExpeditionCoreSaveForm
         // 
         // missionBestTimesEditButton
         // 
+        missionBestTimesEditButton.Enabled = false;
         missionBestTimesEditButton.Location = new Point(568, 169);
         missionBestTimesEditButton.Name = "missionBestTimesEditButton";
         missionBestTimesEditButton.Size = new Size(94, 23);
@@ -1006,6 +1009,7 @@ partial class ExpeditionCoreSaveForm
         missionBestTimesAddButton.TabIndex = 67;
         missionBestTimesAddButton.Text = "Add New...";
         missionBestTimesAddButton.UseVisualStyleBackColor = true;
+        missionBestTimesAddButton.Click += missionBestTimesAddButton_Click;
         // 
         // missionBestTimesLabel
         // 

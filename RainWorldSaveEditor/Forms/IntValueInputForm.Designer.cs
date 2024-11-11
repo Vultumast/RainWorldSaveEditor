@@ -1,6 +1,6 @@
 ﻿namespace RainWorldSaveEditor.Forms;
 
-partial class StringValueInputForm
+partial class IntValueInputForm
 {
     /// <summary>
     /// Required designer variable.
@@ -35,6 +35,8 @@ partial class StringValueInputForm
         addSelectionButton = new Button();
         addCustomButton = new Button();
         cancelButton = new Button();
+        label1 = new Label();
+        numberTextBox = new TextBox();
         SuspendLayout();
         // 
         // selectFromListLabel
@@ -102,11 +104,30 @@ partial class StringValueInputForm
         cancelButton.UseVisualStyleBackColor = true;
         cancelButton.Click += cancelButton_Click;
         // 
-        // StringValueInputForm
+        // label1
+        // 
+        label1.AutoSize = true;
+        label1.Font = new Font("Segoe UI", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
+        label1.Location = new Point(12, 82);
+        label1.Name = "label1";
+        label1.Size = new Size(146, 17);
+        label1.TabIndex = 7;
+        label1.Text = "...and specify a number:";
+        // 
+        // numberTextBox
+        // 
+        numberTextBox.Location = new Point(182, 81);
+        numberTextBox.Name = "numberTextBox";
+        numberTextBox.Size = new Size(218, 23);
+        numberTextBox.TabIndex = 8;
+        // 
+        // IntValueInputForm
         // 
         AutoScaleDimensions = new SizeF(7F, 15F);
         AutoScaleMode = AutoScaleMode.Font;
         ClientSize = new Size(538, 115);
+        Controls.Add(numberTextBox);
+        Controls.Add(label1);
         Controls.Add(cancelButton);
         Controls.Add(addCustomButton);
         Controls.Add(addSelectionButton);
@@ -115,7 +136,7 @@ partial class StringValueInputForm
         Controls.Add(selectCustomLabel);
         Controls.Add(selectFromListLabel);
         FormBorderStyle = FormBorderStyle.FixedDialog;
-        Name = "StringValueInputForm";
+        Name = "IntValueInputForm";
         Text = "Add a new value";
         Load += StringValueInputForm_Load;
         ResumeLayout(false);
@@ -131,4 +152,6 @@ partial class StringValueInputForm
     private Button addSelectionButton;
     private Button addCustomButton;
     private Button cancelButton;
+    private Label label1;
+    private TextBox numberTextBox;
 }
