@@ -921,6 +921,7 @@ partial class ExpeditionCoreSaveForm
         completedQuestsAddButton.TabIndex = 76;
         completedQuestsAddButton.Text = "Add New...";
         completedQuestsAddButton.UseVisualStyleBackColor = true;
+        completedQuestsAddButton.Click += completedQuestsAddButton_Click;
         // 
         // completedQuestsLabel
         // 
@@ -958,6 +959,7 @@ partial class ExpeditionCoreSaveForm
         completedMissionsAddButton.TabIndex = 72;
         completedMissionsAddButton.Text = "Add New...";
         completedMissionsAddButton.UseVisualStyleBackColor = true;
+        completedMissionsAddButton.Click += completedMissionsAddButton_Click;
         // 
         // completedMissionsLabel
         // 
@@ -1041,6 +1043,7 @@ partial class ExpeditionCoreSaveForm
         songsAddButton.TabIndex = 63;
         songsAddButton.Text = "Add New...";
         songsAddButton.UseVisualStyleBackColor = true;
+        songsAddButton.Click += songsAddButton_Click;
         // 
         // songsLabel
         // 
@@ -1078,6 +1081,7 @@ partial class ExpeditionCoreSaveForm
         unlocksAddButton.TabIndex = 59;
         unlocksAddButton.Text = "Add New...";
         unlocksAddButton.UseVisualStyleBackColor = true;
+        unlocksAddButton.Click += unlocksAddButton_Click;
         // 
         // unlocksLabel
         // 

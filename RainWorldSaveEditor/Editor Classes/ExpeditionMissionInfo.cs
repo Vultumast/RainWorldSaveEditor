@@ -32,7 +32,7 @@ public class ExpeditionMissionInfo(string Key, string Name)
             }
             catch (Exception ex)
             {
-                Logger.DeserializationError(file, nameof(CommunityInfo), ex);
+                Logger.DeserializationError(file, nameof(ExpeditionMissionInfo), ex);
             }
         }
 

@@ -22,6 +22,7 @@ public partial class ExpeditionCoreSaveForm : Form
         UnloadSave();
         ExpeditionUnlockInfo.ReadExpeditionUnlockInfo();
         ExpeditionMissionInfo.ReadExpeditionMissionInfo();
+        ExpeditionQuestInfo.ReadExpeditionQuestInfo();
     }
 
     public string ExternalSaveLocation { get; private set; } = string.Empty;
@@ -547,6 +548,103 @@ public partial class ExpeditionCoreSaveForm : Form
         {
             challengesListBox.Items.RemoveAt(index);
             _save.ChallengeTypes.RemoveAt(index);
+        }
+    }
+
+    private void unlocksAddButton_Click(object sender, EventArgs e)
+    {
+        using var dialog = new StringValueInputForm();
+
+        dialog.AvailableOptions = ExpeditionUnlockInfo.Unlocks.Values
+            .Select(x => new StringValueInputForm.Option
+            {
+                Value = x.Id,
+                Display = $"{x.Name} ({x.Id})"
+            }).ToList();
+
+        dialog.ShowDialog();
+
+        var item = dialog.SelectedOption;
+
+        if (!string.IsNullOrWhiteSpace(item))
+        {
+            var realName = ExpeditionUnlockInfo.Unlocks.ContainsKey(item) ? ExpeditionUnlockInfo.Unlocks[item].Name : item;
+
+            unlocksListBox.Items.Add(realName);
+            _save.Unlockables.Add(item);
+        }
+    }
+
+    private void songsAddButton_Click(object sender, EventArgs e)
+    {
+        using var dialog = new StringValueInputForm();
+
+        dialog.AvailableOptions = ExpeditionUnlockInfo.Unlocks.Values
+            .Where(x => x.Name.StartsWith("Music"))
+            .Select(x => new StringValueInputForm.Option
+            {
+                Value = x.Id,
+                Display = $"{x.Name} ({x.Id})"
+            }).ToList();
+
+        dialog.ShowDialog();
+
+        var item = dialog.SelectedOption;
+
+        if (!string.IsNullOrWhiteSpace(item))
+        {
+            var realName = ExpeditionUnlockInfo.Unlocks.ContainsKey(item) ? ExpeditionUnlockInfo.Unlocks[item].Name : item;
+
+            songsListBox.Items.Add(realName);
+            _save.NewSongs.Add(item);
+        }
+    }
+
+    private void completedMissionsAddButton_Click(object sender, EventArgs e)
+    {
+        using var dialog = new StringValueInputForm();
+
+        dialog.AvailableOptions = ExpeditionMissionInfo.Missions.Values
+            .Select(x => new StringValueInputForm.Option
+            {
+                Value = x.Key,
+                Display = $"{x.Name} ({x.Key})"
+            }).ToList();
+
+        dialog.ShowDialog();
+
+        var item = dialog.SelectedOption;
+
+        if (!string.IsNullOrWhiteSpace(item))
+        {
+            var realName = ExpeditionMissionInfo.Missions.ContainsKey(item) ? ExpeditionMissionInfo.Missions[item].Name : item;
+
+            completedMissionsListBox.Items.Add(realName);
+            _save.Missions.Add(item);
+        }
+    }
+
+    private void completedQuestsAddButton_Click(object sender, EventArgs e)
+    {
+        using var dialog = new StringValueInputForm();
+
+        dialog.AvailableOptions = ExpeditionQuestInfo.Quests.Values
+            .Select(x => new StringValueInputForm.Option
+            {
+                Value = x.Key,
+                Display = $"Quest #{x.Key[3..]} ({x.Key})"
+            }).ToList();
+
+        dialog.ShowDialog();
+
+        var item = dialog.SelectedOption;
+
+        if (!string.IsNullOrWhiteSpace(item))
+        {
+            var realName = ExpeditionQuestInfo.Quests.ContainsKey(item) ? $"Quest #{item[3..]}" : item;
+
+            completedQuestsListBox.Items.Add(realName);
+            _save.Quests.Add(item);
         }
     }
 }
