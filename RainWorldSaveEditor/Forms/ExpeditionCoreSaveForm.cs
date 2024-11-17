@@ -1,4 +1,5 @@
 ﻿using RainWorldSaveAPI;
+using RainWorldSaveEditor.Controls;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -11,6 +12,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using static RainWorldSaveEditor.MainForm;
+using static System.Net.Mime.MediaTypeNames;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace RainWorldSaveEditor.Forms;
@@ -20,9 +22,14 @@ public partial class ExpeditionCoreSaveForm : Form
     {
         InitializeComponent();
         UnloadSave();
+
+        // TODO: Maybe read all of this at app start? Also see main form
+        SlugcatInfo.ReadSlugcatInfo();
         ExpeditionUnlockInfo.ReadExpeditionUnlockInfo();
         ExpeditionMissionInfo.ReadExpeditionMissionInfo();
         ExpeditionQuestInfo.ReadExpeditionQuestInfo();
+
+        slugcatActiveMissionMappedLabel.Text = "";
     }
 
     public string ExternalSaveLocation { get; private set; } = string.Empty;
@@ -56,12 +63,18 @@ public partial class ExpeditionCoreSaveForm : Form
     ExpeditionCoreSave _save = null!;
     Settings settings = new();
 
+    string? selectedSlugcat = null;
+
     void UnloadSave()
     {
         _save = null!;
         saveToolStripMenuItem.Enabled = false;
         saveAsToolStripMenuItem.Enabled = false;
         expeditionSaveTabControl.Enabled = false;
+        slugcatsToolStripMenuItem.Enabled = false;
+        expedtionSlugcatTabPage.Enabled = false;
+        ClearSlugcatCheckStates();
+        LoadSlugcatData(null);
     }
 
     void LoadSaveData(string filepath)
@@ -69,6 +82,7 @@ public partial class ExpeditionCoreSaveForm : Form
         UnloadSave();
         Logger.Info($"Reading save file \"{filepath}\"");
         _save = new();
+        slugcatsToolStripMenuItem.Enabled = true;
 
         using var fs = File.OpenRead(filepath);
         var table = HashtableSerializer.Read(fs);
@@ -208,6 +222,112 @@ public partial class ExpeditionCoreSaveForm : Form
             if (MessageBox.Show("todo: this lol", "Unable to find Rain World Save Files", MessageBoxButtons.OK, MessageBoxIcon.Error) == DialogResult.OK)
             {
 
+            }
+        }
+
+        // TODO: Deduplicate this from the main form
+        for (var i = 0; i < SlugcatInfo.SlugcatInfos.Length; i++)
+        {
+            var slugcatInfo = SlugcatInfo.SlugcatInfos[i];
+
+            Bitmap bmp = null!;
+
+            var imgPath = $"Resources\\Slugcat\\Icons\\{slugcatInfo.Name}.png";
+            ToolStripMenuItem menuItem = null!;
+
+            if (!File.Exists(imgPath))
+            {
+                Logger.Warn($"Unable to find slugcat image: \"{imgPath}\"");
+                bmp = Properties.Resources.Slugcat_Missing;
+            }
+            else
+                bmp = new Bitmap(imgPath);
+
+            if (slugcatInfo.Modded)
+                menuItem = moddedSlugcatsToolStripMenuItem;
+            else if (slugcatInfo.RequiresDLC)
+                menuItem = dlcSlugcatsToolStripMenuItem;
+            else
+                menuItem = vanillaSlugcatsToolStripMenuItem;
+
+            ToolStripMenuItem item = (ToolStripMenuItem)menuItem.DropDownItems.Add(slugcatInfo.Name, bmp, SlugcatMenuItem_Click);
+            item.Tag = slugcatInfo;
+            item.CheckOnClick = true;
+        }
+    }
+
+    void ClearSlugcatCheckStates()
+    {
+        foreach (ToolStripMenuItem item in vanillaSlugcatsToolStripMenuItem.DropDownItems)
+            item.Checked = false;
+
+        foreach (ToolStripMenuItem item in dlcSlugcatsToolStripMenuItem.DropDownItems)
+            item.Checked = false;
+
+        foreach (ToolStripMenuItem item in moddedSlugcatsToolStripMenuItem.DropDownItems)
+            item.Checked = false;
+    }
+
+    private void SlugcatMenuItem_Click(object? sender, EventArgs e)
+    {
+        ToolStripMenuItem menuItem = (ToolStripMenuItem)sender!;
+        SlugcatInfo slugcatInfo = (SlugcatInfo)menuItem.Tag!;
+
+        ClearSlugcatCheckStates();
+        menuItem.Checked = true;
+        expedtionSlugcatTabPage.Enabled = true;
+        LoadSlugcatData(slugcatInfo.SaveID);
+    }
+
+    void LoadSlugcatData(string? slugcat)
+    {
+        selectedSlugcat = slugcat;
+        if (slugcat is null)
+        {
+            slugcatWinsNumericUpDown.Value = 0;
+            slugcatPassagesNumericUpDown.Value = 0;
+            slugcatActiveMissionComboBox.Text = "";
+            slugcatActiveMissionMappedLabel.Text = "[no mission]";
+
+            slugcatUnlocksListBox.Items.Clear();
+            slugcatRequiredModsListBox.Items.Clear();
+        }
+        else
+        {
+            // Fill with slugcat data
+            slugcatWinsNumericUpDown.Value = _save.WinEntries.FirstOrDefault(x => x.Slugcat == slugcat).Wins;
+            slugcatPassagesNumericUpDown.Value = _save.Passages.FirstOrDefault(x => x.Slugcat == slugcat).Count;
+
+            var activeMission = _save.ActiveMissionEntries.FirstOrDefault(x => x.Slugcat == slugcat).Data;
+            var missionName = ExpeditionMissionInfo.Missions.Values.FirstOrDefault(x => x.Key == activeMission)?.Name;
+
+            if (missionName == null)
+            {
+                missionName = activeMission;
+            }
+            else
+            {
+                missionName = $"{missionName} ({activeMission})";
+            }
+
+            slugcatActiveMissionComboBox.Text = missionName;
+            UpdateSlugcatMission(missionName);
+
+            slugcatUnlocksListBox.Items.Clear();
+            foreach (var item in _save.Unlocks.Where(x => x.Slugcat == slugcat))
+            {
+                var realName = ExpeditionUnlockInfo.Unlocks.ContainsKey(item.Data) ? ExpeditionUnlockInfo.Unlocks[item.Data].Name : item.Data;
+
+                slugcatUnlocksListBox.Items.Add(realName);
+            }
+
+            slugcatRequiredModsListBox.Items.Clear();
+            foreach (var item in _save.RequiredModsEntries.Where(x => x.Slugcat == slugcat))
+            {
+                foreach (var mod in item.RequiredMods)
+                {
+                    slugcatRequiredModsListBox.Items.Add(mod);
+                }
             }
         }
     }
@@ -697,6 +817,251 @@ public partial class ExpeditionCoreSaveForm : Form
                 Type = item,
                 Count = count
             });
+        }
+    }
+
+    private void slugcatPassagesNumericUpDown_ValueChanged(object sender, EventArgs e)
+    {
+        if (selectedSlugcat is null)
+            return;
+
+        int passages = (int)slugcatPassagesNumericUpDown.Value;
+
+        int index = _save.Passages.FindIndex(x => x.Slugcat == selectedSlugcat);
+
+        if (index == -1)
+        {
+            _save.Passages.Add(new PassageEntry
+            {
+                Slugcat = selectedSlugcat,
+                Count = passages
+            });
+        }
+        else
+        {
+            _save.Passages[index] = _save.Passages[index] with { Count = passages };
+        }
+    }
+
+    private void slugcatWinsNumericUpDown_ValueChanged(object sender, EventArgs e)
+    {
+        if (selectedSlugcat is null)
+            return;
+
+        int wins = (int)slugcatWinsNumericUpDown.Value;
+
+        int index = _save.WinEntries.FindIndex(x => x.Slugcat == selectedSlugcat);
+
+        if (index == -1)
+        {
+            _save.WinEntries.Add(new WinEntry
+            {
+                Slugcat = selectedSlugcat,
+                Wins = wins
+            });
+        }
+        else
+        {
+            _save.WinEntries[index] = _save.WinEntries[index] with { Wins = wins };
+        }
+    }
+
+    private void UpdateSlugcatMission(string mission)
+    {
+        if (selectedSlugcat is null)
+            return;
+
+        var matchingName = ExpeditionMissionInfo.Missions.Values.FirstOrDefault(x => $"{x.Name} ({x.Key})" == mission);
+
+        var key = mission;
+
+        if (matchingName is not null)
+        {
+            key = matchingName.Key;
+        }
+
+        int index = _save.ActiveMissionEntries.FindIndex(x => x.Slugcat == selectedSlugcat);
+
+        if (index == -1)
+        {
+            _save.ActiveMissionEntries.Add(new ActiveMissionEntry
+            {
+                Slugcat = selectedSlugcat,
+                Data = key
+            });
+        }
+        else
+        {
+            _save.ActiveMissionEntries[index] = _save.ActiveMissionEntries[index] with { Data = key };
+        }
+
+        var matchingKey = ExpeditionMissionInfo.Missions.Values.FirstOrDefault(x => x.Key == key);
+
+        if (matchingKey is not null)
+        {
+            if (matchingName is null)
+            {
+                slugcatActiveMissionMappedLabel.Text = $"{matchingKey.Name} ({matchingKey.Key})";
+            }
+            else
+            {
+                slugcatActiveMissionMappedLabel.Text = "";
+            }
+        }
+        else
+        {
+            slugcatActiveMissionMappedLabel.Text = string.IsNullOrEmpty(mission) ? "[no mission]" : "[unknown mission]";
+        }
+    }
+
+    private void slugcatActiveMissionComboBox_TextUpdate(object sender, EventArgs e)
+    {
+        UpdateSlugcatMission(slugcatActiveMissionComboBox.Text);
+    }
+
+    private void slugcatActiveMissionComboBox_DropDown(object sender, EventArgs e)
+    {
+        slugcatActiveMissionComboBox.Items.Clear();
+        slugcatActiveMissionComboBox.Items.AddRange(ExpeditionMissionInfo.Missions.Values.Select(x => $"{x.Name} ({x.Key})").ToArray());
+    }
+
+    private void slugcatActiveMissionComboBox_SelectionChangeCommitted(object sender, EventArgs e)
+    {
+        UpdateSlugcatMission((string)slugcatActiveMissionComboBox.SelectedItem!);
+    }
+
+    private void slugcatRequiredModsAddButton_Click(object sender, EventArgs e)
+    {
+        if (selectedSlugcat is null)
+            return;
+
+        using var dialog = new StringValueInputForm();
+
+        var mods = new string[]
+        {
+            "rwremix",
+            "expedition",
+            "devtools",
+            "moreslugcats",
+            "jollycoop"
+        };
+
+        // TODO: Add a source of well known mods?
+        dialog.AvailableOptions = mods.Select(x => new StringValueInputForm.Option
+        {
+            Value = x,
+            Display = x
+        }).ToList();
+
+        dialog.ShowDialog();
+
+        var item = dialog.SelectedOption;
+
+        if (!string.IsNullOrWhiteSpace(item))
+        {
+            var list = _save.RequiredModsEntries.FirstOrDefault(x => x.Slugcat == selectedSlugcat).RequiredMods;
+
+            if (list is null)
+            {
+                _save.RequiredModsEntries.Add(new RequiredModsEntry
+                {
+                    Slugcat = selectedSlugcat,
+                    RequiredMods = list = []
+                });
+            }
+
+            slugcatRequiredModsListBox.Items.Add(item);
+            list.Add(item);
+        }
+    }
+
+    private void slugcatRequiredModsRemoveButton_Click(object sender, EventArgs e)
+    {
+        if (selectedSlugcat is null)
+            return;
+
+        var item = (string?)slugcatRequiredModsListBox.SelectedItem;
+        var index = slugcatRequiredModsListBox.SelectedIndex;
+
+        if (item is not null)
+        {
+            var list = _save.RequiredModsEntries.FirstOrDefault(x => x.Slugcat == selectedSlugcat).RequiredMods;
+
+            if (list is null)
+            {
+                _save.RequiredModsEntries.Add(new RequiredModsEntry
+                {
+                    Slugcat = selectedSlugcat,
+                    RequiredMods = list = []
+                });
+            }
+
+            list.Remove(item);
+            slugcatRequiredModsListBox.Items.RemoveAt(index);
+        }
+    }
+
+    private void slugcatUnlocksAddButton_Click(object sender, EventArgs e)
+    {
+        if (selectedSlugcat is null)
+            return;
+
+        using var dialog = new StringValueInputForm();
+
+        // TODO: Check what the actual allowed values are supposed to be
+        dialog.AvailableOptions = ExpeditionUnlockInfo.Unlocks.Values
+            .Where(x => x.Name.StartsWith("Perk:") || x.Name.StartsWith("Burden:"))
+            .Select(x => new StringValueInputForm.Option
+            {
+                Value = x.Id,
+                Display = $"{x.Name} ({x.Id})"
+            }).ToList();
+
+        dialog.ShowDialog();
+
+        var item = dialog.SelectedOption;
+
+        if (!string.IsNullOrWhiteSpace(item))
+        {
+            var realName = ExpeditionUnlockInfo.Unlocks.ContainsKey(item) ? ExpeditionUnlockInfo.Unlocks[item].Name : item;
+
+            slugcatUnlocksListBox.Items.Add(realName);
+            _save.Unlocks.Add(new UnlockEntry
+            {
+                Slugcat = selectedSlugcat,
+                Data = item
+            });
+        }
+    }
+
+    private void slugcatUnlocksRemoveButton_Click(object sender, EventArgs e)
+    {
+        if (selectedSlugcat is null)
+            return;
+
+        var item = (string?)slugcatUnlocksListBox.SelectedItem;
+        var index = slugcatUnlocksListBox.SelectedIndex;
+        if (item is not null)
+        {
+            var realKey = ExpeditionUnlockInfo.Unlocks.Values.FirstOrDefault(x => x.Name == item)?.Id;
+
+            if (realKey is null)
+            {
+                Logger.Warn("TODO: Encountered a weird unlock key!");
+                return;
+            }
+
+            var indexToRemove = _save.Unlocks.FindIndex(x => x.Slugcat == selectedSlugcat && x.Data == realKey);
+
+            if (indexToRemove != -1)
+            {
+                _save.Unlocks.RemoveAt(indexToRemove);
+                slugcatUnlocksListBox.Items.RemoveAt(index);
+            }
+            else
+            {
+                Logger.Warn("TODO: Failed to find unlock in save?!?!?!");
+            }
         }
     }
 }

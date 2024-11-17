@@ -9,12 +9,12 @@
 
   {
     "Id": "unl-glow",
-    "Name": "Perk: Unlock: Neuron Glow",
+    "Name": "Perk: Neuron Glow",
     "Description": "Enables a persistent glow around the player"
   },
   {
     "Id": "unl-bomb",
-    "Name": "Perk: Unlock: Scavenger Bomb",
+    "Name": "Perk: Scavenger Bomb",
     "Description": "Start the expedition with a Scavenger Bomb"
   },
   {

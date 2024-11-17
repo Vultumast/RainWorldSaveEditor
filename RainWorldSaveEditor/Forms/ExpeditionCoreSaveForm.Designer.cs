@@ -43,6 +43,13 @@ partial class ExpeditionCoreSaveForm
         toolStripSeparator2 = new ToolStripSeparator();
         saveToolStripMenuItem = new ToolStripMenuItem();
         saveAsToolStripMenuItem = new ToolStripMenuItem();
+        slugcatsToolStripMenuItem = new ToolStripMenuItem();
+        vanillaSlugcatsToolStripMenuItem = new ToolStripMenuItem();
+        dlcSlugcatsToolStripMenuItem = new ToolStripMenuItem();
+        moddedSlugcatsToolStripMenuItem = new ToolStripMenuItem();
+        toolStripSeparator3 = new ToolStripSeparator();
+        exportToolStripMenuItem = new ToolStripMenuItem();
+        importToolStripMenuItem = new ToolStripMenuItem();
         aboutToolStripMenuItem = new ToolStripMenuItem();
         expeditionSaveTabControl = new TabControl();
         expeditionGeneralFieldsTabPage = new TabPage();
@@ -125,6 +132,24 @@ partial class ExpeditionCoreSaveForm
         unlocksAddButton = new Button();
         unlocksLabel = new Label();
         unlocksListBox = new ListBox();
+        expedtionSlugcatTabPage = new TabPage();
+        slugcatUnlocksRemoveButton = new Button();
+        slugcatUnlocksAddButton = new Button();
+        slugcatRequiredModsRemoveButton = new Button();
+        slugcatRequiredModsAddButton = new Button();
+        slugcatActiveMissionMappedLabel = new Label();
+        slugcatUnlocksListBox = new ListBox();
+        slugcatRequiredModsListBox = new ListBox();
+        slugcatChallengesListBox = new ListBox();
+        slugcatActiveMissionComboBox = new ComboBox();
+        slugcatWinsNumericUpDown = new NumericUpDown();
+        slugcatPassagesNumericUpDown = new NumericUpDown();
+        slugcatUnlocksLabel = new Label();
+        slugcatChallengesLabel = new Label();
+        slugcatRequiredModsLabel = new Label();
+        slugcatActiveMissionsLabel = new Label();
+        slugcatWinsLabel = new Label();
+        slugcatPassagesLabel = new Label();
         menuStrip1.SuspendLayout();
         expeditionSaveTabControl.SuspendLayout();
         expeditionGeneralFieldsTabPage.SuspendLayout();
@@ -141,11 +166,14 @@ partial class ExpeditionCoreSaveForm
         ((System.ComponentModel.ISupportInitialize)perkLimitNumericUpDown).BeginInit();
         ((System.ComponentModel.ISupportInitialize)pointsNumericUpDown).BeginInit();
         expeditionUnlocksAndStatsTabPage.SuspendLayout();
+        expedtionSlugcatTabPage.SuspendLayout();
+        ((System.ComponentModel.ISupportInitialize)slugcatWinsNumericUpDown).BeginInit();
+        ((System.ComponentModel.ISupportInitialize)slugcatPassagesNumericUpDown).BeginInit();
         SuspendLayout();
         // 
         // menuStrip1
         // 
-        menuStrip1.Items.AddRange(new ToolStripItem[] { fileToolStripMenuItem, saveSlotToolStripMenuItem, aboutToolStripMenuItem });
+        menuStrip1.Items.AddRange(new ToolStripItem[] { fileToolStripMenuItem, saveSlotToolStripMenuItem, slugcatsToolStripMenuItem, aboutToolStripMenuItem });
         menuStrip1.Location = new Point(0, 0);
         menuStrip1.Name = "menuStrip1";
         menuStrip1.Size = new Size(800, 24);
@@ -248,6 +276,48 @@ partial class ExpeditionCoreSaveForm
         saveAsToolStripMenuItem.Text = "Save As...";
         saveAsToolStripMenuItem.Click += saveAsToolStripMenuItem_Click;
         // 
+        // slugcatsToolStripMenuItem
+        // 
+        slugcatsToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { vanillaSlugcatsToolStripMenuItem, dlcSlugcatsToolStripMenuItem, moddedSlugcatsToolStripMenuItem, toolStripSeparator3, exportToolStripMenuItem, importToolStripMenuItem });
+        slugcatsToolStripMenuItem.Name = "slugcatsToolStripMenuItem";
+        slugcatsToolStripMenuItem.Size = new Size(63, 20);
+        slugcatsToolStripMenuItem.Text = "Slugcats";
+        // 
+        // vanillaSlugcatsToolStripMenuItem
+        // 
+        vanillaSlugcatsToolStripMenuItem.Name = "vanillaSlugcatsToolStripMenuItem";
+        vanillaSlugcatsToolStripMenuItem.Size = new Size(119, 22);
+        vanillaSlugcatsToolStripMenuItem.Text = "Vanilla";
+        // 
+        // dlcSlugcatsToolStripMenuItem
+        // 
+        dlcSlugcatsToolStripMenuItem.Name = "dlcSlugcatsToolStripMenuItem";
+        dlcSlugcatsToolStripMenuItem.Size = new Size(119, 22);
+        dlcSlugcatsToolStripMenuItem.Text = "DLC";
+        // 
+        // moddedSlugcatsToolStripMenuItem
+        // 
+        moddedSlugcatsToolStripMenuItem.Name = "moddedSlugcatsToolStripMenuItem";
+        moddedSlugcatsToolStripMenuItem.Size = new Size(119, 22);
+        moddedSlugcatsToolStripMenuItem.Text = "Modded";
+        // 
+        // toolStripSeparator3
+        // 
+        toolStripSeparator3.Name = "toolStripSeparator3";
+        toolStripSeparator3.Size = new Size(116, 6);
+        // 
+        // exportToolStripMenuItem
+        // 
+        exportToolStripMenuItem.Name = "exportToolStripMenuItem";
+        exportToolStripMenuItem.Size = new Size(119, 22);
+        exportToolStripMenuItem.Text = "Export...";
+        // 
+        // importToolStripMenuItem
+        // 
+        importToolStripMenuItem.Name = "importToolStripMenuItem";
+        importToolStripMenuItem.Size = new Size(119, 22);
+        importToolStripMenuItem.Text = "Import...";
+        // 
         // aboutToolStripMenuItem
         // 
         aboutToolStripMenuItem.Name = "aboutToolStripMenuItem";
@@ -259,7 +329,9 @@ partial class ExpeditionCoreSaveForm
         // 
         expeditionSaveTabControl.Controls.Add(expeditionGeneralFieldsTabPage);
         expeditionSaveTabControl.Controls.Add(expeditionUnlocksAndStatsTabPage);
+        expeditionSaveTabControl.Controls.Add(expedtionSlugcatTabPage);
         expeditionSaveTabControl.Dock = DockStyle.Fill;
+        expeditionSaveTabControl.Enabled = false;
         expeditionSaveTabControl.Location = new Point(0, 24);
         expeditionSaveTabControl.Name = "expeditionSaveTabControl";
         expeditionSaveTabControl.SelectedIndex = 0;
@@ -1105,6 +1177,192 @@ partial class ExpeditionCoreSaveForm
         unlocksListBox.Size = new Size(222, 139);
         unlocksListBox.TabIndex = 57;
         // 
+        // expedtionSlugcatTabPage
+        // 
+        expedtionSlugcatTabPage.Controls.Add(slugcatUnlocksRemoveButton);
+        expedtionSlugcatTabPage.Controls.Add(slugcatUnlocksAddButton);
+        expedtionSlugcatTabPage.Controls.Add(slugcatRequiredModsRemoveButton);
+        expedtionSlugcatTabPage.Controls.Add(slugcatRequiredModsAddButton);
+        expedtionSlugcatTabPage.Controls.Add(slugcatActiveMissionMappedLabel);
+        expedtionSlugcatTabPage.Controls.Add(slugcatUnlocksListBox);
+        expedtionSlugcatTabPage.Controls.Add(slugcatRequiredModsListBox);
+        expedtionSlugcatTabPage.Controls.Add(slugcatChallengesListBox);
+        expedtionSlugcatTabPage.Controls.Add(slugcatActiveMissionComboBox);
+        expedtionSlugcatTabPage.Controls.Add(slugcatWinsNumericUpDown);
+        expedtionSlugcatTabPage.Controls.Add(slugcatPassagesNumericUpDown);
+        expedtionSlugcatTabPage.Controls.Add(slugcatUnlocksLabel);
+        expedtionSlugcatTabPage.Controls.Add(slugcatChallengesLabel);
+        expedtionSlugcatTabPage.Controls.Add(slugcatRequiredModsLabel);
+        expedtionSlugcatTabPage.Controls.Add(slugcatActiveMissionsLabel);
+        expedtionSlugcatTabPage.Controls.Add(slugcatWinsLabel);
+        expedtionSlugcatTabPage.Controls.Add(slugcatPassagesLabel);
+        expedtionSlugcatTabPage.Location = new Point(4, 24);
+        expedtionSlugcatTabPage.Name = "expedtionSlugcatTabPage";
+        expedtionSlugcatTabPage.Size = new Size(792, 398);
+        expedtionSlugcatTabPage.TabIndex = 2;
+        expedtionSlugcatTabPage.Text = "Slugcat Data";
+        expedtionSlugcatTabPage.UseVisualStyleBackColor = true;
+        // 
+        // slugcatUnlocksRemoveButton
+        // 
+        slugcatUnlocksRemoveButton.Location = new Point(581, 364);
+        slugcatUnlocksRemoveButton.Name = "slugcatUnlocksRemoveButton";
+        slugcatUnlocksRemoveButton.Size = new Size(118, 23);
+        slugcatUnlocksRemoveButton.TabIndex = 86;
+        slugcatUnlocksRemoveButton.Text = "Remove Selected";
+        slugcatUnlocksRemoveButton.UseVisualStyleBackColor = true;
+        slugcatUnlocksRemoveButton.Click += slugcatUnlocksRemoveButton_Click;
+        // 
+        // slugcatUnlocksAddButton
+        // 
+        slugcatUnlocksAddButton.Location = new Point(477, 364);
+        slugcatUnlocksAddButton.Name = "slugcatUnlocksAddButton";
+        slugcatUnlocksAddButton.Size = new Size(98, 23);
+        slugcatUnlocksAddButton.TabIndex = 85;
+        slugcatUnlocksAddButton.Text = "Add New...";
+        slugcatUnlocksAddButton.UseVisualStyleBackColor = true;
+        slugcatUnlocksAddButton.Click += slugcatUnlocksAddButton_Click;
+        // 
+        // slugcatRequiredModsRemoveButton
+        // 
+        slugcatRequiredModsRemoveButton.Location = new Point(581, 159);
+        slugcatRequiredModsRemoveButton.Name = "slugcatRequiredModsRemoveButton";
+        slugcatRequiredModsRemoveButton.Size = new Size(118, 23);
+        slugcatRequiredModsRemoveButton.TabIndex = 84;
+        slugcatRequiredModsRemoveButton.Text = "Remove Selected";
+        slugcatRequiredModsRemoveButton.UseVisualStyleBackColor = true;
+        slugcatRequiredModsRemoveButton.Click += slugcatRequiredModsRemoveButton_Click;
+        // 
+        // slugcatRequiredModsAddButton
+        // 
+        slugcatRequiredModsAddButton.Location = new Point(477, 159);
+        slugcatRequiredModsAddButton.Name = "slugcatRequiredModsAddButton";
+        slugcatRequiredModsAddButton.Size = new Size(98, 23);
+        slugcatRequiredModsAddButton.TabIndex = 83;
+        slugcatRequiredModsAddButton.Text = "Add New...";
+        slugcatRequiredModsAddButton.UseVisualStyleBackColor = true;
+        slugcatRequiredModsAddButton.Click += slugcatRequiredModsAddButton_Click;
+        // 
+        // slugcatActiveMissionMappedLabel
+        // 
+        slugcatActiveMissionMappedLabel.AutoSize = true;
+        slugcatActiveMissionMappedLabel.Location = new Point(132, 112);
+        slugcatActiveMissionMappedLabel.Name = "slugcatActiveMissionMappedLabel";
+        slugcatActiveMissionMappedLabel.Size = new Size(114, 15);
+        slugcatActiveMissionMappedLabel.TabIndex = 82;
+        slugcatActiveMissionMappedLabel.Text = "[mission at runtime]";
+        // 
+        // slugcatUnlocksListBox
+        // 
+        slugcatUnlocksListBox.FormattingEnabled = true;
+        slugcatUnlocksListBox.ItemHeight = 15;
+        slugcatUnlocksListBox.Location = new Point(477, 219);
+        slugcatUnlocksListBox.Name = "slugcatUnlocksListBox";
+        slugcatUnlocksListBox.Size = new Size(222, 139);
+        slugcatUnlocksListBox.TabIndex = 81;
+        // 
+        // slugcatRequiredModsListBox
+        // 
+        slugcatRequiredModsListBox.FormattingEnabled = true;
+        slugcatRequiredModsListBox.ItemHeight = 15;
+        slugcatRequiredModsListBox.Location = new Point(477, 14);
+        slugcatRequiredModsListBox.Name = "slugcatRequiredModsListBox";
+        slugcatRequiredModsListBox.Size = new Size(222, 139);
+        slugcatRequiredModsListBox.TabIndex = 80;
+        // 
+        // slugcatChallengesListBox
+        // 
+        slugcatChallengesListBox.Enabled = false;
+        slugcatChallengesListBox.FormattingEnabled = true;
+        slugcatChallengesListBox.ItemHeight = 15;
+        slugcatChallengesListBox.Location = new Point(79, 219);
+        slugcatChallengesListBox.Name = "slugcatChallengesListBox";
+        slugcatChallengesListBox.Size = new Size(222, 139);
+        slugcatChallengesListBox.TabIndex = 79;
+        // 
+        // slugcatActiveMissionComboBox
+        // 
+        slugcatActiveMissionComboBox.FormattingEnabled = true;
+        slugcatActiveMissionComboBox.Location = new Point(132, 86);
+        slugcatActiveMissionComboBox.Name = "slugcatActiveMissionComboBox";
+        slugcatActiveMissionComboBox.Size = new Size(169, 23);
+        slugcatActiveMissionComboBox.TabIndex = 8;
+        slugcatActiveMissionComboBox.DropDown += slugcatActiveMissionComboBox_DropDown;
+        slugcatActiveMissionComboBox.SelectionChangeCommitted += slugcatActiveMissionComboBox_SelectionChangeCommitted;
+        slugcatActiveMissionComboBox.TextUpdate += slugcatActiveMissionComboBox_TextUpdate;
+        // 
+        // slugcatWinsNumericUpDown
+        // 
+        slugcatWinsNumericUpDown.Location = new Point(132, 44);
+        slugcatWinsNumericUpDown.Maximum = new decimal(new int[] { 999999, 0, 0, 0 });
+        slugcatWinsNumericUpDown.Name = "slugcatWinsNumericUpDown";
+        slugcatWinsNumericUpDown.Size = new Size(120, 23);
+        slugcatWinsNumericUpDown.TabIndex = 7;
+        slugcatWinsNumericUpDown.ValueChanged += slugcatWinsNumericUpDown_ValueChanged;
+        // 
+        // slugcatPassagesNumericUpDown
+        // 
+        slugcatPassagesNumericUpDown.Location = new Point(132, 14);
+        slugcatPassagesNumericUpDown.Maximum = new decimal(new int[] { 999999, 0, 0, 0 });
+        slugcatPassagesNumericUpDown.Name = "slugcatPassagesNumericUpDown";
+        slugcatPassagesNumericUpDown.Size = new Size(120, 23);
+        slugcatPassagesNumericUpDown.TabIndex = 6;
+        slugcatPassagesNumericUpDown.ValueChanged += slugcatPassagesNumericUpDown_ValueChanged;
+        // 
+        // slugcatUnlocksLabel
+        // 
+        slugcatUnlocksLabel.AutoSize = true;
+        slugcatUnlocksLabel.Location = new Point(384, 219);
+        slugcatUnlocksLabel.Name = "slugcatUnlocksLabel";
+        slugcatUnlocksLabel.Size = new Size(49, 15);
+        slugcatUnlocksLabel.TabIndex = 5;
+        slugcatUnlocksLabel.Text = "Unlocks";
+        // 
+        // slugcatChallengesLabel
+        // 
+        slugcatChallengesLabel.AutoSize = true;
+        slugcatChallengesLabel.Location = new Point(8, 219);
+        slugcatChallengesLabel.Name = "slugcatChallengesLabel";
+        slugcatChallengesLabel.Size = new Size(65, 15);
+        slugcatChallengesLabel.TabIndex = 4;
+        slugcatChallengesLabel.Text = "Challenges";
+        // 
+        // slugcatRequiredModsLabel
+        // 
+        slugcatRequiredModsLabel.AutoSize = true;
+        slugcatRequiredModsLabel.Location = new Point(384, 16);
+        slugcatRequiredModsLabel.Name = "slugcatRequiredModsLabel";
+        slugcatRequiredModsLabel.Size = new Size(87, 15);
+        slugcatRequiredModsLabel.TabIndex = 3;
+        slugcatRequiredModsLabel.Text = "Required Mods";
+        // 
+        // slugcatActiveMissionsLabel
+        // 
+        slugcatActiveMissionsLabel.AutoSize = true;
+        slugcatActiveMissionsLabel.Location = new Point(8, 89);
+        slugcatActiveMissionsLabel.Name = "slugcatActiveMissionsLabel";
+        slugcatActiveMissionsLabel.Size = new Size(84, 15);
+        slugcatActiveMissionsLabel.TabIndex = 2;
+        slugcatActiveMissionsLabel.Text = "Active Mission";
+        // 
+        // slugcatWinsLabel
+        // 
+        slugcatWinsLabel.AutoSize = true;
+        slugcatWinsLabel.Location = new Point(8, 46);
+        slugcatWinsLabel.Name = "slugcatWinsLabel";
+        slugcatWinsLabel.Size = new Size(33, 15);
+        slugcatWinsLabel.TabIndex = 1;
+        slugcatWinsLabel.Text = "Wins";
+        // 
+        // slugcatPassagesLabel
+        // 
+        slugcatPassagesLabel.AutoSize = true;
+        slugcatPassagesLabel.Location = new Point(8, 20);
+        slugcatPassagesLabel.Name = "slugcatPassagesLabel";
+        slugcatPassagesLabel.Size = new Size(54, 15);
+        slugcatPassagesLabel.TabIndex = 0;
+        slugcatPassagesLabel.Text = "Passages";
+        // 
         // ExpeditionCoreSaveForm
         // 
         AutoScaleDimensions = new SizeF(7F, 15F);
@@ -1138,6 +1396,10 @@ partial class ExpeditionCoreSaveForm
         ((System.ComponentModel.ISupportInitialize)pointsNumericUpDown).EndInit();
         expeditionUnlocksAndStatsTabPage.ResumeLayout(false);
         expeditionUnlocksAndStatsTabPage.PerformLayout();
+        expedtionSlugcatTabPage.ResumeLayout(false);
+        expedtionSlugcatTabPage.PerformLayout();
+        ((System.ComponentModel.ISupportInitialize)slugcatWinsNumericUpDown).EndInit();
+        ((System.ComponentModel.ISupportInitialize)slugcatPassagesNumericUpDown).EndInit();
         ResumeLayout(false);
         PerformLayout();
     }
@@ -1246,4 +1508,29 @@ partial class ExpeditionCoreSaveForm
     private Button completedMissionsAddButton;
     private Label completedMissionsLabel;
     private ListBox completedMissionsListBox;
+    private TabPage expedtionSlugcatTabPage;
+    private ToolStripMenuItem slugcatsToolStripMenuItem;
+    private ToolStripMenuItem vanillaSlugcatsToolStripMenuItem;
+    private ToolStripMenuItem dlcSlugcatsToolStripMenuItem;
+    private ToolStripMenuItem moddedSlugcatsToolStripMenuItem;
+    private ToolStripSeparator toolStripSeparator3;
+    private ToolStripMenuItem exportToolStripMenuItem;
+    private ToolStripMenuItem importToolStripMenuItem;
+    private Label slugcatRequiredModsLabel;
+    private Label slugcatActiveMissionsLabel;
+    private Label slugcatWinsLabel;
+    private Label slugcatPassagesLabel;
+    private Label slugcatChallengesLabel;
+    private Label slugcatUnlocksLabel;
+    private NumericUpDown slugcatWinsNumericUpDown;
+    private NumericUpDown slugcatPassagesNumericUpDown;
+    private ComboBox slugcatActiveMissionComboBox;
+    private ListBox slugcatUnlocksListBox;
+    private ListBox slugcatRequiredModsListBox;
+    private ListBox slugcatChallengesListBox;
+    private Label slugcatActiveMissionMappedLabel;
+    private Button slugcatUnlocksRemoveButton;
+    private Button slugcatUnlocksAddButton;
+    private Button slugcatRequiredModsRemoveButton;
+    private Button slugcatRequiredModsAddButton;
 }

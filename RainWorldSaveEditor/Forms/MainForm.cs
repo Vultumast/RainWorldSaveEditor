@@ -186,8 +186,8 @@ public partial class MainForm : Form
     {
         InitializeComponent();
 
+        // TODO: Maybe read all of this at app start? Also see expedition form
         SlugcatInfo.ReadSlugcatInfo();
-
         CommunityInfo.ReadCommunities();
     }
 
