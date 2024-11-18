@@ -25,6 +25,12 @@ internal static class Program
 
         Translation.Read();
 
+        SlugcatInfo.ReadSlugcatInfo();
+        CommunityInfo.ReadCommunities();
+        ExpeditionUnlockInfo.ReadExpeditionUnlockInfo();
+        ExpeditionMissionInfo.ReadExpeditionMissionInfo();
+        ExpeditionQuestInfo.ReadExpeditionQuestInfo();
+
         // To customize application configuration such as set high DPI settings or default font,
         // see https://aka.ms/applicationconfiguration.
         ApplicationConfiguration.Initialize();

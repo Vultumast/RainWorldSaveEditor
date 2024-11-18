@@ -58,4 +58,37 @@ public static class Utils
             Directory.CreateDirectory(path);
         }
     }
+
+    public static void PopulateSlugcatMenu(ToolStripMenuItem modded, ToolStripMenuItem dlc, ToolStripMenuItem vanilla, EventHandler clickHandler)
+    {
+        for (var i = 0; i < SlugcatInfo.SlugcatInfos.Length; i++)
+        {
+            var slugcatInfo = SlugcatInfo.SlugcatInfos[i];
+
+            Bitmap bmp = null!;
+
+            var imgPath = $"Resources\\Slugcat\\Icons\\{slugcatInfo.Name}.png";
+
+            if (!File.Exists(imgPath))
+            {
+                Logger.Warn($"Unable to find slugcat image: \"{imgPath}\"");
+                bmp = Properties.Resources.Slugcat_Missing;
+            }
+            else
+                bmp = new Bitmap(imgPath);
+
+            ToolStripMenuItem menuItem;
+
+            if (slugcatInfo.Modded)
+                menuItem = modded;
+            else if (slugcatInfo.RequiresDLC)
+                menuItem = dlc;
+            else
+                menuItem = vanilla;
+
+            ToolStripMenuItem item = (ToolStripMenuItem)menuItem.DropDownItems.Add(slugcatInfo.Name, bmp, clickHandler);
+            item.Tag = slugcatInfo;
+            item.CheckOnClick = true;
+        }
+    }
 }

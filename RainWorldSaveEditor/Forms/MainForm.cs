@@ -113,19 +113,18 @@ public partial class MainForm : Form
     {
         UnloadSave();
         Logger.Info($"Reading save file \"{filepath}\"");
-        _save = new();
+
         slugcatsToolStripMenuItem.Enabled = true;
 
-        using var fs = File.OpenRead(filepath);
-        var table = HashtableSerializer.Read(fs);
-        fs.Close();
+        var save = RWFileSerializer.ReadSavExpFile(filepath);
 
-        if (table["save"] is string saveData)
+        if (save is not null)
         {
-            _save.Read(saveData);
+            _save = save;
         }
         else
         {
+            _save = new();
             Logger.Warn("Save data not found.");
             return;
         }
@@ -138,12 +137,7 @@ public partial class MainForm : Form
 
     void WriteSaveData(string filepath)
     {
-        var table = new System.Collections.Hashtable();
-        table["save"] = _save.Write();
-        table["save__Backup"] = table["save"];
-        using var fs = new FileStream(filepath, FileMode.Create, FileAccess.Write);
-        HashtableSerializer.Write(fs, table);
-        fs.Close();
+        RWFileSerializer.WriteSavExpFile(filepath, _save);
     }
 
     void UnloadSave()
@@ -185,10 +179,6 @@ public partial class MainForm : Form
     public MainForm()
     {
         InitializeComponent();
-
-        // TODO: Maybe read all of this at app start? Also see expedition form
-        SlugcatInfo.ReadSlugcatInfo();
-        CommunityInfo.ReadCommunities();
     }
 
     private void MainForm_Load(object sender, EventArgs e)
@@ -249,35 +239,12 @@ public partial class MainForm : Form
             }
         }
 
-        for (var i = 0; i < SlugcatInfo.SlugcatInfos.Length; i++)
-        {
-            var slugcatInfo = SlugcatInfo.SlugcatInfos[i];
-
-            Bitmap bmp = null!;
-
-            var imgPath = $"Resources\\Slugcat\\Icons\\{slugcatInfo.Name}.png";
-            ToolStripMenuItem menuItem = null!;
-
-            if (!File.Exists(imgPath))
-            {
-                Logger.Warn($"Unable to find slugcat image: \"{imgPath}\"");
-                bmp = Properties.Resources.Slugcat_Missing;
-            }
-            else
-                bmp = new Bitmap(imgPath);
-
-            if (slugcatInfo.Modded)
-                menuItem = moddedSlugcatsToolStripMenuItem;
-            else if (slugcatInfo.RequiresDLC)
-                menuItem = dlcSlugcatsToolStripMenuItem;
-            else
-                menuItem = vanillaSlugcatsToolStripMenuItem;
-
-            ToolStripMenuItem item = (ToolStripMenuItem)menuItem.DropDownItems.Add(slugcatInfo.Name, bmp, SlugcatMenuItem_Click);
-            item.Tag = slugcatInfo;
-            item.CheckOnClick = true;
-
-        }
+        Utils.PopulateSlugcatMenu(
+            moddedSlugcatsToolStripMenuItem,
+            dlcSlugcatsToolStripMenuItem,
+            vanillaSlugcatsToolStripMenuItem,
+            SlugcatMenuItem_Click
+            );
     }
 
     private void Item_Click(object? sender, EventArgs e)
